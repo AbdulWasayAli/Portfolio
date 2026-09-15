@@ -1,0 +1,233 @@
+.footer {
+  background: var(--bg-primary);
+  border-top: 1px solid var(--border-color);
+  padding: var(--space-3xl) 0 var(--space-xl);
+}
+
+.footerGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: var(--space-3xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.footerBrand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* === Modern Brand Logo (Footer) === */
+.footerLogoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.footerLogoWrapper:hover {
+  transform: translateY(-2px);
+}
+
+.footerLogoIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(108, 99, 255, 0.1);
+  border: 1.5px solid rgba(108, 99, 255, 0.3);
+  border-radius: 8px;
+  color: var(--primary);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.15);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.footerLogoIconBox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.footerLogoWrapper:hover .footerLogoIconBox {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 6px 20px var(--primary-glow);
+  transform: rotate(-5deg) scale(1.05);
+}
+
+.footerLogoWrapper:hover .footerLogoIconBox::after {
+  left: 200%;
+}
+
+.footerLogoSvg {
+  transition: transform 0.3s ease;
+}
+
+.footerLogoWrapper:hover .footerLogoSvg {
+  transform: scale(1.1);
+}
+
+.footerLogoWrapper:hover .footerLogoSvg path:nth-child(3) {
+  stroke: #fff;
+}
+
+.footerLogoText {
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-bold);
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  transition: color 0.3s ease;
+}
+
+.footerLogoWrapper:hover .footerLogoText {
+  color: var(--primary);
+}
+
+.footerLogoDot {
+  color: var(--accent);
+  transition: color 0.3s ease;
+}
+
+.footerLogoWrapper:hover .footerLogoDot {
+  color: var(--text-primary);
+}
+
+.footerDesc {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  line-height: var(--lh-relaxed);
+  max-width: 320px;
+}
+
+.footerSocial {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.socialBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+  font-size: var(--fs-md);
+  transition: all var(--transition-base);
+}
+
+.socialBtn:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+  background: rgba(108, 99, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+.footerSection h4 {
+  font-size: var(--fs-base);
+  font-weight: var(--fw-semibold);
+  margin-bottom: var(--space-lg);
+  color: var(--text-primary);
+}
+
+.footerLinks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.footerLink {
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  transition: color var(--transition-fast);
+  cursor: pointer;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 0;
+}
+
+.footerLink:hover {
+  color: var(--primary);
+}
+
+.footerContactItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--text-muted);
+  margin-bottom: var(--space-sm);
+}
+
+.footerDivider {
+  width: 100%;
+  height: 1px;
+  background: var(--border-color);
+  margin-bottom: var(--space-lg);
+}
+
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.copyright {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.backToTop {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color var(--transition-fast);
+}
+
+.backToTop:hover {
+  color: var(--primary);
+}
+
+.madeWith {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.madeWith span {
+  color: var(--accent-warm);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .footerGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .footerBottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

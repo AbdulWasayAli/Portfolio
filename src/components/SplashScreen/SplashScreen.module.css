@@ -1,0 +1,176 @@
+.splashContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: var(--bg-primary); /* Automatically changes based on light/dark mode */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out, background-color 0.3s ease;
+}
+
+.splashContainer.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* === Animated Orbs === */
+.glowingOrb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.4) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: pulseOrb 4s infinite alternate;
+  z-index: 1;
+}
+
+.glowingOrb2 {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0, 212, 170, 0.3) 0%, transparent 60%);
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: pulseOrb 3s infinite alternate-reverse;
+  margin-left: 200px;
+  margin-top: 150px;
+  z-index: 1;
+}
+
+@keyframes pulseOrb {
+  0% { transform: scale(1) translate(0, 0); opacity: 0.5; }
+  100% { transform: scale(1.2) translate(-20px, 20px); opacity: 1; }
+}
+
+/* === Particles === */
+.particlesContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--text-primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--text-primary);
+  opacity: 0;
+  animation: floatParticle linear infinite;
+}
+
+@keyframes floatParticle {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(-100px) scale(1.5); opacity: 0; }
+}
+
+/* === Content and Text Animation === */
+.content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nameWrapper {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 20px;
+}
+
+.name {
+  font-size: clamp(2.5rem, 6vw, 5.5rem);
+  font-weight: 800;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #6c63ff, #00d4aa, #6c63ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  opacity: 0;
+  animation: textReveal 3s cubic-bezier(0.16, 1, 0.3, 1) forwards, gradientMove 3s linear infinite;
+}
+
+.underline {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 3px;
+  background: var(--accent);
+  box-shadow: 0 0 15px var(--accent);
+  animation: lineDraw 1.5s ease-out 1.5s forwards;
+}
+
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: scale(1.2);
+    letter-spacing: 30px;
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    letter-spacing: 12px;
+    filter: blur(0);
+  }
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes lineDraw {
+  0% { width: 0; opacity: 0; }
+  50% { opacity: 1; }
+  100% { width: 80%; opacity: 1; }
+}
+
+/* === Skip Button === */
+.skipButton {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  z-index: 4;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 8px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: all 0.3s ease;
+  animation: fadeIn 1s ease 2.5s forwards;
+}
+
+.skipButton:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  color: var(--primary);
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
