@@ -1,4 +1,4 @@
-# 🚀 Abdul Wasay Ali — Developer Portfolio
+# Abdul Wasay Ali — Developer Portfolio
 
 A modern, high-performance personal portfolio web application built with **React 19**, **Vite 8**, and vanilla **CSS Modules**. Designed with sleek cyber/glassmorphic aesthetics, smooth micro-interactions, responsive layouts, and centralized data architecture.
 
