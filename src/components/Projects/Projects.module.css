@@ -60,7 +60,6 @@
   gap: var(--space-xl);
 }
 
-/* Card */
 .projectCard {
   background: var(--gradient-card);
   border: 1px solid var(--border-color);
@@ -69,19 +68,14 @@
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
-  opacity: 0;
-  transform: translateY(30px);
+  animation: cardReveal 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
 }
 
-/* Stagger via nth-child */
-.projectCard:nth-child(1) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s forwards; }
-.projectCard:nth-child(2) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.15s forwards; }
-.projectCard:nth-child(3) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.25s forwards; }
-.projectCard:nth-child(4) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.35s forwards; }
-.projectCard:nth-child(5) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.45s forwards; }
-.projectCard:nth-child(6) { animation: cardReveal 0.6s cubic-bezier(0.16,1,0.3,1) 0.55s forwards; }
-
 @keyframes cardReveal {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
   to {
     opacity: 1;
     transform: translateY(0);
@@ -98,7 +92,11 @@
 .imageWrapper {
   position: relative;
   overflow: hidden;
-  height: 210px;
+  height: 230px;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .projectImage {
@@ -106,12 +104,18 @@
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: brightness(0.9);
+  filter: brightness(0.92);
+}
+
+/* Mobile apps look amazing when fitted properly without aggressive cropping */
+.projectCard[data-category="mobile"] .projectImage {
+  object-fit: contain;
+  padding: 10px;
 }
 
 .projectCard:hover .projectImage {
-  transform: scale(1.1);
-  filter: brightness(0.75);
+  transform: scale(1.06);
+  filter: brightness(0.85);
 }
 
 .comingSoonPlaceholder {

@@ -42,7 +42,11 @@ export default function Projects() {
         {/* Projects Grid */}
         <div className={styles.projectsGrid}>
           {filteredProjects.map((project) => (
-            <div key={project.id} className={styles.projectCard}>
+            <div
+              key={project.id}
+              className={styles.projectCard}
+              data-category={project.category}
+            >
               <div className={styles.imageWrapper}>
                 {project.image ? (
                   <img
