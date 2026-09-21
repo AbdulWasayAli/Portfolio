@@ -57,8 +57,7 @@ export default function Footer() {
               </span>
             </div>
             <p className={styles.footerDesc}>
-              Software Engineer & Mobile App Developer based in Karachi, Pakistan.
-              Passionate about creating impactful digital solutions.
+              Turning ideas into high-performance web & cross-platform mobile apps with clean code and intuitive design.
             </p>
             <div className={styles.footerSocial}>
               <a href={personalInfo.social.github} className={styles.socialBtn} target="_blank" rel="noopener noreferrer" aria-label="GitHub">
@@ -97,13 +96,25 @@ export default function Footer() {
             <h4>Get In Touch</h4>
             <div className={styles.footerLinks}>
               <div className={styles.footerContactItem}>
-                📧 {personalInfo.email}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                <span>{personalInfo.email}</span>
               </div>
               <div className={styles.footerContactItem}>
-                📱 {personalInfo.phone}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                  <line x1="12" y1="18" x2="12.01" y2="18" strokeWidth="3" />
+                </svg>
+                <span>{personalInfo.phone}</span>
               </div>
               <div className={styles.footerContactItem}>
-                📍 {personalInfo.location}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span>{personalInfo.location}</span>
               </div>
             </div>
           </div>
@@ -116,7 +127,10 @@ export default function Footer() {
             © {year} {personalInfo.name}. All rights reserved.
           </p>
           <button className={styles.backToTop} onClick={scrollToTop}>
-            ↑ Back to Top
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 15l-6-6-6 6" />
+            </svg>
+            <span>Back to Top</span>
           </button>
         </div>
       </div>

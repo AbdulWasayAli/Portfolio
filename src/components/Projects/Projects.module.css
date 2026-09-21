@@ -1,5 +1,48 @@
 .projects {
   background: var(--bg-secondary);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient Floating Neon Orbs for Projects */
+.projects::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: -5%;
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.14) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+  animation: projectAura1 15s ease-in-out infinite alternate;
+}
+
+.projects::after {
+  content: '';
+  position: absolute;
+  bottom: 5%;
+  left: -8%;
+  width: 520px;
+  height: 520px;
+  background: radial-gradient(circle, rgba(0, 212, 170, 0.12) 0%, rgba(56, 189, 248, 0.06) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(85px);
+  pointer-events: none;
+  z-index: 0;
+  animation: projectAura2 13s ease-in-out infinite alternate;
+}
+
+@keyframes projectAura1 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(-45px, 40px) scale(1.12); }
+}
+
+@keyframes projectAura2 {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, -35px) scale(1.09); }
 }
 
 /* Filter */
@@ -61,31 +104,47 @@
 }
 
 .projectCard {
+  position: relative;
   background: var(--gradient-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
   animation: cardReveal 0.5s cubic-bezier(0.16,1,0.3,1) forwards;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-@keyframes cardReveal {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Interactive Cursor Spotlight Glow */
+.spotlightGlow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
 }
 
-.projectCard:hover {
-  border-color: rgba(108, 99, 255, 0.5);
-  transform: translateY(-8px) scale(1.01);
-  box-shadow: 0 20px 50px rgba(108, 99, 255, 0.2), 0 0 0 1px rgba(108,99,255,0.15);
+/* Dynamic Glowing Border Highlight under cursor */
+.spotlightBorder {
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  z-index: 2;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1.5px;
+}
+
+.projectCardActive {
+  border-color: rgba(108, 99, 255, 0.45);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4), 0 0 35px var(--primary-glow);
 }
 
 /* Image */
@@ -97,6 +156,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 2;
 }
 
 .projectImage {
@@ -194,6 +254,8 @@
 
 /* Content */
 .projectContent {
+  position: relative;
+  z-index: 2;
   padding: var(--space-lg);
   flex: 1;
   display: flex;

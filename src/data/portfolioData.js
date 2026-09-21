@@ -21,12 +21,11 @@ export const heroData = {
   name: "Abdul Wasay Ali",
   roles: [
     "Software Engineer",
+    "Full-Stack Developer",
     "Mobile App Developer",
-    "Front-End Developer",
-    "Back-End Developer",
   ],
   description:
-    "Specialized in creating modern websites & mobile applications with clean code and pixel-perfect designs.",
+    "Turning ideas into high-performance web & cross-platform mobile apps with clean code and intuitive design.",
   cta: {
     primary: "View My Work",
     secondary: "Download Resume",

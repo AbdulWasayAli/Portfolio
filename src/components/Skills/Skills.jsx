@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { skillsData } from '../../data/portfolioData';
+import { TechIcons } from './TechIcons';
 import styles from './Skills.module.css';
 
 export default function Skills() {
@@ -14,7 +15,7 @@ export default function Skills() {
           observer.disconnect();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
@@ -42,23 +43,33 @@ export default function Skills() {
               </div>
 
               <div className={styles.skillsList}>
-                {category.skills.map((skill, skillIndex) => (
-                  <div key={skillIndex} className={styles.skillItem}>
-                    <div className={styles.skillInfo}>
-                      <span className={styles.skillName}>{skill.name}</span>
-                      <span className={styles.skillLevel}>{skill.level}%</span>
+                {category.skills.map((skill, skillIndex) => {
+                  const IconComp = TechIcons[skill.name];
+                  return (
+                    <div key={skillIndex} className={styles.skillItem}>
+                      <div className={styles.skillInfo}>
+                        <div className={styles.skillLeft}>
+                          {IconComp && (
+                            <span className={styles.brandIconBox}>
+                              <IconComp />
+                            </span>
+                          )}
+                          <span className={styles.skillName}>{skill.name}</span>
+                        </div>
+                        <span className={styles.skillLevel}>{skill.level}%</span>
+                      </div>
+                      <div className={styles.progressBar}>
+                        <div
+                          className={`${styles.progressFill} ${animated ? styles.animate : ''}`}
+                          style={{
+                            width: animated ? `${skill.level}%` : '0%',
+                            transitionDelay: `${catIndex * 0.12 + skillIndex * 0.08}s`,
+                          }}
+                        />
+                      </div>
                     </div>
-                    <div className={styles.progressBar}>
-                      <div
-                        className={`${styles.progressFill} ${animated ? styles.animate : ''}`}
-                        style={{
-                          width: animated ? `${skill.level}%` : '0%',
-                          transitionDelay: `${catIndex * 0.2 + skillIndex * 0.1}s`,
-                        }}
-                      />
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))}

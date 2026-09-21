@@ -3,24 +3,66 @@ import styles from './ThemeToggle.module.css';
 
 export default function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
+  const isDark = theme === 'dark';
 
   return (
     <button
-      className={`${styles.toggleSwitch} ${theme === 'dark' ? styles.dark : styles.light}`}
+      type="button"
+      className={`${styles.toggleSwitch} ${isDark ? styles.dark : styles.light}`}
       onClick={toggleTheme}
       aria-label="Toggle Dark/Light Mode"
-      title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} Mode`}
+      title={`Switch to ${isDark ? 'Light' : 'Dark'} Mode`}
     >
-      {/* Background Track with stars & rays */}
-      <span className={styles.track}>
-        <span className={styles.star1}>✦</span>
-        <span className={styles.star2}>✧</span>
-        <span className={styles.sunRay}>☀️</span>
-      </span>
+      {/* Background Ambience / Track details */}
+      <div className={styles.track}>
+        {/* Stars for dark mode */}
+        <span className={`${styles.star} ${styles.star1}`}>✦</span>
+        <span className={`${styles.star} ${styles.star2}`}>★</span>
+        <span className={`${styles.star} ${styles.star3}`}>✧</span>
 
-      {/* Sliding Glowing Pill */}
+        {/* Cloud / ray accents for light mode */}
+        <span className={styles.lightRay}></span>
+      </div>
+
+      {/* Sliding Luxury Thumb with SVG Morph */}
       <span className={styles.thumb}>
-        {theme === 'dark' ? '🌙' : '☀️'}
+        {/* Moon Icon (Dark Mode) */}
+        <svg
+          className={`${styles.icon} ${styles.moonIcon} ${isDark ? styles.activeIcon : styles.inactiveIcon}`}
+          width="15"
+          height="15"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+        </svg>
+
+        {/* Sun Icon (Light Mode) */}
+        <svg
+          className={`${styles.icon} ${styles.sunIcon} ${!isDark ? styles.activeIcon : styles.inactiveIcon}`}
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="5" fill="currentColor" />
+          <line x1="12" y1="1" x2="12" y2="3" />
+          <line x1="12" y1="21" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="3" y2="12" />
+          <line x1="21" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+        </svg>
       </span>
     </button>
   );
