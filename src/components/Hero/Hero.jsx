@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo } from 'react';
 import { heroData, personalInfo } from '../../data/portfolioData';
 import CyberSphere from './CyberSphere';
+import { playHoverSound, playClickSound } from '../../utils/soundFx';
 import styles from './Hero.module.css';
 
 function useTypingEffect(words, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) {
@@ -100,10 +101,16 @@ export default function Hero() {
             <p className={styles.heroDescription}>{heroData.description}</p>
 
             <div className={styles.heroButtons}>
-              <a href="#projects" className="btn btn-primary" onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
-              }}>
+              <a
+                href="#projects"
+                className="btn btn-primary"
+                onMouseEnter={playHoverSound}
+                onClick={(e) => {
+                  playClickSound();
+                  e.preventDefault();
+                  document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                }}
+              >
                 <span>{heroData.cta.primary}</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M7 13l5 5 5-5M12 6v12" />
@@ -112,7 +119,11 @@ export default function Hero() {
               <button
                 type="button"
                 className="btn btn-outline"
-                onClick={() => setShowResumeModal(true)}
+                onMouseEnter={playHoverSound}
+                onClick={() => {
+                  playClickSound();
+                  setShowResumeModal(true);
+                }}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
@@ -124,6 +135,8 @@ export default function Hero() {
                 href={personalInfo.resumeUrl}
                 className="btn btn-outline"
                 download="Abdul_Wasay_Ali_Resume.pdf"
+                onMouseEnter={playHoverSound}
+                onClick={playClickSound}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />

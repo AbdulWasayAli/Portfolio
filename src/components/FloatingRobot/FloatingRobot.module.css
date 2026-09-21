@@ -1,0 +1,384 @@
+/* ========================================================
+   FloatingRobot.module.css — Pure Ambient Visual Companion
+   ======================================================== */
+
+.companionContainer {
+  position: fixed;
+  bottom: 140px; /* Directly stacked above WhatsApp button */
+  right: 28px;
+  z-index: 998;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none; /* Mouse passes through, robot doesn't block page */
+  user-select: none;
+}
+
+/* === Robot Figure (Stage) === */
+.robotStage {
+  position: relative;
+  width: 90px;
+  height: 140px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 600px;
+  animation: companionFloat 3.8s ease-in-out infinite;
+  pointer-events: auto; /* Only hover triggers */
+  cursor: default; /* Not a link or button */
+}
+
+@keyframes companionFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+
+/* Ambient Glow */
+.glow {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.25) 0%, rgba(0, 212, 170, 0.12) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(18px);
+  pointer-events: none;
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes pulseGlow {
+  0% { transform: translate(-50%, -50%) scale(0.85); opacity: 0.5; }
+  100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.9; }
+}
+
+/* Orbit Ring */
+.orbitRing {
+  position: absolute;
+  width: 85px;
+  height: 85px;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(108, 99, 255, 0.22);
+  pointer-events: none;
+  animation: orbitSpin 12s linear infinite;
+}
+
+.orbitRing::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: var(--accent, #00d4aa);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent, #00d4aa);
+  transform: translateX(-50%);
+}
+
+@keyframes orbitSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* 3D Robot Figure */
+.robotMesh {
+  position: relative;
+  width: 74px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+  transition: transform 0.08s ease-out;
+}
+
+/* Antenna */
+.antenna {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -1px;
+}
+
+.antennaBall {
+  width: 8px;
+  height: 8px;
+  background: var(--accent, #00d4aa);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent, #00d4aa);
+  animation: blinkBall 2s ease-in-out infinite alternate;
+}
+
+@keyframes blinkBall {
+  0% { opacity: 0.6; }
+  100% { opacity: 1; transform: scale(1.15); }
+}
+
+.antennaStem {
+  width: 2px;
+  height: 7px;
+  background: linear-gradient(to bottom, var(--accent, #00d4aa), #3b3a58);
+}
+
+/* Head */
+.head {
+  position: relative;
+  width: 58px;
+  height: 44px;
+  background: linear-gradient(145deg, #1e1d32, #141324);
+  border: 1.5px solid rgba(108, 99, 255, 0.35);
+  border-radius: 15px 15px 13px 13px;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 12px rgba(108, 99, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: border-color 0.2s;
+}
+
+.robotStage:hover .head {
+  border-color: rgba(0, 212, 170, 0.5);
+}
+
+/* Visor Screen */
+.visor {
+  position: relative;
+  width: 44px;
+  height: 29px;
+  background: #090812;
+  border-radius: 9px;
+  border: 1px solid rgba(108, 99, 255, 0.28);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.85);
+}
+
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.65), transparent);
+  animation: scan 2.4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-5px); }
+  100% { transform: translateY(35px); }
+}
+
+/* Eyes */
+.eyeRow {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.eyeSocket {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(0, 212, 170, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.eye {
+  width: 6.5px;
+  height: 6.5px;
+  background: var(--accent, #00d4aa);
+  border-radius: 50%;
+  box-shadow: 0 0 7px var(--accent, #00d4aa);
+  transition: transform 0.06s ease-out;
+}
+
+.blink {
+  animation: eyeBlink 0.35s ease-in-out;
+}
+
+@keyframes eyeBlink {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(0.1); }
+}
+
+/* Mouth */
+.mouth {
+  display: flex;
+  gap: 2px;
+}
+
+.mouth span {
+  width: 3px;
+  height: 2px;
+  background: rgba(108, 99, 255, 0.45);
+  border-radius: 1px;
+}
+
+/* Ears */
+.ear {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 13px;
+  background: #25243e;
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.earLeft { left: -5px; border-radius: 3px 0 0 3px; }
+.earRight { right: -5px; border-radius: 0 3px 3px 0; }
+
+.earDot {
+  width: 2px;
+  height: 2px;
+  background: var(--accent, #00d4aa);
+  border-radius: 50%;
+}
+
+/* Neck */
+.neck {
+  width: 13px;
+  height: 4px;
+  background: #1b1a2e;
+  border-left: 1px solid rgba(108, 99, 255, 0.3);
+  border-right: 1px solid rgba(108, 99, 255, 0.3);
+}
+
+/* Chest */
+.chest {
+  position: relative;
+  width: 46px;
+  height: 34px;
+  background: linear-gradient(145deg, #1b1a2e, #131222);
+  border: 1.5px solid rgba(108, 99, 255, 0.28);
+  border-radius: 9px 9px 13px 13px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.coreReactor {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent, #00d4aa) 30%, var(--primary, #6c63ff) 80%);
+  box-shadow: 0 0 8px var(--accent, #00d4aa);
+  animation: corePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes corePulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.15); opacity: 1; }
+}
+
+.chestLines {
+  display: flex;
+  gap: 2.5px;
+}
+
+.chestLines span {
+  width: 6px;
+  height: 1.5px;
+  background: rgba(108, 99, 255, 0.35);
+  border-radius: 1px;
+}
+
+/* Arms */
+.arm {
+  position: absolute;
+  top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.armLeft {
+  left: 2px;
+}
+
+.armRight {
+  right: 2px;
+}
+
+.shoulder {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #25243e;
+  border: 1px solid rgba(108, 99, 255, 0.3);
+}
+
+.forearm {
+  width: 4.5px;
+  height: 15px;
+  background: linear-gradient(to bottom, #1b1a2e, #131222);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  border-radius: 3px;
+  margin-top: -2px;
+}
+
+/* Status Pill */
+.statusPill {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 7px;
+  padding: 3px 9px;
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.22);
+  border-radius: 999px;
+  transition: all 0.3s ease;
+}
+
+.robotStage:hover .statusPill {
+  border-color: rgba(0, 212, 170, 0.4);
+  background: rgba(0, 212, 170, 0.08);
+}
+
+.statusDot {
+  width: 5px;
+  height: 5px;
+  background: var(--accent, #00d4aa);
+  border-radius: 50%;
+  box-shadow: 0 0 5px var(--accent, #00d4aa);
+  animation: blinkDot 1.6s ease-in-out infinite;
+}
+
+@keyframes blinkDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.statusText {
+  font-size: 9px;
+  font-family: var(--font-mono, monospace);
+  color: #c4c1f5;
+  letter-spacing: 0.3px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .companionContainer {
+    display: none;
+  }
+}

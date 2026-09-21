@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { navLinks, personalInfo } from '../../data/portfolioData';
 import ThemeToggle from './ThemeToggle';
+import SoundToggle from './SoundToggle';
+import { playHoverSound, playClickSound } from '../../utils/soundFx';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -94,7 +96,11 @@ export default function Navbar() {
               className={`${styles.navLink} ${
                 activeSection === link.href.replace('#', '') ? styles.active : ''
               }`}
-              onClick={() => handleNavClick(link.href)}
+              onMouseEnter={playHoverSound}
+              onClick={() => {
+                playClickSound();
+                handleNavClick(link.href);
+              }}
             >
               {link.name}
             </button>
@@ -102,6 +108,7 @@ export default function Navbar() {
         </div>
 
         <div className={styles.navRight}>
+          <SoundToggle />
           <ThemeToggle />
 
           <button

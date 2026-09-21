@@ -8,6 +8,7 @@ import Projects from './components/Projects/Projects';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import FloatingControls from './components/FloatingControls';
+import FloatingRobot from './components/FloatingRobot/FloatingRobot';
 import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './pages/NotFound';
@@ -72,6 +73,7 @@ function App() {
             </main>
             <Footer />
             <FloatingControls />
+            <FloatingRobot />
           </>
         } />
         <Route path="*" element={<NotFound />} />
