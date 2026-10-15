@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { heroData, personalInfo } from '../../data/portfolioData';
 import CyberSphere from './CyberSphere';
-import { playHoverSound, playClickSound } from '../../utils/soundFx';
 import styles from './Hero.module.css';
 
 function useTypingEffect(words, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) {
@@ -104,9 +103,7 @@ export default function Hero() {
               <a
                 href="#projects"
                 className="btn btn-primary"
-                onMouseEnter={playHoverSound}
                 onClick={(e) => {
-                  playClickSound();
                   e.preventDefault();
                   document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -119,9 +116,7 @@ export default function Hero() {
               <button
                 type="button"
                 className="btn btn-outline"
-                onMouseEnter={playHoverSound}
                 onClick={() => {
-                  playClickSound();
                   setShowResumeModal(true);
                 }}
               >
@@ -135,8 +130,6 @@ export default function Hero() {
                 href={personalInfo.resumeUrl}
                 className="btn btn-outline"
                 download="Abdul_Wasay_Ali_Resume.pdf"
-                onMouseEnter={playHoverSound}
-                onClick={playClickSound}
               >
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
