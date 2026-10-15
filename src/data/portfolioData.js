@@ -4,7 +4,7 @@ export const personalInfo = {
   subtitle: "Mobile App Developer",
   email: "wasay3105@gmail.com",
   phone: "+92 3110214934",
-  location: "House No. 14/15, C Area, Liaquatabad, Karachi",
+  location: "C Area, Liaquatabad, Karachi",
   resumeUrl: "/resume.pdf",
   profileImage: "/images/my-picture.jpeg",
   social: {

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { navLinks, personalInfo } from '../../data/portfolioData';
 import ThemeToggle from './ThemeToggle';
 import styles from './Navbar.module.css';
@@ -41,7 +42,7 @@ export default function Navbar() {
   return (
     <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.navContainer}>
-        <a
+        <motion.a
           className={styles.logoWrapper}
           href="#home"
           onClick={(e) => {
@@ -49,8 +50,15 @@ export default function Navbar() {
             handleNavClick('#home');
           }}
           aria-label="Home"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.94 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         >
-          <div className={styles.logoIconBox}>
+          <motion.div
+            className={styles.logoIconBox}
+            whileHover={{ rotate: -8 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+          >
             <svg
               width="24"
               height="24"
@@ -81,11 +89,25 @@ export default function Navbar() {
                 strokeLinejoin="round"
               />
             </svg>
-          </div>
+          </motion.div>
           <span className={styles.logoText}>
-            Wasay<span className={styles.logoDot}>.</span>
+            Wasay
+            <motion.span
+              className={styles.logoDot}
+              animate={{
+                scale: [1, 1.35, 1],
+                opacity: [0.85, 1, 0.85]
+              }}
+              transition={{
+                duration: 2.2,
+                repeat: Infinity,
+                ease: 'easeInOut'
+              }}
+            >
+              .
+            </motion.span>
           </span>
-        </a>
+        </motion.a>
 
         <div className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
           {navLinks.map((link) => (
