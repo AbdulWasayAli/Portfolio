@@ -5,9 +5,10 @@ A modern, high-performance, and responsive personal portfolio web application bu
 ---
 
 ## 🌐 Live Demo & Repository
+- **Live Website:** [https://abdulwasayali.vercel.app/](https://abdulwasayali.vercel.app/)
 - **GitHub Repository:** [https://github.com/AbdulWasayAli/Portfolio](https://github.com/AbdulWasayAli/Portfolio)
 - **Developer:** Abdul Wasay Ali ([@AbdulWasayAli](https://github.com/AbdulWasayAli))
-- **Live Deployment:** Ready for Vercel / GitHub Pages / Netlify
+- **Deployment Platform:** Vercel
 
 ---
 
