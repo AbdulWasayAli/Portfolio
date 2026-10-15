@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { projectsData } from '../../data/portfolioData';
 import ProjectCard from './ProjectCard';
+import ProjectModal from './ProjectModal';
 import styles from './Projects.module.css';
 
 const filters = [
@@ -12,6 +13,7 @@ const filters = [
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const filteredProjects =
     activeFilter === 'all'
@@ -24,7 +26,7 @@ export default function Projects() {
         <div className="section-heading">
           <span className="subtitle">My Projects</span>
           <h2>Some of My Best Work</h2>
-          <p>Here are a few of my favorite projects that showcase my skills in design and development.</p>
+          <p>Click on any project to explore its full architecture, features, and deep overview.</p>
         </div>
 
         {/* Filter Buttons */}
@@ -43,10 +45,22 @@ export default function Projects() {
         {/* Projects Grid with Interactive Magnetic 3D Cards */}
         <div className={styles.projectsGrid}>
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              onSelect={(proj) => setSelectedProject(proj)}
+            />
           ))}
         </div>
       </div>
+
+      {/* Interactive Case Study Detail Modal */}
+      {selectedProject && (
+        <ProjectModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
     </section>
   );
 }

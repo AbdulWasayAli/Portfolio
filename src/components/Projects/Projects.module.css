@@ -262,11 +262,42 @@
   flex-direction: column;
 }
 
+.titleRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: var(--space-sm);
+}
+
 .projectTitle {
   font-size: var(--fs-lg);
   font-weight: var(--fw-bold);
-  margin-bottom: var(--space-sm);
+  margin-bottom: 0;
   transition: color var(--transition-fast);
+}
+
+.detailHint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(108, 99, 255, 0.1);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+  color: var(--primary);
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.projectCard:hover .detailHint {
+  opacity: 1;
+  background: var(--primary);
+  color: #fff;
+  transform: translate(2px, -2px);
+  box-shadow: 0 4px 10px var(--primary-glow);
 }
 
 .projectCard:hover .projectTitle {
