@@ -35,7 +35,11 @@ A modern, high-performance, and responsive personal portfolio web application bu
 - **🎯 Dynamic Typing Animation Hook:** Zero-dependency custom typewriter hook cycling through software engineering titles smoothly.
 - **📊 Real-Time Scroll Progress & Reveal Animations:** Intersection Observer powered viewport animations (`reveal`, `reveal-left`, `reveal-right`, `reveal-scale`) and top progress bar.
 - **📄 In-Browser Resume Modal & One-Click Download:** Live PDF modal previewer allowing users to view or instantly download `resume.pdf`.
-- **🌓 Global Dark / Light Theme:** Context-driven theme switcher with local storage persistence and CSS root class toggles.
+- **📈 Live GitHub Telemetry & Cyber Terminal (`GitHubStats`):**
+  - Real-time GitHub REST API integration fetching live public repositories, 97+ total stargazers, and network metrics.
+  - Interactive language distribution progress bar visualizing the engineering tech stack ratio.
+  - Cyber terminal window with traffic lights, pulsing live beacon radar, and continuous integration activity stream.
+- **🌓 Global Dark / Light Theme:** Ultra-luxury switch featuring Framer Motion layout animations, specular jewel sheen, space constellation dots, and local storage persistence.
 - **💬 Floating Controls:** Quick WhatsApp Chat trigger (`+92 3110214934`) and smooth scroll-to-top button with active scroll threshold.
 - **🧭 Centralized Data Architecture:** 100% data-driven configuration in `src/data/portfolioData.js` managing personal details, experience, skills, projects, and social handles.
 - **🚀 High Quality Code & Linting:** Integrated with **Oxlint** for ultra-fast, modern JavaScript/React linting.
@@ -146,6 +150,9 @@ portfolio-react/
 │   │   ├── Footer/              # Social badges, quick navigation links & dynamic branding
 │   │   │   ├── Footer.jsx
 │   │   │   └── Footer.module.css
+│   │   ├── GitHubStats/         # Real-time GitHub telemetry terminal & metrics dashboard
+│   │   │   ├── GitHubStats.jsx
+│   │   │   └── GitHubStats.module.css
 │   │   ├── Hero/                # Dynamic typewriter headline, quick CTAs & resume modal
 │   │   │   ├── Hero.jsx
 │   │   │   └── Hero.module.css

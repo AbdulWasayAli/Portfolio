@@ -5,6 +5,7 @@ import About from './components/About/About';
 import Experience from './components/Experience/Experience';
 import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
+import GitHubStats from './components/GitHubStats/GitHubStats';
 import Contact from './components/Contact/Contact';
 import Footer from './components/Footer/Footer';
 import FloatingControls from './components/FloatingControls';
@@ -68,6 +69,7 @@ function App() {
               <Experience />
               <Skills />
               <Projects />
+              <GitHubStats />
               <Contact />
               <ScrollRevealInit />
             </main>

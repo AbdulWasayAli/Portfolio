@@ -1,159 +1,239 @@
-.toggleSwitch {
+/* ========================================================
+   Modern Executive Cyber Theme Switcher
+   Framer Motion Layout & Ultra-Luxury Glassmorphism
+   ======================================================== */
+
+.toggleButton {
   position: relative;
-  width: 66px;
-  height: 34px;
+  width: 64px;
+  height: 32px;
   border-radius: 9999px;
-  border: 1.5px solid var(--border-hover);
-  background: var(--bg-card);
-  padding: 3px;
+  padding: 0;
+  background: transparent;
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+/* Ambient Outer Aura */
+.ambientGlow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  opacity: 0;
+  transition: opacity 0.4s ease, filter 0.4s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.isDark .ambientGlow {
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.4) 0%, rgba(108, 99, 255, 0) 75%);
+}
+
+.isLight .ambientGlow {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.45) 0%, rgba(245, 158, 11, 0) 75%);
+}
+
+.toggleButton:hover .ambientGlow {
+  opacity: 1;
+}
+
+/* Base Track Container */
+.track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  padding: 3px;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 1;
+}
+
+/* Dark Theme Track: Deep Void Obsidian with Neon Inset */
+.isDark .track {
+  background: linear-gradient(135deg, rgba(13, 17, 28, 0.95) 0%, rgba(20, 24, 40, 0.85) 100%);
+  border: 1px solid rgba(108, 99, 255, 0.3);
+  box-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.7),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.05),
+    0 4px 12px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
 
-.toggleSwitch:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 20px var(--primary-glow), inset 0 2px 6px rgba(0, 0, 0, 0.2);
+.toggleButton:hover.isDark .track {
+  border-color: rgba(108, 99, 255, 0.6);
+  box-shadow: 
+    inset 0 2px 6px rgba(0, 0, 0, 0.7),
+    0 0 14px rgba(108, 99, 255, 0.25);
 }
 
-/* Dark theme track styling */
-.dark {
-  background: linear-gradient(135deg, #090d16 0%, #151b28 100%);
-  border-color: rgba(108, 99, 255, 0.45);
-  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.6), 0 0 12px rgba(108, 99, 255, 0.2);
+/* Light Theme Track: Frosted Pearlescent Opal */
+.isLight .track {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(241, 245, 249, 0.95) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.9),
+    0 4px 12px rgba(245, 158, 11, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-/* Light theme track styling */
-.light {
-  background: linear-gradient(135deg, #e0e7ff 0%, #ffffff 100%);
-  border-color: rgba(245, 158, 11, 0.45);
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.08), 0 0 12px rgba(245, 158, 11, 0.25);
+.toggleButton:hover.isLight .track {
+  border-color: rgba(245, 158, 11, 0.65);
+  box-shadow: 
+    inset 0 2px 5px rgba(0, 0, 0, 0.06),
+    0 0 14px rgba(245, 158, 11, 0.3);
 }
 
-.track {
+/* Track Ambient Details */
+.trackDetails {
   position: absolute;
   inset: 0;
-  display: flex;
-  align-items: center;
   pointer-events: none;
   overflow: hidden;
 }
 
-/* Stars in Dark Mode */
-.star {
+/* Space Constellations (Dark Mode) */
+.constellationDot {
   position: absolute;
-  color: #ffda79;
-  line-height: 1;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  filter: drop-shadow(0 0 2px #ffda79);
-}
-
-.star1 {
-  left: 10px;
-  top: 7px;
-  font-size: 8px;
-  opacity: 0.9;
-  animation: twinkle 2.5s infinite alternate;
-}
-
-.star2 {
-  left: 20px;
-  bottom: 6px;
-  font-size: 9px;
-  opacity: 0.8;
-  animation: twinkle 3.2s infinite alternate 0.5s;
-}
-
-.star3 {
-  left: 28px;
-  top: 11px;
-  font-size: 6px;
-  opacity: 0.7;
-  animation: twinkle 2s infinite alternate 1s;
-}
-
-@keyframes twinkle {
-  0% { transform: scale(0.8); opacity: 0.4; }
-  100% { transform: scale(1.2); opacity: 1; filter: drop-shadow(0 0 4px #ffeaa7); }
-}
-
-.light .star {
+  border-radius: 50%;
+  background: #a5b4fc;
+  box-shadow: 0 0 4px #818cf8;
   opacity: 0;
-  transform: translateY(15px) scale(0.5);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-/* Light Mode Sun Glow Accent */
-.lightRay {
+.dot1 {
+  width: 2.5px;
+  height: 2.5px;
+  top: 7px;
+  left: 12px;
+}
+
+.dot2 {
+  width: 3.5px;
+  height: 3.5px;
+  bottom: 8px;
+  left: 20px;
+}
+
+.dot3 {
+  width: 2px;
+  height: 2px;
+  top: 13px;
+  left: 27px;
+}
+
+.isDark .constellationDot {
+  opacity: 0.85;
+  animation: pulseDot 3s infinite alternate ease-in-out;
+}
+
+.dot2 {
+  animation-delay: 0.8s;
+}
+
+.dot3 {
+  animation-delay: 1.5s;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.8); opacity: 0.5; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+/* Solar Warmth Aura (Light Mode) */
+.solarAura {
   position: absolute;
-  right: -5px;
-  top: -5px;
-  width: 32px;
-  height: 32px;
+  right: -6px;
+  top: -6px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(251, 191, 36, 0.35) 0%, rgba(251, 191, 36, 0) 70%);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transform: scale(0.5);
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
 
-.light .lightRay {
+.isLight .solarAura {
   opacity: 1;
+  transform: scale(1);
 }
 
-/* Luxury Thumb with Spring Motion */
+/* Modern Sliding Thumb */
 .thumb {
   position: relative;
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-              background 0.4s ease,
-              box-shadow 0.4s ease;
   z-index: 2;
+  overflow: hidden;
 }
 
-.dark .thumb {
-  transform: translateX(32px);
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 0 14px rgba(124, 58, 237, 0.6);
-  color: #f1f5f9;
+/* Dark Thumb: Electric Violet Gradient with Cyber Shimmer */
+.isDark .thumb {
+  margin-left: auto;
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  box-shadow: 
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(124, 58, 237, 0.7);
+  color: #f8fafc;
 }
 
-.light .thumb {
-  transform: translateX(0px);
-  background: linear-gradient(135deg, #fbbf24, #f59e0b);
-  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.4), 0 0 14px rgba(251, 191, 36, 0.7);
+/* Light Thumb: Warm Golden Honey Amber with Radiant Core */
+.isLight .thumb {
+  margin-right: auto;
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  box-shadow: 
+    0 2px 6px rgba(245, 158, 11, 0.35),
+    0 0 14px rgba(251, 191, 36, 0.75);
   color: #ffffff;
 }
 
-/* Smooth Icon Switching & Rotation */
-.icon {
+/* Top Specular Sheen for 3D Jewel Depth */
+.thumbSheen {
   position: absolute;
-  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
-              opacity 0.3s ease;
+  top: 1px;
+  left: 2px;
+  right: 2px;
+  height: 8px;
+  border-radius: 50% 50% 40% 40%;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
+  pointer-events: none;
 }
 
-.activeIcon {
-  opacity: 1;
-  transform: scale(1) rotate(0deg);
+/* Icon Frame & Visual Elements */
+.iconContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
 }
 
-.inactiveIcon {
-  opacity: 0;
-  transform: scale(0.4) rotate(90deg);
+.moonSvg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
 }
 
-.dark .moonIcon {
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.6));
+.sunSvg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.25));
 }
 
-.light .sunIcon {
-  filter: drop-shadow(0 0 3px rgba(255, 255, 255, 0.8));
+/* Keyboard Accessibility */
+.toggleButton:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
 }

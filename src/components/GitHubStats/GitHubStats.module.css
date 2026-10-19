@@ -1,0 +1,467 @@
+/* ========================================================
+   Cyber Terminal GitHub Real-Time Metrics Styling
+   ======================================================== */
+
+.githubSection {
+  position: relative;
+  overflow: hidden;
+  padding: var(--space-4xl) 0;
+}
+
+/* Outer Cyber Container with Specular Glass Border */
+.terminalWrapper {
+  max-width: 1040px;
+  margin: 0 auto;
+  border-radius: var(--radius-xl);
+  background: var(--bg-card);
+  border: 1px solid var(--border-hover);
+  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.45), 0 0 35px var(--primary-glow);
+  overflow: hidden;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  transition: all 0.4s ease;
+}
+
+.terminalWrapper:hover {
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6), 0 0 50px var(--primary-glow);
+}
+
+/* Terminal Mac / Cyber Window Header */
+.terminalHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(0, 0, 0, 0.25);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.trafficLights {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.lightDot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  transition: transform 0.2s ease;
+}
+
+.trafficLights:hover .lightDot {
+  transform: scale(1.15);
+}
+
+.red {
+  background: #ff5f56;
+  box-shadow: 0 0 6px rgba(255, 95, 86, 0.5);
+}
+
+.yellow {
+  background: #ffbd2e;
+  box-shadow: 0 0 6px rgba(255, 189, 46, 0.5);
+}
+
+.green {
+  background: #27c93f;
+  box-shadow: 0 0 6px rgba(39, 201, 63, 0.5);
+}
+
+.terminalTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  letter-spacing: 0.3px;
+}
+
+.liveBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 212, 170, 0.1);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.8px;
+}
+
+.pulseRadar {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+  animation: beaconPulse 1.8s infinite;
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  50% { transform: scale(1.4); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* Terminal Content Container */
+.terminalBody {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Metrics Row */
+.metricRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.metricCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.metricCard:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px -6px var(--primary-glow);
+}
+
+.metricIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(108, 99, 255, 0.12);
+  color: var(--primary-light);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  flex-shrink: 0;
+}
+
+.starIconBox {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.3);
+}
+
+.userIconBox {
+  background: rgba(0, 212, 170, 0.12);
+  color: var(--accent);
+  border-color: rgba(0, 212, 170, 0.3);
+}
+
+.branchIconBox {
+  background: rgba(244, 63, 94, 0.12);
+  color: #fb7185;
+  border-color: rgba(244, 63, 94, 0.3);
+}
+
+.metricData {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metricLabel {
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metricValue {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+}
+
+/* Split Dashboard: Distribution vs Stream */
+.dashboardSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.cardBox {
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 0, 0, 0.18);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+[data-theme="light"] .cardBox {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.boxHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.boxTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.boxTitle svg {
+  color: var(--primary-light);
+}
+
+.headerTag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+}
+
+.greenTag {
+  background: rgba(0, 212, 170, 0.1);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Stacked Language Progress Bar */
+.stackedBar {
+  display: flex;
+  height: 9px;
+  width: 100%;
+  border-radius: var(--radius-full);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.barSegment {
+  height: 100%;
+  transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.langList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.langItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--fs-xs);
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.langLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.colorPill {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.langName {
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.langPercent {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Commit Stream Timeline */
+.commitStream {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.streamItem {
+  display: flex;
+  gap: 12px;
+  position: relative;
+}
+
+.streamIcon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 14px;
+}
+
+.commitDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 6px var(--primary);
+  margin-top: 5px;
+}
+
+.streamLine {
+  width: 2px;
+  flex: 1;
+  background: var(--border-color);
+  margin-top: 4px;
+}
+
+.streamContent {
+  flex: 1;
+  padding-bottom: 8px;
+}
+
+.streamTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 3px;
+}
+
+.repoBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.streamTime {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.streamMsg {
+  font-size: var(--fs-xs);
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Terminal Footer Prompt & Action Button */
+.terminalFooter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-color);
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.footerPrompt {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  color: var(--text-muted);
+}
+
+.promptArrow {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.promptCmd {
+  color: var(--text-secondary);
+}
+
+.viewGhBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  background: var(--gradient-primary);
+  color: #ffffff;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 15px var(--primary-glow);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.viewGhBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px var(--primary-glow);
+  filter: brightness(1.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+  .metricRow {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dashboardSplit {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .metricRow {
+    grid-template-columns: 1fr;
+  }
+
+  .terminalHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .liveBadge {
+    align-self: flex-start;
+  }
+
+  .terminalFooter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .viewGhBtn {
+    width: 100%;
+    justify-content: center;
+  }
+}
