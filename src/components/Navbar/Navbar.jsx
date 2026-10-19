@@ -50,15 +50,24 @@ export default function Navbar() {
             handleNavClick('#home');
           }}
           aria-label="Home"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.94 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 17 }}
+          whileHover="hover"
+          initial="idle"
         >
+          {/* Animated Ambient Cyber Aura */}
+          <div className={styles.logoAura} />
+
+          {/* Futuristic Glass Icon Box */}
           <motion.div
             className={styles.logoIconBox}
-            whileHover={{ rotate: -8 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
+            variants={{
+              idle: { rotate: 0, scale: 1 },
+              hover: { rotate: -6, scale: 1.08 }
+            }}
+            transition={{ type: 'spring', stiffness: 400, damping: 18 }}
           >
+            {/* Shimmer Scanline */}
+            <div className={styles.scanline} />
+
             <svg
               width="24"
               height="24"
@@ -67,45 +76,72 @@ export default function Navbar() {
               xmlns="http://www.w3.org/2000/svg"
               className={styles.logoSvg}
             >
-              <path
+              {/* Left Bracket */}
+              <motion.path
                 d="M9 18L3 12L9 6"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="2.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                variants={{
+                  idle: { x: 0 },
+                  hover: { x: -1.5 }
+                }}
+                transition={{ type: 'spring', stiffness: 350, damping: 20 }}
               />
-              <path
+              {/* Right Bracket */}
+              <motion.path
                 d="M15 6L21 12L15 18"
                 stroke="currentColor"
-                strokeWidth="2.5"
+                strokeWidth="2.4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                variants={{
+                  idle: { x: 0 },
+                  hover: { x: 1.5 }
+                }}
+                transition={{ type: 'spring', stiffness: 350, damping: 20 }}
               />
-              <path
+              {/* Electric Slash with Pulse */}
+              <motion.path
                 d="M14 4L10 20"
                 stroke="var(--accent)"
-                strokeWidth="2.5"
+                strokeWidth="2.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                variants={{
+                  idle: { opacity: 0.9, pathLength: 1 },
+                  hover: { opacity: 1, scale: 1.05 }
+                }}
+                className={styles.electricSlash}
               />
             </svg>
           </motion.div>
+
+          {/* Brand Typography */}
           <span className={styles.logoText}>
-            Wasay
-            <motion.span
-              className={styles.logoDot}
-              animate={{
-                scale: [1, 1.35, 1],
-                opacity: [0.85, 1, 0.85]
-              }}
-              transition={{
-                duration: 2.2,
-                repeat: Infinity,
-                ease: 'easeInOut'
-              }}
-            >
-              .
-            </motion.span>
+            <span className={styles.nameChar}>W</span>
+            <span className={styles.nameChar}>a</span>
+            <span className={styles.nameChar}>s</span>
+            <span className={styles.nameChar}>a</span>
+            <span className={styles.nameChar}>y</span>
+            
+            {/* Pulsing Quantum Cyber Dot */}
+            <span className={styles.dotContainer}>
+              <motion.span
+                className={styles.logoDot}
+                animate={{
+                  scale: [1, 1.4, 1],
+                  opacity: [0.85, 1, 0.85]
+                }}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: 'easeInOut'
+                }}
+              />
+              <span className={styles.dotRadarRing} />
+            </span>
           </span>
         </motion.a>
 
