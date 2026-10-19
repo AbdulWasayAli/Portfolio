@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import Logo from '../Navbar/Logo';
 import { personalInfo, navLinks } from '../../data/portfolioData';
 import styles from './Footer.module.css';
 
@@ -20,87 +20,9 @@ export default function Footer() {
         <div className={styles.footerGrid}>
           {/* Brand */}
           <div className={styles.footerBrand}>
-            <motion.div
-              className={styles.footerLogoWrapper}
-              onClick={scrollToTop}
-              whileHover="hover"
-              initial="idle"
-            >
-              <div className={styles.footerLogoAura} />
-              <motion.div
-                className={styles.footerLogoIconBox}
-                variants={{
-                  idle: { rotate: 0, scale: 1 },
-                  hover: { rotate: -6, scale: 1.08 }
-                }}
-                transition={{ type: 'spring', stiffness: 400, damping: 18 }}
-              >
-                <div className={styles.footerScanline} />
-                <svg
-                  width="22"
-                  height="22"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  className={styles.footerLogoSvg}
-                >
-                  <motion.path
-                    d="M9 18L3 12L9 6"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    variants={{
-                      idle: { x: 0 },
-                      hover: { x: -1.5 }
-                    }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-                  />
-                  <motion.path
-                    d="M15 6L21 12L15 18"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    variants={{
-                      idle: { x: 0 },
-                      hover: { x: 1.5 }
-                    }}
-                    transition={{ type: 'spring', stiffness: 350, damping: 20 }}
-                  />
-                  <motion.path
-                    d="M14 4L10 20"
-                    stroke="var(--accent)"
-                    strokeWidth="2.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className={styles.footerElectricSlash}
-                  />
-                </svg>
-              </motion.div>
-              <span className={styles.footerLogoText}>
-                <span className={styles.footerChar}>W</span>
-                <span className={styles.footerChar}>a</span>
-                <span className={styles.footerChar}>s</span>
-                <span className={styles.footerChar}>a</span>
-                <span className={styles.footerChar}>y</span>
-                <span className={styles.footerDotBox}>
-                  <motion.span
-                    className={styles.footerLogoDot}
-                    animate={{
-                      scale: [1, 1.4, 1],
-                      opacity: [0.85, 1, 0.85]
-                    }}
-                    transition={{
-                      duration: 2.2,
-                      repeat: Infinity,
-                      ease: 'easeInOut'
-                    }}
-                  />
-                  <span className={styles.footerRadarRing} />
-                </span>
-              </span>
-            </motion.div>
+            <div className={styles.footerLogoClickable} onClick={scrollToTop}>
+              <Logo />
+            </div>
             <p className={styles.footerDesc}>
               Turning ideas into high-performance web & cross-platform mobile apps with clean code and intuitive design.
             </p>

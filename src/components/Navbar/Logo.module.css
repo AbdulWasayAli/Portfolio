@@ -1,0 +1,109 @@
+/* ========================================================
+   Original Clean </> Wasay. Developer Branding
+   ======================================================== */
+
+.logoWrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.logoWrapper:hover {
+  transform: translateY(-2px);
+}
+
+.logoIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(108, 99, 255, 0.08) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  color: var(--text-primary);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Silky glass diagonal shine sweep */
+.logoIconBox::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+  transition: left 0.6s ease;
+}
+
+.logoWrapper:hover .logoIconBox {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.85), rgba(0, 229, 255, 0.85));
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 24px rgba(108, 99, 255, 0.35), 0 0 16px rgba(0, 229, 255, 0.25);
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.logoWrapper:hover .logoIconBox::after {
+  left: 200%;
+}
+
+.logoSvg {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.logoWrapper:hover .logoSvg {
+  transform: scale(1.1);
+}
+
+/* Premium Typography */
+.logoText {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  color: var(--text-primary);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.logoWrapper:hover .logoText {
+  background: linear-gradient(135deg, var(--text-primary) 40%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle breathing neon dot */
+.logoDot {
+  display: inline-block;
+  color: var(--accent);
+  margin-left: 1px;
+  filter: drop-shadow(0 0 6px rgba(0, 229, 255, 0.6));
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: dotGlowPulse 3s infinite ease-in-out;
+}
+
+.logoWrapper:hover .logoDot {
+  color: #00E5FF;
+  transform: scale(1.35);
+  filter: drop-shadow(0 0 10px #00E5FF);
+}
+
+@keyframes dotGlowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 9px rgba(0, 229, 255, 0.85));
+  }
+}
