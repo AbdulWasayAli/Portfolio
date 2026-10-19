@@ -1,0 +1,23 @@
+/* ========================================================
+   3D Scroll-Driven Matrix & Warp Background
+   Silicon-Valley Ultra-Clean & 60fps Lightweight
+   ======================================================== */
+
+.scroll3DWrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.canvas3D {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}

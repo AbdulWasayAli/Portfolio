@@ -14,6 +14,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import SplashScreen from './components/SplashScreen/SplashScreen';
+import ScrollMatrix3D from './components/ScrollMatrix3D/ScrollMatrix3D';
 import './styles/globals.css';
 
 function ScrollProgress() {
@@ -62,6 +63,7 @@ function App() {
           <>
 
             <ScrollProgress />
+            <ScrollMatrix3D />
             <Navbar />
             <main>
               <Hero />

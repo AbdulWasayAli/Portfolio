@@ -115,9 +115,12 @@ input, textarea { font-family: inherit; font-size: inherit; }
 .section {
   padding: var(--space-section) 0;
   position: relative;
+  background: transparent;
 }
 
-.section-alt { background-color: var(--bg-secondary); }
+.section-alt { 
+  background-color: transparent; 
+}
 
 .gradient-text {
   background: var(--gradient-text);
