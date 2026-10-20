@@ -16,23 +16,23 @@
   --accent-warm: #ff6b6b;
   --accent-warm-glow: rgba(255, 107, 107, 0.3);
 
-  /* === Dark Theme (Default) === */
-  --bg-primary: #0a0a0f;
-  --bg-secondary: #111118;
-  --bg-tertiary: #16161f;
-  --bg-card: #1a1a26;
-  --bg-card-hover: #22222f;
-  --text-primary: #e8e8f0;
-  --text-secondary: #9898a8;
-  --text-muted: #6b6b7b;
-  --border-color: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(255, 255, 255, 0.12);
+  /* === Dark Theme (Ultra-Deep Obsidian Luxury) === */
+  --bg-primary: #030307;
+  --bg-secondary: #07070d;
+  --bg-tertiary: #0c0c14;
+  --bg-card: rgba(13, 13, 22, 0.7);
+  --bg-card-hover: rgba(20, 20, 35, 0.85);
+  --text-primary: #f0f2ff;
+  --text-secondary: #9aa1bc;
+  --text-muted: #5e6582;
+  --border-color: rgba(255, 255, 255, 0.07);
+  --border-hover: rgba(0, 229, 255, 0.25);
 
   /* === Glassmorphism === */
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-bg-hover: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(7, 7, 14, 0.55);
+  --glass-bg-hover: rgba(15, 15, 28, 0.75);
   --glass-border: rgba(255, 255, 255, 0.08);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-shadow: 0 12px 40px rgba(0, 0, 0, 0.65);
 
   /* === Gradients === */
   --gradient-primary: linear-gradient(135deg, #6c63ff 0%, #3b82f6 100%);

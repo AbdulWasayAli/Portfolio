@@ -193,12 +193,18 @@ export default function ScrollMatrix3D() {
           const dy = p1.screenY - p2.screenY;
           const distSq = dx * dx + dy * dy;
 
-          // Only connect if within 190px screen space
-          if (distSq < 36100) {
+          // Connect within 200px screen space with elegant cyber luminescence
+          if (distSq < 40000) {
             const dist = Math.sqrt(distSq);
-            const connAlpha = (1 - dist / 190) * p1.depthAlpha * p2.depthAlpha * 0.45;
+            const connAlpha = (1 - dist / 200) * p1.depthAlpha * p2.depthAlpha * 0.55;
 
-            ctx.strokeStyle = `rgba(0, 229, 255, ${connAlpha})`;
+            // Gradient vibe alternating between electric cyan & violet
+            if (i % 2 === 0) {
+              ctx.strokeStyle = `rgba(0, 240, 255, ${connAlpha})`;
+            } else {
+              ctx.strokeStyle = `rgba(139, 92, 246, ${connAlpha * 0.85})`;
+            }
+
             ctx.beginPath();
             ctx.moveTo(p1.screenX, p1.screenY);
             ctx.lineTo(p2.screenX, p2.screenY);
@@ -207,34 +213,39 @@ export default function ScrollMatrix3D() {
         }
       }
 
-      // 3. High-Performance Batched Node Rendering
+      // 3. High-Performance Batched Node & Core Rendering
       for (let i = 0; i < NODE_COUNT; i++) {
         const p = projected[i];
         if (!p) continue;
 
-        const r = Math.max(1.2, p.radius * p.scale * (p.isHub ? 1.6 : 1.1));
-        const alpha = Math.min(0.9, p.depthAlpha * p.pulse);
+        const r = Math.max(1.5, p.radius * p.scale * (p.isHub ? 1.7 : 1.15));
+        const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
 
-        // Core dot
         ctx.beginPath();
         ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
 
         if (p.isHub) {
-          ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`;
+          // Major quantum node
+          ctx.fillStyle = `rgba(0, 240, 255, ${alpha})`;
           ctx.fill();
 
-          // Ambient halo ring without expensive shadowBlur
+          // Double halo rings for high-end luxury holographic look (without canvas filter lag)
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 2.8, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0, 229, 255, ${alpha * 0.15})`;
+          ctx.arc(p.screenX, p.screenY, r * 2.6, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 240, 255, ${alpha * 0.18})`;
           ctx.fill();
 
           ctx.beginPath();
           ctx.arc(p.screenX, p.screenY, r * 1.8, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.4})`;
+          ctx.strokeStyle = `rgba(167, 139, 250, ${alpha * 0.5})`;
           ctx.stroke();
+        } else if (i % 3 === 0) {
+          // Violet beacon
+          ctx.fillStyle = `rgba(192, 132, 252, ${alpha * 0.85})`;
+          ctx.fill();
         } else {
-          ctx.fillStyle = `rgba(165, 180, 252, ${alpha * 0.8})`;
+          // Deep electric cyan star
+          ctx.fillStyle = `rgba(56, 189, 248, ${alpha * 0.75})`;
           ctx.fill();
         }
       }
