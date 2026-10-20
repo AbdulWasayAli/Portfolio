@@ -5,7 +5,83 @@ export default function FloatingRobot() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [eyePos, setEyePos] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [hasUnread, setHasUnread] = useState(true);
+  const [messages, setMessages] = useState([
+    {
+      id: 1,
+      sender: 'bot',
+      text: "👋 Hi! I'm Wasay's AI Companion. How can I help you explore his portfolio today?",
+    },
+  ]);
+  const [inputVal, setInputVal] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const robotRef = useRef(null);
+  const chatEndRef = useRef(null);
+
+  // Quick interactive chips
+  const quickQuestions = [
+    { label: '🚀 Primary Skills?', query: 'skills' },
+    { label: '💼 Available for Hire?', query: 'hire' },
+    { label: '📬 Contact Info?', query: 'contact' },
+    { label: '🏆 Featured Projects?', query: 'projects' },
+  ];
+
+  const botResponses = {
+    skills:
+      "Abdul Wasay specializes in **Modern Frontend & Full-Stack Development**:\n• **Core:** React.js, Next.js, TypeScript, JavaScript (ES6+)\n• **Mobile:** Flutter, Dart, Cross-platform Apps\n• **Styling:** CSS3, Glassmorphism, Tailwind, Responsive UI\n• **Backend & Tools:** Node.js, Firebase, REST APIs, Git/GitHub, Vite",
+    hire:
+      "✅ **Yes, absolutely!** Abdul Wasay is actively open to:\n• Full-time Software Engineering roles\n• High-impact contract & freelance projects\n• Startup collaborations & MVP developments\n\nReach out directly through WhatsApp or the Contact form!",
+    contact:
+      "You can connect with Wasay instantly via:\n• 📧 **Email:** abdulwasayali77@gmail.com\n• 📱 **WhatsApp:** Use the green floating button on the bottom-right!\n• 💼 **LinkedIn / GitHub:** Links available in the Hero & Footer sections.",
+    projects:
+      "Check out his top builds in the **Projects Section**:\n• **Aquila Labs:** Modern high-performance web platform\n• **EventEast:** Full-scale event booking ecosystem\n• **Currency App:** Flutter-powered real-time finance tool\n\nScroll up to the Projects section to explore all live demos!",
+    fallback:
+      "Thanks for your message! For direct communication, feel free to drop an email to abdulwasayali77@gmail.com or click the WhatsApp button to chat with Wasay directly!",
+  };
+
+  const handleAsk = (queryKey, customLabel) => {
+    const userMsg = { id: Date.now(), sender: 'user', text: customLabel || queryKey };
+    setMessages((prev) => [...prev, userMsg]);
+    setIsTyping(true);
+
+    setTimeout(() => {
+      const replyText = botResponses[queryKey] || botResponses.fallback;
+      setMessages((prev) => [
+        ...prev,
+        { id: Date.now() + 1, sender: 'bot', text: replyText },
+      ]);
+      setIsTyping(false);
+    }, 450);
+  };
+
+  const handleSend = (e) => {
+    e.preventDefault();
+    if (!inputVal.trim()) return;
+    const text = inputVal.trim();
+    setInputVal('');
+
+    const lower = text.toLowerCase();
+    let matchedKey = 'fallback';
+    if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
+      matchedKey = 'skills';
+    } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available') || lower.includes('freelance')) {
+      matchedKey = 'hire';
+    } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
+      matchedKey = 'contact';
+    } else if (lower.includes('project') || lower.includes('work') || lower.includes('portfolio')) {
+      matchedKey = 'projects';
+    }
+
+    handleAsk(matchedKey, text);
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      setHasUnread(false);
+      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [isOpen, messages, isTyping]);
 
   // Smooth mouse tracking
   const handleMouseMove = useCallback((e) => {
@@ -37,15 +113,110 @@ export default function FloatingRobot() {
   }, [handleMouseMove]);
 
   return (
-    <aside aria-label="Visual Cyber Companion" className={styles.companionContainer}>
-      {/* Pure Visual Ambient 3D Robot */}
+    <aside aria-label="Interactive AI Assistant" className={styles.companionContainer}>
+      {/* Interactive Chat Window */}
+      {isOpen && (
+        <div className={styles.chatWindow}>
+          <div className={styles.chatHeader}>
+            <div className={styles.headerInfo}>
+              <span className={styles.botAvatar}>🤖</span>
+              <div>
+                <h4 className={styles.botTitle}>Wasay AI Assistant</h4>
+                <span className={styles.botStatus}>Online • Ready to help</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className={styles.closeBtn}
+              aria-label="Close Assistant"
+            >
+              ✕
+            </button>
+          </div>
+
+          <div className={styles.messagesContainer}>
+            {messages.map((m) => (
+              <div
+                key={m.id}
+                className={`${styles.messageWrapper} ${
+                  m.sender === 'user' ? styles.userWrapper : styles.botWrapper
+                }`}
+              >
+                <div
+                  className={`${styles.messageBubble} ${
+                    m.sender === 'user' ? styles.userBubble : styles.botBubble
+                  }`}
+                >
+                  {m.text.split('\n').map((line, idx) => (
+                    <span key={idx}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+            {isTyping && (
+              <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
+                <div className={`${styles.messageBubble} ${styles.botBubble} ${styles.typingDots}`}>
+                  <span />
+                  <span />
+                  <span />
+                </div>
+              </div>
+            )}
+            <div ref={chatEndRef} />
+          </div>
+
+          {/* Quick Action Suggestion Chips */}
+          <div className={styles.quickChips}>
+            {quickQuestions.map((q, idx) => (
+              <button
+                key={idx}
+                type="button"
+                className={styles.chipBtn}
+                onClick={() => handleAsk(q.query, q.label)}
+              >
+                {q.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Message Input */}
+          <form onSubmit={handleSend} className={styles.chatInputForm}>
+            <input
+              type="text"
+              value={inputVal}
+              onChange={(e) => setInputVal(e.target.value)}
+              placeholder="Ask anything about Wasay..."
+              className={styles.chatInput}
+            />
+            <button type="submit" className={styles.sendBtn} aria-label="Send message">
+              ➤
+            </button>
+          </form>
+        </div>
+      )}
+
+      {/* Floating 3D Robot Mascot (Clickable Trigger) */}
       <div
         ref={robotRef}
-        className={styles.robotStage}
+        className={`${styles.robotStage} ${isOpen ? styles.robotActive : ''}`}
+        onClick={() => setIsOpen((prev) => !prev)}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
+        role="button"
+        tabIndex={0}
+        aria-label="Toggle Wasay AI Assistant"
       >
-        {/* Glow */}
+        {/* Unread Alert Ping */}
+        {hasUnread && !isOpen && (
+          <div className={styles.chatAlertBadge}>
+            <span>Chat</span>
+          </div>
+        )}
+
+        {/* Ambient Glow */}
         <div className={styles.glow} />
 
         {/* Orbit Ring */}
@@ -125,7 +296,9 @@ export default function FloatingRobot() {
         {/* Mascot Status Label */}
         <div className={styles.statusPill}>
           <span className={styles.statusDot} />
-          <span className={styles.statusText}>Wasay Bot</span>
+          <span className={styles.statusText}>
+            {isOpen ? 'Close Chat' : 'Ask Bot'}
+          </span>
         </div>
       </div>
     </aside>
