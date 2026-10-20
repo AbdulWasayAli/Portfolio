@@ -39,10 +39,10 @@ A modern, high-performance, and responsive personal portfolio web application bu
   - Real-time GitHub REST API integration fetching live public repositories, 97+ total stargazers, and network metrics.
   - Interactive language distribution progress bar visualizing the engineering tech stack ratio.
   - Cyber terminal window with traffic lights, pulsing live beacon radar, and continuous integration activity stream.
-- **🌌 3D Scroll-Driven Cyber Matrix Background (`ScrollMatrix3D`):**
-  - Smooth camera fly-through warp depth that moves in 3D space as the user scrolls down the page.
-  - Interactive wireframe rotating 3D nodes (Hexagons & Cyber Rings) and starfield matrix.
-  - Ultra-high-performance 60 FPS lightweight HTML5 Canvas engine with zero text distraction.
+- **🌌 3D Interactive Cyber Neural Mesh (`ScrollMatrix3D`):**
+  - Connected holographic lattice with pulsing synaptic energy beams and travelling action potentials.
+  - Reactive 3D camera elevation driven by page scroll and cursor gravitational pull.
+  - Central energy hub neurons with neon glow halos, running on a silky-smooth 60 FPS HTML5 Canvas engine.
 - **🌓 Global Dark / Light Theme:** Ultra-luxury switch featuring Framer Motion layout animations, specular jewel sheen, space constellation dots, and local storage persistence.
 - **💬 Floating Controls:** Quick WhatsApp Chat trigger (`+92 3110214934`) and smooth scroll-to-top button with active scroll threshold.
 - **🧭 Centralized Data Architecture:** 100% data-driven configuration in `src/data/portfolioData.js` managing personal details, experience, skills, projects, and social handles.

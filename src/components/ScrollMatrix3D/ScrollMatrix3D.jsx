@@ -15,14 +15,13 @@ export default function ScrollMatrix3D() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
-    // Dynamic resize handler
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
-    // Scroll state tracking with smooth lerp interpolation
+    // Scroll state with smooth damping
     let currentScroll = window.scrollY;
     let targetScroll = window.scrollY;
 
@@ -31,159 +30,252 @@ export default function ScrollMatrix3D() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Interactive mouse parallax
-    let mouseX = 0;
-    let mouseY = 0;
-    let targetMouseX = 0;
-    let targetMouseY = 0;
+    // Cursor interactive gravity
+    let mouse = { x: width / 2, y: height / 2, targetX: width / 2, targetY: height / 2, isHovered: false };
 
     const handleMouseMove = (e) => {
-      targetMouseX = (e.clientX / width - 0.5) * 2;
-      targetMouseY = (e.clientY / height - 0.5) * 2;
+      mouse.targetX = e.clientX;
+      mouse.targetY = e.clientY;
+      mouse.isHovered = true;
     };
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
 
-    // 3D Particles Matrix Generation
-    const PARTICLE_COUNT = 90;
-    const particles = [];
-    for (let i = 0; i < PARTICLE_COUNT; i++) {
-      particles.push({
-        x: (Math.random() - 0.5) * 2200,
-        y: (Math.random() - 0.5) * 2200,
-        z: Math.random() * 1800 + 100,
-        baseX: (Math.random() - 0.5) * 2200,
-        baseY: (Math.random() - 0.5) * 2200,
-        radius: Math.random() * 1.8 + 1,
-        colorType: Math.random() > 0.4 ? 'cyan' : 'violet', // Signature brand palette
+    const handleMouseLeave = () => {
+      mouse.isHovered = false;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    window.addEventListener('mouseleave', handleMouseLeave);
+
+    // ========================================================
+    // 3D NEURAL NODES ARCHITECTURE
+    // ========================================================
+    const NODE_COUNT = 75;
+    const BOUNDS_X = 1400;
+    const BOUNDS_Y = 1100;
+    const BOUNDS_Z = 1600;
+
+    const nodes = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: (Math.random() - 0.5) * BOUNDS_X,
+        y: (Math.random() - 0.5) * BOUNDS_Y,
+        z: Math.random() * BOUNDS_Z,
+        vx: (Math.random() - 0.5) * 0.45,
+        vy: (Math.random() - 0.5) * 0.45,
+        vz: (Math.random() - 0.5) * 0.35,
+        radius: Math.random() * 2.2 + 1.2,
+        pulseOffset: Math.random() * Math.PI * 2,
+        isHub: Math.random() > 0.82, // High-energy central neuron
       });
     }
 
-    // 3D Floating Geometry Nodes (Hexagons & Cyber Rings)
-    const floatingNodes = [
-      { x: -350, y: -200, z: 600, rotX: 0, rotY: 0, size: 90 },
-      { x: 380, y: 150, z: 800, rotX: 0, rotY: 0, size: 120 },
-      { x: -280, y: 400, z: 1100, rotX: 0, rotY: 0, size: 100 },
-      { x: 300, y: -450, z: 1400, rotX: 0, rotY: 0, size: 130 },
-    ];
+    // Energy pulses traveling along synaptic connections
+    const pulses = [];
+    const MAX_PULSES = 16;
 
     let time = 0;
 
-    // Render Loop
+    // Render loop
     const render = () => {
-      time += 0.015;
+      time += 0.016;
 
-      // Smooth lerp for scroll and mouse
-      currentScroll += (targetScroll - currentScroll) * 0.08;
-      mouseX += (targetMouseX - mouseX) * 0.05;
-      mouseY += (targetMouseY - mouseY) * 0.05;
+      // Smooth camera interpolation
+      currentScroll += (targetScroll - currentScroll) * 0.065;
+      mouse.x += (mouse.targetX - mouse.x) * 0.05;
+      mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
       ctx.clearRect(0, 0, width, height);
 
-      const fov = 420;
+      const fov = 460;
       const cx = width / 2;
       const cy = height / 2;
 
-      // Scroll speed calculation for warp effect
-      const scrollDelta = (targetScroll - currentScroll);
-      const warpSpeed = Math.abs(scrollDelta) * 0.25;
+      // Camera 3D coordinates influenced by scroll elevation and mouse tilt
+      const scrollProgress = currentScroll * 0.75;
+      const rotY = ((mouse.x - cx) / width) * 0.35;
+      const rotX = ((mouse.y - cy) / height) * 0.25;
 
-      // Camera Z-Position driven by scroll
-      const cameraZ = currentScroll * 0.85;
+      const cosY = Math.cos(rotY);
+      const sinY = Math.sin(rotY);
+      const cosX = Math.cos(rotX);
+      const sinX = Math.sin(rotX);
 
-      // Render 3D Floating Geometry Nodes
-      floatingNodes.forEach((node) => {
-        // Continuous rotation driven by time + scroll
-        node.rotX = time * 0.3 + currentScroll * 0.0015;
-        node.rotY = time * 0.5 + currentScroll * 0.002;
+      // 1. Update & Project Nodes into 2D Screen Space
+      const projectedNodes = [];
 
-        const relZ = ((node.z - cameraZ) % 1800 + 1800) % 1800 + 100;
-        const scale = fov / (fov + relZ);
-        const screenX = cx + (node.x + mouseX * 60) * scale;
-        const screenY = cy + (node.y + mouseY * 60) * scale;
+      for (let i = 0; i < NODE_COUNT; i++) {
+        const n = nodes[i];
 
-        if (relZ > 50 && scale > 0.05) {
-          ctx.save();
-          ctx.translate(screenX, screenY);
-          ctx.rotate(node.rotY);
+        // Autonomous kinetic drift
+        n.x += n.vx;
+        n.y += n.vy;
+        n.z += n.vz;
 
-          const alpha = Math.min(0.45, Math.max(0.12, (1 - relZ / 1800) * 0.65));
-          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha})`;
-          ctx.lineWidth = 1.8 * scale;
+        // Soft boundary wraps
+        if (n.x < -BOUNDS_X / 2) n.x = BOUNDS_X / 2;
+        if (n.x > BOUNDS_X / 2) n.x = -BOUNDS_X / 2;
+        if (n.y < -BOUNDS_Y / 2) n.y = BOUNDS_Y / 2;
+        if (n.y > BOUNDS_Y / 2) n.y = -BOUNDS_Y / 2;
+        if (n.z < 0) n.z = BOUNDS_Z;
+        if (n.z > BOUNDS_Z) n.z = 0;
 
-          // Draw 3D Wireframe Hexagon
-          ctx.beginPath();
-          for (let s = 0; s < 6; s++) {
-            const angle = (s * Math.PI) / 3;
-            const hx = Math.cos(angle) * (node.size * scale);
-            const hy = Math.sin(angle) * (node.size * scale) * Math.cos(node.rotX);
-            if (s === 0) ctx.moveTo(hx, hy);
-            else ctx.lineTo(hx, hy);
-          }
-          ctx.closePath();
-          ctx.stroke();
+        // Camera scroll translation (Continuous 3D fly-through)
+        let relZ = ((n.z - scrollProgress) % BOUNDS_Z + BOUNDS_Z) % BOUNDS_Z + 60;
 
-          // Subtle inner core point with glowing neon
-          ctx.fillStyle = `rgba(108, 99, 255, ${alpha * 1.8})`;
-          ctx.beginPath();
-          ctx.arc(0, 0, 3.5 * scale, 0, Math.PI * 2);
-          ctx.fill();
+        // 3D Rotation matrix
+        let x1 = n.x * cosY + relZ * sinY;
+        let z1 = -n.x * sinY + relZ * cosY;
+        let y1 = n.y * cosX - z1 * sinX;
+        let z2 = n.y * sinX + z1 * cosX;
 
-          ctx.restore();
+        if (z2 <= 20) continue;
+
+        const scale = fov / (fov + z2);
+        const screenX = cx + x1 * scale;
+        const screenY = cy + y1 * scale;
+
+        // Cursor Gravitational Repel/Attract
+        let dx = screenX - mouse.x;
+        let dy = screenY - mouse.y;
+        let distMouse = Math.sqrt(dx * dx + dy * dy);
+        let mouseInfluence = 0;
+
+        if (distMouse < 220 && mouse.isHovered) {
+          mouseInfluence = (1 - distMouse / 220);
+          n.x += (dx / distMouse) * mouseInfluence * 1.8;
+          n.y += (dy / distMouse) * mouseInfluence * 1.8;
         }
-      });
 
-      // Render 3D Space Matrix Particles
-      particles.forEach((p) => {
-        // Z motion driven by scroll fly-through
-        let effectiveZ = ((p.z - cameraZ - (warpSpeed * 2.5)) % 1800 + 1800) % 1800;
-        if (effectiveZ < 10) effectiveZ = 1800;
+        // Depth & Pulse Opacity
+        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.2));
+        const pulse = Math.sin(time * 3 + n.pulseOffset) * 0.35 + 0.65;
 
-        const scale = fov / (fov + effectiveZ);
-        const parallaxX = mouseX * 55 * scale;
-        const parallaxY = mouseY * 55 * scale;
+        projectedNodes.push({
+          idx: i,
+          screenX,
+          screenY,
+          z: z2,
+          scale,
+          depthAlpha,
+          pulse,
+          isHub: n.isHub,
+          radius: n.radius,
+        });
+      }
 
-        const screenX = cx + (p.x * scale) + parallaxX;
-        const screenY = cy + (p.y * scale) + parallaxY;
+      // Sort by depth (painters algorithm)
+      projectedNodes.sort((a, b) => b.z - a.z);
 
-        // Depth-based opacity - significantly boosted
-        const depthAlpha = Math.max(0, Math.min(0.75, (1 - effectiveZ / 1800) * 0.95));
+      // 2. Draw Synaptic Energy Filaments (Neural Connections)
+      const MAX_CONNECT_DIST = 175;
 
-        if (screenX >= 0 && screenX <= width && screenY >= 0 && screenY <= height && depthAlpha > 0.05) {
-          ctx.beginPath();
-          ctx.arc(screenX, screenY, Math.max(1.2, p.radius * scale * 1.5), 0, Math.PI * 2);
+      for (let i = 0; i < projectedNodes.length; i++) {
+        const p1 = projectedNodes[i];
+        if (p1.screenX < -100 || p1.screenX > width + 100 || p1.screenY < -100 || p1.screenY > height + 100) continue;
 
-          if (p.colorType === 'cyan') {
-            ctx.fillStyle = `rgba(0, 229, 255, ${depthAlpha})`;
-          } else {
-            ctx.fillStyle = `rgba(108, 99, 255, ${depthAlpha})`;
-          }
-          ctx.fill();
+        let connections = 0;
 
-          // If warp speed is active (scrolling fast), draw subtle velocity streaks
-          if (warpSpeed > 1.2) {
-            const streakLen = Math.min(35, warpSpeed * 3 * scale);
+        for (let j = i + 1; j < projectedNodes.length; j++) {
+          const p2 = projectedNodes[j];
+          if (p2.screenX < -100 || p2.screenX > width + 100 || p2.screenY < -100 || p2.screenY > height + 100) continue;
+
+          const dx = p1.screenX - p2.screenX;
+          const dy = p1.screenY - p2.screenY;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < MAX_CONNECT_DIST) {
+            connections++;
+            const connAlpha = (1 - dist / MAX_CONNECT_DIST) * p1.depthAlpha * p2.depthAlpha * 0.45;
+
+            // Gradient synaptic beam between cyan and violet
+            const beamGrad = ctx.createLinearGradient(p1.screenX, p1.screenY, p2.screenX, p2.screenY);
+            beamGrad.addColorStop(0, `rgba(0, 229, 255, ${connAlpha * 1.2})`);
+            beamGrad.addColorStop(0.5, `rgba(108, 99, 255, ${connAlpha * 0.9})`);
+            beamGrad.addColorStop(1, `rgba(0, 255, 163, ${connAlpha * 1.1})`);
+
             ctx.beginPath();
-            ctx.moveTo(screenX, screenY);
-            ctx.lineTo(screenX, screenY - streakLen);
-            ctx.strokeStyle = `rgba(0, 229, 255, ${depthAlpha * 0.4})`;
-            ctx.lineWidth = 1 * scale;
+            ctx.moveTo(p1.screenX, p1.screenY);
+            ctx.lineTo(p2.screenX, p2.screenY);
+            ctx.strokeStyle = beamGrad;
+            ctx.lineWidth = (p1.isHub || p2.isHub ? 1.6 : 0.9) * Math.min(p1.scale, p2.scale);
             ctx.stroke();
+
+            // Randomly trigger travelling neural action potential pulses
+            if (Math.random() < 0.0018 && pulses.length < MAX_PULSES) {
+              pulses.push({
+                x1: p1.screenX,
+                y1: p1.screenY,
+                x2: p2.screenX,
+                y2: p2.screenY,
+                progress: 0,
+                speed: 0.035 + Math.random() * 0.02,
+                alpha: Math.min(0.9, connAlpha * 2.5),
+              });
+            }
+
+            if (connections >= 4) break; // Keep lattice clean and readable
           }
         }
-      });
+      }
 
-      // Subtle dynamic perspective cyber lines near edges
-      const edgeAlpha = Math.min(0.08, 0.03 + (warpSpeed * 0.01));
-      ctx.strokeStyle = `rgba(0, 229, 255, ${edgeAlpha})`;
-      ctx.lineWidth = 0.8;
-      ctx.beginPath();
-      // Left guide perspective
-      ctx.moveTo(cx - 200 * (1 + warpSpeed * 0.05), cy + 250);
-      ctx.lineTo(0, height);
-      // Right guide perspective
-      ctx.moveTo(cx + 200 * (1 + warpSpeed * 0.05), cy + 250);
-      ctx.lineTo(width, height);
-      ctx.stroke();
+      // 3. Render Synaptic Action Potential Pulses (Glowing traveling sparks)
+      for (let k = pulses.length - 1; k >= 0; k--) {
+        const pulse = pulses[k];
+        pulse.progress += pulse.speed;
+
+        if (pulse.progress >= 1) {
+          pulses.splice(k, 1);
+          continue;
+        }
+
+        const px = pulse.x1 + (pulse.x2 - pulse.x1) * pulse.progress;
+        const py = pulse.y1 + (pulse.y2 - pulse.y1) * pulse.progress;
+
+        ctx.beginPath();
+        ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(255, 255, 255, ${pulse.alpha})`;
+        ctx.shadowColor = '#00E5FF';
+        ctx.shadowBlur = 8;
+        ctx.fill();
+        ctx.shadowBlur = 0; // reset shadow
+      }
+
+      // 4. Draw Neural Nodes & Hub Beacons
+      projectedNodes.forEach((p) => {
+        const r = Math.max(1, p.radius * p.scale * (p.isHub ? 1.8 : 1.2));
+        const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
+
+        // Ambient glow ring around Hub Neurons
+        if (p.isHub) {
+          ctx.beginPath();
+          ctx.arc(p.screenX, p.screenY, r * 3.8, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(0, 229, 255, ${alpha * 0.14})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(p.screenX, p.screenY, r * 2.2, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.45})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        // Core neuron bead
+        ctx.beginPath();
+        ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
+
+        if (p.isHub) {
+          ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`;
+          ctx.shadowColor = '#00E5FF';
+          ctx.shadowBlur = 10;
+        } else {
+          ctx.fillStyle = `rgba(165, 180, 252, ${alpha * 0.85})`;
+          ctx.shadowColor = '#6C63FF';
+          ctx.shadowBlur = 4;
+        }
+
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      });
 
       animationFrameId = requestAnimationFrame(render);
     };
@@ -194,6 +286,7 @@ export default function ScrollMatrix3D() {
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseleave', handleMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

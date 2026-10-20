@@ -1,6 +1,6 @@
 /* ========================================================
-   3D Scroll-Driven Matrix & Warp Background
-   Silicon-Valley Ultra-Clean & 60fps Lightweight
+   Next-Generation 3D Cyber Neural Mesh Background
+   Silicon-Valley Interactive Holographic Lattice
    ======================================================== */
 
 .scroll3DWrapper {
@@ -11,6 +11,12 @@
   pointer-events: none;
   z-index: 0;
   overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 30%,
+    rgba(108, 99, 255, 0.05) 0%,
+    rgba(0, 229, 255, 0.03) 45%,
+    transparent 75%
+  );
 }
 
 .canvas3D {
