@@ -29,24 +29,65 @@ export default function FloatingRobot() {
 
   const botResponses = {
     skills:
-      "Abdul Wasay specializes in **Modern Frontend & Full-Stack Development**:\n• **Core:** React.js, Next.js, TypeScript, JavaScript (ES6+)\n• **Mobile:** Flutter, Dart, Cross-platform Apps\n• **Styling:** CSS3, Glassmorphism, Tailwind, Responsive UI\n• **Backend & Tools:** Node.js, Firebase, REST APIs, Git/GitHub, Vite",
+      "Abdul Wasay specializes in **Full-Stack & Mobile Development**:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, CSS3, Modern UI\n• **Mobile:** Flutter & Dart (Cross-platform Apps)\n• **Backend:** Node.js, Express.js, PHP, Laravel, C# / .NET\n• **Databases:** MongoDB, MySQL, Firebase",
     hire:
-      "✅ **Yes, absolutely!** Abdul Wasay is actively open to:\n• Full-time Software Engineering roles\n• High-impact contract & freelance projects\n• Startup collaborations & MVP developments\n\nReach out directly through WhatsApp or the Contact form!",
+      "✅ **Yes, absolutely!** Abdul Wasay is actively open to:\n• Full-time Software Engineering roles\n• High-impact contract & freelance projects\n• Startup collaborations & MVP developments\n\nReach out directly through WhatsApp (+92 3110214934) or email at wasay3105@gmail.com!",
     contact:
-      "You can connect with Wasay instantly via:\n• 📧 **Email:** abdulwasayali77@gmail.com\n• 📱 **WhatsApp:** Use the green floating button on the bottom-right!\n• 💼 **LinkedIn / GitHub:** Links available in the Hero & Footer sections.",
+      "You can connect with Wasay instantly via:\n• 📧 **Email:** wasay3105@gmail.com\n• 📱 **WhatsApp:** +92 3110214934 (or click the green floating button)\n• 💼 **LinkedIn:** linkedin.com/in/abdul-wasay-ali-295480256/\n• 🐙 **GitHub:** github.com/AbdulWasayAli",
     projects:
-      "Check out his top builds in the **Projects Section**:\n• **Aquila Labs:** Modern high-performance web platform\n• **EventEast:** Full-scale event booking ecosystem\n• **Currency App:** Flutter-powered real-time finance tool\n\nScroll up to the Projects section to explore all live demos!",
+      "Check out his top builds in the **Projects Section**:\n• **Aquila Labs:** Modern high-performance web platform\n• **EventEast:** Full-scale event booking ecosystem\n• **Currency App:** Flutter-powered real-time finance tool",
     fallback:
-      "Thanks for your message! For direct communication, feel free to drop an email to abdulwasayali77@gmail.com or click the WhatsApp button to chat with Wasay directly!",
+      "I am designed specifically to assist you with Abdul Wasay Ali's software engineering portfolio, skills, experience, and projects. Feel free to ask about his tech stack or how to get in touch!",
   };
 
-  const handleAsk = (queryKey, customLabel) => {
-    const userMsg = { id: Date.now(), sender: 'user', text: customLabel || queryKey };
+  const handleAsk = async (queryText, directKey) => {
+    const userMsg = { id: Date.now(), sender: 'user', text: queryText };
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
+    try {
+      // Try calling serverless backend /api/chat
+      const res = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: queryText }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        if (data.reply) {
+          setMessages((prev) => [
+            ...prev,
+            { id: Date.now() + 1, sender: 'bot', text: data.reply },
+          ]);
+          setIsTyping(false);
+          return;
+        }
+      }
+    } catch {
+      // Serverless not available locally or on pure static host; use intelligent grounded local fallback
+    }
+
+    // Grounded Fallback
     setTimeout(() => {
-      const replyText = botResponses[queryKey] || botResponses.fallback;
+      let replyText = botResponses[directKey];
+      if (!replyText) {
+        const lower = queryText.toLowerCase();
+        if (lower.match(/^(hi|hello|hey|salam|assalam|aoa)/)) {
+          replyText = "👋 Hello! I'm Wasay's AI Companion. How can I help you explore his portfolio, tech stack, or projects today?";
+        } else if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
+          replyText = botResponses.skills;
+        } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
+          replyText = botResponses.hire;
+        } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
+          replyText = botResponses.contact;
+        } else if (lower.includes('project') || lower.includes('work') || lower.includes('portfolio')) {
+          replyText = botResponses.projects;
+        } else {
+          replyText = botResponses.fallback;
+        }
+      }
+
       setMessages((prev) => [
         ...prev,
         { id: Date.now() + 1, sender: 'bot', text: replyText },
@@ -60,20 +101,7 @@ export default function FloatingRobot() {
     if (!inputVal.trim()) return;
     const text = inputVal.trim();
     setInputVal('');
-
-    const lower = text.toLowerCase();
-    let matchedKey = 'fallback';
-    if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
-      matchedKey = 'skills';
-    } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available') || lower.includes('freelance')) {
-      matchedKey = 'hire';
-    } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
-      matchedKey = 'contact';
-    } else if (lower.includes('project') || lower.includes('work') || lower.includes('portfolio')) {
-      matchedKey = 'projects';
-    }
-
-    handleAsk(matchedKey, text);
+    handleAsk(text);
   };
 
   useEffect(() => {
