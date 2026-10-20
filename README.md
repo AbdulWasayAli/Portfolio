@@ -163,6 +163,8 @@ portfolio-react/
 │   │   ├── Navbar/              # Sticky navigation, mobile drawer & theme switcher
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── Navbar.module.css
+│   │   │   ├── Logo.jsx             # Signature </> Wasay. brand logo with 3D quantum orb
+│   │   │   ├── Logo.module.css
 │   │   │   ├── ThemeToggle.jsx
 │   │   │   └── ThemeToggle.module.css
 │   │   ├── Projects/            # Project grid, filter tabs & interactive case study modal
@@ -171,6 +173,9 @@ portfolio-react/
 │   │   │   ├── ProjectCard.jsx
 │   │   │   ├── ProjectModal.jsx        # Framer Motion case-study popup modal
 │   │   │   └── ProjectModal.module.css # Cyber modal styles & gallery showcase
+│   │   ├── ScrollMatrix3D/      # 3D scroll-driven camera fly-through matrix background
+│   │   │   ├── ScrollMatrix3D.jsx
+│   │   │   └── ScrollMatrix3D.module.css
 │   │   ├── Skills/              # Categorized skills matrix with tailored SVG badges
 │   │   │   ├── Skills.jsx
 │   │   │   ├── Skills.module.css
