@@ -193,16 +193,16 @@ export default function ScrollMatrix3D() {
           const dy = p1.screenY - p2.screenY;
           const distSq = dx * dx + dy * dy;
 
-          // Connect within 200px screen space with elegant cyber luminescence
+          // Connect within 200px screen space with comfortable deep luxury luminescence
           if (distSq < 40000) {
             const dist = Math.sqrt(distSq);
-            const connAlpha = (1 - dist / 200) * p1.depthAlpha * p2.depthAlpha * 0.55;
+            const connAlpha = (1 - dist / 200) * p1.depthAlpha * p2.depthAlpha * 0.28;
 
-            // Gradient vibe alternating between electric cyan & violet
+            // Deep celestial tones: subdued electric midnight indigo & dark cyan
             if (i % 2 === 0) {
-              ctx.strokeStyle = `rgba(0, 240, 255, ${connAlpha})`;
+              ctx.strokeStyle = `rgba(0, 180, 216, ${connAlpha})`;
             } else {
-              ctx.strokeStyle = `rgba(139, 92, 246, ${connAlpha * 0.85})`;
+              ctx.strokeStyle = `rgba(114, 9, 183, ${connAlpha * 0.9})`;
             }
 
             ctx.beginPath();
@@ -218,34 +218,34 @@ export default function ScrollMatrix3D() {
         const p = projected[i];
         if (!p) continue;
 
-        const r = Math.max(1.5, p.radius * p.scale * (p.isHub ? 1.7 : 1.15));
-        const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
+        const r = Math.max(1.3, p.radius * p.scale * (p.isHub ? 1.5 : 1.0));
+        const alpha = Math.min(0.75, p.depthAlpha * p.pulse);
 
         ctx.beginPath();
         ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
 
         if (p.isHub) {
-          // Major quantum node
-          ctx.fillStyle = `rgba(0, 240, 255, ${alpha})`;
+          // Major quantum node in deep polished cyan
+          ctx.fillStyle = `rgba(0, 212, 230, ${alpha * 0.85})`;
           ctx.fill();
 
-          // Double halo rings for high-end luxury holographic look (without canvas filter lag)
+          // Elegant ambient ring in dark neon violet
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 2.6, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(0, 240, 255, ${alpha * 0.18})`;
+          ctx.arc(p.screenX, p.screenY, r * 2.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(114, 9, 183, ${alpha * 0.12})`;
           ctx.fill();
 
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 1.8, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(167, 139, 250, ${alpha * 0.5})`;
+          ctx.arc(p.screenX, p.screenY, r * 1.6, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 180, 216, ${alpha * 0.35})`;
           ctx.stroke();
         } else if (i % 3 === 0) {
-          // Violet beacon
-          ctx.fillStyle = `rgba(192, 132, 252, ${alpha * 0.85})`;
+          // Dark midnight violet beacon
+          ctx.fillStyle = `rgba(139, 92, 246, ${alpha * 0.65})`;
           ctx.fill();
         } else {
-          // Deep electric cyan star
-          ctx.fillStyle = `rgba(56, 189, 248, ${alpha * 0.75})`;
+          // Subdued deep cyber cyan star
+          ctx.fillStyle = `rgba(56, 140, 210, ${alpha * 0.6})`;
           ctx.fill();
         }
       }
