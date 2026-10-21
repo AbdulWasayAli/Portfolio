@@ -80,17 +80,18 @@
   filter: blur(4px);
 }
 
-.botAvatar {
+.botAvatarIcon {
   position: relative;
-  font-size: 17px;
-  background: #0f1020;
-  border: 1px solid rgba(0, 240, 255, 0.3);
-  border-radius: 9px;
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.15) 0%, rgba(99, 102, 241, 0.25) 100%);
+  border: 1px solid rgba(0, 240, 255, 0.35);
+  border-radius: 10px;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: #00f0ff;
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.25);
 }
 
 .onlinePill {
@@ -108,38 +109,35 @@
 .headerTitleBlock {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .titleRow {
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 6px;
 }
 
 .botTitle {
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 700;
   color: #ffffff;
   margin: 0;
   line-height: 1;
+  letter-spacing: 0.2px;
 }
 
-.badgeModel {
-  font-size: 9px;
-  font-family: var(--font-mono, monospace);
-  color: #00f0ff;
-  background: rgba(0, 240, 255, 0.1);
-  border: 1px solid rgba(0, 240, 255, 0.25);
-  padding: 1px 6px;
-  border-radius: 999px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+.verifiedBadge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.6));
 }
 
 .botStatus {
   font-size: 11px;
-  color: #717896;
+  color: #7881a4;
+  font-weight: 400;
 }
 
 .closeBtn {
