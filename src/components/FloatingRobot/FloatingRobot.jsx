@@ -203,7 +203,7 @@ export default function FloatingRobot() {
                 key={idx}
                 type="button"
                 className={styles.chipBtn}
-                onClick={() => handleAsk(q.query, q.label)}
+                onClick={() => handleAsk(q.label, q.query)}
               >
                 {q.label}
               </button>
