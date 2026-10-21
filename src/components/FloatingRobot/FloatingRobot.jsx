@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Bot, Sparkles, Send, X, Check, ArrowUp, MessageSquare, Terminal } from 'lucide-react';
 import styles from './FloatingRobot.module.css';
 
 export default function FloatingRobot() {
@@ -11,7 +13,7 @@ export default function FloatingRobot() {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Hi! I'm Wasay's AI Companion. How can I help you explore his portfolio today?",
+      text: "👋 Hi! I'm Wasay's AI Companion. How can I help you explore his portfolio, projects, or background today?",
     },
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -21,10 +23,10 @@ export default function FloatingRobot() {
 
   // Quick interactive chips
   const quickQuestions = [
-    { label: '🚀 Primary Skills?', query: 'skills' },
+    { label: '🚀 Primary Skills', query: 'skills' },
     { label: '💼 Available for Hire?', query: 'hire' },
-    { label: '📬 Contact Info?', query: 'contact' },
-    { label: '🏆 Featured Projects?', query: 'projects' },
+    { label: '📬 Contact Info', query: 'contact' },
+    { label: '🏆 Featured Projects', query: 'projects' },
   ];
 
   const botResponses = {
@@ -111,6 +113,19 @@ export default function FloatingRobot() {
     }
   }, [isOpen, messages, isTyping]);
 
+  // Render message text with **bold** and newline support
+  const renderMessageText = (text) => {
+    return text.split('\n').map((line, idx) => (
+      <span key={idx} className={styles.textLine}>
+        {line.split(/(\*\*.*?\*\*)/).map((part, pidx) =>
+          part.startsWith('**') && part.endsWith('**')
+            ? <strong key={pidx} className={styles.boldText}>{part.slice(2, -2)}</strong>
+            : part
+        )}
+      </span>
+    ));
+  };
+
   // Smooth mouse tracking
   const handleMouseMove = useCallback((e) => {
     if (!robotRef.current) return;
@@ -142,139 +157,139 @@ export default function FloatingRobot() {
 
   return (
     <aside aria-label="Interactive AI Assistant" className={styles.companionContainer}>
-      {/* Interactive Chat Window */}
-      {isOpen && (
-        <div className={styles.chatWindow}>
-          {/* Top Neon Ambient Bar */}
-          <div className={styles.topAccentBar} />
+      {/* Interactive Chat Window with Framer Motion spring physics */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 16 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: 16 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 350 }}
+            className={styles.chatWindow}
+          >
+            {/* Top ambient accent glow */}
+            <div className={styles.topAccentBar} />
 
-          <div className={styles.chatHeader}>
-            <div className={styles.headerInfo}>
-              <div className={styles.botAvatarWrapper}>
-                <div className={styles.botAvatarGlow} />
-                <div className={styles.botAvatarIcon}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="11" width="18" height="10" rx="2" />
-                    <circle cx="12" cy="5" r="2" />
-                    <path d="M12 7v4" />
-                    <line x1="8" y1="16" x2="8" y2="16" />
-                    <line x1="16" y1="16" x2="16" y2="16" />
-                  </svg>
+            {/* Header */}
+            <div className={styles.chatHeader}>
+              <div className={styles.headerInfo}>
+                {/* 3D Premium Robot Mascot Avatar */}
+                <div className={styles.botAvatarWrapper}>
+                  <div className={styles.avatarGlowLayer} />
+                  <div className={styles.aiAvatarSquircle}>
+                    <img
+                      src="/robot-avatar.jpg"
+                      alt="Wasay AI Robot"
+                      className={styles.robotAvatarImg}
+                    />
+                  </div>
+                  <span className={styles.onlinePill} />
                 </div>
-                <span className={styles.onlinePill} />
-              </div>
-              <div className={styles.headerTitleBlock}>
-                <div className={styles.titleRow}>
-                  <h4 className={styles.botTitle}>Wasay AI</h4>
-                  <span className={styles.verifiedBadge}>
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="#00f0ff">
-                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                    </svg>
+
+                <div className={styles.headerTitleBlock}>
+                  <div className={styles.titleRow}>
+                    <h4 className={styles.botTitle}>Wasay AI</h4>
+                    <span className={styles.verifiedBadge} title="Verified Assistant">
+                      <Check size={10} strokeWidth={3} />
+                    </span>
+                  </div>
+                  <span className={styles.botStatus}>
+                    <span className={styles.statusLiveDot} />
+                    Active & ready to assist
                   </span>
                 </div>
-                <span className={styles.botStatus}>Personal Portfolio Assistant</span>
               </div>
-            </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className={styles.closeBtn}
-              aria-label="Close Assistant"
-            >
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="18" y1="6" x2="6" y2="18" />
-                <line x1="6" y1="6" x2="18" y2="18" />
-              </svg>
-            </button>
-          </div>
 
-          <div className={styles.messagesContainer}>
-            {messages.map((m) => (
-              <div
-                key={m.id}
-                className={`${styles.messageWrapper} ${
-                  m.sender === 'user' ? styles.userWrapper : styles.botWrapper
-                }`}
+              <button
+                onClick={() => setIsOpen(false)}
+                className={styles.closeBtn}
+                aria-label="Close Assistant"
               >
-                {m.sender === 'bot' && (
-                  <div className={styles.bubbleAvatar}>
-                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <rect x="3" y="11" width="18" height="10" rx="2" />
-                      <circle cx="12" cy="5" r="2" />
-                      <path d="M12 7v4" />
-                    </svg>
-                  </div>
-                )}
+                <X size={15} strokeWidth={2.2} />
+              </button>
+            </div>
+
+            {/* Conversation Feed */}
+            <div className={styles.messagesContainer}>
+              {messages.map((m) => (
                 <div
-                  className={`${styles.messageBubble} ${
-                    m.sender === 'user' ? styles.userBubble : styles.botBubble
+                  key={m.id}
+                  className={`${styles.messageWrapper} ${
+                    m.sender === 'user' ? styles.userWrapper : styles.botWrapper
                   }`}
                 >
-                  {m.text.split('\n').map((line, idx) => (
-                    <span key={idx}>
-                      {line}
-                      <br />
-                    </span>
-                  ))}
+                  {m.sender === 'bot' && (
+                    <div className={styles.bubbleAvatar}>
+                      <img
+                        src="/robot-avatar.jpg"
+                        alt="Bot"
+                        className={styles.bubbleAvatarImg}
+                      />
+                    </div>
+                  )}
+                  <div
+                    className={`${styles.messageBubble} ${
+                      m.sender === 'user' ? styles.userBubble : styles.botBubble
+                    }`}
+                  >
+                    {renderMessageText(m.text)}
+                  </div>
                 </div>
-              </div>
-            ))}
-            {isTyping && (
-              <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
-                <div className={styles.bubbleAvatar}>
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <rect x="3" y="11" width="18" height="10" rx="2" />
-                    <circle cx="12" cy="5" r="2" />
-                    <path d="M12 7v4" />
-                  </svg>
+              ))}
+              {isTyping && (
+                <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
+                  <div className={styles.bubbleAvatar}>
+                    <img
+                      src="/robot-avatar.jpg"
+                      alt="Bot"
+                      className={styles.bubbleAvatarImg}
+                    />
+                  </div>
+                  <div className={`${styles.messageBubble} ${styles.botBubble} ${styles.typingDots}`}>
+                    <span /><span /><span />
+                  </div>
                 </div>
-                <div className={`${styles.messageBubble} ${styles.botBubble} ${styles.typingDots}`}>
-                  <span />
-                  <span />
-                  <span />
-                </div>
-              </div>
-            )}
-            <div ref={chatEndRef} />
-          </div>
-
-          {/* Quick Action Suggestion Chips */}
-          <div className={styles.quickChips}>
-            {quickQuestions.map((q, idx) => (
-              <button
-                key={idx}
-                type="button"
-                className={styles.chipBtn}
-                onClick={() => handleAsk(q.label, q.query)}
-              >
-                {q.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Message Input */}
-          <form onSubmit={handleSend} className={styles.chatInputForm}>
-            <div className={styles.inputWrapper}>
-              <input
-                type="text"
-                value={inputVal}
-                onChange={(e) => setInputVal(e.target.value)}
-                placeholder="Ask about skills, projects, hire..."
-                className={styles.chatInput}
-              />
-              <button
-                type="submit"
-                className={`${styles.sendBtn} ${inputVal.trim() ? styles.sendBtnActive : ''}`}
-                aria-label="Send message"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="22" y1="2" x2="11" y2="13" />
-                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
-                </svg>
-              </button>
+              )}
+              <div ref={chatEndRef} />
             </div>
-          </form>
-        </div>
-      )}
+
+            {/* Quick Action Chips */}
+            <div className={styles.quickChips}>
+              {quickQuestions.map((q, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  className={styles.chipBtn}
+                  onClick={() => handleAsk(q.label, q.query)}
+                >
+                  {q.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Message Input Bar */}
+            <form onSubmit={handleSend} className={styles.chatInputForm}>
+              <div className={styles.inputWrapper}>
+                <input
+                  type="text"
+                  value={inputVal}
+                  onChange={(e) => setInputVal(e.target.value)}
+                  placeholder="Ask about skills, projects, background..."
+                  className={styles.chatInput}
+                />
+                <button
+                  type="submit"
+                  disabled={!inputVal.trim()}
+                  className={`${styles.sendBtn} ${inputVal.trim() ? styles.sendBtnActive : ''}`}
+                  aria-label="Send message"
+                >
+                  <ArrowUp size={16} strokeWidth={2.6} />
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Floating 3D Robot Mascot (Clickable Trigger) */}
       <div
