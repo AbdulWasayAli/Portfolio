@@ -145,12 +145,22 @@ export default function FloatingRobot() {
       {/* Interactive Chat Window */}
       {isOpen && (
         <div className={styles.chatWindow}>
+          {/* Top Neon Ambient Bar */}
+          <div className={styles.topAccentBar} />
+
           <div className={styles.chatHeader}>
             <div className={styles.headerInfo}>
-              <span className={styles.botAvatar}>🤖</span>
-              <div>
-                <h4 className={styles.botTitle}>Wasay AI Assistant</h4>
-                <span className={styles.botStatus}>Online • Ready to help</span>
+              <div className={styles.botAvatarWrapper}>
+                <div className={styles.botAvatarGlow} />
+                <span className={styles.botAvatar}>🤖</span>
+                <span className={styles.onlinePill} />
+              </div>
+              <div className={styles.headerTitleBlock}>
+                <div className={styles.titleRow}>
+                  <h4 className={styles.botTitle}>Wasay AI</h4>
+                  <span className={styles.badgeModel}>Gemini 3.5</span>
+                </div>
+                <span className={styles.botStatus}>Personal Portfolio Assistant</span>
               </div>
             </div>
             <button
@@ -158,7 +168,10 @@ export default function FloatingRobot() {
               className={styles.closeBtn}
               aria-label="Close Assistant"
             >
-              ✕
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
           </div>
 
@@ -170,6 +183,9 @@ export default function FloatingRobot() {
                   m.sender === 'user' ? styles.userWrapper : styles.botWrapper
                 }`}
               >
+                {m.sender === 'bot' && (
+                  <div className={styles.bubbleAvatar}>🤖</div>
+                )}
                 <div
                   className={`${styles.messageBubble} ${
                     m.sender === 'user' ? styles.userBubble : styles.botBubble
@@ -186,6 +202,7 @@ export default function FloatingRobot() {
             ))}
             {isTyping && (
               <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
+                <div className={styles.bubbleAvatar}>🤖</div>
                 <div className={`${styles.messageBubble} ${styles.botBubble} ${styles.typingDots}`}>
                   <span />
                   <span />
@@ -212,16 +229,25 @@ export default function FloatingRobot() {
 
           {/* Message Input */}
           <form onSubmit={handleSend} className={styles.chatInputForm}>
-            <input
-              type="text"
-              value={inputVal}
-              onChange={(e) => setInputVal(e.target.value)}
-              placeholder="Ask anything about Wasay..."
-              className={styles.chatInput}
-            />
-            <button type="submit" className={styles.sendBtn} aria-label="Send message">
-              ➤
-            </button>
+            <div className={styles.inputWrapper}>
+              <input
+                type="text"
+                value={inputVal}
+                onChange={(e) => setInputVal(e.target.value)}
+                placeholder="Ask about skills, projects, hire..."
+                className={styles.chatInput}
+              />
+              <button
+                type="submit"
+                className={`${styles.sendBtn} ${inputVal.trim() ? styles.sendBtnActive : ''}`}
+                aria-label="Send message"
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="22" y1="2" x2="11" y2="13" />
+                  <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                </svg>
+              </button>
+            </div>
           </form>
         </div>
       )}
