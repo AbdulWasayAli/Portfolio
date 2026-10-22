@@ -23,10 +23,10 @@ export default function FloatingRobot() {
 
   // Quick interactive chips
   const quickQuestions = [
-    { label: '🚀 Primary Skills', query: 'skills' },
-    { label: '💼 Available for Hire?', query: 'hire' },
-    { label: '📬 Contact Info', query: 'contact' },
-    { label: '🏆 Featured Projects', query: 'projects' },
+    { label: 'Primary Skills', query: 'skills' },
+    { label: 'Available for Hire?', query: 'hire' },
+    { label: 'Contact Info', query: 'contact' },
+    { label: 'Featured Projects', query: 'projects' },
   ];
 
   const botResponses = {

@@ -30,7 +30,11 @@ A modern, high-performance, and responsive personal portfolio web application bu
   - Custom SVG category badges for Frontend, Backend, Mobile, and Tools & DevOps.
   - Dynamic skill count indicators and neon glass cards.
   - Visual percentage mastery progress bars with stagger scroll reveals.
-- **🤖 Interactive Ambient 3D Cyber Companion (`FloatingRobot`):** Pure interactive 3D robot that responds dynamically to mouse coordinate tracking and pupil navigation with reactive hovering states.
+- **🤖 Interactive Ambient 3D Cyber Companion & AI Chat Assistant (`FloatingRobot`):**
+  - Interactive 3D robot that responds dynamically to real-time mouse coordinate tracking and pupil navigation with reactive hovering states.
+  - **Ultra-Premium Glassmorphic Chat Widget:** Powered by **Framer Motion** spring physics with an obsidian/violet aesthetic, flowing multi-tone gradient shimmer bar, verified badge, live status beacon, and customizable quick action prompt chips.
+  - **3D Cyberpunk Titanium Mech Mascot:** High-definition, front-facing 3D AI avatar integrated into the header and conversational feed bubbles.
+  - **Google Gemini AI Backend (`/api/chat`):** Serverless architecture powered by Google Gemini AI with a strictly grounded persona to answer queries about Wasay's skills, experience, projects, and contact details with an offline local fallback engine.
 - **📱 Responsive Mobile Apps Showcase:** Dedicated mobile showcase preserving portrait device aspect ratios with badges for Flutter and Firebase apps.
 - **🎯 Dynamic Typing Animation Hook:** Zero-dependency custom typewriter hook cycling through software engineering titles smoothly.
 - **📊 Real-Time Scroll Progress & Reveal Animations:** Intersection Observer powered viewport animations (`reveal`, `reveal-left`, `reveal-right`, `reveal-scale`) and top progress bar.
@@ -60,16 +64,16 @@ A modern, high-performance, and responsive personal portfolio web application bu
 | **Vite** | `^8.1.1` | Next-gen frontend tooling and bundler |
 | **React Router DOM** | `^7.18.1` | Client-side routing and 404 page management |
 | **Framer Motion** | `^12.42.2` | Fluid modal animations, spring physics & layout transitions |
+| **Lucide React** | `^1.16.0` | Crisp, modern vector icon system |
 | **CSS Modules & Vanilla CSS** | W3C Standard | Scoped, zero-runtime overhead component styling |
 | **Oxlint** | `^1.71.0` | High-speed JavaScript & JSX code linter |
 
-### UI, Motion & 3D
-| Library / Tool | Version | Usage |
-|---|---|---|
-| **Framer Motion** | `^12.42.2` | Spring physics, entrance/exit modals & card tilts |
-| **@splinetool/react-spline** | `^4.1.0` | 3D scene integration for React |
-| **@splinetool/runtime** | `^1.12.98` | Spline 3D web runtime engine |
-| **Google Fonts (Outfit / Inter / JetBrains Mono)** | CDN / Web | Clean typography and code styling |
+### Backend, Cloud & AI
+| Technology | Usage |
+|---|---|
+| **Google Gemini AI** | Conversational AI assistant engine for portfolio grounding |
+| **Vercel Serverless Functions** | `/api/chat` serverless backend route |
+| **Vite Dev Proxy Middleware** | Local development proxy for simulated serverless AI endpoints |
 
 ### Developer's Core Engineering Skills (Featured in Portfolio)
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+), React.js, Bootstrap 5.
@@ -231,19 +235,26 @@ cd Portfolio
 npm install
 ```
 
-### 3. Run Development Server
+### 3. Configure Environment Variables (Optional for AI Chatbot)
+Create a `.env` file in the root directory:
+```bash
+GEMINI_API_KEY=your_google_gemini_api_key_here
+```
+> **Note:** The AI Chat Companion features an automated local fallback engine that answers portfolio queries seamlessly even without an API key configured.
+
+### 4. Run Development Server
 ```bash
 npm run dev
 ```
 Open your browser and navigate to `http://localhost:5173`.
 
-### 4. Build for Production
+### 5. Build for Production
 ```bash
 npm run build
 ```
 Creates an optimized, minified production build inside the `dist/` directory.
 
-### 5. Run Lint Check
+### 6. Run Lint Check
 ```bash
 npm run lint
 ```
