@@ -12,7 +12,7 @@ A modern, high-performance, and responsive personal portfolio web application bu
 
 ---
 
-## 🚀 Key Features & Highlights
+## Key Features & Highlights
 
 - **⚡ Blazing Fast Build & HMR:** Powered by Vite 8 with `@vitejs/plugin-react` and React 19 for instantaneous hot module replacement.
 - **🎨 Cyber & Glassmorphic Design System:** Custom-crafted design with HSL color tokens, dark/light theme variables, glowing neon accents, and backdrop-blur glass cards.
