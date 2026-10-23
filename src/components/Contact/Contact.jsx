@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { User, Mail, FileText, MessageSquare, Send, Sparkles } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import styles from './Contact.module.css';
 
@@ -166,63 +167,115 @@ export default function Contact() {
           </div>
 
           {/* Form Side */}
-          <form
-            className={`${styles.contactForm} reveal-right`}
-            onSubmit={handleSubmit}
-            noValidate
-          >
-            <div className={styles.formGrid}>
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="contact-name">Name</label>
-                <input
-                  id="contact-name" type="text" name="name"
-                  className={`${styles.formInput} ${errors.name ? styles.error : ''}`}
-                  placeholder="Your name"
-                  value={formData.name} onChange={handleChange}
-                />
-                {errors.name && <span className={styles.errorText}>{errors.name}</span>}
+          <div className={`${styles.formWrapperOuter} reveal-right`}>
+            {/* Ambient Multi-Layer Glow Halo */}
+            <div className={styles.formAmbientGlow} />
+
+            <form
+              className={styles.contactForm}
+              onSubmit={handleSubmit}
+              noValidate
+            >
+              {/* Terminal / Tech Header Bar */}
+              <div className={styles.formHeaderBar}>
+                <div className={styles.terminalDots}>
+                  <span className={styles.dotRed} />
+                  <span className={styles.dotYellow} />
+                  <span className={styles.dotGreen} />
+                </div>
+                <div className={styles.formHeaderTitle}>
+                  <Sparkles size={13} className={styles.headerSparkleIcon} />
+                  <span>TRANSMISSION DOCK // ENCRYPTED</span>
+                </div>
+                <div className={styles.terminalStatusPill}>
+                  <span className={styles.terminalLiveDot} />
+                  <span>LIVE</span>
+                </div>
               </div>
 
-              <div className={styles.formGroup}>
-                <label className={styles.formLabel} htmlFor="contact-email">Email</label>
-                <input
-                  id="contact-email" type="email" name="email"
-                  className={`${styles.formInput} ${errors.email ? styles.error : ''}`}
-                  placeholder="your@email.com"
-                  value={formData.email} onChange={handleChange}
-                />
-                {errors.email && <span className={styles.errorText}>{errors.email}</span>}
-              </div>
+              <div className={styles.formGrid}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="contact-name">
+                    <User size={13} className={styles.labelIcon} />
+                    <span>Your Name</span>
+                  </label>
+                  <div className={styles.inputFieldContainer}>
+                    <input
+                      id="contact-name" type="text" name="name"
+                      className={`${styles.formInput} ${errors.name ? styles.error : ''}`}
+                      placeholder="e.g. Alex Morgan"
+                      value={formData.name} onChange={handleChange}
+                    />
+                  </div>
+                  {errors.name && <span className={styles.errorText}>{errors.name}</span>}
+                </div>
 
-              <div className={`${styles.formGroup} ${styles.formGroupFull}`}>
-                <label className={styles.formLabel} htmlFor="contact-subject">Subject (Optional)</label>
-                <input
-                  id="contact-subject" type="text" name="subject"
-                  className={styles.formInput}
-                  placeholder="What's this about?"
-                  value={formData.subject} onChange={handleChange}
-                />
-              </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel} htmlFor="contact-email">
+                    <Mail size={13} className={styles.labelIcon} />
+                    <span>Email Address</span>
+                  </label>
+                  <div className={styles.inputFieldContainer}>
+                    <input
+                      id="contact-email" type="email" name="email"
+                      className={`${styles.formInput} ${errors.email ? styles.error : ''}`}
+                      placeholder="alex@company.com"
+                      value={formData.email} onChange={handleChange}
+                    />
+                  </div>
+                  {errors.email && <span className={styles.errorText}>{errors.email}</span>}
+                </div>
 
-              <div className={`${styles.formGroup} ${styles.formGroupFull}`}>
-                <label className={styles.formLabel} htmlFor="contact-message">Message</label>
-                <textarea
-                  id="contact-message" name="message"
-                  className={`${styles.formTextarea} ${errors.message ? styles.error : ''}`}
-                  placeholder="Tell me about your project..."
-                  rows="5"
-                  value={formData.message} onChange={handleChange}
-                />
-                {errors.message && <span className={styles.errorText}>{errors.message}</span>}
-              </div>
+                <div className={`${styles.formGroup} ${styles.formGroupFull}`}>
+                  <label className={styles.formLabel} htmlFor="contact-subject">
+                    <FileText size={13} className={styles.labelIcon} />
+                    <span>Subject (Optional)</span>
+                  </label>
+                  <div className={styles.inputFieldContainer}>
+                    <input
+                      id="contact-subject" type="text" name="subject"
+                      className={styles.formInput}
+                      placeholder="Project discussion, collaboration, hiring..."
+                      value={formData.subject} onChange={handleChange}
+                    />
+                  </div>
+                </div>
 
-              <div className={styles.submitBtn}>
-                <button type="submit" className={styles.submitButton} disabled={sending}>
-                  {sending ? '⏳ Sending...' : 'Send Message'}
-                </button>
+                <div className={`${styles.formGroup} ${styles.formGroupFull}`}>
+                  <label className={styles.formLabel} htmlFor="contact-message">
+                    <MessageSquare size={13} className={styles.labelIcon} />
+                    <span>Your Message</span>
+                  </label>
+                  <div className={styles.inputFieldContainer}>
+                    <textarea
+                      id="contact-message" name="message"
+                      className={`${styles.formTextarea} ${errors.message ? styles.error : ''}`}
+                      placeholder="Tell me about your goals, timeline, or idea..."
+                      rows="5"
+                      value={formData.message} onChange={handleChange}
+                    />
+                  </div>
+                  {errors.message && <span className={styles.errorText}>{errors.message}</span>}
+                </div>
+
+                <div className={styles.submitBtn}>
+                  <button type="submit" className={styles.submitButton} disabled={sending}>
+                    {sending ? (
+                      <>
+                        <span className={styles.loadingSpinner} />
+                        <span>Transmitting Message...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send size={16} className={styles.submitSendIcon} />
+                      </>
+                    )}
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
 
