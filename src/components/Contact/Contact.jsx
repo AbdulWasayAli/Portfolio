@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, Mail, FileText, MessageSquare, Send, Sparkles } from 'lucide-react';
+import { User, Mail, FileText, MessageSquare, Send } from 'lucide-react';
 import { personalInfo } from '../../data/portfolioData';
 import styles from './Contact.module.css';
 
@@ -176,23 +176,6 @@ export default function Contact() {
               onSubmit={handleSubmit}
               noValidate
             >
-              {/* Terminal / Tech Header Bar */}
-              <div className={styles.formHeaderBar}>
-                <div className={styles.terminalDots}>
-                  <span className={styles.dotRed} />
-                  <span className={styles.dotYellow} />
-                  <span className={styles.dotGreen} />
-                </div>
-                <div className={styles.formHeaderTitle}>
-                  <Sparkles size={13} className={styles.headerSparkleIcon} />
-                  <span>TRANSMISSION DOCK // ENCRYPTED</span>
-                </div>
-                <div className={styles.terminalStatusPill}>
-                  <span className={styles.terminalLiveDot} />
-                  <span>LIVE</span>
-                </div>
-              </div>
-
               <div className={styles.formGrid}>
                 <div className={styles.formGroup}>
                   <label className={styles.formLabel} htmlFor="contact-name">

@@ -234,96 +234,13 @@
   -webkit-backdrop-filter: blur(30px) saturate(200%);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 24px;
-  padding: 0 32px 34px 32px;
+  padding: 36px 32px;
   box-shadow:
     0 0 0 1px rgba(255, 255, 255, 0.05) inset,
     0 30px 70px -15px rgba(0, 0, 0, 0.95),
     0 0 45px -5px rgba(108, 99, 255, 0.25);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-}
-
-/* Tech / Terminal Header Bar */
-.formHeaderBar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 0;
-  margin-bottom: 22px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-}
-
-.terminalDots {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-}
-
-.dotRed, .dotYellow, .dotGreen {
-  width: 9.5px;
-  height: 9.5px;
-  border-radius: 50%;
-}
-
-.dotRed {
-  background: #ff5f56;
-  box-shadow: 0 0 8px rgba(255, 95, 86, 0.6);
-}
-
-.dotYellow {
-  background: #ffbd2e;
-  box-shadow: 0 0 8px rgba(255, 189, 46, 0.6);
-}
-
-.dotGreen {
-  background: #27c93f;
-  box-shadow: 0 0 8px rgba(39, 201, 63, 0.6);
-}
-
-.formHeaderTitle {
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-  color: #a78bfa;
-  font-family: var(--font-mono, monospace);
-  text-transform: uppercase;
-}
-
-.headerSparkleIcon {
-  color: #38bdf8;
-  animation: sparkleRotate 3s infinite linear;
-}
-
-@keyframes sparkleRotate {
-  0% { transform: rotate(0deg) scale(0.9); }
-  50% { transform: rotate(180deg) scale(1.15); }
-  100% { transform: rotate(360deg) scale(0.9); }
-}
-
-.terminalStatusPill {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #34d399;
-  background: rgba(16, 185, 129, 0.12);
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  padding: 3px 9px;
-  border-radius: 12px;
-}
-
-.terminalLiveDot {
-  width: 6px;
-  height: 6px;
-  background: #10b981;
-  border-radius: 50%;
-  animation: liveBeacon 2s infinite ease-in-out;
-  box-shadow: 0 0 8px #10b981;
 }
 
 .formGrid {
