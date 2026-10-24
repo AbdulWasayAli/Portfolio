@@ -1,10 +1,3 @@
-/* ========================================================
-   Exact High-Fidelity Match for Logo Image:
-   - Deep obsidian badge with cyan-violet neon rim
-   - "Wasa" (Bold White) + "y" (Neon Cyan Accent)
-   - 3D Glowing Quantum Sphere Dot with Radar Ripples
-   ======================================================== */
-
 .logoWrapper {
   display: inline-flex;
   align-items: center;
@@ -20,23 +13,22 @@
   transform: translateY(-2px);
 }
 
-/* 1. Ambient Background Violet/Cyan Radial Glow on Hover */
 .ambientGlow {
   position: absolute;
   top: 50%;
-  left: 21px;
+  left: 22px;
   transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
   background: radial-gradient(
     circle,
-    rgba(0, 229, 255, 0.45) 0%,
+    rgba(0, 229, 255, 0.4) 0%,
     rgba(108, 99, 255, 0.3) 50%,
     transparent 75%
   );
-  filter: blur(14px);
-  opacity: 0.55;
+  filter: blur(15px);
+  opacity: 0.5;
   pointer-events: none;
   transition: opacity 0.4s ease, transform 0.4s ease;
   z-index: 0;
@@ -44,173 +36,126 @@
 
 .logoWrapper:hover .ambientGlow {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1.4);
-  filter: blur(18px);
+  transform: translate(-50%, -50%) scale(1.45);
+  filter: blur(20px);
 }
 
-/* 2. Deep Obsidian Badge with Multi-Color Neon Border */
 .logoIconBox {
   position: relative;
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
-  background: linear-gradient(135deg, #101426 0%, #080a14 100%);
-  border: 1.8px solid transparent;
-  background-clip: padding-box;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(16, 20, 38, 0.95) 0%, rgba(8, 10, 20, 0.98) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 
-    0 6px 20px rgba(0, 0, 0, 0.5),
-    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+    0 8px 24px rgba(0, 0, 0, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.2);
   overflow: hidden;
   z-index: 1;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Neon Gradient Rim Effect around Badge */
-.logoIconBox::before {
-  content: '';
-  position: absolute;
-  inset: -1.8px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #00E5FF 0%, #6C63FF 50%, #00FFA3 100%);
-  z-index: -1;
-  opacity: 0.75;
-  transition: opacity 0.35s ease, filter 0.35s ease;
-}
-
-.logoWrapper:hover .logoIconBox::before {
-  opacity: 1;
-  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.6));
-}
-
 .logoWrapper:hover .logoIconBox {
+  border-color: rgba(0, 229, 255, 0.45);
   box-shadow: 
-    0 8px 24px rgba(0, 0, 0, 0.6),
-    0 0 20px rgba(0, 229, 255, 0.35),
+    0 10px 28px rgba(0, 0, 0, 0.7),
+    0 0 20px rgba(0, 229, 255, 0.25),
     inset 0 1px 2px rgba(255, 255, 255, 0.3);
 }
 
-/* Specular Diagonal Glass Sheen Sweep */
 .sheen {
   position: absolute;
-  top: 0;
-  left: -120%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  transition: left 0.6s ease;
+  top: -50%;
+  left: -150%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 65%
+  );
+  transform: rotate(25deg);
   pointer-events: none;
+  transition: left 0.7s ease;
 }
 
 .logoWrapper:hover .sheen {
-  left: 200%;
+  left: 100%;
 }
 
 .logoSvg {
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+  display: block;
 }
 
-.electricSlash {
-  filter: drop-shadow(0 0 6px #00E5FF);
-  transition: filter 0.3s ease;
-}
-
-.logoWrapper:hover .electricSlash {
-  filter: drop-shadow(0 0 10px #00E5FF) drop-shadow(0 0 14px rgba(0, 229, 255, 0.8));
-}
-
-/* 3. Typography: "Wasa" (Pure White) & "y" (Cyan Accent) */
 .logoText {
   display: inline-flex;
   align-items: baseline;
-  font-family: var(--font-primary);
-  font-size: 1.45rem;
-  font-weight: 850;
-  letter-spacing: -0.6px;
-  line-height: 1;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary, #ffffff);
   position: relative;
-  z-index: 1;
 }
 
 .nameBase {
   color: #ffffff;
-  transition: transform 0.25s ease;
-}
-
-[data-theme="light"] .nameBase {
-  color: #0f172a;
+  transition: color 0.3s ease;
 }
 
 .nameY {
-  color: #00E5FF;
-  transition: filter 0.3s ease, transform 0.25s ease;
-  filter: drop-shadow(0 0 4px rgba(0, 229, 255, 0.4));
+  background: linear-gradient(135deg, #00e5ff 0%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 0.5px;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
 }
 
-.logoWrapper:hover .nameY {
-  filter: drop-shadow(0 0 10px #00E5FF);
-}
-
-/* 4. Glowing 3D Quantum Orb with Radar Ripples */
 .orbContainer {
   position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 3px;
-  width: 14px;
-  height: 14px;
-}
-
-/* 3D Sphere Orb (Radial Gradient Highlight from Image) */
-.quantumOrb {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
+  margin-left: 4px;
+  align-self: center;
+  transform: translateY(-2px);
+}
+
+.quantumOrb {
+  display: block;
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, #ffffff 0%, #00E5FF 40%, #00A3BF 85%, #006070 100%);
-  box-shadow: 
-    0 0 10px #00E5FF,
-    0 0 18px rgba(0, 229, 255, 0.6);
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: radial-gradient(circle at 35% 35%, #00ffff, #00b4d8 60%, #0077b6);
+  box-shadow: 0 0 10px #00e5ff, 0 0 16px rgba(0, 229, 255, 0.6);
 }
 
-.logoWrapper:hover .quantumOrb {
-  transform: scale(1.3);
-  box-shadow: 
-    0 0 14px #00E5FF, 
-    0 0 25px rgba(0, 229, 255, 0.9);
-}
-
-/* Concentric Radar Rings from the Image */
-.radarRing1 {
+.radarRing1,
+.radarRing2 {
   position: absolute;
-  width: 16px;
-  height: 16px;
+  inset: -3px;
   border-radius: 50%;
-  border: 1px solid rgba(0, 229, 255, 0.45);
+  border: 1px solid rgba(0, 229, 255, 0.6);
   pointer-events: none;
-  animation: radarEcho 2.8s infinite ease-out;
+  animation: radarPulse 3s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
 }
 
 .radarRing2 {
-  position: absolute;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 229, 255, 0.25);
-  pointer-events: none;
-  animation: radarEcho 2.8s infinite ease-out 0.7s;
+  animation-delay: 1.5s;
 }
 
-@keyframes radarEcho {
-  0% { transform: scale(0.6); opacity: 0.8; }
-  60% { transform: scale(1.6); opacity: 0.2; }
-  100% { transform: scale(2.1); opacity: 0; }
+@keyframes radarPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(3.2);
+    opacity: 0;
+  }
 }
