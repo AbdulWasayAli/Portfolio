@@ -280,6 +280,7 @@ export const navLinks = [
   { name: "Education", href: "#education" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },
+  { name: "Blog", href: "#blog" },
   { name: "Activity", href: "#github-activity" },
   { name: "Contact", href: "#contact" },
 ];
