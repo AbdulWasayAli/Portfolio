@@ -25,24 +25,31 @@ A modern, high-performance, and responsive personal portfolio web application bu
   - High-fidelity SVG icons for Email, Phone/WhatsApp, and Location.
   - One-click clipboard copy buttons with instant feedback badges.
   - Live availability status beacons ("OPEN FOR WORK").
-  - Integrated contact message form with automated FormSubmit backend integration.
+  - Cyber transmission dock form with multi-layer ambient glow halo, smooth input focus states, and FormSubmit backend integration.
 - **⚡ Categorized Skill Matrix (`Skills`):**
-  - Custom SVG category badges for Frontend, Backend, Mobile, and Tools & DevOps.
+  - Custom SVG category badges for Frontend, Backend & Data, Mobile, and Tools & DevOps.
+  - Enhanced tech stack including **Python**, **Flask**, and **R Programming** with custom vector icons.
   - Dynamic skill count indicators and neon glass cards.
   - Visual percentage mastery progress bars with stagger scroll reveals.
 - **🤖 Interactive Ambient 3D Cyber Companion & AI Chat Assistant (`FloatingRobot`):**
   - Interactive 3D robot that responds dynamically to real-time mouse coordinate tracking and pupil navigation with reactive hovering states.
-  - **Ultra-Premium Glassmorphic Chat Widget:** Powered by **Framer Motion** spring physics with an obsidian/violet aesthetic, flowing multi-tone gradient shimmer bar, verified badge, live status beacon, and customizable quick action prompt chips.
+  - **Ultra-Premium Glassmorphic Chat Widget:** Powered by **Framer Motion** spring physics with an obsidian/violet aesthetic, flowing multi-tone gradient shimmer bar, verified badge, live status beacon, and clean quick action prompt chips.
   - **3D Cyberpunk Titanium Mech Mascot:** High-definition, front-facing 3D AI avatar integrated into the header and conversational feed bubbles.
   - **Google Gemini AI Backend (`/api/chat`):** Serverless architecture powered by Google Gemini AI with a strictly grounded persona to answer queries about Wasay's skills, experience, projects, and contact details with an offline local fallback engine.
+- **📈 Live GitHub Telemetry & Real-Time Contribution Calendar (`GitHubStats`):**
+  - Direct integration with **`react-github-calendar`** rendering the developer's exact live 1-year contribution graph.
+  - Customized with a cyber **Neon Emerald & Cyan** theme, interactive date tooltips, and horizontal responsive scrolling.
+  - Real-time GitHub REST API integration fetching live public repositories, 97+ total stargazers, and network metrics.
+  - Interactive language distribution progress bar visualizing the engineering tech stack ratio.
+  - Cyber terminal window with traffic lights and continuous integration activity stream.
+- **✨ Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`):**
+  - Sheryians-inspired massive bold typography (**ABDUL WASAY ALI**) positioned right above the footer.
+  - Dual-layer design with a dark titanium hollow outline base and an interactive cursor torch/spotlight reveal.
+  - Real-time 60fps radial gradient tracking in Neon Violet, Electric Cyan, and Emerald with ambient cursor flare.
 - **📱 Responsive Mobile Apps Showcase:** Dedicated mobile showcase preserving portrait device aspect ratios with badges for Flutter and Firebase apps.
 - **🎯 Dynamic Typing Animation Hook:** Zero-dependency custom typewriter hook cycling through software engineering titles smoothly.
 - **📊 Real-Time Scroll Progress & Reveal Animations:** Intersection Observer powered viewport animations (`reveal`, `reveal-left`, `reveal-right`, `reveal-scale`) and top progress bar.
 - **📄 In-Browser Resume Modal & One-Click Download:** Live PDF modal previewer allowing users to view or instantly download `resume.pdf`.
-- **📈 Live GitHub Telemetry & Cyber Terminal (`GitHubStats`):**
-  - Real-time GitHub REST API integration fetching live public repositories, 97+ total stargazers, and network metrics.
-  - Interactive language distribution progress bar visualizing the engineering tech stack ratio.
-  - Cyber terminal window with traffic lights, pulsing live beacon radar, and continuous integration activity stream.
 - **🌌 3D Interactive Cyber Neural Mesh (`ScrollMatrix3D`):**
   - Connected holographic lattice with pulsing synaptic energy beams and travelling action potentials.
   - Reactive 3D camera elevation driven by page scroll and cursor gravitational pull.
@@ -50,7 +57,7 @@ A modern, high-performance, and responsive personal portfolio web application bu
 - **🌓 Global Dark / Light Theme:** Ultra-luxury switch featuring Framer Motion layout animations, specular jewel sheen, space constellation dots, and local storage persistence.
 - **💬 Floating Controls:** Quick WhatsApp Chat trigger (`+92 3110214934`) and smooth scroll-to-top button with active scroll threshold.
 - **🧭 Centralized Data Architecture:** 100% data-driven configuration in `src/data/portfolioData.js` managing personal details, experience, skills, projects, and social handles.
-- **🚀 High Quality Code & Linting:** Integrated with **Oxlint** for ultra-fast, modern JavaScript/React linting.
+- **🛡️ High Quality Code & Linting:** Integrated with **Oxlint** for ultra-fast, modern JavaScript/React linting.
 
 ---
 
@@ -64,6 +71,7 @@ A modern, high-performance, and responsive personal portfolio web application bu
 | **Vite** | `^8.1.1` | Next-gen frontend tooling and bundler |
 | **React Router DOM** | `^7.18.1` | Client-side routing and 404 page management |
 | **Framer Motion** | `^12.42.2` | Fluid modal animations, spring physics & layout transitions |
+| **React GitHub Calendar** | `^4.5.5` | Live interactive GitHub contribution activity calendar |
 | **Lucide React** | `^1.16.0` | Crisp, modern vector icon system |
 | **CSS Modules & Vanilla CSS** | W3C Standard | Scoped, zero-runtime overhead component styling |
 | **Oxlint** | `^1.71.0` | High-speed JavaScript & JSX code linter |
@@ -77,8 +85,8 @@ A modern, high-performance, and responsive personal portfolio web application bu
 
 ### Developer's Core Engineering Skills (Featured in Portfolio)
 - **Frontend:** HTML5, CSS3, JavaScript (ES6+), React.js, Bootstrap 5.
-- **Backend & APIs:** Node.js, Express.js, PHP, Laravel, C# / ASP.NET Core, REST APIs.
-- **Databases:** MySQL, Microsoft SQL Server, MongoDB, Firebase Firestore / Realtime DB.
+- **Backend & APIs:** Python, Flask, Node.js, Express.js, PHP, Laravel, C# / ASP.NET Core, REST APIs.
+- **Data & Analytics:** R Programming, MySQL, Microsoft SQL Server, MongoDB, Firebase Firestore / Realtime DB.
 - **Mobile Development:** Flutter, Dart, Firebase, Cross-Platform Android/iOS architectures.
 - **Tools & Workflow:** Git, GitHub, Figma, Postman, Vite, VS Code.
 
@@ -164,6 +172,9 @@ portfolio-react/
 │   │   ├── Hero/                # Dynamic typewriter headline, quick CTAs & resume modal
 │   │   │   ├── Hero.jsx
 │   │   │   └── Hero.module.css
+│   │   ├── InteractiveBrandBanner/ # Giant Sheryians-inspired interactive spotlight typography banner
+│   │   │   ├── InteractiveBrandBanner.jsx
+│   │   │   └── InteractiveBrandBanner.module.css
 │   │   ├── Navbar/              # Sticky navigation, mobile drawer & theme switcher
 │   │   │   ├── Navbar.jsx
 │   │   │   ├── Navbar.module.css
@@ -217,7 +228,7 @@ portfolio-react/
 
 ---
 
-## 🚀 Getting Started (Run Locally)
+## 💻 Getting Started (Run Locally)
 
 ### 1. Prerequisites
 - **Node.js**: `v18.0.0` or higher
