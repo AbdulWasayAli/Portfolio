@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { GitHubCalendar } from 'react-github-calendar';
 import styles from './GitHubStats.module.css';
 
 const GITHUB_USERNAME = 'AbdulWasayAli';
@@ -189,6 +190,44 @@ export default function GitHubStats() {
                   <span className={styles.metricLabel}>Workflow</span>
                   <span className={styles.metricValue}>Git CI/CD</span>
                 </div>
+              </div>
+            </div>
+
+            {/* Live GitHub Contribution Calendar Section */}
+            <div className={styles.calendarCardBox}>
+              <div className={styles.boxHeader}>
+                <div className={styles.boxTitle}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                    <line x1="16" y1="2" x2="16" y2="6" />
+                    <line x1="8" y1="2" x2="8" y2="6" />
+                    <line x1="3" y1="10" x2="21" y2="10" />
+                  </svg>
+                  <span>Real-Time Contribution Activity Calendar</span>
+                </div>
+                <span className={`${styles.headerTag} ${styles.greenTag}`}>Synced with GitHub</span>
+              </div>
+
+              <div className={styles.calendarContainer}>
+                <GitHubCalendar
+                  username={GITHUB_USERNAME}
+                  colorScheme="dark"
+                  blockSize={12}
+                  blockMargin={4}
+                  fontSize={12}
+                  theme={{
+                    dark: [
+                      'rgba(255, 255, 255, 0.04)', // Empty (No contributions)
+                      'rgba(0, 212, 170, 0.35)',   // Level 1: Soft Emerald
+                      'rgba(0, 212, 170, 0.65)',   // Level 2: Medium Emerald
+                      '#00E5FF',                   // Level 3: Bright Neon Cyan
+                      '#38BDF8',                   // Level 4: Vivid Electric Cyan
+                    ],
+                  }}
+                  labels={{
+                    totalCount: '{{count}} contributions in the last year',
+                  }}
+                />
               </div>
             </div>
 

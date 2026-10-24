@@ -201,6 +201,54 @@
   gap: 20px;
 }
 
+/* Full-width Calendar Card Box */
+.calendarCardBox {
+  padding: 22px 24px;
+  border-radius: var(--radius-lg);
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.calendarCardBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: linear-gradient(90deg, #6c63ff, #00d4aa, #00e5ff);
+  opacity: 0.7;
+}
+
+[data-theme="light"] .calendarCardBox {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.calendarContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  padding: 10px 4px 6px;
+  min-height: 140px;
+}
+
+.calendarContainer::-webkit-scrollbar {
+  height: 4px;
+}
+
+.calendarContainer::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
 .cardBox {
   padding: 20px;
   border-radius: var(--radius-lg);
