@@ -31,7 +31,7 @@ export default function FloatingRobot() {
 
   const botResponses = {
     skills:
-      "Abdul Wasay specializes in **Full-Stack & Mobile Development**:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, CSS3, Modern UI\n• **Mobile:** Flutter & Dart (Cross-platform Apps)\n• **Backend:** Node.js, Express.js, PHP, Laravel, C# / .NET\n• **Databases:** MongoDB, MySQL, Firebase",
+      "Abdul Wasay specializes in **Full-Stack, Mobile & Data Engineering**:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, CSS3, Modern UI\n• **Backend & APIs:** Python, Flask, Node.js, Express.js, PHP, Laravel, C# / .NET\n• **Data & Mobile:** R Programming, Flutter & Dart, Firebase, MySQL, MongoDB",
     hire:
       "✅ **Yes, absolutely!** Abdul Wasay is actively open to:\n• Full-time Software Engineering roles\n• High-impact contract & freelance projects\n• Startup collaborations & MVP developments\n\nReach out directly through WhatsApp (+92 3110214934) or email at wasay3105@gmail.com!",
     contact:

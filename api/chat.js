@@ -28,8 +28,8 @@ PORTFOLIO & PERSONA KNOWLEDGE BASE:
 - Core Tech Stack:
   * Frontend: React.js, JavaScript (ES6+), HTML5, CSS3, Bootstrap, Responsive UI, Glassmorphism, 3D Canvas
   * Mobile: Flutter, Dart, Cross-platform Mobile Applications
-  * Backend: Node.js, Express.js, PHP, Laravel, C# / .NET, REST APIs
-  * Databases: MongoDB, MySQL, Firebase, SQL Server
+  * Backend: Python, Flask, Node.js, Express.js, PHP, Laravel, C# / .NET, REST APIs
+  * Data & Analytics: R Programming, MySQL, MongoDB, Firebase, SQL Server
   * Tools: Git, GitHub, VS Code, Postman, Vite
 - Key Projects:
   1. Aquila Labs (High-performance web platform)
