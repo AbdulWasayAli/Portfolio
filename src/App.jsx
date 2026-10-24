@@ -7,6 +7,7 @@ import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
 import GitHubStats from './components/GitHubStats/GitHubStats';
 import Contact from './components/Contact/Contact';
+import InteractiveBrandBanner from './components/InteractiveBrandBanner/InteractiveBrandBanner';
 import Footer from './components/Footer/Footer';
 import FloatingControls from './components/FloatingControls';
 import FloatingRobot from './components/FloatingRobot/FloatingRobot';
@@ -73,6 +74,7 @@ function App() {
               <Projects />
               <GitHubStats />
               <Contact />
+              <InteractiveBrandBanner />
               <ScrollRevealInit />
             </main>
             <Footer />
