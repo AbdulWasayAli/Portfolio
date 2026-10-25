@@ -10,6 +10,10 @@ A modern, high-performance, and responsive personal portfolio web application bu
 - **Developer:** Abdul Wasay Ali ([@AbdulWasayAli](https://github.com/AbdulWasayAli))
 - **Deployment Platform:** Vercel
 
+<div align="center">
+  <img src="public/images/portfolio-preview.png" alt="Abdul Wasay Ali Portfolio Preview" width="100%" style="border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.6);" />
+</div>
+
 ---
 
 ## Key Features & Highlights
