@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Bot, Sparkles, Send, X, Check, ArrowUp, MessageSquare, Terminal } from 'lucide-react';
+import { Check, ArrowUp, X, ExternalLink } from 'lucide-react';
 import styles from './FloatingRobot.module.css';
 
 export default function FloatingRobot() {
@@ -13,7 +13,7 @@ export default function FloatingRobot() {
     {
       id: 1,
       sender: 'bot',
-      text: "👋 Hi! I'm Wasay's AI Companion. How can I help you explore his portfolio, projects, or background today?",
+      text: "👋 Hi! I'm Wasay's **AI Companion**. I can guide you through his projects, engineering skills, tech stack, or connect you directly with him. What would you like to explore?",
     },
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -21,31 +21,79 @@ export default function FloatingRobot() {
   const robotRef = useRef(null);
   const chatEndRef = useRef(null);
 
-  // Quick interactive chips
+  // Quick interactive chips with category icons
   const quickQuestions = [
-    { label: 'Primary Skills', query: 'skills' },
-    { label: 'Available for Hire?', query: 'hire' },
-    { label: 'Contact Info', query: 'contact' },
-    { label: 'Featured Projects', query: 'projects' },
+    { label: '⚡ 30s Pitch', query: 'pitch' },
+    { label: '🚀 Top Projects', query: 'projects' },
+    { label: '🛠️ Tech Stack', query: 'skills' },
+    { label: '💼 Hire Wasay', query: 'hire' },
+    { label: '📞 Direct Contact', query: 'contact' },
   ];
 
   const botResponses = {
-    skills:
-      "Abdul Wasay specializes in **Full-Stack, Mobile & Data Engineering**:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, CSS3, Modern UI\n• **Backend & APIs:** Python, Flask, Node.js, Express.js, PHP, Laravel, C# / .NET\n• **Data & Mobile:** R Programming, Flutter & Dart, Firebase, MySQL, MongoDB",
-    hire:
-      "✅ **Yes, absolutely!** Abdul Wasay is actively open to:\n• Full-time Software Engineering roles\n• High-impact contract & freelance projects\n• Startup collaborations & MVP developments\n\nReach out directly through WhatsApp (+92 3110214934) or email at wasay3105@gmail.com!",
-    contact:
-      "You can connect with Wasay instantly via:\n• 📧 **Email:** wasay3105@gmail.com\n• 📱 **WhatsApp:** +92 3110214934 (or click the green floating button)\n• 💼 **LinkedIn:** linkedin.com/in/abdul-wasay-ali-295480256/\n• 🐙 **GitHub:** github.com/AbdulWasayAli",
-    projects:
-      "Check out his top builds in the **Projects Section**:\n• **Aquila Labs:** Modern high-performance web platform\n• **EventEast:** Full-scale event booking ecosystem\n• **Currency App:** Flutter-powered real-time finance tool",
-    fallback:
-      "I am designed specifically to assist you with Abdul Wasay Ali's software engineering portfolio, skills, experience, and projects. Feel free to ask about his tech stack or how to get in touch!",
+    pitch: {
+      text: "⚡ **Abdul Wasay Ali in 30 Seconds:**\nA versatile **Software Engineer & Mobile App Developer** based in Karachi. He crafts high-performance web applications using **React & Modern Full-Stack** and cross-platform mobile apps with **Flutter & Dart**. Passionate about clean code, scalable architecture, and cutting-edge user experiences.",
+    },
+    skills: {
+      text: "Abdul Wasay specializes in **Full-Stack, Mobile & Data Engineering**:\n• **Frontend:** React.js, JavaScript (ES6+), Modern Responsive CSS, Framer Motion\n• **Mobile:** Flutter, Dart, Cross-Platform Mobile Apps, State Management\n• **Backend & APIs:** Python (Flask), Node.js (Express), PHP (Laravel), C# / .NET\n• **Databases & Tools:** MySQL, MongoDB, Firebase, Git & GitHub, Vite",
+    },
+    hire: {
+      text: "✅ **Yes, absolutely!** Abdul Wasay is actively available for:\n• Full-time Software Engineering roles\n• High-impact Contract & Freelance projects\n• Startup MVPs & Mobile App builds\n\nDirect WhatsApp: **+92 3110214934** | Email: **wasay3105@gmail.com**",
+    },
+    contact: {
+      text: "Connect directly with Wasay:\n• 📧 **Email:** wasay3105@gmail.com\n• 📱 **WhatsApp:** +92 3110214934\n• 💼 **LinkedIn:** linkedin.com/in/abdul-wasay-ali-295480256/\n• 🐙 **GitHub:** github.com/AbdulWasayAli",
+    },
+    projects: {
+      text: "Here are some of Abdul Wasay's highlighted builds. You can click to explore them directly:",
+      projects: [
+        {
+          name: "Watch Store",
+          tag: "Luxury Horology Showcase",
+          tech: "HTML5 • CSS3 • Bootstrap",
+          link: "#projects",
+        },
+        {
+          name: "EventEast Ecosystem",
+          tag: "Event & Ticket Platform",
+          tech: "Full-Stack • REST API",
+          link: "#projects",
+        },
+        {
+          name: "Currency Converter",
+          tag: "Real-time Financial Tool",
+          tech: "Flutter • Dart • Live API",
+          link: "#projects",
+        },
+      ],
+    },
+    fallback: {
+      text: "I am specifically tuned to help you explore Abdul Wasay's software engineering portfolio, skills, experience, and projects. Feel free to click any quick chip or ask how to hire him!",
+    },
   };
 
   const handleAsk = async (queryText, directKey) => {
     const userMsg = { id: Date.now(), sender: 'user', text: queryText };
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
+
+    // Check if direct key maps to rich bot response
+    const richPreset = directKey && botResponses[directKey];
+
+    if (richPreset) {
+      setTimeout(() => {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Date.now() + 1,
+            sender: 'bot',
+            text: richPreset.text,
+            projects: richPreset.projects || null,
+          },
+        ]);
+        setIsTyping(false);
+      }, 350);
+      return;
+    }
 
     try {
       // Try calling serverless backend /api/chat
@@ -67,35 +115,41 @@ export default function FloatingRobot() {
         }
       }
     } catch {
-      // Serverless not available locally or on pure static host; use intelligent grounded local fallback
+      // Serverless not available locally; use grounded fallback
     }
 
     // Grounded Fallback
     setTimeout(() => {
-      let replyText = botResponses[directKey];
-      if (!replyText) {
-        const lower = queryText.toLowerCase();
-        if (lower.match(/^(hi|hello|hey|salam|assalam|aoa)/)) {
-          replyText = "👋 Hello! I'm Wasay's AI Companion. How can I help you explore his portfolio, tech stack, or projects today?";
-        } else if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
-          replyText = botResponses.skills;
-        } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
-          replyText = botResponses.hire;
-        } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
-          replyText = botResponses.contact;
-        } else if (lower.includes('project') || lower.includes('work') || lower.includes('portfolio')) {
-          replyText = botResponses.projects;
-        } else {
-          replyText = botResponses.fallback;
-        }
+      const lower = queryText.toLowerCase();
+      let replyData = botResponses.fallback;
+
+      if (lower.match(/^(hi|hello|hey|salam|assalam|aoa)/)) {
+        replyData = {
+          text: "👋 Hello! I'm Wasay's AI Companion. How can I help you explore his portfolio, tech stack, or projects today?",
+        };
+      } else if (lower.includes('pitch') || lower.includes('about') || lower.includes('who is')) {
+        replyData = botResponses.pitch;
+      } else if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
+        replyData = botResponses.skills;
+      } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
+        replyData = botResponses.hire;
+      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach') || lower.includes('whatsapp')) {
+        replyData = botResponses.contact;
+      } else if (lower.includes('project') || lower.includes('work') || lower.includes('build')) {
+        replyData = botResponses.projects;
       }
 
       setMessages((prev) => [
         ...prev,
-        { id: Date.now() + 1, sender: 'bot', text: replyText },
+        {
+          id: Date.now() + 1,
+          sender: 'bot',
+          text: replyData.text,
+          projects: replyData.projects || null,
+        },
       ]);
       setIsTyping(false);
-    }, 450);
+    }, 400);
   };
 
   const handleSend = (e) => {
@@ -210,6 +264,7 @@ export default function FloatingRobot() {
             </div>
 
             {/* Conversation Feed */}
+            {/* Conversation Feed */}
             <div className={styles.messagesContainer}>
               {messages.map((m) => (
                 <div
@@ -227,12 +282,35 @@ export default function FloatingRobot() {
                       />
                     </div>
                   )}
-                  <div
-                    className={`${styles.messageBubble} ${
-                      m.sender === 'user' ? styles.userBubble : styles.botBubble
-                    }`}
-                  >
-                    {renderMessageText(m.text)}
+                  <div className={styles.bubbleContentGroup}>
+                    <div
+                      className={`${styles.messageBubble} ${
+                        m.sender === 'user' ? styles.userBubble : styles.botBubble
+                      }`}
+                    >
+                      {renderMessageText(m.text)}
+
+                      {/* Interactive Mini Project Cards */}
+                      {m.projects && m.projects.length > 0 && (
+                        <div className={styles.projectsDeck}>
+                          {m.projects.map((proj, pIdx) => (
+                            <a
+                              key={pIdx}
+                              href={proj.link}
+                              onClick={() => setIsOpen(false)}
+                              className={styles.projectMiniCard}
+                            >
+                              <div className={styles.projectMiniHeader}>
+                                <span className={styles.projectMiniName}>{proj.name}</span>
+                                <ExternalLink size={12} className={styles.projectMiniIcon} />
+                              </div>
+                              <span className={styles.projectMiniTag}>{proj.tag}</span>
+                              <div className={styles.projectMiniTech}>{proj.tech}</div>
+                            </a>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}

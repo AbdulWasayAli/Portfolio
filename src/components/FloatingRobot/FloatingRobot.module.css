@@ -316,6 +316,110 @@
     0 0 0 1px rgba(255, 255, 255, 0.03) inset;
 }
 
+/* Bubble Content Layout & Voice Controls */
+.bubbleContentGroup {
+  display: flex;
+  flex-direction: column;
+  max-width: 84%;
+  gap: 4px;
+}
+
+.bubbleMetaBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 4px;
+}
+
+.voiceBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.voiceBtn:hover {
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(167, 139, 250, 0.4);
+  color: #c084fc;
+  transform: translateY(-1px);
+}
+
+.voiceBtnActive {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+  animation: voicePulse 1.5s infinite;
+}
+
+@keyframes voicePulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Interactive Mini Projects Deck inside Chat */
+.projectsDeck {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.projectMiniCard {
+  display: block;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 12px;
+  border-radius: 12px;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  color: inherit;
+}
+
+.projectMiniCard:hover {
+  background: rgba(139, 92, 246, 0.12);
+  border-color: rgba(167, 139, 250, 0.4);
+  transform: translateX(3px);
+}
+
+.projectMiniHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.projectMiniName {
+  font-size: 12.5px;
+  font-weight: 650;
+  color: #ffffff;
+}
+
+.projectMiniIcon {
+  color: #a78bfa;
+}
+
+.projectMiniTag {
+  display: block;
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.projectMiniTech {
+  font-size: 10.5px;
+  color: #a78bfa;
+  margin-top: 4px;
+  font-family: monospace;
+}
+
 /* Typing animation */
 .typingDots {
   display: flex;
