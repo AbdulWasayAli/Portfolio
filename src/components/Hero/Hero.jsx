@@ -69,36 +69,44 @@ export default function Hero() {
               <span className={styles.heroNameHighlight}>{heroData.name}</span>
             </h1>
 
-            {/* Permanent High-Status Professional Title */}
-            <div className={styles.engineerTitleRow}>
-              <div className={styles.engineerBadge}>
-                <span className={styles.engineerBadgePulse} />
-                <span className={styles.engineerBadgeText}>Software Engineer</span>
+            {/* Unified Luxury Tech Identity & Specialty Bar */}
+            <div className={styles.unifiedStatusDeck}>
+              {/* Permanent Software Engineer Authority Badge */}
+              <div className={styles.identityBadge}>
+                <span className={styles.identityRadar}>
+                  <span className={styles.identityRadarPing} />
+                  <span className={styles.identityRadarDot} />
+                </span>
+                <span className={styles.identityTitle}>Software Engineer</span>
               </div>
-            </div>
 
-            {/* Next-Gen 3D Morphing Specialty Capsule */}
-            <div className={styles.roleWrapper}>
-              <span className={styles.roleLabel}>Specializing in</span>
-              <div className={styles.roleMorphPill}>
+              <div className={styles.deckDivider} />
+
+              {/* Dynamic Animated Specialty Stream */}
+              <div className={styles.specialtyContainer}>
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={roleIndex}
-                    initial={{ y: 22, opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
-                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)', scale: 1 }}
-                    exit={{ y: -22, opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
-                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                    className={styles.roleMotionWrapper}
+                    initial={{ y: 16, opacity: 0, filter: 'blur(4px)' }}
+                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ y: -16, opacity: 0, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.specialtyStream}
                   >
-                    <span className={styles.roleAccentDot} />
-                    <span className={styles.roleText}>{heroData.roles[roleIndex].text}</span>
-                    <span className={styles.roleMiniTag}>{heroData.roles[roleIndex].badge}</span>
+                    <span className={styles.specialtyText}>
+                      {heroData.roles[roleIndex].text}
+                    </span>
+                    <span className={styles.specialtyTag}>
+                      {heroData.roles[roleIndex].badge}
+                    </span>
                   </motion.div>
                 </AnimatePresence>
               </div>
             </div>
 
-            <p className={styles.heroDescription}>{heroData.description}</p>
+            <p className={styles.heroDescription}>
+              Turning ideas into <span className={styles.highlightWhite}>high-performance web</span> &amp; <span className={styles.highlightGradient}>cross-platform mobile apps</span> with clean code and intuitive design.
+            </p>
 
             <div className={styles.heroButtons}>
               <a
