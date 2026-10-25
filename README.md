@@ -161,9 +161,9 @@ portfolio-react/
 │   │   ├── Contact/             # Glassmorphic contact cards, 1-click copy & message form
 │   │   │   ├── Contact.jsx
 │   │   │   └── Contact.module.css
-│   │   ├── CustomCursor/        # Interactive cyber glow cursor trail
-│   │   │   ├── CustomCursor.jsx
-│   │   │   └── CustomCursor.module.css
+│   │   ├── CyberCursor/         # GPU-accelerated fluid magnetic cyber cursor trail
+│   │   │   ├── CyberCursor.jsx
+│   │   │   └── CyberCursor.module.css
 │   │   ├── Experience/          # Educational background & certifications timeline
 │   │   │   ├── Experience.jsx
 │   │   │   └── Experience.module.css
