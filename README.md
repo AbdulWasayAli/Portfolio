@@ -14,8 +14,13 @@ A modern, high-performance, and responsive personal portfolio web application bu
 
 ## Key Features & Highlights
 
+- **🧲 Interactive Fluid Cyber-Cursor (`CyberCursor`):**
+  - GPU-accelerated dual-layer custom cursor featuring a zero-latency central neon core and a smooth trailing fluid ring powered by `requestAnimationFrame` and linear interpolation (`lerp`).
+  - Interactive magnetic magnification (`60px`) and color morphing (Neon Violet & Cyan) when hovering over cards, links, and buttons.
+  - Automatic detection that gracefully disables on touch/mobile devices for optimal performance.
 - **⚡ Blazing Fast Build & HMR:** Powered by Vite 8 with `@vitejs/plugin-react` and React 19 for instantaneous hot module replacement.
 - **🎨 Cyber & Glassmorphic Design System:** Custom-crafted design with HSL color tokens, dark/light theme variables, glowing neon accents, and backdrop-blur glass cards.
+- **🛸 Next-Gen Unified Luxury Status Deck:** Linear/Vercel-inspired status capsule in the Hero section with live radar beacons and animated Framer Motion skill rotation without emoji clutter.
 - **🔬 Interactive Project Case Study Modal (`ProjectModal`):**
   - Animated popups powered by **Framer Motion** with backdrop blur and smooth spring physics.
   - Deep-dive architectural breakdown, key feature checklists, and live tech tags.

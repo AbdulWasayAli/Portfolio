@@ -18,6 +18,7 @@ import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import ScrollMatrix3D from './components/ScrollMatrix3D/ScrollMatrix3D';
+import CyberCursor from './components/CyberCursor/CyberCursor';
 import './styles/globals.css';
 
 function ScrollProgress() {
@@ -66,6 +67,7 @@ function App() {
           <>
 
             <ScrollProgress />
+            <CyberCursor />
             <ScrollMatrix3D />
             <Navbar />
             <main>
