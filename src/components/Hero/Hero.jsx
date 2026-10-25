@@ -69,20 +69,31 @@ export default function Hero() {
               <span className={styles.heroNameHighlight}>{heroData.name}</span>
             </h1>
 
+            {/* Permanent High-Status Professional Title */}
+            <div className={styles.engineerTitleRow}>
+              <div className={styles.engineerBadge}>
+                <span className={styles.engineerBadgePulse} />
+                <span className={styles.engineerBadgeText}>Software Engineer</span>
+              </div>
+            </div>
+
+            {/* Next-Gen 3D Morphing Specialty Capsule */}
             <div className={styles.roleWrapper}>
-              <span className={styles.roleLabel}>I build as a</span>
+              <span className={styles.roleLabel}>Specializing in</span>
               <div className={styles.roleMorphPill}>
                 <AnimatePresence mode="wait">
-                  <motion.span
+                  <motion.div
                     key={roleIndex}
-                    initial={{ y: 20, opacity: 0, filter: 'blur(4px)' }}
-                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                    exit={{ y: -20, opacity: 0, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-                    className={styles.roleText}
+                    initial={{ y: 22, opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
+                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)', scale: 1 }}
+                    exit={{ y: -22, opacity: 0, filter: 'blur(6px)', scale: 0.96 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.roleMotionWrapper}
                   >
-                    {heroData.roles[roleIndex]}
-                  </motion.span>
+                    <span className={styles.roleAccentDot} />
+                    <span className={styles.roleText}>{heroData.roles[roleIndex].text}</span>
+                    <span className={styles.roleMiniTag}>{heroData.roles[roleIndex].badge}</span>
+                  </motion.div>
                 </AnimatePresence>
               </div>
             </div>

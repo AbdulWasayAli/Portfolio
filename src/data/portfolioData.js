@@ -19,10 +19,11 @@ export const personalInfo = {
 export const heroData = {
   greeting: "Hi, I'm",
   name: "Abdul Wasay Ali",
+  title: "Software Engineer",
   roles: [
-    "Software Engineer",
-    "Full-Stack Developer",
-    "Mobile App Developer",
+    { text: "Flutter & Dart Mobile Apps", badge: "iOS & Android" },
+    { text: "MERN Stack Web Platforms", badge: "React & Node" },
+    { text: "Cross-Platform Systems", badge: "Full-Stack" },
   ],
   description:
     "Turning ideas into high-performance web & cross-platform mobile apps with clean code and intuitive design.",
