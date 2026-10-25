@@ -1,40 +1,20 @@
 import { useState, useEffect, useMemo } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { heroData, personalInfo } from '../../data/portfolioData';
 import CyberSphere from './CyberSphere';
 import styles from './Hero.module.css';
 
-function useTypingEffect(words, typingSpeed = 100, deletingSpeed = 50, pauseTime = 2000) {
-  const [displayText, setDisplayText] = useState('');
-  const [wordIndex, setWordIndex] = useState(0);
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentWord = words[wordIndex];
-
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        setDisplayText(currentWord.substring(0, displayText.length + 1));
-        if (displayText === currentWord) {
-          setTimeout(() => setIsDeleting(true), pauseTime);
-        }
-      } else {
-        setDisplayText(currentWord.substring(0, displayText.length - 1));
-        if (displayText === '') {
-          setIsDeleting(false);
-          setWordIndex((prev) => (prev + 1) % words.length);
-        }
-      }
-    }, isDeleting ? deletingSpeed : typingSpeed);
-
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime]);
-
-  return displayText;
-}
-
 export default function Hero() {
   const [showResumeModal, setShowResumeModal] = useState(false);
-  const typedRole = useTypingEffect(heroData.roles, 80, 40, 2000);
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  // Smooth role rotation with natural pause
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setRoleIndex((prev) => (prev + 1) % heroData.roles.length);
+    }, 2800);
+    return () => clearInterval(timer);
+  }, []);
 
   const particles = useMemo(() => {
     return Array.from({ length: 30 }, (_, i) => ({
@@ -90,11 +70,21 @@ export default function Hero() {
             </h1>
 
             <div className={styles.roleWrapper}>
-              <span className={styles.roleLabel}>I'm a</span>
-              <span className={styles.roleText}>
-                {typedRole}
-                <span className={styles.cursor} />
-              </span>
+              <span className={styles.roleLabel}>I build as a</span>
+              <div className={styles.roleMorphPill}>
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={roleIndex}
+                    initial={{ y: 20, opacity: 0, filter: 'blur(4px)' }}
+                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+                    exit={{ y: -20, opacity: 0, filter: 'blur(4px)' }}
+                    transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+                    className={styles.roleText}
+                  >
+                    {heroData.roles[roleIndex]}
+                  </motion.span>
+                </AnimatePresence>
+              </div>
             </div>
 
             <p className={styles.heroDescription}>{heroData.description}</p>
