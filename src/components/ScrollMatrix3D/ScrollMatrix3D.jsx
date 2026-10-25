@@ -48,95 +48,173 @@ export default function ScrollMatrix3D() {
     window.addEventListener('mouseleave', handleMouseLeave);
 
     // ========================================================
-    // HIGH-PERFORMANCE 3D NEURAL MESH (Zero Lag & 60-120 FPS)
+    // 3D CYBER WARP SPEED & CONSTELLATION TUNNEL (BUTTERY 60-120 FPS)
     // ========================================================
-    const NODE_COUNT = 48; // Optimized for silky-smooth 60-120fps rendering
-    const BOUNDS_X = 1400;
-    const BOUNDS_Y = 1000;
-    const BOUNDS_Z = 1500;
+    const STAR_COUNT = 90;     // Optimized star count for zero-lag silky smooth scrolling
+    const NODE_COUNT = 38;     // Geometric constellation nodes
+    const BOUNDS_X = 1600;
+    const BOUNDS_Y = 1100;
+    const BOUNDS_Z = 1800;
 
+    // Stars for warp-speed hyperspace streaks
+    const stars = [];
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: (Math.random() - 0.5) * BOUNDS_X * 1.4,
+        y: (Math.random() - 0.5) * BOUNDS_Y * 1.4,
+        z: Math.random() * BOUNDS_Z,
+        pz: 0,
+        speed: 1.2 + Math.random() * 2.2,
+        brightness: 0.35 + Math.random() * 0.65,
+        size: Math.random() * 1.6 + 0.8,
+        hue: Math.random() > 0.5 ? 260 : 195, // Violet / Cyan
+      });
+    }
+
+    // Constellation geometric nodes
     const nodes = [];
     for (let i = 0; i < NODE_COUNT; i++) {
       nodes.push({
         x: (Math.random() - 0.5) * BOUNDS_X,
         y: (Math.random() - 0.5) * BOUNDS_Y,
         z: Math.random() * BOUNDS_Z,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        vz: (Math.random() - 0.5) * 0.25,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
         radius: Math.random() * 2 + 1.2,
         pulseOffset: Math.random() * Math.PI * 2,
-        isHub: i % 7 === 0, // Evenly spaced energy hubs
+        isHub: i % 5 === 0,
+        isCyan: i % 2 === 0,
       });
     }
 
-    // Pre-calculated synaptic connections for O(N) rendering instead of O(N^2)
-    // Nodes maintain consistent connections instead of checking distance every frame
-    const neighbors = [];
+    // Lightweight fixed synaptic connections
+    const connections = [];
     for (let i = 0; i < NODE_COUNT; i++) {
-      const neighborList = [];
-      for (let j = 0; j < NODE_COUNT; j++) {
-        if (i !== j && (Math.abs(i - j) <= 3 || (i % 5 === 0 && j % 5 === 0))) {
-          neighborList.push(j);
+      for (let j = i + 1; j < NODE_COUNT; j++) {
+        if (j - i <= 2) {
+          connections.push([i, j]);
         }
       }
-      neighbors.push(neighborList);
     }
 
     let time = 0;
+    let lastScrollY = window.scrollY;
+    let scrollVelocity = 0;
 
     // Render loop
     const render = () => {
       time += 0.016;
 
-      // Smooth camera interpolation
-      currentScroll += (targetScroll - currentScroll) * 0.08;
+      // Track scroll delta & velocity for dynamic hyperspace plunge
+      const scrollDelta = targetScroll - currentScroll;
+      currentScroll += scrollDelta * 0.09;
+
+      const rawVel = Math.abs(currentScroll - lastScrollY);
+      lastScrollY = currentScroll;
+      scrollVelocity += (rawVel - scrollVelocity) * 0.12;
+
+      // Dynamic warp factor based on scroll velocity (boosts speed and streaking)
+      const warpSpeed = Math.min(22, 1.2 + scrollVelocity * 0.95);
+
+      // Smooth mouse interaction
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
 
       ctx.clearRect(0, 0, width, height);
 
-      const fov = 480;
+      const fov = 420;
       const cx = width / 2;
       const cy = height / 2;
 
-      // Camera 3D coordinates influenced by scroll elevation and mouse tilt
-      const scrollProgress = currentScroll * 0.75;
-      const rotY = ((mouse.x - cx) / width) * 0.3;
-      const rotX = ((mouse.y - cy) / height) * 0.2;
-
+      // Interactive 3D camera angles
+      const rotY = ((mouse.x - cx) / width) * 0.35;
+      const rotX = ((mouse.y - cy) / height) * 0.25;
       const cosY = Math.cos(rotY);
       const sinY = Math.sin(rotY);
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
 
-      // 1. Update & Project Nodes
+      // ========================================================
+      // 1. RENDER 3D WARP SPEED STARFIELD STREAKS
+      // ========================================================
+      for (let i = 0; i < STAR_COUNT; i++) {
+        const s = stars[i];
+        s.pz = s.z;
+
+        // Plunge through 3D space
+        s.z -= s.speed * warpSpeed;
+        if (s.z <= 10) {
+          s.z = BOUNDS_Z;
+          s.pz = BOUNDS_Z;
+          s.x = (Math.random() - 0.5) * BOUNDS_X * 1.5;
+          s.y = (Math.random() - 0.5) * BOUNDS_Y * 1.5;
+        }
+
+        // Camera rotation
+        const x1 = s.x * cosY + s.z * sinY;
+        const z1 = -s.x * sinY + s.z * cosY;
+        const y1 = s.y * cosX - z1 * sinX;
+        const z2 = s.y * sinX + z1 * cosX;
+
+        // Previous point for motion vector streak
+        const px1 = s.x * cosY + s.pz * sinY;
+        const pz1 = -s.x * sinY + s.pz * cosY;
+        const py1 = s.y * cosX - pz1 * sinX;
+        const pz2 = s.y * sinX + pz1 * cosX;
+
+        if (z2 <= 20 || pz2 <= 20) continue;
+
+        const scale = fov / (fov + z2);
+        const sx = cx + x1 * scale;
+        const sy = cy + y1 * scale;
+
+        const pscale = fov / (fov + pz2);
+        const psx = cx + px1 * pscale;
+        const psy = cy + py1 * pscale;
+
+        const depthFade = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.2));
+        const alpha = depthFade * s.brightness * (0.35 + Math.min(0.65, scrollVelocity * 0.08));
+
+        // Draw warp streak when moving fast, or soft glowing star point when stationary
+        ctx.beginPath();
+        if (scrollVelocity > 0.8) {
+          ctx.strokeStyle = `hsla(${s.hue}, 90%, 75%, ${alpha})`;
+          ctx.lineWidth = Math.max(1, s.size * scale * (1 + scrollVelocity * 0.08));
+          ctx.moveTo(psx, psy);
+          ctx.lineTo(sx, sy);
+          ctx.stroke();
+        } else {
+          ctx.fillStyle = `hsla(${s.hue}, 85%, 75%, ${alpha * 0.9})`;
+          ctx.arc(sx, sy, Math.max(1, s.size * scale), 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // ========================================================
+      // 2. PROJECT 3D CONSTELLATION NODES & MESH
+      // ========================================================
       const projected = new Array(NODE_COUNT);
 
       for (let i = 0; i < NODE_COUNT; i++) {
         const n = nodes[i];
 
-        // Kinetic drift
+        // Kinetic orbital drift
         n.x += n.vx;
         n.y += n.vy;
-        n.z += n.vz;
+        n.z -= warpSpeed * 0.45; // Move towards camera along with scroll
 
         // Boundary wrap
         if (n.x < -BOUNDS_X / 2) n.x = BOUNDS_X / 2;
         if (n.x > BOUNDS_X / 2) n.x = -BOUNDS_X / 2;
         if (n.y < -BOUNDS_Y / 2) n.y = BOUNDS_Y / 2;
         if (n.y > BOUNDS_Y / 2) n.y = -BOUNDS_Y / 2;
-        if (n.z < 0) n.z = BOUNDS_Z;
-        if (n.z > BOUNDS_Z) n.z = 0;
+        if (n.z < 20) n.z = BOUNDS_Z;
 
-        // Camera scroll translation (Continuous 3D fly-through)
-        let relZ = ((n.z - scrollProgress) % BOUNDS_Z + BOUNDS_Z) % BOUNDS_Z + 60;
-
-        // 3D Rotation
-        let x1 = n.x * cosY + relZ * sinY;
-        let z1 = -n.x * sinY + relZ * cosY;
-        let y1 = n.y * cosX - z1 * sinX;
-        let z2 = n.y * sinX + z1 * cosX;
+        // 3D Matrix Rotation
+        const x1 = n.x * cosY + n.z * sinY;
+        const z1 = -n.x * sinY + n.z * cosY;
+        const y1 = n.y * cosX - z1 * sinX;
+        const z2 = n.y * sinX + z1 * cosX;
 
         if (z2 <= 20) {
           projected[i] = null;
@@ -147,105 +225,95 @@ export default function ScrollMatrix3D() {
         const screenX = cx + x1 * scale;
         const screenY = cy + y1 * scale;
 
-        // Mouse Gravitational Interaction
+        // Interactive mouse deflection
         if (mouse.isHovered) {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const distSq = dx * dx + dy * dy;
-          if (distSq < 40000 && distSq > 1) { // 200px radius
+          if (distSq < 48400 && distSq > 1) { // 220px radius
             const dist = Math.sqrt(distSq);
-            const force = (1 - dist / 200) * 1.4;
+            const force = (1 - dist / 220) * 1.8;
             n.x += (dx / dist) * force;
             n.y += (dy / dist) * force;
           }
         }
 
-        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.15));
-        const pulse = Math.sin(time * 2.5 + n.pulseOffset) * 0.3 + 0.7;
+        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.25));
+        const pulse = Math.sin(time * 3 + n.pulseOffset) * 0.35 + 0.65;
 
         projected[i] = {
           screenX,
           screenY,
-          z: z2,
           scale,
           depthAlpha,
           pulse,
           isHub: n.isHub,
           radius: n.radius,
+          isCyan: n.isCyan,
         };
       }
 
-      // 2. High-Performance Batched Synaptic Connections
+      // ========================================================
+      // 3. DRAW SYNAPTIC CONSTELLATION WEB LINES
+      // ========================================================
       ctx.lineWidth = 1;
-      for (let i = 0; i < NODE_COUNT; i++) {
+      for (let k = 0; k < connections.length; k++) {
+        const [i, j] = connections[k];
         const p1 = projected[i];
-        if (!p1) continue;
+        const p2 = projected[j];
+        if (!p1 || !p2) continue;
 
-        const neighborList = neighbors[i];
-        for (let k = 0; k < neighborList.length; k++) {
-          const j = neighborList[k];
-          if (j <= i) continue; // avoid double drawing
+        const dx = p1.screenX - p2.screenX;
+        const dy = p1.screenY - p2.screenY;
+        const distSq = dx * dx + dy * dy;
 
-          const p2 = projected[j];
-          if (!p2) continue;
+        // 220px distance threshold
+        if (distSq < 48400) {
+          const dist = Math.sqrt(distSq);
+          const connAlpha = (1 - dist / 220) * p1.depthAlpha * p2.depthAlpha * (0.35 + Math.min(0.3, scrollVelocity * 0.05));
 
-          const dx = p1.screenX - p2.screenX;
-          const dy = p1.screenY - p2.screenY;
-          const distSq = dx * dx + dy * dy;
-
-          // Connect within 200px screen space with comfortable deep luxury luminescence
-          if (distSq < 40000) {
-            const dist = Math.sqrt(distSq);
-            const connAlpha = (1 - dist / 200) * p1.depthAlpha * p2.depthAlpha * 0.28;
-
-            // Deep celestial tones: subdued electric midnight indigo & dark cyan
-            if (i % 2 === 0) {
-              ctx.strokeStyle = `rgba(0, 180, 216, ${connAlpha})`;
-            } else {
-              ctx.strokeStyle = `rgba(114, 9, 183, ${connAlpha * 0.9})`;
-            }
-
-            ctx.beginPath();
-            ctx.moveTo(p1.screenX, p1.screenY);
-            ctx.lineTo(p2.screenX, p2.screenY);
-            ctx.stroke();
+          if (i % 2 === 0) {
+            ctx.strokeStyle = `rgba(56, 189, 248, ${connAlpha})`;
+          } else {
+            ctx.strokeStyle = `rgba(168, 85, 247, ${connAlpha * 0.9})`;
           }
+
+          ctx.beginPath();
+          ctx.moveTo(p1.screenX, p1.screenY);
+          ctx.lineTo(p2.screenX, p2.screenY);
+          ctx.stroke();
         }
       }
 
-      // 3. High-Performance Batched Node & Core Rendering
+      // ========================================================
+      // 4. DRAW 3D GLOWING QUANTUM NODES & CORES
+      // ========================================================
       for (let i = 0; i < NODE_COUNT; i++) {
         const p = projected[i];
         if (!p) continue;
 
-        const r = Math.max(1.3, p.radius * p.scale * (p.isHub ? 1.5 : 1.0));
-        const alpha = Math.min(0.75, p.depthAlpha * p.pulse);
+        const r = Math.max(1.4, p.radius * p.scale * (p.isHub ? 1.6 : 1.1));
+        const alpha = Math.min(0.85, p.depthAlpha * p.pulse);
 
         ctx.beginPath();
         ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
 
         if (p.isHub) {
-          // Major quantum node in deep polished cyan
-          ctx.fillStyle = `rgba(0, 212, 230, ${alpha * 0.85})`;
-          ctx.fill();
-
-          // Elegant ambient ring in dark neon violet
-          ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 2.2, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(114, 9, 183, ${alpha * 0.12})`;
+          // Major quantum hub with double orbital ring
+          ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
           ctx.fill();
 
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 1.6, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 180, 216, ${alpha * 0.35})`;
+          ctx.arc(p.screenX, p.screenY, r * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(168, 85, 247, ${alpha * 0.16})`;
+          ctx.fill();
+
+          ctx.beginPath();
+          ctx.arc(p.screenX, p.screenY, r * 1.8, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.45})`;
           ctx.stroke();
-        } else if (i % 3 === 0) {
-          // Dark midnight violet beacon
-          ctx.fillStyle = `rgba(139, 92, 246, ${alpha * 0.65})`;
-          ctx.fill();
         } else {
-          // Subdued deep cyber cyan star
-          ctx.fillStyle = `rgba(56, 140, 210, ${alpha * 0.6})`;
+          ctx.fillStyle = p.isCyan ? `rgba(56, 189, 248, ${alpha * 0.7})` : `rgba(168, 85, 247, ${alpha * 0.7})`;
           ctx.fill();
         }
       }
