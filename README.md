@@ -204,31 +204,27 @@ portfolio-react/
 │   │   │   ├── Skills.jsx
 │   │   │   ├── Skills.module.css
 │   │   │   └── TechIcons.jsx
-│   │   ├── SplashScreen/        # Initial branded loading intro screen
-│   │   │   ├── SplashScreen.jsx
-│   │   │   └── SplashScreen.module.css
-│   │   └── Testimonials/        # Client reviews & endorsements carousel
-│   │       ├── Testimonials.jsx
-│   │       └── Testimonials.module.css
+│   │   └── SplashScreen/        # Initial branded loading intro screen
+│   │       ├── SplashScreen.jsx
+│   │       └── SplashScreen.module.css
 │   ├── context/
 │   │   └── ThemeContext.jsx     # Global dark/light theme state provider
 │   ├── data/
 │   │   └── portfolioData.js     # Single Source of Truth (Bio, Skills, Projects, Links, Contacts)
-│   ├── hooks/
-│   │   └── useScrollReveal.js   # IntersectionObserver-based scroll animation hook
 │   ├── pages/
+│   │   ├── BlogDetail.jsx       # Individual dynamic blog view
+│   │   ├── BlogDetail.module.css
 │   │   ├── NotFound.jsx         # 404 error page with navigation back home
 │   │   └── NotFound.module.css
-│   ├── services/                # API or external messaging services
 │   ├── styles/
 │   │   ├── globals.css          # CSS resets, utility animations & custom scrollbar
 │   │   └── variables.css        # Color tokens, glassmorphic variables & theme radii
-│   ├── utils/
-│   │   └── soundFx.js           # Audio utilities and sound synthesis helpers
 │   ├── App.jsx                  # Main view layout, routes, scroll reveal & progress bar
 │   ├── App.css                  # App wrapper styles
 │   ├── main.jsx                 # React 19 application entry point
 │   └── index.css                # Base stylesheet
+├── api/
+│   └── chat.js                  # Vercel Serverless Function (Google Gemini AI)
 ├── .oxlintrc.json               # Oxlint configuration
 ├── package.json                 # Dependencies & run scripts
 ├── vite.config.js               # Vite build configurations
