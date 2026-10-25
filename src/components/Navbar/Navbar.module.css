@@ -1,20 +1,44 @@
+/* ========================================================
+   Option 1: Sleek Minimalist Full-Width Glass Strip
+   ======================================================== */
+
 .navbar {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: var(--z-sticky);
-  padding: 16px 0;
-  transition: all var(--transition-base);
+  padding: 18px 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
 }
 
 .navbar.scrolled {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-md);
-  padding: 10px 0;
+  background: rgba(9, 13, 26, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65);
+}
+
+/* Continuously glowing fine laser line on bottom when scrolled */
+.navbar.scrolled::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.3) 25%,
+    rgba(168, 85, 247, 0.4) 50%,
+    rgba(56, 189, 248, 0.3) 75%,
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .navContainer {
@@ -24,9 +48,10 @@
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-padding);
+  width: 100%;
 }
 
-/* === Ultra-Premium Refined Original Logo === */
+/* Logo */
 .logoLink {
   text-decoration: none;
   cursor: pointer;
@@ -34,72 +59,58 @@
   align-items: center;
 }
 
+/* Navigation Links */
 .navLinks {
   display: flex;
   align-items: center;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
 }
 
 .navLink {
   position: relative;
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-medium);
+  font-size: 14px;
+  font-weight: 500;
   color: var(--text-secondary);
-  padding: 6px 2px;
-  transition: color var(--transition-fast);
+  padding: 8px 4px;
+  transition: color 0.25s ease;
   cursor: pointer;
   background: none;
   border: none;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.navLink:hover,
+.navLinkText {
+  letter-spacing: 0.2px;
+}
+
+.navLink:hover {
+  color: #ffffff;
+}
+
 .navLink.active {
-  color: var(--text-primary);
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.navLink::after {
-  content: '';
+/* High-tech sliding laser underline */
+.activeLaserLine {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 0;
+  right: 0;
   height: 2px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-full);
-  transition: width var(--transition-base);
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8), 0 0 18px rgba(129, 140, 248, 0.4);
 }
 
-.navLink:hover::after,
-.navLink.active::after {
-  width: 100%;
-}
-
+/* Nav Right */
 .navRight {
   display: flex;
   align-items: center;
   gap: var(--space-md);
-}
-
-.themeBtn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-full);
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
-  font-size: var(--fs-lg);
-  transition: all var(--transition-base);
-  cursor: pointer;
-}
-
-.themeBtn:hover {
-  background: var(--glass-bg-hover);
-  transform: rotate(30deg);
-  border-color: var(--primary);
-  color: var(--primary);
 }
 
 .menuBtn {
@@ -150,11 +161,14 @@
     flex-direction: column;
     justify-content: center;
     gap: var(--space-xl);
-    background: var(--bg-secondary);
-    border-left: 1px solid var(--border-color);
-    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.5);
+    background: rgba(11, 15, 29, 0.96);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     transition: right var(--transition-base);
     z-index: 5;
+    padding: 24px;
   }
 
   .navLinks.open {
@@ -171,7 +185,7 @@
     left: 0;
     width: 100%;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.6);
     opacity: 0;
     visibility: hidden;
     transition: all var(--transition-base);

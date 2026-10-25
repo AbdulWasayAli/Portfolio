@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
 import styles from './GitHubStats.module.css';
 
@@ -93,14 +94,26 @@ export default function GitHubStats() {
     <section id="github-activity" className={`section ${styles.githubSection}`}>
       <div className="container">
         {/* Section Heading */}
-        <div className="section-heading">
+        <motion.div
+          className="section-heading"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        >
           <span className="subtitle">Real-Time Metrics</span>
-          <h2>Open Source & Activity</h2>
+          <h2>Open Source &amp; Activity</h2>
           <p>Live telemetry directly fetched from GitHub REST API showcasing continuous coding activity.</p>
-        </div>
+        </motion.div>
 
         {/* Cyber Terminal Dashboard Frame */}
-        <div className={styles.terminalWrapper}>
+        <motion.div
+          className={styles.terminalWrapper}
+          initial={{ opacity: 0, y: 35, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
           {/* Terminal Title Bar */}
           <div className={styles.terminalHeader}>
             <div className={styles.trafficLights}>
@@ -338,7 +351,7 @@ export default function GitHubStats() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

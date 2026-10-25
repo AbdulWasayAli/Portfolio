@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { navLinks } from '../../data/portfolioData';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
@@ -11,7 +12,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
 
       // Determine active section
       const sections = navLinks.map(link => link.href.replace('#', ''));
@@ -19,7 +20,7 @@ export default function Navbar() {
         const el = document.getElementById(sections[i]);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 100) {
+          if (rect.top <= 120) {
             setActiveSection(sections[i]);
             break;
           }
@@ -27,7 +28,7 @@ export default function Navbar() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -40,8 +41,9 @@ export default function Navbar() {
   };
 
   return (
-    <nav className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
+    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
       <div className={styles.navContainer}>
+        {/* Logo Left */}
         <a
           className={styles.logoLink}
           href="#home"
@@ -54,20 +56,30 @@ export default function Navbar() {
           <Logo />
         </a>
 
+        {/* Center Minimalist Navigation Links with Laser Underline */}
         <div className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
-          {navLinks.map((link) => (
-            <button
-              key={link.name}
-              className={`${styles.navLink} ${
-                activeSection === link.href.replace('#', '') ? styles.active : ''
-              }`}
-              onClick={() => handleNavClick(link.href)}
-            >
-              {link.name}
-            </button>
-          ))}
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.href.replace('#', '');
+            return (
+              <button
+                key={link.name}
+                className={`${styles.navLink} ${isActive ? styles.active : ''}`}
+                onClick={() => handleNavClick(link.href)}
+              >
+                <span className={styles.navLinkText}>{link.name}</span>
+                {isActive && (
+                  <motion.span
+                    layoutId="activeNavLine"
+                    className={styles.activeLaserLine}
+                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
+                  />
+                )}
+              </button>
+            );
+          })}
         </div>
 
+        {/* Right Action (Theme Toggle & Mobile Menu) */}
         <div className={styles.navRight}>
           <ThemeToggle />
 
@@ -83,11 +95,11 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile overlay */}
+      {/* Mobile Backdrop Overlay */}
       <div
         className={`${styles.overlay} ${menuOpen ? styles.show : ''}`}
         onClick={() => setMenuOpen(false)}
       />
-    </nav>
+    </header>
   );
 }
