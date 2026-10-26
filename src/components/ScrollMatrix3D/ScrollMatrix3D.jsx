@@ -272,17 +272,17 @@ export default function ScrollMatrix3D() {
       // ========================================================
       // LAYER 3: 3D SYNAPTIC NODES & RUNNING DATA PULSES
       // ========================================================
-      const scrollWarp = scrollVelocity * 0.85;
+      const scrollWarp = scrollVelocity * 0.9;
 
       for (let i = 0; i < NODE_COUNT; i++) {
         const n = nodes[i];
         n.x += n.vx;
         n.y += n.vy;
-        n.z -= 0.65 + scrollWarp;
+        n.z -= 0.7 + scrollWarp;
 
         // Boundary wrap
-        if (n.x < -800) n.x = 800;
-        if (n.x > 800) n.x = -800;
+        if (n.x < -850) n.x = 850;
+        if (n.x > 850) n.x = -850;
         if (n.y < -550) n.y = 550;
         if (n.y > 550) n.y = -550;
         if (n.z < 20) n.z = 1600;
@@ -308,14 +308,14 @@ export default function ScrollMatrix3D() {
           const distSq = dx * dx + dy * dy;
           if (distSq < 57600 && distSq > 4) {
             const dist = Math.sqrt(distSq);
-            const force = (1 - dist / 240) * 1.8;
+            const force = (1 - dist / 240) * 2.0;
             n.x += (dx / dist) * force;
             n.y += (dy / dist) * force;
           }
         }
 
-        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / 1600) * 1.4));
-        const pulse = Math.sin(time * 3 + n.pulseOffset) * 0.35 + 0.65;
+        const depthAlpha = Math.max(0.15, Math.min(1, (1 - z2 / 1600) * 1.5));
+        const pulse = Math.sin(time * 3.2 + n.pulseOffset) * 0.35 + 0.75;
 
         projectedNodes[i] = {
           screenX,
@@ -329,8 +329,8 @@ export default function ScrollMatrix3D() {
         };
       }
 
-      // Draw Synaptic Beams
-      ctx.lineWidth = 1;
+      // Draw Synaptic Beams with rich glowing laser visibility
+      ctx.lineWidth = 1.3;
       for (let k = 0; k < connections.length; k++) {
         const c = connections[k];
         const p1 = projectedNodes[c.from];
@@ -341,57 +341,82 @@ export default function ScrollMatrix3D() {
         const dy = p1.screenY - p2.screenY;
         const distSq = dx * dx + dy * dy;
 
-        if (distSq < 62500) {
+        if (distSq < 67600) {
           const dist = Math.sqrt(distSq);
-          const connAlpha = (1 - dist / 250) * p1.depthAlpha * p2.depthAlpha * 0.35;
+          const connAlpha = (1 - dist / 260) * p1.depthAlpha * p2.depthAlpha * 0.58;
 
+          // Vibrant laser beam
           ctx.strokeStyle = c.from % 2 === 0
             ? `rgba(0, 229, 255, ${connAlpha})`
-            : `rgba(167, 139, 250, ${connAlpha * 0.9})`;
+            : `rgba(168, 85, 247, ${connAlpha})`;
 
           ctx.beginPath();
           ctx.moveTo(p1.screenX, p1.screenY);
           ctx.lineTo(p2.screenX, p2.screenY);
           ctx.stroke();
 
-          // ⚡ RACING DATA BEACON
-          c.pulseProgress += c.pulseSpeed * (1 + scrollVelocity * 0.12);
+          // ⚡ RACING DATA BEACON (Bright neon energy packets)
+          c.pulseProgress += c.pulseSpeed * (1 + scrollVelocity * 0.15);
           if (c.pulseProgress > 1) c.pulseProgress = 0;
 
           const packetX = p1.screenX + (p2.screenX - p1.screenX) * c.pulseProgress;
           const packetY = p1.screenY + (p2.screenY - p1.screenY) * c.pulseProgress;
-          const packetAlpha = connAlpha * 2.2;
+          const packetAlpha = Math.min(1, connAlpha * 2.8);
 
+          // Outer beacon glow
           ctx.fillStyle = c.from % 2 === 0
-            ? `rgba(0, 229, 255, ${packetAlpha})`
-            : `rgba(192, 132, 252, ${packetAlpha})`;
+            ? `rgba(0, 229, 255, ${packetAlpha * 0.45})`
+            : `rgba(216, 180, 254, ${packetAlpha * 0.45})`;
           ctx.beginPath();
-          ctx.arc(packetX, packetY, 1.8, 0, Math.PI * 2);
+          ctx.arc(packetX, packetY, 4.5, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Bright beacon core
+          ctx.fillStyle = c.from % 2 === 0
+            ? `rgba(255, 255, 255, ${packetAlpha})`
+            : `rgba(240, 220, 255, ${packetAlpha})`;
+          ctx.beginPath();
+          ctx.arc(packetX, packetY, 2.2, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      // Draw Luminescent Nodes
+      // Draw Highly Luminescent Neon Quantum Nodes
       for (let i = 0; i < NODE_COUNT; i++) {
         const p = projectedNodes[i];
         if (!p) continue;
 
-        const r = Math.max(1.3, p.radius * p.scale * (p.isCoreBeacon ? 1.6 : 1.1));
-        const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
+        const baseR = Math.max(1.8, p.radius * p.scale * (p.isCoreBeacon ? 1.8 : 1.3));
+        const alpha = Math.min(1, p.depthAlpha * p.pulse * 1.2);
 
+        // 1. Soft Ambient Outer Halo Glow
         ctx.beginPath();
-        ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
+        ctx.arc(p.screenX, p.screenY, baseR * 3.2, 0, Math.PI * 2);
         ctx.fillStyle = p.hue === 185
-          ? `rgba(0, 229, 255, ${alpha})`
-          : `rgba(167, 139, 250, ${alpha})`;
+          ? `rgba(0, 229, 255, ${alpha * 0.22})`
+          : `rgba(168, 85, 247, ${alpha * 0.22})`;
         ctx.fill();
 
-        // Pulsating halo on Core Beacons
+        // 2. Middle Vibrant Neon Layer
+        ctx.beginPath();
+        ctx.arc(p.screenX, p.screenY, baseR * 1.6, 0, Math.PI * 2);
+        ctx.fillStyle = p.hue === 185
+          ? `rgba(0, 229, 255, ${alpha * 0.85})`
+          : `rgba(168, 85, 247, ${alpha * 0.85})`;
+        ctx.fill();
+
+        // 3. Ultra-Bright Star Core (Solid white/cyan hotspot)
+        ctx.beginPath();
+        ctx.arc(p.screenX, p.screenY, Math.max(1.2, baseR * 0.7), 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.fill();
+
+        // 4. Pulsating Beacon Orbit Ring on Core Hubs
         if (p.isCoreBeacon) {
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 2.4, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.4})`;
-          ctx.lineWidth = 0.8;
+          ctx.arc(p.screenX, p.screenY, baseR * 3.8, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.6})`;
+          ctx.lineWidth = 1;
           ctx.stroke();
         }
       }
@@ -410,13 +435,14 @@ export default function ScrollMatrix3D() {
         if (d.y < 0) d.y = height;
         if (d.y > height) d.y = 0;
 
-        const currentAlpha = d.alpha * (0.6 + Math.sin(d.pulseVal) * 0.4);
+        const currentAlpha = Math.min(0.9, d.alpha * (0.8 + Math.sin(d.pulseVal) * 0.5));
+        
         ctx.fillStyle = d.hue === 185
           ? `rgba(0, 229, 255, ${currentAlpha})`
-          : `rgba(167, 139, 250, ${currentAlpha})`;
+          : `rgba(192, 132, 252, ${currentAlpha})`;
 
         ctx.beginPath();
-        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+        ctx.arc(d.x, d.y, d.size * 1.3, 0, Math.PI * 2);
         ctx.fill();
       }
 
