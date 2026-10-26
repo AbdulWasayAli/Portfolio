@@ -8,7 +8,7 @@ export default function ScrollMatrix3D() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // Hardware accelerated alpha context
+    // High performance hardware-accelerated context
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return;
 
@@ -16,13 +16,15 @@ export default function ScrollMatrix3D() {
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
 
+    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
     const handleResize = () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
     };
     window.addEventListener('resize', handleResize);
 
-    // Smooth scroll velocity tracking
+    // Smooth Scroll tracking with velocity lerp
     let currentScroll = window.scrollY;
     let targetScroll = window.scrollY;
     let lastScrollY = window.scrollY;
@@ -33,8 +35,8 @@ export default function ScrollMatrix3D() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Interactive mouse tracking with spring interpolation
-    let mouse = {
+    // Interactive mouse tracking with fluid gravity physics
+    const mouse = {
       x: width / 2,
       y: height / 2,
       targetX: width / 2,
@@ -50,262 +52,153 @@ export default function ScrollMatrix3D() {
 
     const handleMouseLeave = () => {
       mouse.isHovered = false;
+      mouse.targetX = width / 2;
+      mouse.targetY = height / 2;
+    };
+
+    // On mobile touch: touch coordinates gently drift the aurora & matrix
+    const handleTouchMove = (e) => {
+      if (e.touches && e.touches[0]) {
+        mouse.targetX = e.touches[0].clientX;
+        mouse.targetY = e.touches[0].clientY;
+        mouse.isHovered = true;
+      }
     };
 
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('mouseleave', handleMouseLeave);
+    window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     // ========================================================
-    // ULTRA-OPTIMIZED 3D ENGINE (GUARANTEED SILKY SMOOTH 60-120 FPS)
+    // 1. HOLOGRAPHIC NEURAL AURORA CONFIGURATION
     // ========================================================
-    const STAR_COUNT = 75;      // Balanced for buttery performance without any frame drop
-    const NODE_COUNT = 28;      // Crisp constellation nodes
-    const GRID_COLS = 10;       // Lightweight perspective grid
-    const GRID_ROWS = 6;
-    const TOTAL_GRID = (GRID_COLS + 1) * (GRID_ROWS + 1);
+    const AURORA_BLOBS = [
+      { x: 0.25, y: 0.25, r: 420, hue: 250, vx: 0.0004, vy: 0.0003, phase: 0 },
+      { x: 0.75, y: 0.70, r: 460, hue: 190, vx: -0.0003, vy: -0.0004, phase: 2 },
+      { x: 0.50, y: 0.45, r: 380, hue: 275, vx: 0.0002, vy: -0.0003, phase: 4 },
+      { x: 0.80, y: 0.20, r: 350, hue: 215, vx: -0.0003, vy: 0.0002, phase: 1 },
+    ];
 
-    const BOUNDS_X = 1600;
-    const BOUNDS_Y = 1100;
-    const BOUNDS_Z = 1800;
+    // ========================================================
+    // 2. 3D KINETIC SYNAPSE MATRIX (Fixed bounds + depth buffer)
+    // ========================================================
+    const NODE_COUNT = isTouchDevice ? 26 : 42; // Perfect balance for mobile & desktop
+    const BOUNDS_X = 1400;
+    const BOUNDS_Y = 1000;
+    const BOUNDS_Z = 1600;
 
-    // 1. Hyperspace Warp Stars
-    const stars = [];
-    for (let i = 0; i < STAR_COUNT; i++) {
-      stars.push({
-        x: (Math.random() - 0.5) * BOUNDS_X * 1.5,
-        y: (Math.random() - 0.5) * BOUNDS_Y * 1.5,
-        z: Math.random() * BOUNDS_Z,
-        pz: 0,
-        speed: 1.4 + Math.random() * 2.2,
-        brightness: 0.4 + Math.random() * 0.6,
-        size: Math.random() * 1.5 + 0.8,
-        hue: Math.random() > 0.45 ? 260 : 195,
-      });
-    }
-
-    // 2. Constellation Core Nodes
     const nodes = [];
     for (let i = 0; i < NODE_COUNT; i++) {
       nodes.push({
-        x: (Math.random() - 0.5) * BOUNDS_X,
-        y: (Math.random() - 0.5) * BOUNDS_Y,
-        z: Math.random() * BOUNDS_Z,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        radius: Math.random() * 2 + 1.2,
-        pulseOffset: Math.random() * Math.PI * 2,
-        isHub: i % 4 === 0,
-        isCyan: i % 2 === 0,
+        origX: (Math.random() - 0.5) * BOUNDS_X,
+        origY: (Math.random() - 0.5) * BOUNDS_Y,
+        origZ: Math.random() * BOUNDS_Z,
+        x: 0,
+        y: 0,
+        z: 0,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        radius: Math.random() * 2.2 + 1.2,
+        isCoreHub: i % 5 === 0,
+        colorType: i % 3, // 0 = Electric Cyan, 1 = Royal Violet, 2 = Indigo Luminary
+        pulsePhase: Math.random() * Math.PI * 2,
+        pulseSpeed: 0.02 + Math.random() * 0.025,
       });
+      // Initial pos
+      nodes[i].x = nodes[i].origX;
+      nodes[i].y = nodes[i].origY;
+      nodes[i].z = nodes[i].origZ;
     }
 
-    // Pre-allocated fixed synaptic connections
+    // Fixed Pre-allocated Synaptic Connections
     const connections = [];
     for (let i = 0; i < NODE_COUNT; i++) {
       for (let j = i + 1; j < NODE_COUNT; j++) {
-        if (j - i <= 2) {
-          connections.push([i, j]);
+        // Connect nearby indices to keep calculation deterministic & zero GC
+        if (j - i <= 3 || (i % 7 === 0 && j % 7 === 0)) {
+          connections.push({
+            from: i,
+            to: j,
+            pulsePos: Math.random(), // Running data pulse position (0 to 1)
+            pulseSpeed: 0.006 + Math.random() * 0.012,
+            active: Math.random() > 0.15,
+          });
         }
       }
     }
 
-    // 3. Pre-allocated 3D Ground Mesh Points
-    const gridPoints = [];
-    const gridSpacingX = BOUNDS_X / GRID_COLS;
-    const gridSpacingZ = BOUNDS_Z / GRID_ROWS;
-
-    for (let r = 0; r <= GRID_ROWS; r++) {
-      for (let c = 0; c <= GRID_COLS; c++) {
-        gridPoints.push({
-          col: c,
-          row: r,
-          origX: (c - GRID_COLS / 2) * gridSpacingX,
-          baseY: 400,
-          origZ: r * gridSpacingZ + 100,
-          waveOffset: c * 0.4 + r * 0.45,
-        });
-      }
-    }
-
-    // Pre-allocated reusable projected arrays (Zero Garbage Collection pressure)
-    const projectedGrid = new Array(TOTAL_GRID);
+    // Fast projected arrays
     const projectedNodes = new Array(NODE_COUNT);
 
     let time = 0;
 
-    // Render loop
+    // Render Engine
     const render = () => {
-      time += 0.016;
+      time += 0.015;
 
-      // Track scroll delta & velocity
+      // Smooth scroll lerp
       const scrollDelta = targetScroll - currentScroll;
       currentScroll += scrollDelta * 0.085;
 
       const rawVel = Math.abs(currentScroll - lastScrollY);
       lastScrollY = currentScroll;
-      scrollVelocity += (rawVel - scrollVelocity) * 0.12;
+      scrollVelocity += (rawVel - scrollVelocity) * 0.15;
 
-      const warpSpeed = Math.min(22, 1.4 + scrollVelocity * 1.0);
-
-      // Smooth mouse lerp
+      // Mouse smooth interpolation
       mouse.x += (mouse.targetX - mouse.x) * 0.06;
       mouse.y += (mouse.targetY - mouse.y) * 0.06;
 
       ctx.clearRect(0, 0, width, height);
 
-      const fov = 420;
-      const cx = width / 2;
-      const cy = height / 2;
+      // ========================================================
+      // STAGE 1: HOLOGRAPHIC NEURAL AURORA (Slow-motion liquid nebulas)
+      // ========================================================
+      ctx.save();
+      for (let i = 0; i < AURORA_BLOBS.length; i++) {
+        const b = AURORA_BLOBS[i];
+        const cx = (b.x + Math.sin(time * 0.4 + b.phase) * 0.08) * width;
+        const cy = (b.y + Math.cos(time * 0.35 + b.phase) * 0.08) * height;
+        const radius = b.r * (1 + Math.sin(time * 0.6 + b.phase) * 0.12);
 
-      // 3D Camera Angles with gentle sway
-      const rotY = ((mouse.x - cx) / width) * 0.28 + Math.sin(time * 0.5) * 0.025;
-      const rotX = ((mouse.y - cy) / height) * 0.2 + Math.cos(time * 0.4) * 0.02;
+        const auraGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
+        // Rich high-end luminescence
+        auraGrad.addColorStop(0, `hsla(${b.hue}, 85%, 62%, 0.13)`);
+        auraGrad.addColorStop(0.45, `hsla(${b.hue + 15}, 80%, 55%, 0.06)`);
+        auraGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.fillStyle = auraGrad;
+        ctx.beginPath();
+        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // ========================================================
+      // STAGE 2: 3D KINETIC SYNAPSE PROJECTIONS
+      // ========================================================
+      const fov = 450;
+      const screenCenterX = width / 2;
+      const screenCenterY = height / 2;
+
+      // Camera tilt with natural breathing sway
+      const rotY = ((mouse.x - screenCenterX) / width) * 0.3 + Math.sin(time * 0.3) * 0.02;
+      const rotX = ((mouse.y - screenCenterY) / height) * 0.22 + Math.cos(time * 0.25) * 0.02;
       const cosY = Math.cos(rotY);
       const sinY = Math.sin(rotY);
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
 
-      // ========================================================
-      // 1. RENDER 3D TERRAIN WAVE GRID (BATCH PATHS FOR ZERO LAG)
-      // ========================================================
-      const groundScroll = (currentScroll * 0.35 + time * 60) % BOUNDS_Z;
+      const scrollWarp = scrollVelocity * 0.8;
 
-      for (let i = 0; i < TOTAL_GRID; i++) {
-        const gp = gridPoints[i];
-        const wave = Math.sin(time * 2.0 + gp.waveOffset) * 22;
-        const worldY = gp.baseY + wave;
-
-        let worldZ = (gp.origZ - groundScroll) % BOUNDS_Z;
-        if (worldZ < 40) worldZ += BOUNDS_Z;
-
-        // 3D Matrix Rotation
-        const x1 = gp.origX * cosY + worldZ * sinY;
-        const z1 = -gp.origX * sinY + worldZ * cosY;
-        const y1 = worldY * cosX - z1 * sinX;
-        const z2 = worldY * sinX + z1 * cosX;
-
-        if (z2 <= 20) {
-          projectedGrid[i] = null;
-          continue;
-        }
-
-        const scale = fov / (fov + z2);
-        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.15));
-
-        projectedGrid[i] = {
-          screenX: cx + x1 * scale,
-          screenY: cy + y1 * scale,
-          depthAlpha,
-        };
-      }
-
-      // Draw horizontal grid lines in single batch
-      ctx.lineWidth = 0.8;
-      ctx.strokeStyle = 'rgba(56, 189, 248, 0.14)';
-      ctx.beginPath();
-      for (let r = 0; r <= GRID_ROWS; r++) {
-        let drawing = false;
-        for (let c = 0; c <= GRID_COLS; c++) {
-          const p = projectedGrid[r * (GRID_COLS + 1) + c];
-          if (!p) {
-            drawing = false;
-            continue;
-          }
-          if (!drawing) {
-            ctx.moveTo(p.screenX, p.screenY);
-            drawing = true;
-          } else {
-            ctx.lineTo(p.screenX, p.screenY);
-          }
-        }
-      }
-      ctx.stroke();
-
-      // Draw vertical depth grid lines in single batch
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.13)';
-      ctx.beginPath();
-      for (let c = 0; c <= GRID_COLS; c++) {
-        let drawing = false;
-        for (let r = 0; r <= GRID_ROWS; r++) {
-          const p = projectedGrid[r * (GRID_COLS + 1) + c];
-          if (!p) {
-            drawing = false;
-            continue;
-          }
-          if (!drawing) {
-            ctx.moveTo(p.screenX, p.screenY);
-            drawing = true;
-          } else {
-            ctx.lineTo(p.screenX, p.screenY);
-          }
-        }
-      }
-      ctx.stroke();
-
-      // ========================================================
-      // 2. RENDER 3D WARP SPEED STARFIELD STREAKS
-      // ========================================================
-      for (let i = 0; i < STAR_COUNT; i++) {
-        const s = stars[i];
-        s.pz = s.z;
-
-        // Move through 3D space
-        s.z -= s.speed * warpSpeed;
-        if (s.z <= 10) {
-          s.z = BOUNDS_Z;
-          s.pz = BOUNDS_Z;
-          s.x = (Math.random() - 0.5) * BOUNDS_X * 1.5;
-          s.y = (Math.random() - 0.5) * BOUNDS_Y * 1.5;
-        }
-
-        const x1 = s.x * cosY + s.z * sinY;
-        const z1 = -s.x * sinY + s.z * cosY;
-        const y1 = s.y * cosX - z1 * sinX;
-        const z2 = s.y * sinX + z1 * cosX;
-
-        if (z2 <= 20) continue;
-
-        const scale = fov / (fov + z2);
-        const sx = cx + x1 * scale;
-        const sy = cy + y1 * scale;
-
-        const depthFade = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.25));
-        const alpha = depthFade * s.brightness * (0.35 + Math.min(0.65, scrollVelocity * 0.08));
-
-        ctx.beginPath();
-        if (scrollVelocity > 0.8) {
-          const px1 = s.x * cosY + s.pz * sinY;
-          const pz1 = -s.x * sinY + s.pz * cosY;
-          const py1 = s.y * cosX - pz1 * sinX;
-          const pz2 = s.y * sinX + pz1 * cosX;
-
-          if (pz2 > 20) {
-            const pscale = fov / (fov + pz2);
-            ctx.strokeStyle = `hsla(${s.hue}, 95%, 75%, ${alpha})`;
-            ctx.lineWidth = Math.max(1, s.size * scale * (1 + scrollVelocity * 0.08));
-            ctx.moveTo(cx + px1 * pscale, cy + py1 * pscale);
-            ctx.lineTo(sx, sy);
-            ctx.stroke();
-          }
-        } else {
-          ctx.fillStyle = `hsla(${s.hue}, 90%, 75%, ${alpha * 0.95})`;
-          ctx.arc(sx, sy, Math.max(1, s.size * scale), 0, Math.PI * 2);
-          ctx.fill();
-        }
-      }
-
-      // ========================================================
-      // 3. PROJECT 3D CONSTELLATION NODES & CONNECTIVE WEBS
-      // ========================================================
       for (let i = 0; i < NODE_COUNT; i++) {
         const n = nodes[i];
 
-        // Kinetic orbital drift
+        // Orbit drift
         n.x += n.vx;
         n.y += n.vy;
-        n.z -= warpSpeed * 0.4;
+        n.z -= 0.6 + scrollWarp;
 
-        // Boundary wrap
+        // Wrap around boundaries smoothly
         if (n.x < -BOUNDS_X / 2) n.x = BOUNDS_X / 2;
         if (n.x > BOUNDS_X / 2) n.x = -BOUNDS_X / 2;
         if (n.y < -BOUNDS_Y / 2) n.y = BOUNDS_Y / 2;
@@ -324,24 +217,27 @@ export default function ScrollMatrix3D() {
         }
 
         const scale = fov / (fov + z2);
-        const screenX = cx + x1 * scale;
-        const screenY = cy + y1 * scale;
+        let screenX = screenCenterX + x1 * scale;
+        let screenY = screenCenterY + y1 * scale;
 
-        // Mouse deflection with lightweight distance check
+        // Interactive Magnetic Cursor Attraction / Deflection
         if (mouse.isHovered) {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const distSq = dx * dx + dy * dy;
-          if (distSq < 48400 && distSq > 1) {
+          const maxDist = 240;
+
+          if (distSq < maxDist * maxDist && distSq > 4) {
             const dist = Math.sqrt(distSq);
-            const force = (1 - dist / 220) * 1.8;
+            // Gentle organic pull into cursor gravity field
+            const force = (1 - dist / maxDist) * 1.6;
             n.x += (dx / dist) * force;
             n.y += (dy / dist) * force;
           }
         }
 
-        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.3));
-        const pulse = Math.sin(time * 3 + n.pulseOffset) * 0.35 + 0.65;
+        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.35));
+        const pulse = Math.sin(time * 3 + n.pulsePhase) * 0.3 + 0.7;
 
         projectedNodes[i] = {
           screenX,
@@ -349,61 +245,91 @@ export default function ScrollMatrix3D() {
           scale,
           depthAlpha,
           pulse,
-          isHub: n.isHub,
+          isCoreHub: n.isCoreHub,
           radius: n.radius,
-          isCyan: n.isCyan,
+          colorType: n.colorType,
         };
       }
 
-      // Draw Synaptic Web Beams
+      // ========================================================
+      // STAGE 3: SYNAPSE FIBERS & RUNNING DATA BEACONS
+      // ========================================================
       ctx.lineWidth = 1;
       for (let k = 0; k < connections.length; k++) {
-        const [i, j] = connections[k];
-        const p1 = projectedNodes[i];
-        const p2 = projectedNodes[j];
+        const c = connections[k];
+        if (!c.active) continue;
+
+        const p1 = projectedNodes[c.from];
+        const p2 = projectedNodes[c.to];
         if (!p1 || !p2) continue;
 
         const dx = p1.screenX - p2.screenX;
         const dy = p1.screenY - p2.screenY;
         const distSq = dx * dx + dy * dy;
+        const maxDist = 260;
 
-        if (distSq < 48400) {
+        if (distSq < maxDist * maxDist) {
           const dist = Math.sqrt(distSq);
-          const connAlpha = (1 - dist / 220) * p1.depthAlpha * p2.depthAlpha * 0.42;
+          const connAlpha = (1 - dist / maxDist) * p1.depthAlpha * p2.depthAlpha * 0.32;
 
-          ctx.strokeStyle = i % 2 === 0
-            ? `rgba(56, 189, 248, ${connAlpha})`
-            : `rgba(168, 85, 247, ${connAlpha * 0.95})`;
+          // Electric Synapse Line
+          ctx.strokeStyle = c.from % 2 === 0
+            ? `rgba(0, 229, 255, ${connAlpha})`
+            : `rgba(167, 139, 250, ${connAlpha * 0.9})`;
 
           ctx.beginPath();
           ctx.moveTo(p1.screenX, p1.screenY);
           ctx.lineTo(p2.screenX, p2.screenY);
           ctx.stroke();
+
+          // ⚡ RUNNING DATA PULSE (Energy packet racing across the wire)
+          c.pulsePos += c.pulseSpeed * (1 + scrollVelocity * 0.15);
+          if (c.pulsePos > 1) c.pulsePos = 0;
+
+          const packetX = p1.screenX + (p2.screenX - p1.screenX) * c.pulsePos;
+          const packetY = p1.screenY + (p2.screenY - p1.screenY) * c.pulsePos;
+          const packetAlpha = connAlpha * 2.2;
+
+          ctx.fillStyle = c.from % 2 === 0 ? `rgba(0, 229, 255, ${packetAlpha})` : `rgba(192, 132, 252, ${packetAlpha})`;
+          ctx.beginPath();
+          ctx.arc(packetX, packetY, 1.8, 0, Math.PI * 2);
+          ctx.fill();
         }
       }
 
-      // Draw 3D Luminary Nodes
+      // ========================================================
+      // STAGE 4: LUMINESCENT NEURAL NODES & HALOS
+      // ========================================================
       for (let i = 0; i < NODE_COUNT; i++) {
         const p = projectedNodes[i];
         if (!p) continue;
 
-        const r = Math.max(1.4, p.radius * p.scale * (p.isHub ? 1.5 : 1.1));
-        const alpha = Math.min(0.9, p.depthAlpha * p.pulse);
+        const nodeRadius = Math.max(1.3, p.radius * p.scale * (p.isCoreHub ? 1.6 : 1.1));
+        const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
 
+        // Core fill
         ctx.beginPath();
-        ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
+        ctx.arc(p.screenX, p.screenY, nodeRadius, 0, Math.PI * 2);
 
-        if (p.isHub) {
-          ctx.fillStyle = `rgba(56, 189, 248, ${alpha})`;
-          ctx.fill();
-
-          ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, r * 2.2, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha * 0.45})`;
-          ctx.stroke();
+        if (p.colorType === 0) {
+          // Electric Cyan
+          ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`;
+        } else if (p.colorType === 1) {
+          // Royal Violet
+          ctx.fillStyle = `rgba(167, 139, 250, ${alpha})`;
         } else {
-          ctx.fillStyle = p.isCyan ? `rgba(56, 189, 248, ${alpha * 0.75})` : `rgba(168, 85, 247, ${alpha * 0.75})`;
-          ctx.fill();
+          // Stellar White / Indigo
+          ctx.fillStyle = `rgba(224, 231, 255, ${alpha})`;
+        }
+        ctx.fill();
+
+        // Core Hub outer pulsating halo
+        if (p.isCoreHub) {
+          ctx.beginPath();
+          ctx.arc(p.screenX, p.screenY, nodeRadius * 2.4, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.38})`;
+          ctx.lineWidth = 0.8;
+          ctx.stroke();
         }
       }
 
@@ -417,6 +343,7 @@ export default function ScrollMatrix3D() {
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('mouseleave', handleMouseLeave);
+      window.removeEventListener('touchmove', handleTouchMove);
       cancelAnimationFrame(animationFrameId);
     };
   }, []);

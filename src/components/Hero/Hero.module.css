@@ -699,25 +699,40 @@
   .heroInner {
     flex-direction: column;
     text-align: center;
-    padding-top: var(--space-3xl);
+    padding-top: var(--space-xl);
+    gap: var(--space-lg);
   }
 
-  .heroText {
-    max-width: 100%;
+  .heroTitle {
+    font-size: clamp(2rem, 7.5vw, 2.75rem);
+    line-height: 1.15;
+  }
+
+  .heroName {
+    white-space: normal;
+    display: inline-block;
+  }
+
+  .heroSubtitle {
+    font-size: clamp(1rem, 4vw, 1.3rem);
   }
 
   .heroDescription {
+    font-size: 0.95rem;
+    line-height: 1.6;
     max-width: 100%;
+    margin-bottom: var(--space-lg);
   }
 
   .unifiedStatusDeck {
-    margin: 0 auto var(--space-xl) auto;
+    margin: 0 auto var(--space-lg) auto;
     max-width: 100%;
     flex-wrap: wrap;
     justify-content: center;
     border-radius: var(--radius-lg);
-    padding: 8px 14px;
-    gap: 8px;
+    padding: 6px 12px;
+    gap: 6px;
+    font-size: 0.78rem;
   }
 
   .deckDivider {
@@ -726,30 +741,39 @@
 
   .heroButtons {
     justify-content: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .heroButtons .btn {
+    flex: 1;
+    min-width: 140px;
+    padding: 12px 18px;
+    font-size: 0.88rem;
   }
 
   .heroSocial {
     justify-content: center;
+    margin-top: var(--space-md);
   }
 
   .scrollIndicator {
-    bottom: 20px;
+    display: none;
   }
 
   .heroImageWrapper {
     flex: 0 0 auto;
-    margin-top: var(--space-xl);
+    margin-top: 0;
     order: -1;
   }
 
-
   .heroImageContainer {
-    width: 220px;
-    height: 220px;
+    width: 190px;
+    height: 190px;
   }
 
   .heroImageGlow {
-    width: 220px;
-    height: 220px;
+    width: 190px;
+    height: 190px;
   }
 }
