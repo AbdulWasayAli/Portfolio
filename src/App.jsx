@@ -16,6 +16,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
+import ProjectDetail from './pages/ProjectDetail';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import ScrollMatrix3D from './components/ScrollMatrix3D/ScrollMatrix3D';
 import CyberCursor from './components/CyberCursor/CyberCursor';
@@ -88,6 +89,7 @@ function App() {
           </>
         } />
         <Route path="/blog/:id" element={<BlogDetail />} />
+        <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </ThemeProvider>

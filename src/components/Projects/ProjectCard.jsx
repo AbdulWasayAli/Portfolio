@@ -89,10 +89,9 @@ export default function ProjectCard({ project, onSelect }) {
             }}
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-              <circle cx="12" cy="12" r="3" />
+              <path d="M7 17l9.2-9.2M17 17V7H7" />
             </svg>
-            <span>Overview</span>
+            <span>Case Study</span>
           </button>
           {project.github && project.github !== '#' && (
             <a
