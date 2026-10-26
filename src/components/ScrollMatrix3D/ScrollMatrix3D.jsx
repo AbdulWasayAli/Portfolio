@@ -8,7 +8,6 @@ export default function ScrollMatrix3D() {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    // High performance hardware-accelerated context
     const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
     if (!ctx) return;
 
@@ -24,7 +23,7 @@ export default function ScrollMatrix3D() {
     };
     window.addEventListener('resize', handleResize);
 
-    // Smooth Scroll tracking with velocity lerp
+    // Scroll interpolation
     let currentScroll = window.scrollY;
     let targetScroll = window.scrollY;
     let lastScrollY = window.scrollY;
@@ -35,7 +34,7 @@ export default function ScrollMatrix3D() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
 
-    // Interactive mouse tracking with fluid gravity physics
+    // Interactive mouse tracking with spring mechanics
     const mouse = {
       x: width / 2,
       y: height / 2,
@@ -56,7 +55,6 @@ export default function ScrollMatrix3D() {
       mouse.targetY = height / 2;
     };
 
-    // On mobile touch: touch coordinates gently drift the aurora & matrix
     const handleTouchMove = (e) => {
       if (e.touches && e.touches[0]) {
         mouse.targetX = e.touches[0].clientX;
@@ -70,142 +68,225 @@ export default function ScrollMatrix3D() {
     window.addEventListener('touchmove', handleTouchMove, { passive: true });
 
     // ========================================================
-    // 1. HOLOGRAPHIC NEURAL AURORA CONFIGURATION
+    // 1. COSMIC CHROMATIC AURORA NEBULAS (4 Dynamic Emitters)
     // ========================================================
-    const AURORA_BLOBS = [
-      { x: 0.25, y: 0.25, r: 420, hue: 250, vx: 0.0004, vy: 0.0003, phase: 0 },
-      { x: 0.75, y: 0.70, r: 460, hue: 190, vx: -0.0003, vy: -0.0004, phase: 2 },
-      { x: 0.50, y: 0.45, r: 380, hue: 275, vx: 0.0002, vy: -0.0003, phase: 4 },
-      { x: 0.80, y: 0.20, r: 350, hue: 215, vx: -0.0003, vy: 0.0002, phase: 1 },
+    const AURORAS = [
+      { x: 0.2, y: 0.25, r: 520, hue: 260, baseAlpha: 0.16, speed: 0.0006 },
+      { x: 0.8, y: 0.75, r: 560, hue: 185, baseAlpha: 0.14, speed: -0.0005 },
+      { x: 0.5, y: 0.50, r: 440, hue: 285, baseAlpha: 0.10, speed: 0.0004 },
+      { x: 0.75, y: 0.20, r: 420, hue: 215, baseAlpha: 0.12, speed: -0.0004 }
     ];
 
     // ========================================================
-    // 2. 3D KINETIC SYNAPSE MATRIX (Fixed bounds + depth buffer)
+    // 2. QUANTUM HORIZON GRID (Infinite Perspective Plane)
     // ========================================================
-    const NODE_COUNT = isTouchDevice ? 26 : 42; // Perfect balance for mobile & desktop
-    const BOUNDS_X = 1400;
-    const BOUNDS_Y = 1000;
-    const BOUNDS_Z = 1600;
+    const GRID_COLS = isTouchDevice ? 12 : 20;
+    const GRID_ROWS = isTouchDevice ? 7 : 10;
+    const GRID_DEPTH = 1800;
+    const GRID_WIDTH = 2200;
+    const GRID_Y = 460;
 
+    // ========================================================
+    // 3. SYNAPTIC NEURAL CLOUD & DATA PULSES
+    // ========================================================
+    const NODE_COUNT = isTouchDevice ? 24 : 45;
     const nodes = [];
     for (let i = 0; i < NODE_COUNT; i++) {
       nodes.push({
-        origX: (Math.random() - 0.5) * BOUNDS_X,
-        origY: (Math.random() - 0.5) * BOUNDS_Y,
-        origZ: Math.random() * BOUNDS_Z,
-        x: 0,
-        y: 0,
-        z: 0,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
+        x: (Math.random() - 0.5) * 1600,
+        y: (Math.random() - 0.5) * 1100,
+        z: Math.random() * 1600,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         radius: Math.random() * 2.2 + 1.2,
-        isCoreHub: i % 5 === 0,
-        colorType: i % 3, // 0 = Electric Cyan, 1 = Royal Violet, 2 = Indigo Luminary
-        pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.02 + Math.random() * 0.025,
+        isCoreBeacon: i % 4 === 0,
+        hue: i % 2 === 0 ? 185 : 270, // Electric Cyan vs Violet
+        pulseOffset: Math.random() * Math.PI * 2,
       });
-      // Initial pos
-      nodes[i].x = nodes[i].origX;
-      nodes[i].y = nodes[i].origY;
-      nodes[i].z = nodes[i].origZ;
     }
 
-    // Fixed Pre-allocated Synaptic Connections
     const connections = [];
     for (let i = 0; i < NODE_COUNT; i++) {
       for (let j = i + 1; j < NODE_COUNT; j++) {
-        // Connect nearby indices to keep calculation deterministic & zero GC
-        if (j - i <= 3 || (i % 7 === 0 && j % 7 === 0)) {
+        if (j - i <= 2 || (i % 6 === 0 && j % 6 === 0)) {
           connections.push({
             from: i,
             to: j,
-            pulsePos: Math.random(), // Running data pulse position (0 to 1)
-            pulseSpeed: 0.006 + Math.random() * 0.012,
-            active: Math.random() > 0.15,
+            pulseProgress: Math.random(),
+            pulseSpeed: 0.008 + Math.random() * 0.012,
           });
         }
       }
     }
 
-    // Fast projected arrays
-    const projectedNodes = new Array(NODE_COUNT);
+    // ========================================================
+    // 4. FLOATING QUANTUM DUST & AMBIENT SPARKLES
+    // ========================================================
+    const DUST_COUNT = isTouchDevice ? 30 : 60;
+    const dustParticles = [];
+    for (let i = 0; i < DUST_COUNT; i++) {
+      dustParticles.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        size: Math.random() * 1.8 + 0.6,
+        alpha: Math.random() * 0.6 + 0.2,
+        hue: Math.random() > 0.5 ? 185 : 265,
+        pulseSpeed: 0.015 + Math.random() * 0.02,
+        pulseVal: Math.random() * Math.PI * 2,
+      });
+    }
 
+    const projectedNodes = new Array(NODE_COUNT);
     let time = 0;
 
     // Render Engine
     const render = () => {
-      time += 0.015;
+      time += 0.016;
 
-      // Smooth scroll lerp
+      // Scroll physics
       const scrollDelta = targetScroll - currentScroll;
       currentScroll += scrollDelta * 0.085;
 
       const rawVel = Math.abs(currentScroll - lastScrollY);
       lastScrollY = currentScroll;
-      scrollVelocity += (rawVel - scrollVelocity) * 0.15;
+      scrollVelocity += (rawVel - scrollVelocity) * 0.12;
 
       // Mouse smooth interpolation
-      mouse.x += (mouse.targetX - mouse.x) * 0.06;
-      mouse.y += (mouse.targetY - mouse.y) * 0.06;
+      mouse.x += (mouse.targetX - mouse.x) * 0.055;
+      mouse.y += (mouse.targetY - mouse.y) * 0.055;
 
       ctx.clearRect(0, 0, width, height);
 
-      // ========================================================
-      // STAGE 1: HOLOGRAPHIC NEURAL AURORA (Slow-motion liquid nebulas)
-      // ========================================================
-      ctx.save();
-      for (let i = 0; i < AURORA_BLOBS.length; i++) {
-        const b = AURORA_BLOBS[i];
-        const cx = (b.x + Math.sin(time * 0.4 + b.phase) * 0.08) * width;
-        const cy = (b.y + Math.cos(time * 0.35 + b.phase) * 0.08) * height;
-        const radius = b.r * (1 + Math.sin(time * 0.6 + b.phase) * 0.12);
+      const cx = width / 2;
+      const cy = height / 2;
+      const fov = 460;
 
-        const auraGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, radius);
-        // Rich high-end luminescence
-        auraGrad.addColorStop(0, `hsla(${b.hue}, 85%, 62%, 0.13)`);
-        auraGrad.addColorStop(0.45, `hsla(${b.hue + 15}, 80%, 55%, 0.06)`);
-        auraGrad.addColorStop(1, 'rgba(0, 0, 0, 0)');
-
-        ctx.fillStyle = auraGrad;
-        ctx.beginPath();
-        ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      ctx.restore();
-
-      // ========================================================
-      // STAGE 2: 3D KINETIC SYNAPSE PROJECTIONS
-      // ========================================================
-      const fov = 450;
-      const screenCenterX = width / 2;
-      const screenCenterY = height / 2;
-
-      // Camera tilt with natural breathing sway
-      const rotY = ((mouse.x - screenCenterX) / width) * 0.3 + Math.sin(time * 0.3) * 0.02;
-      const rotX = ((mouse.y - screenCenterY) / height) * 0.22 + Math.cos(time * 0.25) * 0.02;
+      // 3D Camera Angles with organic breathing sway
+      const rotY = ((mouse.x - cx) / width) * 0.26 + Math.sin(time * 0.35) * 0.02;
+      const rotX = ((mouse.y - cy) / height) * 0.18 + Math.cos(time * 0.3) * 0.018;
       const cosY = Math.cos(rotY);
       const sinY = Math.sin(rotY);
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
 
-      const scrollWarp = scrollVelocity * 0.8;
+      // ========================================================
+      // LAYER 1: CHROMATIC DEEP-SPACE AURORA BLOBS
+      // ========================================================
+      for (let i = 0; i < AURORAS.length; i++) {
+        const a = AURORAS[i];
+        const blobX = (a.x + Math.sin(time * 0.5 + i * 1.5) * 0.09) * width;
+        const blobY = (a.y + Math.cos(time * 0.45 + i * 1.5) * 0.09) * height;
+        const blobRadius = a.r * (1 + Math.sin(time * 0.7 + i) * 0.12);
+
+        const grad = ctx.createRadialGradient(blobX, blobY, 0, blobX, blobY, blobRadius);
+        grad.addColorStop(0, `hsla(${a.hue}, 88%, 62%, ${a.baseAlpha})`);
+        grad.addColorStop(0.5, `hsla(${a.hue + 20}, 80%, 55%, ${a.baseAlpha * 0.4})`);
+        grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+        ctx.fillStyle = grad;
+        ctx.beginPath();
+        ctx.arc(blobX, blobY, blobRadius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      // ========================================================
+      // LAYER 2: 3D CYBER HORIZON WAVE GRID (Infinitely Moving)
+      // ========================================================
+      const groundScroll = (currentScroll * 0.4 + time * 65) % (GRID_DEPTH / GRID_ROWS);
+
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = 'rgba(0, 229, 255, 0.12)';
+      ctx.beginPath();
+
+      // Horizontal ground lines
+      for (let r = 0; r <= GRID_ROWS; r++) {
+        let worldZ = r * (GRID_DEPTH / GRID_ROWS) - groundScroll + 80;
+        if (worldZ < 30) continue;
+
+        const wave = Math.sin(time * 2.2 + r * 0.5) * 20;
+        const worldY = GRID_Y + wave;
+
+        let started = false;
+        for (let c = 0; c <= GRID_COLS; c++) {
+          const worldX = (c - GRID_COLS / 2) * (GRID_WIDTH / GRID_COLS);
+
+          // 3D Matrix Rotation
+          const x1 = worldX * cosY + worldZ * sinY;
+          const z1 = -worldX * sinY + worldZ * cosY;
+          const y1 = worldY * cosX - z1 * sinX;
+          const z2 = worldY * sinX + z1 * cosX;
+
+          if (z2 <= 20) continue;
+
+          const scale = fov / (fov + z2);
+          const screenX = cx + x1 * scale;
+          const screenY = cy + y1 * scale;
+
+          if (!started) {
+            ctx.moveTo(screenX, screenY);
+            started = true;
+          } else {
+            ctx.lineTo(screenX, screenY);
+          }
+        }
+      }
+      ctx.stroke();
+
+      // Vertical depth ground rays
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.10)';
+      ctx.beginPath();
+      for (let c = 0; c <= GRID_COLS; c++) {
+        const worldX = (c - GRID_COLS / 2) * (GRID_WIDTH / GRID_COLS);
+        let started = false;
+
+        for (let r = 0; r <= GRID_ROWS; r++) {
+          let worldZ = r * (GRID_DEPTH / GRID_ROWS) - groundScroll + 80;
+          if (worldZ < 30) continue;
+
+          const wave = Math.sin(time * 2.2 + r * 0.5) * 20;
+          const worldY = GRID_Y + wave;
+
+          const x1 = worldX * cosY + worldZ * sinY;
+          const z1 = -worldX * sinY + worldZ * cosY;
+          const y1 = worldY * cosX - z1 * sinX;
+          const z2 = worldY * sinX + z1 * cosX;
+
+          if (z2 <= 20) continue;
+
+          const scale = fov / (fov + z2);
+          const screenX = cx + x1 * scale;
+          const screenY = cy + y1 * scale;
+
+          if (!started) {
+            ctx.moveTo(screenX, screenY);
+            started = true;
+          } else {
+            ctx.lineTo(screenX, screenY);
+          }
+        }
+      }
+      ctx.stroke();
+
+      // ========================================================
+      // LAYER 3: 3D SYNAPTIC NODES & RUNNING DATA PULSES
+      // ========================================================
+      const scrollWarp = scrollVelocity * 0.85;
 
       for (let i = 0; i < NODE_COUNT; i++) {
         const n = nodes[i];
-
-        // Orbit drift
         n.x += n.vx;
         n.y += n.vy;
-        n.z -= 0.6 + scrollWarp;
+        n.z -= 0.65 + scrollWarp;
 
-        // Wrap around boundaries smoothly
-        if (n.x < -BOUNDS_X / 2) n.x = BOUNDS_X / 2;
-        if (n.x > BOUNDS_X / 2) n.x = -BOUNDS_X / 2;
-        if (n.y < -BOUNDS_Y / 2) n.y = BOUNDS_Y / 2;
-        if (n.y > BOUNDS_Y / 2) n.y = -BOUNDS_Y / 2;
-        if (n.z < 20) n.z = BOUNDS_Z;
+        // Boundary wrap
+        if (n.x < -800) n.x = 800;
+        if (n.x > 800) n.x = -800;
+        if (n.y < -550) n.y = 550;
+        if (n.y > 550) n.y = -550;
+        if (n.z < 20) n.z = 1600;
 
-        // 3D Matrix Rotation
         const x1 = n.x * cosY + n.z * sinY;
         const z1 = -n.x * sinY + n.z * cosY;
         const y1 = n.y * cosX - z1 * sinX;
@@ -217,27 +298,24 @@ export default function ScrollMatrix3D() {
         }
 
         const scale = fov / (fov + z2);
-        let screenX = screenCenterX + x1 * scale;
-        let screenY = screenCenterY + y1 * scale;
+        let screenX = cx + x1 * scale;
+        let screenY = cy + y1 * scale;
 
-        // Interactive Magnetic Cursor Attraction / Deflection
+        // Organic magnetic pull toward cursor
         if (mouse.isHovered) {
           const dx = screenX - mouse.x;
           const dy = screenY - mouse.y;
           const distSq = dx * dx + dy * dy;
-          const maxDist = 240;
-
-          if (distSq < maxDist * maxDist && distSq > 4) {
+          if (distSq < 57600 && distSq > 4) {
             const dist = Math.sqrt(distSq);
-            // Gentle organic pull into cursor gravity field
-            const force = (1 - dist / maxDist) * 1.6;
+            const force = (1 - dist / 240) * 1.8;
             n.x += (dx / dist) * force;
             n.y += (dy / dist) * force;
           }
         }
 
-        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / BOUNDS_Z) * 1.35));
-        const pulse = Math.sin(time * 3 + n.pulsePhase) * 0.3 + 0.7;
+        const depthAlpha = Math.max(0, Math.min(1, (1 - z2 / 1600) * 1.4));
+        const pulse = Math.sin(time * 3 + n.pulseOffset) * 0.35 + 0.65;
 
         projectedNodes[i] = {
           screenX,
@@ -245,20 +323,16 @@ export default function ScrollMatrix3D() {
           scale,
           depthAlpha,
           pulse,
-          isCoreHub: n.isCoreHub,
+          isCoreBeacon: n.isCoreBeacon,
           radius: n.radius,
-          colorType: n.colorType,
+          hue: n.hue,
         };
       }
 
-      // ========================================================
-      // STAGE 3: SYNAPSE FIBERS & RUNNING DATA BEACONS
-      // ========================================================
+      // Draw Synaptic Beams
       ctx.lineWidth = 1;
       for (let k = 0; k < connections.length; k++) {
         const c = connections[k];
-        if (!c.active) continue;
-
         const p1 = projectedNodes[c.from];
         const p2 = projectedNodes[c.to];
         if (!p1 || !p2) continue;
@@ -266,13 +340,11 @@ export default function ScrollMatrix3D() {
         const dx = p1.screenX - p2.screenX;
         const dy = p1.screenY - p2.screenY;
         const distSq = dx * dx + dy * dy;
-        const maxDist = 260;
 
-        if (distSq < maxDist * maxDist) {
+        if (distSq < 62500) {
           const dist = Math.sqrt(distSq);
-          const connAlpha = (1 - dist / maxDist) * p1.depthAlpha * p2.depthAlpha * 0.32;
+          const connAlpha = (1 - dist / 250) * p1.depthAlpha * p2.depthAlpha * 0.35;
 
-          // Electric Synapse Line
           ctx.strokeStyle = c.from % 2 === 0
             ? `rgba(0, 229, 255, ${connAlpha})`
             : `rgba(167, 139, 250, ${connAlpha * 0.9})`;
@@ -282,55 +354,70 @@ export default function ScrollMatrix3D() {
           ctx.lineTo(p2.screenX, p2.screenY);
           ctx.stroke();
 
-          // ⚡ RUNNING DATA PULSE (Energy packet racing across the wire)
-          c.pulsePos += c.pulseSpeed * (1 + scrollVelocity * 0.15);
-          if (c.pulsePos > 1) c.pulsePos = 0;
+          // ⚡ RACING DATA BEACON
+          c.pulseProgress += c.pulseSpeed * (1 + scrollVelocity * 0.12);
+          if (c.pulseProgress > 1) c.pulseProgress = 0;
 
-          const packetX = p1.screenX + (p2.screenX - p1.screenX) * c.pulsePos;
-          const packetY = p1.screenY + (p2.screenY - p1.screenY) * c.pulsePos;
+          const packetX = p1.screenX + (p2.screenX - p1.screenX) * c.pulseProgress;
+          const packetY = p1.screenY + (p2.screenY - p1.screenY) * c.pulseProgress;
           const packetAlpha = connAlpha * 2.2;
 
-          ctx.fillStyle = c.from % 2 === 0 ? `rgba(0, 229, 255, ${packetAlpha})` : `rgba(192, 132, 252, ${packetAlpha})`;
+          ctx.fillStyle = c.from % 2 === 0
+            ? `rgba(0, 229, 255, ${packetAlpha})`
+            : `rgba(192, 132, 252, ${packetAlpha})`;
           ctx.beginPath();
           ctx.arc(packetX, packetY, 1.8, 0, Math.PI * 2);
           ctx.fill();
         }
       }
 
-      // ========================================================
-      // STAGE 4: LUMINESCENT NEURAL NODES & HALOS
-      // ========================================================
+      // Draw Luminescent Nodes
       for (let i = 0; i < NODE_COUNT; i++) {
         const p = projectedNodes[i];
         if (!p) continue;
 
-        const nodeRadius = Math.max(1.3, p.radius * p.scale * (p.isCoreHub ? 1.6 : 1.1));
+        const r = Math.max(1.3, p.radius * p.scale * (p.isCoreBeacon ? 1.6 : 1.1));
         const alpha = Math.min(0.95, p.depthAlpha * p.pulse);
 
-        // Core fill
         ctx.beginPath();
-        ctx.arc(p.screenX, p.screenY, nodeRadius, 0, Math.PI * 2);
-
-        if (p.colorType === 0) {
-          // Electric Cyan
-          ctx.fillStyle = `rgba(0, 229, 255, ${alpha})`;
-        } else if (p.colorType === 1) {
-          // Royal Violet
-          ctx.fillStyle = `rgba(167, 139, 250, ${alpha})`;
-        } else {
-          // Stellar White / Indigo
-          ctx.fillStyle = `rgba(224, 231, 255, ${alpha})`;
-        }
+        ctx.arc(p.screenX, p.screenY, r, 0, Math.PI * 2);
+        ctx.fillStyle = p.hue === 185
+          ? `rgba(0, 229, 255, ${alpha})`
+          : `rgba(167, 139, 250, ${alpha})`;
         ctx.fill();
 
-        // Core Hub outer pulsating halo
-        if (p.isCoreHub) {
+        // Pulsating halo on Core Beacons
+        if (p.isCoreBeacon) {
           ctx.beginPath();
-          ctx.arc(p.screenX, p.screenY, nodeRadius * 2.4, 0, Math.PI * 2);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.38})`;
+          ctx.arc(p.screenX, p.screenY, r * 2.4, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(0, 229, 255, ${alpha * 0.4})`;
           ctx.lineWidth = 0.8;
           ctx.stroke();
         }
+      }
+
+      // ========================================================
+      // LAYER 4: FLOATING QUANTUM DUST & AMBIENT SPARKLES
+      // ========================================================
+      for (let i = 0; i < dustParticles.length; i++) {
+        const d = dustParticles[i];
+        d.x += d.vx;
+        d.y += d.vy;
+        d.pulseVal += d.pulseSpeed;
+
+        if (d.x < 0) d.x = width;
+        if (d.x > width) d.x = 0;
+        if (d.y < 0) d.y = height;
+        if (d.y > height) d.y = 0;
+
+        const currentAlpha = d.alpha * (0.6 + Math.sin(d.pulseVal) * 0.4);
+        ctx.fillStyle = d.hue === 185
+          ? `rgba(0, 229, 255, ${currentAlpha})`
+          : `rgba(167, 139, 250, ${currentAlpha})`;
+
+        ctx.beginPath();
+        ctx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
+        ctx.fill();
       }
 
       animationFrameId = requestAnimationFrame(render);
