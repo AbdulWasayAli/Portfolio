@@ -563,3 +563,98 @@
     justify-content: space-between;
   }
 }
+
+/* ========================================================================= */
+/* LIGHT MODE OVERRIDES FOR PROJECT DETAIL */
+/* ========================================================================= */
+:global([data-theme="light"]) .pageContainer {
+  background-color: #f8f9fc;
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .topNavigation {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .backNavBtn {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .shareBtn {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #475569;
+}
+
+:global([data-theme="light"]) .roleTag {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .projectHeroTitle {
+  background: linear-gradient(135deg, #0f172a 40%, #6c63ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:global([data-theme="light"]) .projectHeroSubtitle {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .techTagPill {
+  color: #4338ca;
+  background: rgba(108, 99, 255, 0.1);
+  border-color: rgba(108, 99, 255, 0.25);
+}
+
+:global([data-theme="light"]) .gitActionBtn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.15);
+  color: #0f172a;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .mediaFrame {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .bentoCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .cardTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .cardBodyText {
+  color: #334155;
+}
+
+:global([data-theme="light"]) .featureItem {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #1e293b;
+}
+
+:global([data-theme="light"]) .archInnerBlock {
+  background: rgba(108, 99, 255, 0.05);
+  border-color: rgba(108, 99, 255, 0.18);
+}
+
+:global([data-theme="light"]) .navProjectCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+:global([data-theme="light"]) .navTitle {
+  color: #0f172a;
+}
+

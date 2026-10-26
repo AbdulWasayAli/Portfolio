@@ -938,9 +938,77 @@
   letter-spacing: 0.3px;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .companionContainer {
     display: none;
   }
+}
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR AI ASSISTANT CHAT
+   ===================================================== */
+:global([data-theme="light"]) .chatWindow {
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 60px -10px rgba(0, 0, 0, 0.18), 0 0 40px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .chatHeader {
+  background: rgba(15, 23, 42, 0.02);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .botTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .botStatus {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .botBubble {
+  background: #f1f5f9;
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .boldText {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .projectMiniCard {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .projectMiniName {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .projectMiniTag {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .chipBtn {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+  color: #475569;
+}
+
+:global([data-theme="light"]) .chipBtn:hover {
+  background: rgba(108, 99, 255, 0.12);
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .inputWrapper {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+:global([data-theme="light"]) .chatInput {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .chatInput::placeholder {
+  color: #94a3b8;
 }

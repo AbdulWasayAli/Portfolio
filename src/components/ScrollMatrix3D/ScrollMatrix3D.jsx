@@ -171,8 +171,10 @@ export default function ScrollMatrix3D() {
       const cosX = Math.cos(rotX);
       const sinX = Math.sin(rotX);
 
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
       // ========================================================
-      // LAYER 1: CHROMATIC DEEP-SPACE AURORA BLOBS
+      // LAYER 1: CHROMATIC AURORA BLOBS
       // ========================================================
       for (let i = 0; i < AURORAS.length; i++) {
         const a = AURORAS[i];
@@ -181,8 +183,9 @@ export default function ScrollMatrix3D() {
         const blobRadius = a.r * (1 + Math.sin(time * 0.7 + i) * 0.12);
 
         const grad = ctx.createRadialGradient(blobX, blobY, 0, blobX, blobY, blobRadius);
-        grad.addColorStop(0, `hsla(${a.hue}, 88%, 62%, ${a.baseAlpha})`);
-        grad.addColorStop(0.5, `hsla(${a.hue + 20}, 80%, 55%, ${a.baseAlpha * 0.4})`);
+        const alphaMul = isLight ? 0.6 : 1;
+        grad.addColorStop(0, `hsla(${a.hue}, 88%, ${isLight ? '68%' : '62%'}, ${a.baseAlpha * alphaMul})`);
+        grad.addColorStop(0.5, `hsla(${a.hue + 20}, 80%, ${isLight ? '65%' : '55%'}, ${a.baseAlpha * 0.4 * alphaMul})`);
         grad.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
         ctx.fillStyle = grad;
@@ -197,7 +200,7 @@ export default function ScrollMatrix3D() {
       const groundScroll = (currentScroll * 0.4 + time * 65) % (GRID_DEPTH / GRID_ROWS);
 
       ctx.lineWidth = 0.8;
-      ctx.strokeStyle = 'rgba(0, 229, 255, 0.12)';
+      ctx.strokeStyle = isLight ? 'rgba(14, 165, 233, 0.18)' : 'rgba(0, 229, 255, 0.12)';
       ctx.beginPath();
 
       // Horizontal ground lines
@@ -235,7 +238,7 @@ export default function ScrollMatrix3D() {
       ctx.stroke();
 
       // Vertical depth ground rays
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.10)';
+      ctx.strokeStyle = isLight ? 'rgba(124, 58, 237, 0.15)' : 'rgba(168, 85, 247, 0.10)';
       ctx.beginPath();
       for (let c = 0; c <= GRID_COLS; c++) {
         const worldX = (c - GRID_COLS / 2) * (GRID_WIDTH / GRID_COLS);

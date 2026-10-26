@@ -398,3 +398,38 @@
     height: 320px;
   }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR ABOUT
+   ===================================================== */
+:global([data-theme="light"]) .statusBadge {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .experienceBadge {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(108, 99, 255, 0.3);
+  color: #0f172a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+:global([data-theme="light"]) .expTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .expSubtitle {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .statCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+}
+
+:global([data-theme="light"]) .statLabel {
+  color: #64748b;
+}
