@@ -116,6 +116,46 @@
   filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.5));
 }
 
+/* Light Theme Logo Enhancements */
+:global([data-theme="light"]) .logoIconBox {
+  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 
+    0 4px 16px rgba(15, 23, 42, 0.08),
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    inset 0 1px 1px #ffffff;
+}
+
+:global([data-theme="light"]) .logoWrapper:hover .logoIconBox {
+  border-color: rgba(108, 99, 255, 0.45);
+  box-shadow: 
+    0 8px 24px rgba(108, 99, 255, 0.15),
+    0 0 16px rgba(0, 212, 170, 0.2),
+    inset 0 1px 2px #ffffff;
+}
+
+:global([data-theme="light"]) .ambientGlow {
+  background: radial-gradient(
+    circle,
+    rgba(108, 99, 255, 0.25) 0%,
+    rgba(0, 212, 170, 0.18) 50%,
+    transparent 75%
+  );
+  opacity: 0.4;
+}
+
+:global([data-theme="light"]) .nameBase {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .nameY {
+  background: linear-gradient(135deg, #6c63ff 0%, #00d4aa 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 6px rgba(108, 99, 255, 0.25));
+}
+
 .orbContainer {
   position: relative;
   display: inline-block;
@@ -135,6 +175,11 @@
   box-shadow: 0 0 10px #00e5ff, 0 0 16px rgba(0, 229, 255, 0.6);
 }
 
+:global([data-theme="light"]) .quantumOrb {
+  background: radial-gradient(circle at 35% 35%, #00d4aa, #059669 60%, #047857);
+  box-shadow: 0 0 8px rgba(0, 212, 170, 0.8), 0 0 14px rgba(0, 212, 170, 0.4);
+}
+
 .radarRing1,
 .radarRing2 {
   position: absolute;
@@ -143,6 +188,11 @@
   border: 1px solid rgba(0, 229, 255, 0.6);
   pointer-events: none;
   animation: radarPulse 3s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+:global([data-theme="light"]) .radarRing1,
+:global([data-theme="light"]) .radarRing2 {
+  border-color: rgba(0, 212, 170, 0.5);
 }
 
 .radarRing2 {

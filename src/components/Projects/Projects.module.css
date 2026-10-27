@@ -343,3 +343,69 @@
   .projectsGrid { grid-template-columns: 1fr; }
   .imageWrapper { height: 190px; }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR PROJECTS
+   ===================================================== */
+:global([data-theme="light"]) .projectCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+:global([data-theme="light"]) .projectCardActive,
+:global([data-theme="light"]) .projectCard:hover {
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1), 0 0 25px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .imageWrapper {
+  background: #f1f5f9;
+}
+
+:global([data-theme="light"]) .projectImage {
+  filter: brightness(0.98);
+}
+
+:global([data-theme="light"]) .projectCard:hover .projectImage {
+  filter: brightness(0.95);
+}
+
+:global([data-theme="light"]) .filterBtn {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+:global([data-theme="light"]) .filterBtn:hover {
+  color: #0f172a;
+  border-color: var(--primary);
+}
+
+:global([data-theme="light"]) .filterBtn.active {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.3);
+}
+
+:global([data-theme="light"]) .projectTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .projectDesc {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .tag {
+  background: rgba(108, 99, 255, 0.08);
+  color: #6366f1;
+  border-color: rgba(108, 99, 255, 0.18);
+}
+
+:global([data-theme="light"]) .githubBtn {
+  background: rgba(15, 23, 42, 0.85);
+  color: #ffffff;
+  border-color: transparent;
+}
+

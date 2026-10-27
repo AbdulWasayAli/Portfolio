@@ -159,3 +159,25 @@
     text-align: center;
   }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR FOOTER
+   ===================================================== */
+:global([data-theme="light"]) .footer {
+  background: rgba(255, 255, 255, 0.75);
+  border-top-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.03);
+}
+
+:global([data-theme="light"]) .socialBtn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #475569;
+}
+
+:global([data-theme="light"]) .socialBtn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: rgba(108, 99, 255, 0.08);
+}
+

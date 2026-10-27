@@ -165,3 +165,40 @@
   }
   .timelineCard { padding: var(--space-lg); }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR EXPERIENCE
+   ===================================================== */
+:global([data-theme="light"]) .timelineCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .timelineItem:hover .timelineCard {
+  border-color: rgba(108, 99, 255, 0.35);
+  box-shadow: 0 12px 32px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .timelineDot {
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(108, 99, 255, 0.1);
+}
+
+:global([data-theme="light"]) .timelineTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .timelineDesc {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .timelineOrg {
+  color: #0284c7;
+}
+
+:global([data-theme="light"]) .timelinePeriod {
+  background: rgba(108, 99, 255, 0.08);
+  color: #6366f1;
+}
+

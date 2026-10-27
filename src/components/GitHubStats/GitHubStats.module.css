@@ -658,3 +658,65 @@
     justify-content: center;
   }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR GITHUB STATS
+   ===================================================== */
+:global([data-theme="light"]) .terminalWrapper {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 
+    0 24px 60px -15px rgba(15, 23, 42, 0.08),
+    0 0 30px rgba(108, 99, 255, 0.08);
+}
+
+:global([data-theme="light"]) .sectionTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .terminalHeader {
+  background: rgba(15, 23, 42, 0.03);
+  border-bottom-color: rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .metricCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .metricCard:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(108, 99, 255, 0.15);
+}
+
+:global([data-theme="light"]) .calendarCardBox {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .calendarCardBox:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .metricValue {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .telemetryBadge {
+  background: rgba(255, 255, 255, 0.88);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.05);
+}
+
+:global([data-theme="light"]) .telemetryBadgeText {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .telemetryPingRate {
+  color: #0284c7;
+}
+

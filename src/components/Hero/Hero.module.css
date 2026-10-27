@@ -777,3 +777,71 @@
     height: 190px;
   }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR HERO
+   ===================================================== */
+:global([data-theme="light"]) .heroNameHighlight {
+  background: linear-gradient(
+    120deg,
+    #1e1b4b 0%,
+    #4338ca 25%,
+    #6366f1 50%,
+    #0284c7 75%,
+    #1e1b4b 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(99, 102, 241, 0.2));
+}
+
+:global([data-theme="light"]) .unifiedStatusDeck {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow:
+    0 10px 30px -8px rgba(15, 23, 42, 0.08),
+    0 0 20px -2px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .identityTitle {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+:global([data-theme="light"]) .specialtyText {
+  background: linear-gradient(90deg, #1e293b 0%, #334155 50%, #475569 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+:global([data-theme="light"]) .specialtyTag {
+  background: rgba(108, 99, 255, 0.1);
+  color: #6366f1;
+  border: 1px solid rgba(108, 99, 255, 0.2);
+}
+
+:global([data-theme="light"]) .gridOverlay {
+  background-image:
+    linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+  opacity: 0.6;
+}
+
+:global([data-theme="light"]) .heroImageContainer {
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 0 35px rgba(108, 99, 255, 0.15);
+}
+
+:global([data-theme="light"]) .heroImageGlow {
+  opacity: 0.35;
+}
+
+:global([data-theme="light"]) .scrollCapsule {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(15, 23, 42, 0.1);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+}
+

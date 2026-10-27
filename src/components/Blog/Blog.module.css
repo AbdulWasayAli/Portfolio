@@ -661,3 +661,172 @@
     text-align: center;
   }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR BLOG
+   ===================================================== */
+:global([data-theme="light"]) .blogCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
+}
+
+:global([data-theme="light"]) .blogCard:hover {
+  border-color: rgba(108, 99, 255, 0.35);
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.1), 0 0 20px rgba(108, 99, 255, 0.1);
+}
+
+:global([data-theme="light"]) .imageFrame {
+  background: #f1f5f9;
+}
+
+:global([data-theme="light"]) .cardHeading {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .cardExcerpt {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .categoryBadge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #6366f1;
+}
+
+:global([data-theme="light"]) .navArrowBtn {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+}
+
+:global([data-theme="light"]) .navArrowBtn:hover:not(:disabled) {
+  background: var(--gradient-primary);
+  color: #ffffff;
+  border-color: transparent;
+}
+
+/* Modal Popup in Light Mode */
+:global([data-theme="light"]) .modalOverlay {
+  background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(20px);
+}
+
+:global([data-theme="light"]) .modalContainer {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.18), 0 0 35px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .modalContainer::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.15);
+}
+
+:global([data-theme="light"]) .modalCloseBtn {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.12);
+}
+
+:global([data-theme="light"]) .modalHeroGlow {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.6) 65%, #ffffff 100%);
+}
+
+:global([data-theme="light"]) .heroTime,
+:global([data-theme="light"]) .heroDate {
+  background: rgba(255, 255, 255, 0.88);
+  color: #334155;
+  border: 1px solid rgba(15, 23, 42, 0.1);
+}
+
+:global([data-theme="light"]) .modalTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .authorBadgeRow {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .authorName {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .authorTitle {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .actionBtn {
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  color: #334155;
+}
+
+:global([data-theme="light"]) .actionBtn:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #ffffff;
+}
+
+:global([data-theme="light"]) .statusPillBanner {
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.08) 0%, rgba(0, 212, 170, 0.08) 100%);
+  border: 1px solid rgba(108, 99, 255, 0.2);
+}
+
+:global([data-theme="light"]) .statusPillBanner strong {
+  color: #0284c7;
+}
+
+:global([data-theme="light"]) .statusPillBanner p {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .sectionHeadingLine {
+  color: #6366f1;
+}
+
+:global([data-theme="light"]) .editorialLead {
+  color: #334155;
+}
+
+:global([data-theme="light"]) .takeawayCard {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .takeawayCard:hover {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.1);
+}
+
+:global([data-theme="light"]) .takeawayIndex {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.1);
+}
+
+:global([data-theme="light"]) .takeawayBody p {
+  color: #1e293b;
+}
+
+:global([data-theme="light"]) .tagsContainer {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .topicTag {
+  background: #f1f5f9;
+  color: #475569;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .modalFooter {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .footerNote {
+  color: #64748b;
+}
+
+

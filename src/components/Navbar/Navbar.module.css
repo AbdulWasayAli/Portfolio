@@ -22,6 +22,13 @@
   box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65);
 }
 
+/* Light Mode Scrolled Navbar: Frosted Opal Glass */
+:global([data-theme="light"]) .navbar.scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
 /* Continuously glowing fine laser line on bottom when scrolled */
 .navbar.scrolled::after {
   content: '';
@@ -39,6 +46,17 @@
     transparent 100%
   );
   pointer-events: none;
+}
+
+:global([data-theme="light"]) .navbar.scrolled::after {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(108, 99, 255, 0.25) 25%,
+    rgba(0, 212, 170, 0.35) 50%,
+    rgba(108, 99, 255, 0.25) 75%,
+    transparent 100%
+  );
 }
 
 .navContainer {
@@ -71,7 +89,7 @@
   font-size: 14px;
   font-weight: 500;
   color: var(--text-secondary);
-  padding: 8px 4px;
+  padding: 8px 6px;
   transition: color 0.25s ease;
   cursor: pointer;
   background: none;
@@ -94,6 +112,20 @@
   font-weight: 600;
 }
 
+/* Light Theme Navigation Links: Crisp obsidian with indigo active state */
+:global([data-theme="light"]) .navLink {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .navLink:hover {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .navLink.active {
+  color: #0f172a;
+  font-weight: 700;
+}
+
 /* High-tech sliding laser underline */
 .activeLaserLine {
   position: absolute;
@@ -104,6 +136,11 @@
   background: linear-gradient(90deg, #38bdf8, #818cf8);
   border-radius: 999px;
   box-shadow: 0 0 10px rgba(56, 189, 248, 0.8), 0 0 18px rgba(129, 140, 248, 0.4);
+}
+
+:global([data-theme="light"]) .activeLaserLine {
+  background: linear-gradient(90deg, #6c63ff, #00d4aa);
+  box-shadow: 0 0 8px rgba(108, 99, 255, 0.5), 0 0 14px rgba(0, 212, 170, 0.3);
 }
 
 /* Nav Right */
@@ -171,6 +208,12 @@
     padding: 24px;
   }
 
+  :global([data-theme="light"]) .navLinks {
+    background: rgba(255, 255, 255, 0.97);
+    border-left: 1px solid rgba(15, 23, 42, 0.08);
+    box-shadow: -10px 0 40px rgba(15, 23, 42, 0.12);
+  }
+
   .navLinks.open {
     right: 0;
   }
@@ -190,6 +233,10 @@
     visibility: hidden;
     transition: all var(--transition-base);
     z-index: 4;
+  }
+
+  :global([data-theme="light"]) .overlay {
+    background: rgba(15, 23, 42, 0.35);
   }
 
   .overlay.show {

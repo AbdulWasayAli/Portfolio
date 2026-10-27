@@ -8,6 +8,10 @@
   cursor: default;
 }
 
+[data-theme="light"] .bannerSection {
+  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.8) 0%, rgba(230, 235, 245, 0.95) 100%);
+}
+
 .topBeam,
 .bottomBeam {
   position: absolute;
@@ -15,6 +19,11 @@
   right: 0;
   height: 1px;
   background: linear-gradient(90deg, transparent 5%, rgba(108, 99, 255, 0.4) 30%, rgba(0, 229, 255, 0.6) 50%, rgba(108, 99, 255, 0.4) 70%, transparent 95%);
+}
+
+[data-theme="light"] .topBeam,
+[data-theme="light"] .bottomBeam {
+  background: linear-gradient(90deg, transparent 5%, rgba(108, 99, 255, 0.25) 30%, rgba(14, 165, 233, 0.35) 50%, rgba(108, 99, 255, 0.25) 70%, transparent 95%);
 }
 
 .topBeam { top: 0; }
@@ -54,9 +63,15 @@
   transition: all 0.3s ease;
 }
 
+/* Light Mode: Polished Chrome / Deep Executive Titanium Metallic Gradient with Soft Stroke */
 [data-theme="light"] .baseOutlineText {
-  -webkit-text-stroke: 1.5px rgba(0, 0, 0, 0.15);
-  text-stroke: 1.5px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.22) 0%, rgba(99, 102, 241, 0.25) 50%, rgba(14, 165, 233, 0.2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(99, 102, 241, 0.25);
+  text-stroke: 1px rgba(99, 102, 241, 0.25);
+  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.08));
 }
 
 .spotlightText {
@@ -127,12 +142,26 @@
   text-transform: uppercase;
 }
 
+[data-theme="light"] .techBadge {
+  color: #334155;
+  font-weight: 700;
+}
+
 .dotDivider {
   width: 4px;
   height: 4px;
   border-radius: 50%;
   background-color: var(--accent);
   box-shadow: 0 0 8px var(--accent);
+}
+
+[data-theme="light"] .dotDivider {
+  background-color: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+[data-theme="light"] .cursorHalo {
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(14, 165, 233, 0.1) 35%, transparent 70%);
 }
 
 @media (max-width: 768px) {
