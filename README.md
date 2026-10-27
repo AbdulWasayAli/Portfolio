@@ -1,6 +1,6 @@
 # Abdul Wasay Ali — Software Engineer & Mobile App Developer Portfolio
 
-A next-generation, high-performance, and responsive personal portfolio web application built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Engineered with Silicon Valley obsidian aesthetics, an interactive 3D **Quantum Horizon & Chromatic Neural Aurora** background engine, fluid micro-interactions, an AI companion robot, comprehensive Light/Dark mode support, and dedicated **Engineering Case Study Pages (`/project/:id`)**.
+A next-generation, high-performance personal portfolio and engineering platform built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Engineered with Silicon Valley obsidian aesthetics, an interactive 3D **Quantum Horizon & Chromatic Neural Aurora** background engine, fluid micro-interactions, an interactive AI companion widget, comprehensive Light/Dark mode design systems, dedicated **Engineering Case Study Pages (`/project/:id`)**, and hands-on **AI Workflow Case Studies (`/blog/:id`)**.
 
 ---
 
@@ -11,7 +11,7 @@ A next-generation, high-performance, and responsive personal portfolio web appli
 - **Deployment Platform:** Vercel
 
 <div align="center">
-  <img src="public/images/portfolio-preview.jpg" alt="Abdul Wasay Ali Portfolio Preview" width="100%" style="border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.6);" />
+  <img src="public/images/portfolio-preview.jpg" alt="Abdul Wasay Ali Portfolio Showcase" width="100%" style="border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.6);" />
 </div>
 
 ---
@@ -34,23 +34,24 @@ A next-generation, high-performance, and responsive personal portfolio web appli
   - **Direct Shareability & Navigation:** Native web share API integration and previous/next project navigation controls.
 
 - **📚 AI Engineering & Tool Mastery Blog Series (`/blog/:id`):**
-  - Professional, real-world case studies detailing hands-on workflow and architectural adoption of top-tier AI tools:
+  - Comprehensive, real-world engineering case studies documenting daily production workflows and architectural adoption:
     1. **Google Antigravity IDE:** Autonomous multi-agent coding, terminal orchestration, and compilation verification.
     2. **Claude 3.7 / Sonnet:** Deep logic reasoning, Flutter BLoC/Provider architecture, and clean MVC refactoring.
     3. **Google Gemini:** High-speed context window, schema modeling, and multimodal visual UI-to-code pipelines.
     4. **Open Code & Cursor:** Keyboard-first velocity, repository-wide semantic indexing, and zero-latency flow state.
     5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
-  - Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool.
+  - Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
 
 - **🌓 Comprehensive Ultra-Clean Light & Dark Mode Overhaul:**
   - 100% theme-aware CSS custom properties across all sections.
-  - **Light Mode Elevation:** Clean white and frost glass surfaces, deep slate high-contrast typography (`#0f172a`), soft ambient glows, and refined borders.
-  - Zero un-themed dark boxes or illegible text in Light Mode.
+  - **Light Mode Elevation:** Frosted opal glass header, deep obsidian contrast navigation links, pearl crystal logo box, pure white porcelain cards with subtle borders (`rgba(15, 23, 42, 0.08)`), high-contrast typography (`#0f172a`), and polished titanium metallic signature banner.
+  - **Cosmic Magnetic Theme Switcher:** 3D jewel specular thumb, day/night cosmic sky with animated starbursts and radiant solar corona.
+  - **Default Preference:** Defaults to obsidian dark mode for maximum visual impact, while remembering user selections in `localStorage`.
 
 - **📱 Next-Gen Mobile Ergonomics ("Mobile Vibe"):**
   - Responsive fluid typography powered by `clamp()` ensuring headings like `"ABDUL WASAY ALI"` fit on screens without awkward line breaking.
   - Adaptive canvas density preventing battery drain while delivering 120 FPS performance.
-  - Optimized touch margins, floating action button stack, and iOS-style glass navigation drawer.
+  - Optimized touch margins, floating action button stack (WhatsApp direct connect & scroll-to-top), and iOS-style glass navigation drawer.
 
 - **🧲 Interactive Fluid Cyber-Cursor (`CyberCursor`):**
   - Dual-layer GPU lerp cursor with instant central neon dot and smooth trailing fluid ring.
@@ -66,9 +67,15 @@ A next-generation, high-performance, and responsive personal portfolio web appli
   - Real-time GitHub REST API metrics (stars, repos, language ratios, and continuous integration activity stream).
 
 - **✨ Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`):**
-  - Massive bold typography (**ABDUL WASAY ALI**) with dark titanium outline and interactive cursor torch reveal.
+  - Massive bold typography (**ABDUL WASAY ALI**) with polished titanium-indigo metallic chrome finish and interactive cursor spotlight reveal.
 
-- **🛡️ Strict Code Quality:** Oxlint linting, clean modular MVC folder hierarchy, and zero dead code.
+- **📄 Interactive Resume & CV Integration:**
+  - In-browser full-screen modal CV preview with responsive iframe toolbar.
+  - Direct 1-click download linked to the developer's verified latest CV (`resume.pdf`).
+
+- **🛡️ Strict Code Quality & Performance:**
+  - Zero dead code: completely purged obsolete modal components and redundant heavy video/image assets (~5.5 MB repo cleanup).
+  - Oxlint linting, clean modular MVC folder hierarchy, and lightning-fast Vite build times.
 
 ---
 
@@ -79,7 +86,7 @@ A next-generation, high-performance, and responsive personal portfolio web appli
 |---|---|---|
 | **React** | `^19.2.7` | UI library for component architecture |
 | **React DOM** | `^19.2.7` | DOM rendering layer |
-| **Vite** | `^8.1.1` | Next-gen frontend tooling and bundler |
+| **Vite** | `^8.1.5` | Next-gen frontend tooling and bundler |
 | **React Router DOM** | `^7.18.1` | Client-side routing (`/`, `/project/:id`, `/blog/:id`) |
 | **Framer Motion** | `^12.42.2` | Fluid spring physics, layout animations & transitions |
 | **React GitHub Calendar** | `^5.0.9` | Live interactive GitHub contribution activity calendar |
@@ -99,7 +106,7 @@ A next-generation, high-performance, and responsive personal portfolio web appli
 - **Backend & APIs:** Python, Flask, Node.js, Express.js, PHP, Laravel, C# / ASP.NET Core, REST APIs.
 - **Data & Databases:** R Programming, MySQL, Microsoft SQL Server, MongoDB, Firebase Firestore / Realtime DB.
 - **Mobile Development:** Flutter, Dart, Firebase, Cross-Platform Android/iOS architectures.
-- **AI Tooling:** Google Antigravity, Claude 3.7 Sonnet, Google Gemini, Open Code, Cursor.
+- **AI Tooling & Agentic Workflows:** Google Antigravity, Claude 3.7 Sonnet, Google Gemini, Open Code, Cursor.
 - **Tools & Workflow:** Git, GitHub, Figma, Postman, Vite, VS Code.
 
 ---
@@ -154,7 +161,7 @@ portfolio-react/
 │   │   ├── blog-claude.jpg      # Custom 16:9 Claude banner
 │   │   ├── blog-gemini.jpg      # Custom 16:9 Gemini banner
 │   │   ├── blog-opencode.jpg    # Custom 16:9 Open Code banner
-│   │   ├── portfolio-preview.jpg # Open Graph social preview (1200x630)
+│   │   ├── portfolio-preview.jpg # Cinema-grade executive showcase banner (16:9)
 │   │   └── ...                  # Project screenshots & assets
 │   ├── favicon.svg              # Custom cyber SVG favicon
 │   ├── icons.svg                # Vector SVG sprite sheet
@@ -163,7 +170,7 @@ portfolio-react/
 │   ├── assets/                  # Static design vectors
 │   ├── components/
 │   │   ├── About/               # Bio, achievements counter & profile visual
-│   │   ├── Blog/                # Interactive horizontal carousel & blog cards
+│   │   ├── Blog/                # Horizontal carousel, cards & editorial article modal
 │   │   ├── Contact/             # Glassmorphic contact cards, copy badges & form
 │   │   ├── CyberCursor/         # GPU-accelerated fluid magnetic cyber cursor
 │   │   ├── Experience/          # Educational background & timeline
@@ -172,8 +179,8 @@ portfolio-react/
 │   │   ├── Footer/              # Social badges & quick navigation links
 │   │   ├── GitHubStats/         # Real-time GitHub contribution calendar & terminal
 │   │   ├── Hero/                # Fluid typography headline, cyber status deck & CTAs
-│   │   ├── InteractiveBrandBanner/ # Giant Sheryians spotlight typography banner
-│   │   ├── Navbar/              # Sticky navigation, mobile drawer & theme toggle
+│   │   ├── InteractiveBrandBanner/ # Giant spotlight typography banner
+│   │   ├── Navbar/              # Sticky navigation, mobile drawer & cosmic theme toggle
 │   │   ├── Projects/            # Project grid, filters & 3D tilt cards
 │   │   ├── ScrollMatrix3D/      # 3D Quantum Horizon & Neural Aurora canvas
 │   │   ├── Skills/              # Categorized skills matrix with tailored SVG badges
