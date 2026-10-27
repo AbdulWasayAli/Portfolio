@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abdul Wasay Ali — Software Engineer Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+  <style>
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #1e293b;
+      background: #f8fafc;
+      line-height: 1.45;
+      font-size: 9.6pt;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      max-height: 297mm;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 14mm 16mm 12mm 16mm;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+      }
+      .page {
+        box-shadow: none;
+        padding: 12mm 14mm 10mm 14mm;
+        width: 100%;
+        height: 100%;
+        max-height: none;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+
+    /* Print helper banner for browser preview */
+    .no-print-bar {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .print-btn {
+      background: #4f46e5;
+      color: #fff;
+      border: none;
+      padding: 6px 16px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .print-btn:hover { background: #4338ca; }
+
+    /* Header */
+    .header {
+      border-bottom: 1.5px solid #e2e8f0;
+      padding-bottom: 9px;
+      margin-bottom: 10px;
+    }
+
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 4px;
+    }
+
+    .name {
+      font-size: 20pt;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      line-height: 1.1;
+    }
+
+    .title-badge {
+      font-size: 10pt;
+      font-weight: 700;
+      color: #4f46e5;
+      letter-spacing: 0.2px;
+      margin-top: 2px;
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 8.8pt;
+      color: #475569;
+      margin-top: 5px;
+      align-items: center;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      text-decoration: none;
+      color: #475569;
+    }
+    .contact-item a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .contact-item a:hover {
+      color: #4f46e5;
+      text-decoration: underline;
+    }
+
+    .sep {
+      color: #cbd5e1;
+      font-weight: 400;
+    }
+
+    /* Section Headings */
+    .section {
+      margin-bottom: 9px;
+    }
+
+    .section-title {
+      font-size: 9.8pt;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 5px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    /* Summary */
+    .summary-text {
+      font-size: 8.9pt;
+      color: #334155;
+      line-height: 1.45;
+      text-align: justify;
+    }
+
+    /* Skills Grid */
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 8.8pt;
+    }
+
+    .skills-row {
+      display: flex;
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    .skill-category {
+      width: 135px;
+      font-weight: 700;
+      color: #0f172a;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .skill-category::after {
+      content: ':';
+      position: absolute;
+      right: 8px;
+    }
+
+    .skill-items {
+      color: #334155;
+      flex: 1;
+    }
+
+    .skill-pill {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    /* Projects */
+    .project-item {
+      margin-bottom: 6.5px;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5px;
+    }
+
+    .project-name {
+      font-size: 9.4pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .project-tagline {
+      font-weight: 500;
+      color: #64748b;
+      font-size: 8.8pt;
+    }
+
+    .project-links {
+      font-size: 8.2pt;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .project-links a {
+      color: #4f46e5;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .project-links a:hover { text-decoration: underline; }
+
+    .bullet-list {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .bullet-list li {
+      position: relative;
+      padding-left: 13px;
+      font-size: 8.65pt;
+      color: #334155;
+      line-height: 1.38;
+      margin-bottom: 1.5px;
+    }
+
+    .bullet-list li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #4f46e5;
+      font-size: 8pt;
+      top: -0.5px;
+    }
+
+    .tech-inline {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3.5px;
+    }
+
+    .edu-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .edu-degree {
+      font-size: 9.3pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .edu-inst {
+      font-size: 8.7pt;
+      color: #475569;
+    }
+
+    .edu-right {
+      text-align: right;
+    }
+
+    .edu-date {
+      font-size: 8.5pt;
+      font-weight: 600;
+      color: #0f172a;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .edu-distinction {
+      font-size: 8.2pt;
+      font-weight: 600;
+      color: #059669;
+      background: #ecfdf5;
+      padding: 1px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    /* Award / Highlight Tag */
+    .award-tag {
+      display: inline-block;
+      font-size: 7.8pt;
+      font-weight: 700;
+      color: #b45309;
+      background: #fef3c7;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-bar no-print">
+    <span>💡 <strong>Live Resume Preview</strong> — Press button or <code>Ctrl + P</code> to Save as PDF</span>
+    <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+  </div>
+
+  <div class="page">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="header-top">
+        <div>
+          <h1 class="name">ABDUL WASAY ALI</h1>
+          <div class="title-badge">Software Engineer & Mobile App Developer (Flutter & Full-Stack)</div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="contact-item">📍 Liaquatabad, Karachi, Pakistan</span>
+        <span class="sep">•</span>
+        <span class="contact-item">📞 <a href="tel:+923110214934">+92 311 0214934</a></span>
+        <span class="sep">•</span>
+        <span class="contact-item">✉️ <a href="mailto:wasay3105@gmail.com">wasay3105@gmail.com</a></span>
+      </div>
+      <div class="contact-row" style="margin-top: 3px;">
+        <span class="contact-item">🌐 <strong>Portfolio:</strong> <a href="https://abdulwasayali.vercel.app" target="_blank">abdulwasayali.vercel.app</a></span>
+        <span class="sep">•</span>
+        <span class="contact-item">💻 <strong>GitHub:</strong> <a href="https://github.com/AbdulWasayAli" target="_blank">github.com/AbdulWasayAli</a></span>
+        <span class="sep">•</span>
+        <span class="contact-item">🔗 <strong>LinkedIn:</strong> <a href="https://linkedin.com/in/abdul-wasay-ali-295480256" target="_blank">linkedin.com/in/abdul-wasay-ali</a></span>
+      </div>
+    </header>
+
+    <!-- PROFESSIONAL SUMMARY -->
+    <section class="section">
+      <h2 class="section-title">Professional Summary</h2>
+      <p class="summary-text">
+        Proactive Software Engineering student with hands-on expertise in building production-grade mobile applications with <strong>Flutter & Dart</strong> and full-stack web platforms with the <strong>MERN Stack</strong>. Experienced in designing modular MVC architectures, integrating real-time Firebase services, RESTful APIs, and relational/NoSQL databases. Proven track record of shipping competition-winning apps (Runner-Up at Aptech Azm) and building high-performance web systems with sub-second response times. Passionate about AI-native workflows, clean code principles, and scalable system design.
+      </p>
+    </section>
+
+    <!-- TECHNICAL SKILLS -->
+    <section class="section">
+      <h2 class="section-title">Technical Skills</h2>
+      <div class="skills-table">
+        <div class="skills-row">
+          <div class="skill-category">Mobile Development</div>
+          <div class="skill-items"><strong>Flutter, Dart</strong>, Provider & BLoC Architecture, Clean Architecture, Cross-Platform iOS & Android, Offline Caching</div>
+        </div>
+        <div class="skills-row">
+          <div class="skill-category">Web & Frontend</div>
+          <div class="skill-items"><strong>React.js (v19)</strong>, JavaScript (ES6+), HTML5, CSS3/CSS Modules, Bootstrap 5, Vite, Framer Motion</div>
+        </div>
+        <div class="skills-row">
+          <div class="skill-category">Backend & APIs</div>
+          <div class="skill-items"><strong>Node.js, Express.js</strong>, Python, RESTful API Design, JWT Authentication, Role-Based Access Control (RBAC), MVC</div>
+        </div>
+        <div class="skills-row">
+          <div class="skill-category">Databases & Cloud</div>
+          <div class="skill-items"><strong>Firebase</strong> (Auth, Cloud Firestore, Storage), <strong>MongoDB</strong> (Mongoose), MySQL, Cloudinary</div>
+        </div>
+        <div class="skills-row">
+          <div class="skill-category">AI Tools & Workflow</div>
+          <div class="skill-items">Google Antigravity, Claude 3.7, Google Gemini, Open Code, Git, GitHub, VS Code, Android Studio, Postman</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="section">
+      <h2 class="section-title">Key Engineering Projects</h2>
+
+      <!-- Project 1 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">CurrenSee — Multi-Currency Tracker & Converter</span>
+            <span class="project-tagline">| Flutter, Dart, REST API, Firebase, Hive</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AbdulWasayAli/Currency-Mobile-Application" target="_blank">[GitHub]</a>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Architected a real-time fintech companion supporting 160+ fiat currencies with live REST exchange rate feeds and offline conversion caching.</li>
+          <li>Engineered background automated rate checks with threshold alerts, multi-currency conversion calculators, and printable client-side PDF rate reports.</li>
+          <li>Implemented secure Firebase Auth (Email/Google), Firestore cloud synchronization, and a luxury dark/gold aesthetic interface.</li>
+        </ul>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">EventEase — Event Lifecycle Management System</span>
+            <span class="award-tag">🏆 Runner-Up (Aptech Azm Contest)</span>
+            <span class="project-tagline">| Flutter, Firebase, QR Code</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AbdulWasayAli/EventEast" target="_blank">[GitHub]</a>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered a full-featured event ecosystem with 3 distinct RBAC role portals: Attendees, Organizers, and Super-Administrators.</li>
+          <li>Built dynamic capacity-controlled booking with unique cryptographic QR ticket passes for instant on-site check-in verification.</li>
+          <li>Integrated Cloud Firestore real-time listener streams, administrative approval workflows, ratings, and push notification triggers.</li>
+        </ul>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">AI Pakistan Sign Language Translator</span>
+            <span class="project-tagline">| Flutter, Python, MediaPipe, TensorFlow (In Progress)</span>
+          </div>
+          <div class="project-links">
+            <span style="color: #64748b;">[Active Research]</span>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Developing an accessibility bridge for Pakistan's deaf community, translating camera hand gestures into real-time Urdu and English text & speech.</li>
+          <li>Constructed computer vision inference pipeline with Google MediaPipe coordinate mapping and TensorFlow gesture classification models.</li>
+        </ul>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">Fandom Verse Pocket Edition</span>
+            <span class="project-tagline">| Flutter, Dart, Google Maps API, Firebase</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/SulemanAI/Techwiz-2026" target="_blank">[GitHub]</a>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Created a unified community hub for fandom lore, news, and merchandise with offline bookmarks, interactive Google Maps event discovery, and an integrated AI Fan Helper companion chatbot.</li>
+        </ul>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">Hotel Management System</span>
+            <span class="project-tagline">| Node.js, Express.js, MongoDB, React, JWT</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/AbdulWasayAli/Hotel-Management-System" target="_blank">[GitHub]</a>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered end-to-end hospitality ERP featuring room booking state machines, automated invoicing, guest service requests, and staff housekeeping logs.</li>
+        </ul>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-item">
+        <div class="project-header">
+          <div>
+            <span class="project-name">Next-Gen Software Engineering Portfolio</span>
+            <span class="project-tagline">| React 19, Vite, Framer Motion, 3D Canvas</span>
+          </div>
+          <div class="project-links">
+            <a href="https://abdulwasayali.vercel.app" target="_blank">[Live Demo]</a>
+            <span class="sep">|</span>
+            <a href="https://github.com/AbdulWasayAli/Portfolio" target="_blank">[GitHub]</a>
+          </div>
+        </div>
+        <ul class="bullet-list">
+          <li>Engineered a high-performance portfolio featuring dedicated engineering case study pages (`/project/:id`), an interactive 120 FPS 3D canvas aurora engine, Gemini AI chat assistant, and complete light/dark design systems.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" style="margin-bottom: 0;">
+      <h2 class="section-title">Education & Certifications</h2>
+      
+      <div class="edu-item">
+        <div class="edu-left">
+          <span class="edu-degree">Diploma in Software Engineering (SBTE) & Intermediate</span>
+          <span class="edu-inst">Aptech Computer Education, Karachi — Currently Pursuing</span>
+        </div>
+        <div class="edu-right">
+          <span class="edu-date">2024 — 2027</span><br>
+          <span class="edu-distinction">Terms 1–3 with Distinction</span>
+        </div>
+      </div>
+
+      <div class="edu-item" style="margin-top: 3px;">
+        <div class="edu-left">
+          <span class="edu-degree">Matriculation — Science Group (Biology)</span>
+          <span class="edu-inst">Dehli Government Boys Secondary School, Karachi</span>
+        </div>
+        <div class="edu-right">
+          <span class="edu-date">2020 — 2021</span>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
