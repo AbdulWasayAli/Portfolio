@@ -4,7 +4,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 ---
 
-## 🌐 Live Demo & Repository
+## Live Demo & Repository
 - **Live Website:** [https://abdulwasayali.vercel.app/](https://abdulwasayali.vercel.app/)
 - **GitHub Repository:** [https://github.com/AbdulWasayAli/Portfolio](https://github.com/AbdulWasayAli/Portfolio)
 - **Developer:** Abdul Wasay Ali ([@AbdulWasayAli](https://github.com/AbdulWasayAli))
@@ -16,16 +16,16 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 ---
 
-## 🚀 Key Features & Architectural Highlights
+## Key Features & Architectural Highlights
 
-- **🌌 3D Quantum Horizon & Chromatic Neural Aurora Engine (`ScrollMatrix3D`):**
+- **3D Quantum Horizon & Chromatic Neural Aurora Engine (`ScrollMatrix3D`):**
   - **Volumetric Chromatic Nebulas:** Multi-emitter organic liquid auroras flowing smoothly in deep space using Electric Cyan (`#00E5FF`), Royal Violet (`#8B5CF6`), and Indigo.
   - **3D Quantum Wave Terrain:** Infinitely moving 3D Tron horizon grid reacting to scroll velocity with matrix perspective transforms.
   - **High-Luminescence Synapse Constellation:** 3-layered luminescent star nodes with white hotspot cores, electric laser synapse beams, pulsating core pulsar rings, and fast racing data energy beacons.
   - **Interactive Cursor Gravity & Mobile Touch:** Magnetic attraction toward cursor on desktop and touch-coordinate deflection on mobile devices.
   - **Theme-Adaptive Rendering:** Automatically transitions to soft slate and crystal sky-blue hues when switching to Light Mode.
 
-- **📑 Dedicated Case Study Architecture (`/project/:id`):**
+- **Dedicated Case Study Architecture (`/project/:id`):**
   - Replaced clumsy, congested popups with high-end, dedicated full-screen case study pages using React Router v7.
   - **Executive Summary:** Clear problem statements and technical objectives.
   - **Product Capabilities:** Interactive feature checklist cards with vibrant cyan indicators.
@@ -33,7 +33,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
   - **High-Definition Showcase Stage:** Full-fidelity media viewport with responsive aspect ratios for mobile and desktop screens.
   - **Direct Shareability & Navigation:** Native web share API integration and previous/next project navigation controls.
 
-- **📚 AI Engineering & Tool Mastery Blog Series (`/blog/:id`):**
+- **AI Engineering & Tool Mastery Blog Series (`/blog/:id`):**
   - Comprehensive, real-world engineering case studies documenting daily production workflows and architectural adoption:
     1. **Google Antigravity IDE:** Autonomous multi-agent coding, terminal orchestration, and compilation verification.
     2. **Claude 3.7 / Sonnet:** Deep logic reasoning, Flutter BLoC/Provider architecture, and clean MVC refactoring.
@@ -42,44 +42,44 @@ A next-generation, high-performance personal portfolio and engineering platform 
     5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
   - Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
 
-- **🌓 Comprehensive Ultra-Clean Light & Dark Mode Overhaul:**
+- **Comprehensive Ultra-Clean Light & Dark Mode Overhaul:**
   - 100% theme-aware CSS custom properties across all sections.
   - **Light Mode Elevation:** Frosted opal glass header, deep obsidian contrast navigation links, pearl crystal logo box, pure white porcelain cards with subtle borders (`rgba(15, 23, 42, 0.08)`), high-contrast typography (`#0f172a`), and polished titanium metallic signature banner.
   - **Cosmic Magnetic Theme Switcher:** 3D jewel specular thumb, day/night cosmic sky with animated starbursts and radiant solar corona.
   - **Default Preference:** Defaults to obsidian dark mode for maximum visual impact, while remembering user selections in `localStorage`.
 
-- **📱 Next-Gen Mobile Ergonomics ("Mobile Vibe"):**
+- **Next-Gen Mobile Ergonomics ("Mobile Vibe"):**
   - Responsive fluid typography powered by `clamp()` ensuring headings like `"ABDUL WASAY ALI"` fit on screens without awkward line breaking.
   - Adaptive canvas density preventing battery drain while delivering 120 FPS performance.
   - Optimized touch margins, floating action button stack (WhatsApp direct connect & scroll-to-top), and iOS-style glass navigation drawer.
 
-- **🧲 Interactive Fluid Cyber-Cursor (`CyberCursor`):**
+- **Interactive Fluid Cyber-Cursor (`CyberCursor`):**
   - Dual-layer GPU lerp cursor with instant central neon dot and smooth trailing fluid ring.
   - Magnetic magnification on interactive cards and buttons with automatic graceful bypass on mobile touch devices.
 
-- **🤖 Interactive 3D Cyber Companion & AI Chat Assistant (`FloatingRobot`):**
+- **Interactive 3D Cyber Companion & AI Chat Assistant (`FloatingRobot`):**
   - Real-time mouse coordinate tracking and pupil navigation with reactive hovering states.
   - **Obsidian/Frost Glassmorphic Chat Widget:** Powered by Framer Motion spring physics with verified badges, live beacons, and quick action prompt chips.
   - **Google Gemini AI Backend (`/api/chat`):** Serverless architecture with grounded developer persona and local fallback engine.
 
-- **📈 Live GitHub Telemetry & Real-Time Contribution Calendar (`GitHubStats`):**
+- **Live GitHub Telemetry & Real-Time Contribution Calendar (`GitHubStats`):**
   - Live 1-year contribution graph integrated via `react-github-calendar` in Neon Emerald & Cyan.
   - Real-time GitHub REST API metrics (stars, repos, language ratios, and continuous integration activity stream).
 
-- **✨ Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`):**
+- **Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`):**
   - Massive bold typography (**ABDUL WASAY ALI**) with polished titanium-indigo metallic chrome finish and interactive cursor spotlight reveal.
 
-- **📄 Interactive Resume & CV Integration:**
+- **Interactive Resume & CV Integration:**
   - In-browser full-screen modal CV preview with responsive iframe toolbar.
   - Direct 1-click download linked to the developer's verified latest CV (`resume.pdf`).
 
-- **🛡️ Strict Code Quality & Performance:**
+- **Strict Code Quality & Performance:**
   - Zero dead code: completely purged obsolete modal components and redundant heavy video/image assets (~5.5 MB repo cleanup).
   - Oxlint linting, clean modular MVC folder hierarchy, and lightning-fast Vite build times.
 
 ---
 
-## 🛠️ Complete Tech Stack & Tools
+## Complete Tech Stack & Tools
 
 ### Frontend & Core
 | Technology | Version / Spec | Purpose |
@@ -111,7 +111,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 ---
 
-## 📂 Projects Featured in Portfolio
+## Projects Featured in Portfolio
 
 All projects are loaded directly from `src/data/portfolioData.js` and link to dedicated case study pages:
 
@@ -151,7 +151,7 @@ All projects are loaded directly from `src/data/portfolioData.js` and link to de
 
 ---
 
-## 📁 Project Architecture & Directory Structure
+## Project Architecture & Directory Structure
 
 ```bash
 portfolio-react/
@@ -210,7 +210,7 @@ portfolio-react/
 
 ---
 
-## 💻 Getting Started (Run Locally)
+## Getting Started (Run Locally)
 
 ### 1. Prerequisites
 - **Node.js**: `v18.0.0` or higher
@@ -247,7 +247,7 @@ npm run lint
 
 ---
 
-## 📬 Contact & Connect
+## Contact & Connect
 
 - **Developer:** Abdul Wasay Ali
 - **Email:** [wasay3105@gmail.com](mailto:wasay3105@gmail.com)
@@ -260,4 +260,4 @@ npm run lint
 
 ---
 
-⭐ *If you find this project inspiring, please leave a star on [GitHub](https://github.com/AbdulWasayAli/Portfolio)!*
+*If you find this project inspiring, please consider starring the repository on [GitHub](https://github.com/AbdulWasayAli/Portfolio).*
