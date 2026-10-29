@@ -6,7 +6,7 @@ export const blogPosts = [
     category: "Agentic AI",
     date: "March 2026",
     readTime: "5 min read",
-    image: "/images/blog-antigravity.jpg",
+    image: "/images/blog-antigravity.webp",
     tags: ["Google Antigravity", "Agentic IDE", "Autonomous Coding", "Next-Gen Dev"],
     status: "Published",
     takeaways: [
@@ -23,7 +23,7 @@ export const blogPosts = [
     category: "AI Architecture",
     date: "February 2026",
     readTime: "6 min read",
-    image: "/images/blog-claude.jpg",
+    image: "/images/blog-claude.webp",
     tags: ["Claude 3.7", "Anthropic", "Clean Architecture", "Code Refactoring"],
     status: "Published",
     takeaways: [
@@ -40,7 +40,7 @@ export const blogPosts = [
     category: "AI & Cloud",
     date: "January 2026",
     readTime: "4 min read",
-    image: "/images/blog-gemini.jpg",
+    image: "/images/blog-gemini.webp",
     tags: ["Google Gemini", "Multimodal AI", "System Design", "Cloud Engineering"],
     status: "Published",
     takeaways: [
@@ -57,7 +57,7 @@ export const blogPosts = [
     category: "Developer Tools",
     date: "December 2025",
     readTime: "5 min read",
-    image: "/images/blog-opencode.jpg",
+    image: "/images/blog-opencode.webp",
     tags: ["Open Code", "Cursor IDE", "Productivity", "Flow State"],
     status: "Published",
     takeaways: [
@@ -74,7 +74,7 @@ export const blogPosts = [
     category: "Career & Story",
     date: "November 2025",
     readTime: "6 min read",
-    image: "/images/theme_w_logo.png",
+    image: "/images/theme_w_logo.webp",
     tags: ["Self-Taught", "Aptech", "Flutter", "Career"],
     status: "Published",
     takeaways: [

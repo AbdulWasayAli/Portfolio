@@ -232,7 +232,7 @@ export default function FloatingRobot() {
                   <div className={styles.avatarGlowLayer} />
                   <div className={styles.aiAvatarSquircle}>
                     <img
-                      src="/robot-avatar.jpg"
+                      src="/robot-avatar.webp"
                       alt="Wasay AI Robot"
                       className={styles.robotAvatarImg}
                     />
@@ -276,7 +276,7 @@ export default function FloatingRobot() {
                   {m.sender === 'bot' && (
                     <div className={styles.bubbleAvatar}>
                       <img
-                        src="/robot-avatar.jpg"
+                        src="/robot-avatar.webp"
                         alt="Bot"
                         className={styles.bubbleAvatarImg}
                       />
@@ -318,7 +318,7 @@ export default function FloatingRobot() {
                 <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
                   <div className={styles.bubbleAvatar}>
                     <img
-                      src="/robot-avatar.jpg"
+                      src="/robot-avatar.webp"
                       alt="Bot"
                       className={styles.bubbleAvatarImg}
                     />

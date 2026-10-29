@@ -6,7 +6,7 @@ export const personalInfo = {
   phone: "+92 3110214934",
   location: "C Area, Liaquatabad, Karachi",
   resumeUrl: "/resume.pdf",
-  profileImage: "/images/my-picture.jpeg",
+  profileImage: "/images/my-picture.webp",
   social: {
     github: "https://github.com/AbdulWasayAli",
     linkedin: "https://www.linkedin.com/in/abdul-wasay-ali-295480256/",
@@ -127,7 +127,7 @@ export const projectsData = [
       "Responsive watch showcase website built with modern design principles, featuring product displays and smooth animations.",
     overview:
       "A high-end luxury timepiece showcase designed to provide an immersive retail experience. Focused on micro-interactions, responsive fluid grids, and sleek aesthetic visuals tailored for premium horology collectors.",
-    image: "/images/watch.png",
+    image: "/images/watch.webp",
     category: "design",
     tags: ["HTML", "CSS", "Bootstrap"],
     keyFeatures: [
@@ -148,7 +148,7 @@ export const projectsData = [
       "A responsive tourism and cultural exploration website showcasing heritage landmarks categorized across regional zones with immersive visual layouts and modern typography.",
     overview:
       "An educational and tourism discovery portal dedicated to preserving and celebrating cultural heritage monuments. Features regional filtering, historical timelines, and curated architectural photo galleries.",
-    image: "/images/historical.png",
+    image: "/images/historical.webp",
     category: "design",
     tags: ["HTML5", "CSS3", "Bootstrap", "Responsive Design"],
     keyFeatures: [
@@ -169,7 +169,7 @@ export const projectsData = [
       "Interactive front-end e-commerce web app featuring category-based product browsing, dynamic cart management, form validation checkout, PDF bill generation, and responsive AOS animations.",
     overview:
       "A feature-rich electronics e-commerce web application engineered with Vanilla JavaScript. Provides real-time cart state management, checkout validation, and client-side printable PDF invoices without requiring heavy frameworks.",
-    image: "/images/eletronic.png",
+    image: "/images/eletronic.webp",
     category: "design",
     tags: ["JavaScript", "HTML5", "CSS3", "Bootstrap", "AOS", "Client-Side Cart"],
     keyFeatures: [
@@ -191,7 +191,7 @@ export const projectsData = [
       "Full-stack logistics and shipment management platform built with PHP & MySQL. Features end-to-end parcel tracking, multi-branch agent workflows, customer consignment management, and secure role-based portals.",
     overview:
       "A comprehensive enterprise shipment dispatch and logistics automation platform. Connects branch operators, delivery riders, and recipients through centralized parcel tracking, barcode tracking numbers, and automated status milestones.",
-    image: "/images/courier.png",
+    image: "/images/courier.webp",
     category: "development",
     tags: ["PHP", "MySQL", "JavaScript", "Bootstrap", "CRUD"],
     keyFeatures: [
@@ -213,7 +213,7 @@ export const projectsData = [
       "Enterprise greeting card web app built with ASP.NET Core MVC & EF Core. Features automated SMTP email delivery, Pro subscription tiers, role-based auth, and an analytics-driven admin reporting dashboard.",
     overview:
       "An automated digital greeting and card customization engine. Users can personalize cards for holidays and milestones, schedule delivery dates in advance, and deliver them directly to recipients via high-reliability SMTP mailing queues.",
-    image: "/images/E-Greetings.png",
+    image: "/images/E-Greetings.webp",
     category: "development",
     tags: ["ASP.NET Core", "C#", "EF Core", "SQL Server", "SMTP"],
     keyFeatures: [
@@ -235,7 +235,7 @@ export const projectsData = [
       "Full-featured event management mobile app built with Flutter and Firebase, delivering an end-to-end event lifecycle for Attendees, Organizers, and Administrators.",
     overview:
       "A cross-platform mobile application designed to simplify event hosting and ticketing. From discovering local hackathons and workshops to live attendee check-in and QR ticket validation, EventEase manages the entire event journey.",
-    image: "/images/mobile1.jpeg",
+    image: "/images/mobile1.webp",
     category: "mobile",
     tags: ["Flutter", "Dart", "Firebase", "Role-Based Auth"],
     keyFeatures: [
@@ -257,7 +257,7 @@ export const projectsData = [
       "A Flutter currency companion offering real-time exchange rates, instant conversion, rate alerts, market news, and user accounts in a sleek gold-themed UI with dark mode.",
     overview:
       "A sleek fintech mobile application providing travelers, traders, and businesses with instant currency conversion, historical rate trend charts, and customizable rate alerts in an ultra-luxurious gold and dark glass UI.",
-    image: "/images/mobile2.jpeg",
+    image: "/images/mobile2.webp",
     category: "mobile",
     tags: ["Flutter", "Dart", "REST API", "State Management"],
     keyFeatures: [
