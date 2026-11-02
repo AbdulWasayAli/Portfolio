@@ -13,7 +13,7 @@ import Footer from './components/Footer/Footer';
 import FloatingControls from './components/FloatingControls';
 import FloatingRobot from './components/FloatingRobot/FloatingRobot';
 import { ThemeProvider } from './context/ThemeContext';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
@@ -58,11 +58,13 @@ function ScrollRevealInit() {
 }
 
 function App() {
-  const [showSplash, setShowSplash] = useState(true);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  const [showSplash, setShowSplash] = useState(isHomePage);
 
   return (
     <ThemeProvider>
-      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
+      {isHomePage && showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <Routes>
         <Route path="/" element={
           <>
