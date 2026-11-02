@@ -11,7 +11,10 @@ import {
   Flame, 
   Activity,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  GitCommit,
+  Layers,
+  ArrowUpRight
 } from 'lucide-react';
 import styles from './GitHubStats.module.css';
 
@@ -42,14 +45,12 @@ export default function GitHubStats() {
 
     async function fetchGitHubData() {
       try {
-        // Fetch User Profile
         const userRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}`);
         if (userRes.ok) {
           const userData = await userRes.json();
           if (isMounted) setProfile(userData);
         }
 
-        // Fetch Public Repos
         const reposRes = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?per_page=100&sort=pushed`);
         if (reposRes.ok) {
           const reposData = await reposRes.json();
@@ -104,7 +105,7 @@ export default function GitHubStats() {
   return (
     <section id="github-activity" className={`section ${styles.githubSection}`}>
       <div className="container">
-        {/* Clean Section Heading */}
+        {/* Section Heading */}
         <motion.div
           className="section-heading"
           initial={{ opacity: 0, y: 25 }}
@@ -129,6 +130,9 @@ export default function GitHubStats() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
+          {/* Animated Ambient Glow Accent Bar */}
+          <div className={styles.topAuroraLine} />
+
           {/* Console Header Bar */}
           <div className={styles.terminalHeader}>
             <div className={styles.headerLeftGroup}>
@@ -339,7 +343,7 @@ export default function GitHubStats() {
                 className={styles.viewGhBtn}
               >
                 <span>View Full GitHub Profile</span>
-                <ExternalLink size={14} />
+                <ArrowUpRight size={15} />
               </a>
             </div>
           </div>

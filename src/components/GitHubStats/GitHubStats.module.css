@@ -114,25 +114,36 @@
   border-radius: 24px;
   background: linear-gradient(
     145deg,
-    rgba(14, 18, 33, 0.85) 0%,
-    rgba(8, 10, 20, 0.92) 100%
+    rgba(13, 17, 33, 0.88) 0%,
+    rgba(7, 9, 18, 0.94) 100%
   );
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
-    0 24px 70px -15px rgba(0, 0, 0, 0.8),
-    0 0 50px -10px rgba(0, 229, 255, 0.15),
+    0 30px 80px -15px rgba(0, 0, 0, 0.85),
+    0 0 50px -15px rgba(0, 229, 255, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.12);
   overflow: hidden;
-  backdrop-filter: blur(28px);
-  -webkit-backdrop-filter: blur(28px);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+.topAuroraLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #00e5ff 25%, #6c63ff 50%, #a855f7 75%, transparent);
+  opacity: 0.9;
+  filter: drop-shadow(0 0 8px #00e5ff);
+}
+
 .terminalWrapper:hover {
-  border-color: rgba(0, 229, 255, 0.35);
+  border-color: rgba(0, 229, 255, 0.4);
   box-shadow:
-    0 30px 85px -15px rgba(0, 0, 0, 0.85),
-    0 0 65px -5px rgba(0, 229, 255, 0.25),
+    0 35px 95px -15px rgba(0, 0, 0, 0.9),
+    0 0 70px -5px rgba(0, 229, 255, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
