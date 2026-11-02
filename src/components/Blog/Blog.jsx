@@ -99,8 +99,8 @@ export default function Blog() {
     <section id="blog" className={`section ${styles.blogSection}`}>
       <div className="container">
         <div className="section-heading">
-          <span className="subtitle">My Blog & Thoughts</span>
-          <h2>Insights, Articles & Journey</h2>
+          <span className="subtitle">My Blog &amp; Thoughts</span>
+          <h2>Insights, Articles &amp; <span className="gradient-heading">Journey</span></h2>
           <p>
             Documenting my learnings across AI workflows, full-stack architecture, and real-world mobile app development.
           </p>

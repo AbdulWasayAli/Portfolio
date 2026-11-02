@@ -30,7 +30,7 @@ export default function Skills() {
       <div className="container">
         <div className="section-heading">
           <span className="subtitle">My Skills</span>
-          <h2>What I Can Do</h2>
+          <h2>What I <span className="gradient-heading">Can Do</span></h2>
           <p>Technologies and tools I work with to bring ideas to life.</p>
         </div>
 

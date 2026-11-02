@@ -8,7 +8,7 @@ export default function About() {
         {/* Section Heading — same reveal animation as Education */}
         <div className="section-heading reveal">
           <span className="subtitle">About Me</span>
-          <h2>Get To Know Me</h2>
+          <h2>Get To <span className="gradient-heading">Know Me</span></h2>
         </div>
 
         <div className={styles.aboutGrid}>

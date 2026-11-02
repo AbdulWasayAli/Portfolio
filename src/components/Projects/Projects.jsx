@@ -29,7 +29,7 @@ export default function Projects() {
       <div className="container">
         <div className="section-heading">
           <span className="subtitle">My Projects</span>
-          <h2>Some of My Best Work</h2>
+          <h2>Some of My <span className="gradient-heading">Best Work</span></h2>
           <p>Click on any project to explore its full case study, system architecture, and engineering features.</p>
         </div>
 

@@ -72,7 +72,7 @@ export default function Contact() {
       <div className="container">
         <div className="section-heading reveal">
           <span className="subtitle">Contact</span>
-          <h2>Let's Work Together</h2>
+          <h2>Let's Work <span className="gradient-heading">Together</span></h2>
           <p>Have a project in mind? Feel free to reach out — I'd love to hear from you.</p>
         </div>
 

@@ -27,7 +27,7 @@ export default function Experience() {
       <div className="container">
         <div className="section-heading reveal">
           <span className="subtitle">Education</span>
-          <h2>Education & Qualifications</h2>
+          <h2>Education &amp; <span className="gradient-heading">Qualifications</span></h2>
           <p>My academic journey and qualifications in software engineering.</p>
         </div>
 
