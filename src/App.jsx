@@ -64,13 +64,13 @@ function App() {
 
   return (
     <ThemeProvider>
+      <CyberCursor />
       {isHomePage && showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <Routes>
         <Route path="/" element={
           <>
 
             <ScrollProgress />
-            <CyberCursor />
             <ScrollMatrix3D />
             <Navbar />
             <main>

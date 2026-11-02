@@ -8,9 +8,10 @@ const NotFound = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  const springConfig = { damping: 25, stiffness: 150 };
-  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [10, -10]), springConfig);
-  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-10, 10]), springConfig);
+  // Faster, high-response 3D Magnetic Tilt Physics
+  const springConfig = { damping: 15, stiffness: 350, mass: 0.5 };
+  const rotateX = useSpring(useTransform(mouseY, [-0.5, 0.5], [16, -16]), springConfig);
+  const rotateY = useSpring(useTransform(mouseX, [-0.5, 0.5], [-16, 16]), springConfig);
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect();
