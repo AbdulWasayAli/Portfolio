@@ -1,55 +1,51 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Sparkles } from 'lucide-react';
 import './NotFound.css';
 
-export default function NotFound() {
-  const navigate = useNavigate();
-
+const NotFound = () => {
   return (
-    <main className="nf-executive-stage">
-      {/* Subtle Ambient Radial Lighting */}
-      <div className="nf-backdrop-glow" />
+    <section className="not-found-container">
+      {/* Dynamic ambient gradient shapes matching portfolio tokens */}
+      <div className="not-found-bg-shape shape-1" />
+      <div className="not-found-bg-shape shape-2" />
+      <div className="not-found-bg-shape shape-3" />
 
-      <div className="nf-executive-container">
-        {/* Subtle Status Pill */}
-        <div className="nf-status-tag">
-          <span className="nf-pulse-dot" />
-          <span>Error 404</span>
+      {/* Subtle grid texture */}
+      <div className="not-found-grid-overlay" />
+
+      <motion.div 
+        className="not-found-content"
+        initial={{ opacity: 0, y: 30, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+      >
+        {/* Subtle pill tag */}
+        <div className="not-found-badge">
+          <Sparkles size={14} className="badge-icon" />
+          <span>Error 404 • Lost in Cyber Space</span>
         </div>
 
-        {/* Clean Hero Headline */}
-        <h1 className="nf-main-heading">
-          This page could not be found.
-        </h1>
+        {/* 404 Glowing Number matching portfolio gradient-text */}
+        <div className="error-code-container">
+          <h1 className="error-code">404</h1>
+        </div>
 
-        {/* Crisp Subtitle */}
-        <p className="nf-description">
-          The link you followed may be broken, or the page may have been removed or relocated to a different route.
+        <h2 className="error-title">Page Not Found</h2>
+        
+        <p className="error-message">
+          Oops! It seems you've wandered into the digital void. The page you are looking for doesn't exist or has been moved.
         </p>
 
-        {/* Refined Minimalist Action Group */}
-        <div className="nf-cta-group">
-          <button 
-            type="button" 
-            onClick={() => navigate(-1)} 
-            className="nf-btn-ghost"
-          >
-            <ArrowLeft size={16} />
-            <span>Go Back</span>
-          </button>
-
-          <Link to="/" className="nf-btn-primary">
-            <span>Back to Homepage</span>
-            <ArrowUpRight size={16} />
-          </Link>
-        </div>
-
-        {/* Clean Monospace Route Breadcrumb */}
-        <div className="nf-meta-bar">
-          <span className="nf-meta-label">Path</span>
-          <code className="nf-meta-path">{window.location.pathname}</code>
-        </div>
-      </div>
-    </main>
+        {/* Enhanced Home button with portfolio design system */}
+        <Link to="/" className="home-button">
+          <ArrowLeft size={16} className="btn-icon" />
+          <span className="button-text">Go Back Home</span>
+          <div className="button-glow" />
+        </Link>
+      </motion.div>
+    </section>
   );
-}
+};
+
+export default NotFound;
