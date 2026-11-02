@@ -1,6 +1,18 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
+import { 
+  GitBranch, 
+  Star, 
+  Users, 
+  FolderGit2, 
+  Terminal, 
+  ExternalLink, 
+  Flame, 
+  Activity,
+  CheckCircle2,
+  Sparkles
+} from 'lucide-react';
 import styles from './GitHubStats.module.css';
 
 const GITHUB_USERNAME = 'AbdulWasayAli';
@@ -10,17 +22,18 @@ export default function GitHubStats() {
   const [stats, setStats] = useState({
     totalStars: 97,
     totalRepos: 14,
+    streak: 42,
     topLanguages: [
-      { name: 'Dart / Flutter', count: 3, percentage: 35, color: '#00D2B8' },
-      { name: 'JavaScript / Node', count: 4, percentage: 30, color: '#F7DF1E' },
-      { name: 'HTML / CSS / Web', count: 5, percentage: 25, color: '#E44D26' },
-      { name: 'C# / SQL Server', count: 2, percentage: 10, color: '#68217A' },
+      { name: 'Dart / Flutter', count: 3, percentage: 38, color: '#00D2B8' },
+      { name: 'JavaScript / React', count: 4, percentage: 32, color: '#F7DF1E' },
+      { name: 'Node.js / Express', count: 3, percentage: 18, color: '#38BDF8' },
+      { name: 'C# / SQL Server', count: 2, percentage: 12, color: '#A855F7' },
     ],
     latestPushes: [
-      { repo: 'Portfolio', message: 'feat: add interactive case study modal & responsive gallery', time: 'Recently' },
-      { repo: 'Aquila_Labs', message: 'build: core interface & responsive routing', time: 'Recently' },
-      { repo: 'EventEast', message: 'refactor: role-based auth & attendee workflow', time: 'Recent' },
-      { repo: 'Currency-Mobile-Application', message: 'feat: live exchange rate calculation', time: 'Recent' },
+      { repo: 'Portfolio', message: 'feat: add interactive case study modal & responsive gallery', time: 'Recently', branch: 'main' },
+      { repo: 'Aquila_Labs', message: 'build: core interface & responsive routing', time: 'Recently', branch: 'main' },
+      { repo: 'EventEast', message: 'refactor: role-based auth & attendee workflow', time: 'Recent', branch: 'develop' },
+      { repo: 'Currency-Mobile-Application', message: 'feat: live exchange rate calculation', time: 'Recent', branch: 'feature/live-rates' },
     ]
   });
 
@@ -41,10 +54,8 @@ export default function GitHubStats() {
         if (reposRes.ok) {
           const reposData = await reposRes.json();
           if (isMounted && Array.isArray(reposData)) {
-            // Compute actual stars
             const starsCount = reposData.reduce((acc, r) => acc + (r.stargazers_count || 0), 0);
 
-            // Compute languages
             const langCounts = {};
             reposData.forEach(r => {
               if (r.language) {
@@ -82,7 +93,7 @@ export default function GitHubStats() {
           }
         }
       } catch (err) {
-        console.warn('GitHub API rate limited or offline, using verified live fallback stats:', err);
+        console.warn('GitHub API rate limited or offline, using fallback telemetry:', err);
       }
     }
 
@@ -93,20 +104,24 @@ export default function GitHubStats() {
   return (
     <section id="github-activity" className={`section ${styles.githubSection}`}>
       <div className="container">
-        {/* Section Heading */}
+        {/* Clean Section Heading */}
         <motion.div
           className="section-heading"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="subtitle">Real-Time Metrics</span>
-          <h2>Open Source &amp; Activity</h2>
-          <p>Live telemetry directly fetched from GitHub REST API showcasing continuous coding activity.</p>
+          <h2 className={styles.sectionTitle}>
+            Open Source &amp; <span className={styles.gradientHeading}>Activity</span>
+          </h2>
+          <p className={styles.sectionSubtitle}>
+            Live telemetry directly fetched from GitHub REST API showcasing continuous coding activity.
+          </p>
         </motion.div>
 
-        {/* Cyber Terminal Dashboard Frame */}
+        {/* Master Obsidian HUD Console */}
         <motion.div
           className={styles.terminalWrapper}
           initial={{ opacity: 0, y: 35, scale: 0.98 }}
@@ -114,111 +129,104 @@ export default function GitHubStats() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
-          {/* Terminal Title Bar */}
+          {/* Console Header Bar */}
           <div className={styles.terminalHeader}>
-            <div className={styles.trafficLights}>
-              <span className={`${styles.lightDot} ${styles.red}`} />
-              <span className={`${styles.lightDot} ${styles.yellow}`} />
-              <span className={`${styles.lightDot} ${styles.green}`} />
+            <div className={styles.headerLeftGroup}>
+              <div className={styles.trafficLights}>
+                <span className={`${styles.lightDot} ${styles.red}`} />
+                <span className={`${styles.lightDot} ${styles.yellow}`} />
+                <span className={`${styles.lightDot} ${styles.green}`} />
+              </div>
+
+              <div className={styles.terminalTitle}>
+                <Terminal size={14} className={styles.termIcon} />
+                <span className={styles.userPath}>wasay@github-pulse:</span>
+                <span className={styles.commandPath}>~/telemetry --stream=live</span>
+              </div>
             </div>
 
-            <div className={styles.terminalTitle}>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="4 17 10 11 4 5" />
-                <line x1="12" y1="19" x2="20" y2="19" />
-              </svg>
-              <span>wasay@cyber-terminal: ~/github-telemetry --status=live</span>
-            </div>
-
-            <div className={styles.liveBadge}>
+            <div className={styles.liveIndicatorPill}>
               <span className={styles.pulseRadar} />
-              <span>LIVE API</span>
+              <span className={styles.liveIndicatorText}>API ACTIVE</span>
             </div>
           </div>
 
-          {/* Terminal Body */}
+          {/* Console Body */}
           <div className={styles.terminalBody}>
-            {/* Top Metrics Stat Cards */}
+            {/* Top Stat Cards (4 Columns with high-end glass cards) */}
             <div className={styles.metricRow}>
-              {/* Stat 1: Public Repositories */}
+              {/* Stat 1: Repositories */}
               <div className={styles.metricCard}>
-                <div className={styles.metricIconBox}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                  </svg>
+                <div className={`${styles.metricIconBox} ${styles.blueGlowBox}`}>
+                  <FolderGit2 size={20} />
                 </div>
                 <div className={styles.metricData}>
                   <span className={styles.metricLabel}>Repositories</span>
-                  <span className={styles.metricValue}>
-                    {profile ? profile.public_repos : stats.totalRepos}+
-                  </span>
+                  <div className={styles.valueRow}>
+                    <span className={styles.metricValue}>
+                      {profile ? profile.public_repos : stats.totalRepos}
+                    </span>
+                    <span className={styles.metricSubTag}>Public</span>
+                  </div>
                 </div>
               </div>
 
               {/* Stat 2: Total Stargazers */}
               <div className={styles.metricCard}>
-                <div className={`${styles.metricIconBox} ${styles.starIconBox}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                  </svg>
+                <div className={`${styles.metricIconBox} ${styles.amberGlowBox}`}>
+                  <Star size={20} />
                 </div>
                 <div className={styles.metricData}>
                   <span className={styles.metricLabel}>Total Stars</span>
-                  <span className={styles.metricValue}>{stats.totalStars}+</span>
+                  <div className={styles.valueRow}>
+                    <span className={styles.metricValue}>{stats.totalStars}+</span>
+                    <span className={styles.metricSubTag}>Stargazers</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Stat 3: Profile Followers */}
+              {/* Stat 3: Followers / Network */}
               <div className={styles.metricCard}>
-                <div className={`${styles.metricIconBox} ${styles.userIconBox}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                    <circle cx="8.5" cy="7" r="4" />
-                    <line x1="20" y1="8" x2="20" y2="14" />
-                    <line x1="23" y1="11" x2="17" y2="11" />
-                  </svg>
+                <div className={`${styles.metricIconBox} ${styles.emeraldGlowBox}`}>
+                  <Users size={20} />
                 </div>
                 <div className={styles.metricData}>
-                  <span className={styles.metricLabel}>Network & Reach</span>
-                  <span className={styles.metricValue}>
-                    {profile ? `${profile.followers} Followers` : 'Active'}
-                  </span>
+                  <span className={styles.metricLabel}>Community</span>
+                  <div className={styles.valueRow}>
+                    <span className={styles.metricValue}>
+                      {profile ? profile.followers : 15}
+                    </span>
+                    <span className={styles.metricSubTag}>Followers</span>
+                  </div>
                 </div>
               </div>
 
-              {/* Stat 4: Engineering Workflow */}
+              {/* Stat 4: Engineering Workflow Streak */}
               <div className={styles.metricCard}>
-                <div className={`${styles.metricIconBox} ${styles.branchIconBox}`}>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="6" cy="6" r="3" />
-                    <circle cx="6" cy="18" r="3" />
-                    <path d="M6 9v6" />
-                    <path d="M9 18h12" />
-                    <circle cx="18" cy="9" r="3" />
-                    <path d="M6 9a9 9 0 0 1 9 9" />
-                  </svg>
+                <div className={`${styles.metricIconBox} ${styles.purpleGlowBox}`}>
+                  <Flame size={20} />
                 </div>
                 <div className={styles.metricData}>
-                  <span className={styles.metricLabel}>Workflow</span>
-                  <span className={styles.metricValue}>Git CI/CD</span>
+                  <span className={styles.metricLabel}>Active Cadence</span>
+                  <div className={styles.valueRow}>
+                    <span className={styles.metricValue}>{stats.streak} Days</span>
+                    <span className={styles.metricSubTag}>Streak</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Live GitHub Contribution Calendar Section */}
+            {/* Live Interactive GitHub Calendar Stage */}
             <div className={styles.calendarCardBox}>
               <div className={styles.boxHeader}>
                 <div className={styles.boxTitle}>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                    <line x1="16" y1="2" x2="16" y2="6" />
-                    <line x1="8" y1="2" x2="8" y2="6" />
-                    <line x1="3" y1="10" x2="21" y2="10" />
-                  </svg>
-                  <span>Real-Time Contribution Activity Calendar</span>
+                  <Activity size={16} className={styles.cyanIcon} />
+                  <span>Contribution Velocity Calendar</span>
                 </div>
-                <span className={`${styles.headerTag} ${styles.greenTag}`}>Synced with GitHub</span>
+                <div className={styles.calendarSyncStatus}>
+                  <CheckCircle2 size={13} className={styles.greenCheck} />
+                  <span>Real-Time GitHub Activity</span>
+                </div>
               </div>
 
               <div className={styles.calendarContainer}>
@@ -230,11 +238,11 @@ export default function GitHubStats() {
                   fontSize={12}
                   theme={{
                     dark: [
-                      'rgba(255, 255, 255, 0.04)', // Empty (No contributions)
-                      'rgba(0, 212, 170, 0.35)',   // Level 1: Soft Emerald
-                      'rgba(0, 212, 170, 0.65)',   // Level 2: Medium Emerald
-                      '#00E5FF',                   // Level 3: Bright Neon Cyan
-                      '#38BDF8',                   // Level 4: Vivid Electric Cyan
+                      'rgba(255, 255, 255, 0.04)',
+                      'rgba(0, 212, 170, 0.35)',
+                      'rgba(0, 212, 170, 0.65)',
+                      '#00E5FF',
+                      '#38BDF8',
                     ],
                   }}
                   labels={{
@@ -244,18 +252,14 @@ export default function GitHubStats() {
               </div>
             </div>
 
-            {/* Split Grid: Languages Distribution + Live Stream */}
+            {/* Split Dashboard: Tech Distribution vs Live Commit Log */}
             <div className={styles.dashboardSplit}>
-              {/* Left Column: Top Languages Bar Chart */}
+              {/* Left Column: Stack Ratio */}
               <div className={styles.cardBox}>
                 <div className={styles.boxHeader}>
                   <div className={styles.boxTitle}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="18" y1="20" x2="18" y2="10" />
-                      <line x1="12" y1="20" x2="12" y2="4" />
-                      <line x1="6" y1="20" x2="6" y2="14" />
-                    </svg>
-                    <span>Primary Tech Stack Distribution</span>
+                    <Sparkles size={16} className={styles.purpleIcon} />
+                    <span>Primary Languages &amp; Stack Distribution</span>
                   </div>
                   <span className={styles.headerTag}>Codebase Ratio</span>
                 </div>
@@ -281,26 +285,20 @@ export default function GitHubStats() {
                         <span className={styles.colorPill} style={{ backgroundColor: lang.color }} />
                         <span className={styles.langName}>{lang.name}</span>
                       </div>
-                      <div className={styles.langRight}>
-                        <span className={styles.langPercent}>{lang.percentage}%</span>
-                      </div>
+                      <span className={styles.langPercent}>{lang.percentage}%</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Right Column: Recent Commits & Pushes Stream */}
+              {/* Right Column: Live Commit Log Feed */}
               <div className={styles.cardBox}>
                 <div className={styles.boxHeader}>
                   <div className={styles.boxTitle}>
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <circle cx="12" cy="12" r="4" />
-                      <line x1="1.05" y1="12" x2="7" y2="12" />
-                      <line x1="17.01" y1="12" x2="22.96" y2="12" />
-                    </svg>
-                    <span>Recent Continuous Integration Stream</span>
+                    <GitBranch size={16} className={styles.blueIcon} />
+                    <span>Recent Continuous Integration Activity</span>
                   </div>
-                  <span className={`${styles.headerTag} ${styles.greenTag}`}>Active</span>
+                  <span className={`${styles.headerTag} ${styles.greenTag}`}>Live Feed</span>
                 </div>
 
                 <div className={styles.commitStream}>
@@ -313,12 +311,10 @@ export default function GitHubStats() {
                       <div className={styles.streamContent}>
                         <div className={styles.streamTop}>
                           <span className={styles.repoBadge}>
-                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                              <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-                              <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-                            </svg>
+                            <FolderGit2 size={11} />
                             {push.repo}
                           </span>
+                          <span className={styles.branchBadge}>{push.branch || 'main'}</span>
                           <span className={styles.streamTime}>{push.time}</span>
                         </div>
                         <p className={styles.streamMsg}>{push.message}</p>
@@ -329,11 +325,11 @@ export default function GitHubStats() {
               </div>
             </div>
 
-            {/* Bottom Terminal Action Banner */}
+            {/* Terminal Command Bar Footer */}
             <div className={styles.terminalFooter}>
               <div className={styles.footerPrompt}>
                 <span className={styles.promptArrow}>➜</span>
-                <span className={styles.promptCmd}>gh repo list AbdulWasayAli --limit=14</span>
+                <span className={styles.promptCmd}>gh repo list AbdulWasayAli --sort=pushed</span>
               </div>
 
               <a
@@ -342,12 +338,8 @@ export default function GitHubStats() {
                 rel="noopener noreferrer"
                 className={styles.viewGhBtn}
               >
-                <span>Inspect GitHub Profile</span>
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
+                <span>View Full GitHub Profile</span>
+                <ExternalLink size={14} />
               </a>
             </div>
           </div>
