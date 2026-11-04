@@ -426,64 +426,67 @@
   font-size: var(--fs-sm);
 }
 
-/* === Apple-Grade Clean Frosted Glass Modal Overlay === */
+/* === Portfolio Signature Theme Modal (Obsidian Deep Space + Cyan/Violet Glow) === */
 .modalOverlay {
   position: fixed;
   inset: 0;
-  background: rgba(3, 7, 18, 0.72);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background: rgba(3, 3, 7, 0.78);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  padding: 24px;
+  padding: 20px;
   animation: modalBackdropFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .modalContent {
   position: relative;
-  background: linear-gradient(165deg, rgba(17, 24, 39, 0.88) 0%, rgba(10, 15, 29, 0.94) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 28px;
-  padding: 42px 36px 36px;
+  background: linear-gradient(145deg, rgba(13, 13, 24, 0.94) 0%, rgba(7, 7, 15, 0.98) 100%);
+  border: 1px solid rgba(108, 99, 255, 0.32);
+  border-radius: 24px;
+  padding: 40px 32px 32px;
   max-width: 440px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65),
-              0 0 0 1px rgba(255, 255, 255, 0.06),
-              inset 0 1px 1px rgba(255, 255, 255, 0.2);
-  animation: modalSmoothSpring 0.45s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, 0.8),
+    0 0 40px rgba(108, 99, 255, 0.22),
+    0 0 20px rgba(0, 229, 255, 0.15),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  animation: modalSmoothSpring 0.4s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 22px;
+  gap: 20px;
   overflow: hidden;
 }
 
 [data-theme="light"] .modalContent {
-  background: linear-gradient(165deg, rgba(255, 255, 255, 0.96) 0%, rgba(246, 249, 255, 0.98) 100%);
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.16),
-              0 0 0 1px rgba(15, 23, 42, 0.04),
-              inset 0 1px 2px rgba(255, 255, 255, 0.95);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.96) 0%, rgba(246, 248, 255, 0.98) 100%);
+  border: 1px solid rgba(108, 99, 255, 0.25);
+  box-shadow:
+    0 25px 60px rgba(15, 23, 42, 0.15),
+    0 0 35px rgba(108, 99, 255, 0.15),
+    inset 0 1px 2px rgba(255, 255, 255, 0.95);
 }
 
 .modalCloseBtn {
   position: absolute;
-  top: 18px;
-  right: 18px;
-  width: 34px;
-  height: 34px;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-secondary);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s ease;
   z-index: 10;
 }
 
@@ -494,21 +497,17 @@
 }
 
 .modalCloseBtn:hover {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgba(108, 99, 255, 0.2);
+  border-color: rgba(108, 99, 255, 0.4);
   color: #ffffff;
-  transform: scale(1.08);
+  transform: rotate(90deg) scale(1.05);
 }
 
-[data-theme="light"] .modalCloseBtn:hover {
-  background: rgba(15, 23, 42, 0.1);
-  color: #0f172a;
-}
-
-/* Elegant Icon Stage */
+/* Matching Glowing Signature Icon Stage */
 .modalVisualStage {
   position: relative;
-  width: 82px;
-  height: 82px;
+  width: 78px;
+  height: 78px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -516,73 +515,77 @@
 
 .modalGlowOrb {
   position: absolute;
-  inset: -12px;
+  inset: -10px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, rgba(16, 185, 129, 0) 70%);
-  filter: blur(8px);
-  animation: subtleOrbPulse 3s ease-in-out infinite alternate;
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.3) 0%, rgba(108, 99, 255, 0.2) 50%, transparent 70%);
+  filter: blur(10px);
+  animation: themeOrbPulse 3s ease-in-out infinite alternate;
 }
 
 .modalError .modalGlowOrb {
-  background: radial-gradient(circle, rgba(239, 68, 68, 0.25) 0%, rgba(239, 68, 68, 0) 70%);
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.35) 0%, transparent 70%);
 }
 
 .modalIconCore {
   position: relative;
-  width: 72px;
-  height: 72px;
+  width: 68px;
+  height: 68px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.18) 0%, rgba(5, 150, 105, 0.28) 100%);
-  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.25) 0%, rgba(0, 229, 255, 0.25) 100%);
+  border: 1.5px solid rgba(0, 229, 255, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 10px 28px rgba(16, 185, 129, 0.28),
-              inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  animation: iconPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  box-shadow:
+    0 10px 25px rgba(108, 99, 255, 0.35),
+    0 0 20px rgba(0, 229, 255, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.3);
+  animation: iconPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .modalError .modalIconCore {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, rgba(220, 38, 38, 0.28) 100%);
-  border-color: rgba(239, 68, 68, 0.45);
-  box-shadow: 0 10px 28px rgba(239, 68, 68, 0.28);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.3) 100%);
+  border-color: rgba(239, 68, 68, 0.6);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
 }
 
 .modalSuccessIcon {
-  color: #10b981;
-  filter: drop-shadow(0 2px 8px rgba(16, 185, 129, 0.5));
+  color: #00e5ff;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.7));
 }
 
 .modalErrorIcon {
   color: #ef4444;
-  filter: drop-shadow(0 2px 8px rgba(239, 68, 68, 0.5));
+  filter: drop-shadow(0 0 8px rgba(239, 68, 68, 0.7));
 }
 
-/* Typography and Content */
+/* Typography and Content matching Portfolio */
 .modalTextBody {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
 .modalStatusBadge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 5px 14px;
+  gap: 6px;
+  padding: 4px 12px;
   border-radius: 999px;
-  background: rgba(16, 185, 129, 0.1);
-  border: 1px solid rgba(16, 185, 129, 0.25);
-  font-size: 12px;
-  font-weight: 600;
-  color: #10b981;
-  letter-spacing: 0.02em;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 700;
+  color: #00e5ff;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .modalError .modalStatusBadge {
   background: rgba(239, 68, 68, 0.1);
-  border-color: rgba(239, 68, 68, 0.25);
+  border-color: rgba(239, 68, 68, 0.3);
   color: #ef4444;
 }
 
@@ -595,67 +598,60 @@
 }
 
 .modalHeading {
+  font-family: var(--font-display, inherit);
   font-size: 22px;
   font-weight: 700;
-  color: #f8fafc;
+  color: var(--text-primary);
   letter-spacing: -0.02em;
   margin: 0;
 }
 
-[data-theme="light"] .modalHeading {
-  color: #0f172a;
-}
-
 .modalDescription {
-  font-size: 14.5px;
-  color: #94a3b8;
+  font-size: 14px;
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 360px;
   margin: 0;
 }
 
-[data-theme="light"] .modalDescription {
-  color: #475569;
-}
-
-/* Modal Actions */
+/* Signature Theme Gradient Button */
 .modalActionGroup {
   width: 100%;
-  margin-top: 4px;
+  margin-top: 6px;
 }
 
 .modalConfirmBtn {
   width: 100%;
-  padding: 13px 26px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 14px 24px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, #7c3aed 0%, #6366f1 50%, #06b6d4 100%);
+  background-size: 200% 100%;
   color: #ffffff;
-  font-weight: 600;
-  font-size: 14.5px;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.32),
-              inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow:
+    0 10px 25px -4px rgba(124, 58, 237, 0.5),
+    0 4px 12px rgba(6, 182, 212, 0.3);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .modalConfirmBtn:hover {
+  background-position: 100% 0;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.45);
-  filter: brightness(1.06);
+  box-shadow:
+    0 14px 35px -4px rgba(124, 58, 237, 0.7),
+    0 0 25px rgba(0, 229, 255, 0.5);
 }
 
 .modalError .modalConfirmBtn {
   background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.32);
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
 }
 
-.modalError .modalConfirmBtn:hover {
-  box-shadow: 0 12px 30px rgba(239, 68, 68, 0.45);
-}
-
-/* Smooth Animations */
+/* Animations */
 @keyframes modalBackdropFade {
   from { opacity: 0; }
   to { opacity: 1; }
@@ -664,7 +660,7 @@
 @keyframes modalSmoothSpring {
   0% {
     opacity: 0;
-    transform: scale(0.88) translateY(20px);
+    transform: scale(0.9) translateY(20px);
   }
   100% {
     opacity: 1;
@@ -675,7 +671,7 @@
 @keyframes iconPop {
   0% {
     opacity: 0;
-    transform: scale(0.5);
+    transform: scale(0.4);
   }
   100% {
     opacity: 1;
@@ -683,7 +679,7 @@
   }
 }
 
-@keyframes subtleOrbPulse {
-  0% { transform: scale(0.9); opacity: 0.6; }
-  100% { transform: scale(1.15); opacity: 1; }
+@keyframes themeOrbPulse {
+  0% { transform: scale(0.88); opacity: 0.6; }
+  100% { transform: scale(1.18); opacity: 0.95; }
 }
