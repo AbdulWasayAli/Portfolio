@@ -11,12 +11,21 @@ A next-generation, high-performance personal portfolio and engineering platform 
 - **Deployment Platform:** Vercel
 
 <div align="center">
-  <img src="public/images/portfolio-preview.jpg" alt="Abdul Wasay Ali Portfolio Showcase" width="100%" style="border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.6);" />
+  <img src="public/images/portfolio-preview.webp" alt="Abdul Wasay Ali Portfolio Showcase" width="100%" style="border-radius: 12px; box-shadow: 0 16px 40px rgba(0,0,0,0.6);" />
 </div>
 
 ---
 
 ## Key Features & Architectural Highlights
+
+- **Performance & Asset Optimization (WebP Image Pipeline):**
+  - Converted and compressed all heavy project media assets, blog covers, and profile visuals to next-generation **WebP** format.
+  - Achieved over **85% reduction** in total media payload (reduced from ~14 MB to ~1.5 MB), ensuring near-instant Largest Contentful Paint (LCP) and smooth rendering on 4G/5G mobile networks.
+
+- **Enterprise Social Sharing & SEO Engine (Open Graph & Schema.org):**
+  - Integrated dedicated 1200x630 high-definition social preview cards (`og-preview.jpg` & `og-preview.webp`) optimized for WhatsApp, LinkedIn, Facebook, and Twitter/X link cards.
+  - Prioritized Open Graph meta tags at the very top of `<head>` for instant mobile crawler recognition.
+  - Implemented **Schema.org (JSON-LD)** structured data for `Person` and `WebSite` entities to power Google Search rich snippet indexing.
 
 - **3D Quantum Horizon & Chromatic Neural Aurora Engine (`ScrollMatrix3D`):**
   - **Volumetric Chromatic Nebulas:** Multi-emitter organic liquid auroras flowing smoothly in deep space using Electric Cyan (`#00E5FF`), Royal Violet (`#8B5CF6`), and Indigo.
@@ -26,7 +35,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
   - **Theme-Adaptive Rendering:** Automatically transitions to soft slate and crystal sky-blue hues when switching to Light Mode.
 
 - **Dedicated Case Study Architecture (`/project/:id`):**
-  - Replaced clumsy, congested popups with high-end, dedicated full-screen case study pages using React Router v7.
+  - Replaced crowded popups with dedicated full-screen case study pages using React Router v7.
   - **Executive Summary:** Clear problem statements and technical objectives.
   - **Product Capabilities:** Interactive feature checklist cards with vibrant cyan indicators.
   - **Under the Hood System Architecture:** Deep dive into database schemas, state management (BLoC/Provider), and backend APIs.
@@ -42,11 +51,17 @@ A next-generation, high-performance personal portfolio and engineering platform 
     5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
   - Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
 
-- **Comprehensive Ultra-Clean Light & Dark Mode Overhaul:**
+- **Comprehensive Light & Dark Mode Design System:**
   - 100% theme-aware CSS custom properties across all sections.
   - **Light Mode Elevation:** Frosted opal glass header, deep obsidian contrast navigation links, pearl crystal logo box, pure white porcelain cards with subtle borders (`rgba(15, 23, 42, 0.08)`), high-contrast typography (`#0f172a`), and polished titanium metallic signature banner.
   - **Cosmic Magnetic Theme Switcher:** 3D jewel specular thumb, day/night cosmic sky with animated starbursts and radiant solar corona.
   - **Default Preference:** Defaults to obsidian dark mode for maximum visual impact, while remembering user selections in `localStorage`.
+
+- **Comprehensive Academic & Technical Education Timeline:**
+  - Complete chronologically ordered academic progression:
+    - **Diploma in Software Engineering** — Aptech Computer Education (2023 — Present)
+    - **Intermediate (SBTE)** — Aptech Computer Education (2023 — Present)
+    - **Matriculation (Science Group — Biology)** — Dehli Government Boys Secondary School, Karachi (2020 — 2021)
 
 - **Next-Gen Mobile Ergonomics ("Mobile Vibe"):**
   - Responsive fluid typography powered by `clamp()` ensuring headings like `"ABDUL WASAY ALI"` fit on screens without awkward line breaking.
@@ -71,11 +86,10 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 - **Interactive Resume & CV Integration:**
   - In-browser full-screen modal CV preview with responsive iframe toolbar.
-  - Direct 1-click download linked to the developer's verified latest CV (`resume.pdf`).
+  - Direct 1-click download linked to the developer's latest verified CV (`Abdul_Wasay_Ali_Resume.pdf`).
 
 - **Strict Code Quality & Performance:**
-  - Zero dead code: completely purged obsolete modal components and redundant heavy video/image assets (~5.5 MB repo cleanup).
-  - Oxlint linting, clean modular MVC folder hierarchy, and lightning-fast Vite build times.
+  - Zero dead code: clean modular MVC folder hierarchy, optimized assets, and lightning-fast Vite build times.
 
 ---
 
@@ -157,15 +171,15 @@ All projects are loaded directly from `src/data/portfolioData.js` and link to de
 portfolio-react/
 ├── public/
 │   ├── images/
-│   │   ├── blog-antigravity.jpg # Custom 16:9 Antigravity banner
-│   │   ├── blog-claude.jpg      # Custom 16:9 Claude banner
-│   │   ├── blog-gemini.jpg      # Custom 16:9 Gemini banner
-│   │   ├── blog-opencode.jpg    # Custom 16:9 Open Code banner
-│   │   ├── portfolio-preview.jpg # Cinema-grade executive showcase banner (16:9)
-│   │   └── ...                  # Project screenshots & assets
+│   │   ├── og-preview.jpg       # High-definition 1200x630 social preview card (WhatsApp/LinkedIn)
+│   │   ├── og-preview.webp      # Next-gen WebP social preview card
+│   │   ├── portfolio-preview.webp # Showcase banner (WebP format)
+│   │   ├── blog-*.webp          # Next-gen 16:9 AI tooling article banners
+│   │   └── ...                  # Optimized WebP project screenshots & assets
 │   ├── favicon.svg              # Custom cyber SVG favicon
 │   ├── icons.svg                # Vector SVG sprite sheet
-│   └── resume.pdf               # Curriculum Vitae (PDF)
+│   ├── resume.pdf               # Curriculum Vitae (PDF)
+│   └── Abdul_Wasay_Ali_Resume.pdf # Latest verified CV
 ├── src/
 │   ├── assets/                  # Static design vectors
 │   ├── components/
@@ -173,7 +187,7 @@ portfolio-react/
 │   │   ├── Blog/                # Horizontal carousel, cards & editorial article modal
 │   │   ├── Contact/             # Glassmorphic contact cards, copy badges & form
 │   │   ├── CyberCursor/         # GPU-accelerated fluid magnetic cyber cursor
-│   │   ├── Experience/          # Educational background & timeline
+│   │   ├── Experience/          # Educational background & timeline (Matric, Inter, Diploma)
 │   │   ├── FloatingControls.jsx # Quick WhatsApp chat & scroll-to-top buttons
 │   │   ├── FloatingRobot/       # Interactive 3D companion & AI chat assistant
 │   │   ├── Footer/              # Social badges & quick navigation links
