@@ -503,11 +503,11 @@
   transform: rotate(90deg) scale(1.05);
 }
 
-/* Matching Glowing Signature Icon Stage */
+/* Matching Glowing Signature Icon Stage with Lottie-Style Stroke Animation */
 .modalVisualStage {
   position: relative;
-  width: 78px;
-  height: 78px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -515,10 +515,10 @@
 
 .modalGlowOrb {
   position: absolute;
-  inset: -10px;
+  inset: -12px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.3) 0%, rgba(108, 99, 255, 0.2) 50%, transparent 70%);
-  filter: blur(10px);
+  background: radial-gradient(circle, rgba(0, 229, 255, 0.35) 0%, rgba(108, 99, 255, 0.2) 50%, transparent 70%);
+  filter: blur(12px);
   animation: themeOrbPulse 3s ease-in-out infinite alternate;
 }
 
@@ -526,32 +526,56 @@
   background: radial-gradient(circle, rgba(239, 68, 68, 0.35) 0%, transparent 70%);
 }
 
-.modalIconCore {
+.lottieCheckWrapper {
+  position: relative;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 0 16px rgba(0, 229, 255, 0.5));
+}
+
+.animatedCheckSvg {
+  width: 84px;
+  height: 84px;
+  display: block;
+}
+
+/* Outer Circle Draw & Glow */
+.animatedCircle {
+  stroke: #00e5ff;
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: circleDrawIn 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+/* Inner Checkmark Draw with Spring Finish */
+.animatedCheckmark {
+  stroke: #00e5ff;
+  stroke-dasharray: 90;
+  stroke-dashoffset: 90;
+  animation: checkmarkDrawIn 0.45s 0.45s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+[data-theme="light"] .animatedCircle,
+[data-theme="light"] .animatedCheckmark {
+  stroke: #6c63ff;
+  filter: drop-shadow(0 0 8px rgba(108, 99, 255, 0.4));
+}
+
+.modalError .modalIconCore {
   position: relative;
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background: linear-gradient(135deg, rgba(108, 99, 255, 0.25) 0%, rgba(0, 229, 255, 0.25) 100%);
-  border: 1.5px solid rgba(0, 229, 255, 0.6);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.3) 100%);
+  border: 1.5px solid rgba(239, 68, 68, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow:
-    0 10px 25px rgba(108, 99, 255, 0.35),
-    0 0 20px rgba(0, 229, 255, 0.4),
-    inset 0 1px 1px rgba(255, 255, 255, 0.3);
-  animation: iconPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
-}
-
-.modalError .modalIconCore {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(185, 28, 28, 0.3) 100%);
-  border-color: rgba(239, 68, 68, 0.6);
   box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
-}
-
-.modalSuccessIcon {
-  color: #00e5ff;
-  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.7));
+  animation: iconPop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .modalErrorIcon {
@@ -581,6 +605,12 @@
   color: #00e5ff;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+[data-theme="light"] .modalStatusBadge {
+  color: #6c63ff;
+  background: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.25);
 }
 
 .modalError .modalStatusBadge {
@@ -614,6 +644,24 @@
   margin: 0;
 }
 
+/* Keyframes for Stroke Drawing */
+@keyframes circleDrawIn {
+  from {
+    stroke-dashoffset: 280;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes checkmarkDrawIn {
+  from {
+    stroke-dashoffset: 90;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
 /* Signature Theme Gradient Button */
 .modalActionGroup {
   width: 100%;

@@ -288,13 +288,30 @@ export default function Contact() {
 
             <div className={styles.modalVisualStage}>
               <div className={styles.modalGlowOrb} />
-              <div className={styles.modalIconCore}>
-                {modalState.success ? (
-                  <CheckCircle2 size={38} className={styles.modalSuccessIcon} strokeWidth={2.2} />
-                ) : (
+              {modalState.success ? (
+                <div className={styles.lottieCheckWrapper}>
+                  <svg className={styles.animatedCheckSvg} viewBox="0 0 100 100" fill="none">
+                    <circle
+                      className={styles.animatedCircle}
+                      cx="50"
+                      cy="50"
+                      r="44"
+                      strokeWidth="5"
+                    />
+                    <path
+                      className={styles.animatedCheckmark}
+                      d="M28 52 L43 67 L72 35"
+                      strokeWidth="6"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
+              ) : (
+                <div className={styles.modalIconCore}>
                   <AlertCircle size={38} className={styles.modalErrorIcon} strokeWidth={2.2} />
-                )}
-              </div>
+                </div>
+              )}
             </div>
 
             <div className={styles.modalTextBody}>
