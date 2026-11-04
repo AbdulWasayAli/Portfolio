@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { User, Mail, FileText, MessageSquare, Send } from 'lucide-react';
+import { User, Mail, FileText, MessageSquare, Send, CheckCircle2, Sparkles, X, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/portfolioData';
 import styles from './Contact.module.css';
 
@@ -12,7 +13,7 @@ export default function Contact() {
   });
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
-  const [showModal, setShowModal] = useState(false);
+  const [modalState, setModalState] = useState({ show: false, success: true, message: '' });
 
   const validate = () => {
     const newErrors = {};
@@ -40,28 +41,36 @@ export default function Contact() {
     e.preventDefault();
     if (!validate()) return;
     setSending(true);
+
+    const serviceId = 'service_17o0z2l';
+    const templateId = 'template_bdidimk';
+    const publicKey = 'C8_IL_IVzw1pdleQU';
+
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${personalInfo.email}`,
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject || 'Portfolio Contact Form',
-            message: formData.message,
-            _captcha: false,
-          }),
-        }
-      );
-      if (response.ok || true) { // Fallback preview response
-        setShowModal(true);
-        setFormData({ name: '', email: '', subject: '', message: '' });
-      }
+      const templateParams = {
+        from_name: formData.name,
+        name: formData.name,
+        from_email: formData.email,
+        email: formData.email,
+        subject: formData.subject || 'Portfolio Direct Inquiry',
+        message: formData.message,
+        to_name: 'Abdul Wasay Ali',
+      };
+
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      setModalState({
+        show: true,
+        success: true,
+        message: 'Your transmission reached my direct inbox. I will review and reply within 24 hours!',
+      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      console.error('Form submission error:', error);
-      setShowModal(true);
+      console.error('EmailJS error:', error);
+      setModalState({
+        show: true,
+        success: false,
+        message: 'Failed to deliver message directly. Please reach out via wasay3105@gmail.com or WhatsApp.',
+      });
     } finally {
       setSending(false);
     }
@@ -262,21 +271,50 @@ export default function Contact() {
         </div>
       </div>
 
-      {/* Modern Popup Modal Overlay */}
-      {showModal && (
-        <div className={styles.modalOverlay} onClick={() => setShowModal(false)}>
-          <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-            <div className={styles.modalBadge}>
-              <span className={styles.checkIcon}>✨</span>
-            </div>
-            <h3>Message Sent Successfully!</h3>
-            <p>Thank you for reaching out. I have received your message and will get back to you as soon as possible!</p>
+      {/* Ultra-Premium Glassmorphic Cyber Modal */}
+      {modalState.show && (
+        <div className={styles.modalOverlay} onClick={() => setModalState({ ...modalState, show: false })}>
+          <div
+            className={`${styles.modalContent} ${modalState.success ? styles.modalSuccess : styles.modalError}`}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
-              className="btn btn-primary"
-              onClick={() => setShowModal(false)}
+              className={styles.modalCloseBtn}
+              onClick={() => setModalState({ ...modalState, show: false })}
+              aria-label="Close dialog"
             >
-              Awesome, Got It!
+              <X size={18} />
             </button>
+
+            <div className={styles.modalVisualStage}>
+              <div className={styles.modalPulseRing} />
+              <div className={styles.modalIconCore}>
+                {modalState.success ? (
+                  <CheckCircle2 size={36} className={styles.modalSuccessIcon} />
+                ) : (
+                  <AlertCircle size={36} className={styles.modalErrorIcon} />
+                )}
+              </div>
+              <Sparkles size={18} className={styles.modalSparkleTop} />
+              <Sparkles size={14} className={styles.modalSparkleBottom} />
+            </div>
+
+            <div className={styles.modalTextBody}>
+              <span className={styles.modalStatusPill}>
+                {modalState.success ? '● TRANSMISSION VERIFIED' : '▲ TRANSMISSION WARNING'}
+              </span>
+              <h3>{modalState.success ? 'Message Sent Successfully!' : 'Transmission Failed'}</h3>
+              <p>{modalState.message}</p>
+            </div>
+
+            <div className={styles.modalActionGroup}>
+              <button
+                className={styles.modalConfirmBtn}
+                onClick={() => setModalState({ ...modalState, show: false })}
+              >
+                <span>{modalState.success ? 'Acknowledge & Continue' : 'Try Alternative Channel'}</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
