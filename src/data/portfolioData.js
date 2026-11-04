@@ -65,6 +65,15 @@ export const experienceData = [
       "Continuing intermediate studies alongside the diploma program, building a strong foundation in computer science fundamentals.",
     icon: "📚",
   },
+  {
+    type: "education",
+    title: "Matriculation (Science Group — Biology)",
+    organization: "Dehli Government Boys Secondary School, Karachi",
+    period: "2020 — 2021",
+    description:
+      "Completed secondary school certificate with a focus on science fundamentals, analytical thinking, and scientific inquiry.",
+    icon: "🏫",
+  },
 ];
 
 export const skillsData = {
