@@ -18,12 +18,18 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 ## Key Features & Architectural Highlights
 
+- **Direct Contact Channel & Official EmailJS Integration:**
+  - Integrated direct client transmission pipeline utilizing `@emailjs/browser` directly linked with Gmail API credentials.
+  - **Lottie-Style Animated Vector Stroke Dialog:** Custom zero-lag CSS/SVG dasharray draw animation featuring a rotating neon cyan outer circle that draws smoothly followed by an inner spring checkmark.
+  - **Theme-Synchronized Obsidian Glass Modal:** Perfectly color-matched with the portfolio's Deep Obsidian (`#030307`), Electric Cyan (`#00e5ff`), and Royal Violet (`#6c63ff`) tokens.
+  - **Custom Executive HTML Email Template:** Delivers client submissions directly to developer inbox with structured metadata (Sender Name, Verified Clickable Email, Subject, and One-Click Reply Button).
+
 - **Performance & Asset Optimization (WebP Image Pipeline):**
   - Converted and compressed all heavy project media assets, blog covers, and profile visuals to next-generation **WebP** format.
   - Achieved over **85% reduction** in total media payload (reduced from ~14 MB to ~1.5 MB), ensuring near-instant Largest Contentful Paint (LCP) and smooth rendering on 4G/5G mobile networks.
 
 - **Enterprise Social Sharing & SEO Engine (Open Graph & Schema.org):**
-  - Integrated dedicated 1200x630 high-definition social preview cards (`og-preview.jpg` & `og-preview.webp`) optimized for WhatsApp, LinkedIn, Facebook, and Twitter/X link cards.
+  - Integrated dedicated 1200x630 high-definition social preview cards (`og-preview.jpg` & `og-preview.webp`) optimized for WhatsApp, LinkedIn, Facebook, and Twitter/X link unfurling.
   - Prioritized Open Graph meta tags at the very top of `<head>` for instant mobile crawler recognition.
   - Implemented **Schema.org (JSON-LD)** structured data for `Person` and `WebSite` entities to power Google Search rich snippet indexing.
 
@@ -105,6 +111,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
 | **Framer Motion** | `^12.42.2` | Fluid spring physics, layout animations & transitions |
 | **React GitHub Calendar** | `^5.0.9` | Live interactive GitHub contribution activity calendar |
 | **Lucide React** | `^1.61.0` | Crisp vector icons system |
+| **EmailJS Browser** | `^4.4.1` | Client-side direct email dispatch engine |
 | **CSS Modules & Vanilla CSS** | W3C Standard | Scoped, zero-runtime overhead component styling |
 | **Oxlint** | `^1.71.0` | High-speed JavaScript & JSX code linter |
 
@@ -112,6 +119,7 @@ A next-generation, high-performance personal portfolio and engineering platform 
 | Technology | Usage |
 |---|---|
 | **Google Gemini AI** | Conversational AI assistant engine for portfolio grounding |
+| **EmailJS Cloud Engine** | Gmail API integration for instant portfolio form submissions |
 | **Vercel Serverless Functions** | `/api/chat` serverless backend route |
 | **Vite Dev Proxy Middleware** | Local development proxy for simulated serverless AI endpoints |
 
@@ -185,7 +193,7 @@ portfolio-react/
 │   ├── components/
 │   │   ├── About/               # Bio, achievements counter & profile visual
 │   │   ├── Blog/                # Horizontal carousel, cards & editorial article modal
-│   │   ├── Contact/             # Glassmorphic contact cards, copy badges & form
+│   │   ├── Contact/             # Glassmorphic contact cards, copy badges & form with EmailJS & animated vector modal
 │   │   ├── CyberCursor/         # GPU-accelerated fluid magnetic cyber cursor
 │   │   ├── Experience/          # Educational background & timeline (Matric, Inter, Diploma)
 │   │   ├── FloatingControls.jsx # Quick WhatsApp chat & scroll-to-top buttons
