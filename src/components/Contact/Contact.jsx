@@ -61,7 +61,7 @@ export default function Contact() {
       setModalState({
         show: true,
         success: true,
-        message: 'Your transmission reached my direct inbox. I will review and reply within 24 hours!',
+        message: "Thank you for reaching out! Your message has been delivered directly to my personal inbox. I will get back to you shortly.",
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
@@ -69,7 +69,7 @@ export default function Contact() {
       setModalState({
         show: true,
         success: false,
-        message: 'Failed to deliver message directly. Please reach out via wasay3105@gmail.com or WhatsApp.',
+        message: 'Something went wrong while sending your message. Please reach out directly via wasay3105@gmail.com or WhatsApp.',
       });
     } finally {
       setSending(false);
@@ -287,24 +287,23 @@ export default function Contact() {
             </button>
 
             <div className={styles.modalVisualStage}>
-              <div className={styles.modalPulseRing} />
+              <div className={styles.modalGlowOrb} />
               <div className={styles.modalIconCore}>
                 {modalState.success ? (
-                  <CheckCircle2 size={36} className={styles.modalSuccessIcon} />
+                  <CheckCircle2 size={38} className={styles.modalSuccessIcon} strokeWidth={2.2} />
                 ) : (
-                  <AlertCircle size={36} className={styles.modalErrorIcon} />
+                  <AlertCircle size={38} className={styles.modalErrorIcon} strokeWidth={2.2} />
                 )}
               </div>
-              <Sparkles size={18} className={styles.modalSparkleTop} />
-              <Sparkles size={14} className={styles.modalSparkleBottom} />
             </div>
 
             <div className={styles.modalTextBody}>
-              <span className={styles.modalStatusPill}>
-                {modalState.success ? '● TRANSMISSION VERIFIED' : '▲ TRANSMISSION WARNING'}
-              </span>
-              <h3>{modalState.success ? 'Message Sent Successfully!' : 'Transmission Failed'}</h3>
-              <p>{modalState.message}</p>
+              <div className={styles.modalStatusBadge}>
+                <span className={styles.statusDot} />
+                <span>{modalState.success ? 'Message Delivered' : 'Delivery Notice'}</span>
+              </div>
+              <h3 className={styles.modalHeading}>{modalState.success ? 'Thank You for Connecting!' : 'Unable to Send'}</h3>
+              <p className={styles.modalDescription}>{modalState.message}</p>
             </div>
 
             <div className={styles.modalActionGroup}>
@@ -312,7 +311,7 @@ export default function Contact() {
                 className={styles.modalConfirmBtn}
                 onClick={() => setModalState({ ...modalState, show: false })}
               >
-                <span>{modalState.success ? 'Acknowledge & Continue' : 'Try Alternative Channel'}</span>
+                <span>{modalState.success ? 'Sounds Great!' : 'Close & Try Again'}</span>
               </button>
             </div>
           </div>
