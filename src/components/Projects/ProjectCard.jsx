@@ -115,25 +115,56 @@ export default function ProjectCard({ project, onSelect }) {
       <div className={styles.projectContent}>
         <div className={styles.titleRow}>
           <h4 className={styles.projectTitle}>{project.title}</h4>
-          <div className={styles.titleActions}>
-          {project.live && project.live !== '#' && (
-            <a href={project.live} className={styles.liveSiteLink} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>
-              <span className={styles.livePulseDot} /> Live Preview
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 3h7v7M10 14 21 3"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
-            </a>
-          )}
           <span className={styles.detailHint} title="Click to view full case study">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M7 17l9.2-9.2M17 17V7H7" />
             </svg>
           </span>
-          </div>
         </div>
         <p className={styles.projectDesc}>{project.description}</p>
         <div className={styles.projectTags}>
           {project.tags.map((tag, index) => (
             <span key={index} className={styles.tag}>{tag}</span>
           ))}
+        </div>
+
+        {/* Premium Integrated Footer Action Bar */}
+        <div className={styles.cardFooterBar}>
+          {project.live && project.live !== '#' ? (
+            <a
+              href={project.live}
+              className={styles.cardFooterLiveBtn}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+              title="Open Live Preview"
+            >
+              <span className={styles.livePulseDot} />
+              <span>Live Preview</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+              </svg>
+            </a>
+          ) : (
+            <span className={styles.cardFooterCategoryBadge}>
+              {project.category.toUpperCase()}
+            </span>
+          )}
+
+          <button
+            type="button"
+            className={styles.cardFooterCaseBtn}
+            onClick={(e) => {
+              e.stopPropagation();
+              onSelect && onSelect(project);
+            }}
+            title="View Full Case Study"
+          >
+            <span>Case Study</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M7 17l9.2-9.2M17 17V7H7" />
+            </svg>
+          </button>
         </div>
       </div>
     </div>
