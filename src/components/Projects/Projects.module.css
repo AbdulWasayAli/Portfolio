@@ -192,27 +192,29 @@
 .liveSiteLink {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  padding: 7px 12px;
-  border: 1px solid rgba(111, 225, 255, 0.28);
-  border-radius: 999px;
-  color: #f4f3ff;
-  background: linear-gradient(135deg, rgba(108, 99, 255, 0.2), rgba(19, 31, 59, 0.72));
-  box-shadow: inset 0 1px rgba(255,255,255,.12), 0 5px 16px rgba(6, 10, 28, .24);
-  backdrop-filter: blur(10px);
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  border-radius: 9999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.35) 0%, rgba(0, 229, 255, 0.2) 100%);
+  box-shadow: 0 2px 10px rgba(0, 229, 255, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   text-decoration: none;
   white-space: nowrap;
-  font-size: .7rem;
+  font-size: 0.72rem;
   font-weight: 650;
-  letter-spacing: .015em;
-  transition: border-color .2s ease, background .2s ease, box-shadow .2s ease, transform .2s ease;
+  letter-spacing: 0.02em;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
 }
 
 .liveSiteLink:hover {
-  color: #fff;
-  border-color: rgba(111, 225, 255, .55);
-  background: linear-gradient(135deg, rgba(108, 99, 255, .34), rgba(19, 44, 72, .88));
-  box-shadow: inset 0 1px rgba(255,255,255,.16), 0 7px 20px rgba(0, 190, 255, .14);
+  color: #ffffff;
+  border-color: rgba(0, 229, 255, 0.7);
+  background: linear-gradient(135deg, rgba(108, 99, 255, 0.55) 0%, rgba(0, 229, 255, 0.4) 100%);
+  box-shadow: 0 4px 16px rgba(0, 229, 255, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
 }
 
