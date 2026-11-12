@@ -189,75 +189,98 @@
   color: var(--text-muted);
 }
 
-/* Floating Quick Actions Badge Row (Top Right on Image) */
-.quickActionsBadgeRow {
+/* Center Floating Glass Overlay (No background blur, pure clarity) */
+.centerOverlay {
   position: absolute;
-  top: 12px;
-  right: 12px;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  background: rgba(3, 3, 7, 0.3);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 5;
+  padding: 16px;
 }
 
-.quickActionBadge {
+.projectCard:hover .centerOverlay {
+  opacity: 1;
+}
+
+/* Unified Modern Pill Container - Clean sequence in center */
+.centerPillGroup {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  padding: 5px 11px;
+  gap: 6px;
+  padding: 6px;
+  background: rgba(7, 7, 14, 0.88);
+  border: 1px solid rgba(108, 99, 255, 0.28);
   border-radius: 9999px;
-  font-size: 0.72rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(108, 99, 255, 0.2);
+  transform: scale(0.94) translateY(6px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.projectCard:hover .centerPillGroup {
+  transform: scale(1) translateY(0);
+}
+
+.centerBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 9999px;
+  font-size: 0.76rem;
   font-weight: 600;
   letter-spacing: 0.3px;
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  border: 1px solid transparent;
+  transition: all 0.22s ease;
+  white-space: nowrap;
 }
 
-/* Live Demo Badge - Crisp Ultra-Violet & Cyan */
-.liveBadge {
-  background: linear-gradient(135deg, rgba(108, 99, 255, 0.9) 0%, rgba(0, 229, 255, 0.9) 100%);
+/* 1. Live Demo - Signature Electric Violet-to-Cyan */
+.liveBtnPrimary {
+  background: linear-gradient(135deg, #6c63ff 0%, #00e5ff 100%);
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 2px 10px rgba(108, 99, 255, 0.4);
 }
 
-.liveBadge:hover {
-  transform: translateY(-2px) scale(1.04);
-  box-shadow: 0 6px 18px rgba(0, 229, 255, 0.5);
+.liveBtnPrimary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 18px rgba(0, 229, 255, 0.55);
+  filter: brightness(1.1);
   color: #ffffff;
 }
 
-/* Live Pulsing Green Radar Dot */
-.liveDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #00ffaa;
-  box-shadow: 0 0 8px #00ffaa;
-  animation: radarPulse 1.8s infinite;
+/* 2. Case Study - Obsidian Violet Glass */
+.caseBtnSecondary {
+  background: rgba(108, 99, 255, 0.12);
+  color: #e0dcff;
+  border-color: rgba(108, 99, 255, 0.35);
 }
 
-@keyframes radarPulse {
-  0% { transform: scale(0.9); opacity: 0.8; }
-  50% { transform: scale(1.4); opacity: 1; }
-  100% { transform: scale(0.9); opacity: 0.8; }
+.caseBtnSecondary:hover {
+  background: rgba(108, 99, 255, 0.28);
+  border-color: rgba(108, 99, 255, 0.65);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
-/* GitHub Badge on Top */
-.gitBadge {
-  background: rgba(10, 10, 20, 0.75);
-  color: #c4c0e0;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+/* 3. GitHub - Subtle Minimal Glass */
+.gitBtnTertiary {
+  background: rgba(255, 255, 255, 0.05);
+  color: #a4a0c5;
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-.gitBadge:hover {
-  background: rgba(20, 20, 35, 0.95);
+.gitBtnTertiary:hover {
+  background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.35);
   color: #ffffff;
-  transform: translateY(-2px) scale(1.04);
+  transform: translateY(-1px);
 }
 
 /* Content */
