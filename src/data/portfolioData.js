@@ -190,7 +190,7 @@ export const projectsData = [
     ],
     architecture: "Engineered using native ES6+ JavaScript modules, LocalStorage state persistence, jsPDF for invoice synthesis, and Bootstrap grid styling.",
     github: "https://github.com/AbdulWasayAli/Electronic-Store",
-    live: "#",
+    live: "https://abdulwasayali.github.io/Electronic-Store/main.html",
   },
   {
     id: 4,
