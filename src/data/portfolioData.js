@@ -234,7 +234,7 @@ export const projectsData = [
     ],
     architecture: "Architected on ASP.NET Core MVC, Entity Framework Core Code-First ORM, Microsoft SQL Server, and Dependency Injection services for SMTP.",
     github: "https://github.com/AbdulWasayAli/Greetings-Project",
-    live: "#",
+    live: "https://greetings.runasp.net/",
   },
   {
     id: 6,

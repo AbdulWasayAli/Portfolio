@@ -80,6 +80,20 @@ export default function ProjectCard({ project, onSelect }) {
           </div>
         )}
         <div className={styles.imageOverlay}>
+          {project.live && project.live !== '#' && (
+            <a
+              href={project.live}
+              className={`${styles.overlayBtn} ${styles.liveDemoBtn}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+              </svg>
+              <span>Live Demo</span>
+            </a>
+          )}
           <button
             type="button"
             className={`${styles.overlayBtn} ${styles.liveBtn}`}
