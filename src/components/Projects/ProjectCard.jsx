@@ -79,6 +79,25 @@ export default function ProjectCard({ project, onSelect }) {
             <span>Coming Soon</span>
           </div>
         )}
+
+        {/* Option 2: Live Badge (Top-Right Floating Pill with pulsating green dot) */}
+        {project.live && project.live !== '#' && (
+          <a
+            href={project.live}
+            className={styles.cornerLivePill}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            title="Open Live Preview"
+          >
+            <span className={styles.livePulseDot} />
+            <span>Live Preview</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3" />
+            </svg>
+          </a>
+        )}
+
         <div className={styles.imageOverlay}>
           <button
             type="button"
