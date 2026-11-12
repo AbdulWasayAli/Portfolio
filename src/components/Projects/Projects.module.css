@@ -189,73 +189,102 @@
   color: var(--text-muted);
 }
 
-/* Bottom Action Bar */
-.actionBar {
+/* Premium Hover Overlay — Stacked Vertical Actions */
+.hoverOverlay {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
-  gap: 0;
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    rgba(3, 3, 7, 0.2) 0%,
+    rgba(3, 3, 7, 0.55) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 5;
 }
 
-.actionLink {
-  display: inline-flex;
+.projectCard:hover .hoverOverlay {
+  opacity: 1;
+}
+
+/* Stacked Action Container */
+.hoverActions {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  width: 170px;
+}
+
+/* Individual Action Button */
+.hoverBtn {
+  display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 0;
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--text-muted);
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.82rem;
+  font-weight: 600;
   text-decoration: none;
   cursor: pointer;
-  background: none;
   border: none;
-  transition: color 0.2s ease;
-  position: relative;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(8px);
+  opacity: 0;
 }
 
-.actionLink + .actionLink {
-  margin-left: 18px;
-  padding-left: 18px;
+.projectCard:hover .hoverBtn {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-.actionLink + .actionLink::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1px;
-  height: 14px;
+.projectCard:hover .hoverBtn:nth-child(1) { transition-delay: 0s; }
+.projectCard:hover .hoverBtn:nth-child(2) { transition-delay: 0.06s; }
+.projectCard:hover .hoverBtn:nth-child(3) { transition-delay: 0.12s; }
+
+/* Live Preview — Primary Gradient */
+.hoverBtnLive {
+  background: linear-gradient(135deg, var(--primary) 0%, #00E5FF 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(108, 99, 255, 0.45);
+}
+
+.hoverBtnLive:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 22px rgba(0, 229, 255, 0.6);
+}
+
+/* Case Study — Frosted Glass */
+.hoverBtnCase {
   background: rgba(255, 255, 255, 0.1);
+  color: #e4e2f0;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Live Preview — Accent glow text */
-.actionLive {
-  color: var(--accent);
+.hoverBtnCase:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #ffffff;
+  transform: translateY(-2px) !important;
 }
 
-.actionLive:hover {
-  color: var(--accent-light);
+/* Source Code — Outline Style */
+.hoverBtnGit {
+  background: transparent;
+  color: #b0adc8;
+  border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
-/* Case Study — Primary text */
-.actionCase {
-  color: var(--text-secondary);
-}
-
-.actionCase:hover {
-  color: var(--primary-light);
-}
-
-/* GitHub Source — Subtle muted text */
-.actionGit {
-  color: var(--text-muted);
-}
-
-.actionGit:hover {
-  color: var(--text-primary);
+.hoverBtnGit:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  transform: translateY(-2px) !important;
 }
 
 /* Content */
