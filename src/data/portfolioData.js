@@ -168,7 +168,7 @@ export const projectsData = [
     ],
     architecture: "Built with pure semantic HTML5, Bootstrap 5 responsive utility system, and custom CSS design tokens for timeless cultural aesthetic.",
     github: "https://github.com/AbdulWasayAli/Historical-Places",
-    live: "#",
+    live: "https://abdulwasayali.github.io/Historical-Places",
   },
   {
     id: 3,
