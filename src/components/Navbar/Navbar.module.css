@@ -5,7 +5,7 @@
 
 .navHeader {
   position: fixed;
-  top: 26px;
+  top: 28px;
   left: 0;
   right: 0;
   width: 100%;
@@ -21,11 +21,11 @@
   pointer-events: auto;
   width: 100%;
   max-width: 1280px;
-  min-height: 68px;
+  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 24px 10px 28px;
+  padding: 12px 28px 12px 32px;
   border-radius: 999px;
   background: rgba(10, 14, 28, 0.78);
   backdrop-filter: blur(24px) saturate(180%);
@@ -91,7 +91,7 @@
   font-size: 14.5px;
   font-weight: 500;
   color: #94a3b8;
-  padding: 8px 6px;
+  padding: 10px 8px;
   background: none;
   border: none;
   cursor: pointer;
@@ -125,19 +125,33 @@
   font-weight: 700;
 }
 
-.activeDot {
+/* Active Glowing Indicator Line */
+.activeLine {
   position: absolute;
-  bottom: -4px;
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: #38bdf8;
-  box-shadow: 0 0 8px #38bdf8;
+  bottom: 0;
+  left: 6px;
+  right: 6px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.8), 0 0 4px #38bdf8;
+  animation: lineGlow 0.25s ease-out;
 }
 
-:global([data-theme="light"]) .activeDot {
-  background-color: #6366f1;
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+@keyframes lineGlow {
+  from {
+    opacity: 0;
+    transform: scaleX(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+:global([data-theme="light"]) .activeLine {
+  background: linear-gradient(90deg, #4f46e5, #6366f1);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
 }
 
 /* Right Actions (Theme Toggle & Mobile Menu) */
@@ -189,8 +203,8 @@
   }
 
   .jitterBar {
-    min-height: 56px;
-    padding: 6px 14px;
+    min-height: 58px;
+    padding: 8px 16px;
   }
 
   .mobileMenuBtn {
@@ -234,10 +248,11 @@
     align-items: flex-start;
   }
 
-  .activeDot {
-    left: 4px;
-    bottom: 50%;
-    transform: translateY(50%);
+  .activeLine {
+    left: 16px;
+    right: auto;
+    width: 32px;
+    bottom: 4px;
   }
 
   .mobileOverlay {

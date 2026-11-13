@@ -65,7 +65,7 @@ export default function Navbar() {
                 onClick={() => handleNavClick(link.href)}
               >
                 <span>{link.name}</span>
-                {isActive && <span className={styles.activeDot} />}
+                {isActive && <span className={styles.activeLine} />}
               </button>
             );
           })}
