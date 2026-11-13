@@ -92,15 +92,6 @@ export default function InteractiveBrandBanner() {
             ABDUL WASAY ALI
           </h2>
         </div>
-
-        {/* Clean Tech Identity Badges */}
-        <div className={styles.bottomTechBar}>
-          <span className={styles.techBadge}>SOFTWARE ENGINEER</span>
-          <span className={styles.dotDivider} />
-          <span className={styles.techBadge}>FULL-STACK &amp; MOBILE</span>
-          <span className={styles.dotDivider} />
-          <span className={styles.techBadge}>BASED IN KARACHI</span>
-        </div>
       </div>
 
       <div className={styles.bottomBeam} />

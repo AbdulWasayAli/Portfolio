@@ -1,12 +1,12 @@
 /* ========================================================
-   InteractiveBrandBanner — Sheryians Style Fluid Spotlight
-   Clean, Modern, Flat & Ultra-Professional
+   InteractiveBrandBanner — Luxury Fluid Spotlight Showcase
+   Sheryians Inspired • Engraved Titanium Base + Neon Torch
    ======================================================== */
 
 .bannerSection {
   position: relative;
   width: 100%;
-  padding: 95px 0 75px;
+  padding: 85px 0 75px;
   background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.75) 0%, rgba(3, 3, 7, 0.98) 100%);
   overflow: hidden;
   user-select: none;
@@ -69,11 +69,11 @@
 }
 
 .brandText {
-  font-family: var(--font-display, var(--font-primary, sans-serif));
-  font-size: clamp(3rem, 10vw, 10.5rem);
-  font-weight: 900;
-  letter-spacing: clamp(-0.5px, -0.02em, -2px);
-  line-height: 1;
+  font-family: var(--font-display, 'Outfit', 'Plus Jakarta Sans', sans-serif);
+  font-size: clamp(2.8rem, 9.6vw, 10.2rem);
+  font-weight: 800;
+  letter-spacing: clamp(1px, 0.03em, 4px);
+  line-height: 1.05;
   text-align: center;
   white-space: nowrap;
   margin: 0;
@@ -81,21 +81,43 @@
   text-transform: uppercase;
 }
 
-/* 1. Base Outline Text — Sheryians Style Clean Stroke */
+/* 1. Base Text: Luxury Engraved Titanium Finish
+   - NOT empty/hollow wireframe!
+   - Soft metallic dark fill with crisp 1px silver stroke
+   - Looks breathtaking even BEFORE the cursor touches it!
+*/
 .baseOutlineText {
-  color: transparent;
-  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.22);
-  text-stroke: 1.2px rgba(255, 255, 255, 0.22);
-  transition: -webkit-text-stroke 0.3s ease;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(203, 213, 225, 0.14) 50%,
+    rgba(148, 163, 184, 0.06) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.25);
+  text-stroke: 1.2px rgba(255, 255, 255, 0.25);
+  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
+  transition: all 0.3s ease;
 }
 
 :global([data-theme="light"]) .baseOutlineText {
-  color: transparent;
-  -webkit-text-stroke: 1.2px rgba(15, 23, 42, 0.28);
-  text-stroke: 1.2px rgba(15, 23, 42, 0.28);
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.28) 0%,
+    rgba(71, 85, 105, 0.18) 50%,
+    rgba(148, 163, 184, 0.1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.2px rgba(15, 23, 42, 0.35);
+  text-stroke: 1.2px rgba(15, 23, 42, 0.35);
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
 }
 
-/* 2. Fluid Gradient Spotlight Overlay */
+/* 2. Fluid Gradient Spotlight Overlay (Active on Cursor) */
 .spotlightText {
   position: absolute;
   top: 0;
@@ -114,18 +136,18 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.45));
+  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.55));
   will-change: mask-image, -webkit-mask-image, opacity;
   mask-image: radial-gradient(
-    circle 230px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    circle 240px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 45%,
+    rgba(0, 0, 0, 0.75) 45%,
     rgba(0, 0, 0, 0) 80%
   );
   -webkit-mask-image: radial-gradient(
-    circle 230px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    circle 240px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 45%,
+    rgba(0, 0, 0, 0.75) 45%,
     rgba(0, 0, 0, 0) 80%
   );
   transition: opacity 0.25s ease-out;
@@ -142,53 +164,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
-}
-
-/* Bottom Technical Identity Bar */
-.bottomTechBar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.techBadge {
-  font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
-  font-weight: 600;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  transition: color 0.25s ease;
-}
-
-.techBadge:hover {
-  color: #38bdf8;
-}
-
-:global([data-theme="light"]) .techBadge {
-  color: #334155;
-  font-weight: 700;
-}
-
-:global([data-theme="light"]) .techBadge:hover {
-  color: #4f46e5;
-}
-
-.dotDivider {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--accent, #00e5ff);
-  box-shadow: 0 0 8px var(--accent, #00e5ff);
-}
-
-:global([data-theme="light"]) .dotDivider {
-  background-color: #6366f1;
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+  filter: drop-shadow(0 0 22px rgba(79, 70, 229, 0.35));
 }
 
 @media (max-width: 768px) {
@@ -196,12 +172,8 @@
     padding: 60px 0 45px;
   }
   .brandText {
-    font-size: clamp(2.4rem, 11vw, 4.4rem);
-    letter-spacing: -1px;
-  }
-  .techBadge {
-    font-size: 0.65rem;
-    letter-spacing: 0.14em;
+    font-size: clamp(2.3rem, 10.5vw, 4.2rem);
+    letter-spacing: 1px;
   }
   .spotlightText {
     mask-image: radial-gradient(
