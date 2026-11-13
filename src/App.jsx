@@ -19,7 +19,6 @@ import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import AtmosphericBackground from './components/AtmosphericBackground/AtmosphericBackground';
-import CyberCursor from './components/CyberCursor/CyberCursor';
 import './styles/globals.css';
 
 function ScrollProgress() {
@@ -64,7 +63,6 @@ function App() {
 
   return (
     <ThemeProvider>
-      <CyberCursor />
       {isHomePage && showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <Routes>
         <Route path="/" element={
