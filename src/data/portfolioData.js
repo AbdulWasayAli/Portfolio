@@ -94,7 +94,6 @@ export const skillsData = {
       icon: "⚙️",
       skills: [
         { name: "Python", level: 80, icon: "SiPython" },
-        { name: "Flask", level: 75, icon: "SiFlask" },
         { name: "R Programming", level: 70, icon: "SiR" },
         { name: "Node.js", level: 80, icon: "FaNodeJs" },
         { name: "Express.js", level: 75, icon: "SiExpress" },
