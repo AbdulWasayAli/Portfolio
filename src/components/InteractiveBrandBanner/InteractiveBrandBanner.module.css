@@ -1,22 +1,17 @@
-/* ========================================================
-   InteractiveBrandBanner — Calm Luxury Minimal Signature
-   Apple / Linear Developer Aesthetic
-   ======================================================== */
-
 .bannerSection {
   position: relative;
   width: 100%;
-  padding: 85px 0 70px;
-  background: radial-gradient(circle at 50% 50%, rgba(10, 14, 28, 0.6) 0%, rgba(3, 3, 7, 0.95) 100%);
+  padding: 85px 0 65px;
+  background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.7) 0%, rgba(3, 3, 7, 0.95) 100%);
   overflow: hidden;
   user-select: none;
+  cursor: default;
 }
 
 :global([data-theme="light"]) .bannerSection {
-  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.85) 0%, rgba(226, 232, 240, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.85) 0%, rgba(230, 235, 245, 0.95) 100%);
 }
 
-/* Subtle boundary lines */
 .topBeam,
 .bottomBeam {
   position: absolute;
@@ -25,274 +20,260 @@
   height: 1px;
   background: linear-gradient(
     90deg,
-    transparent 10%,
+    transparent 5%,
+    rgba(108, 99, 255, 0.35) 25%,
+    rgba(56, 189, 248, 0.6) 50%,
+    rgba(168, 85, 247, 0.35) 75%,
+    transparent 95%
+  );
+}
+
+:global([data-theme="light"]) .topBeam,
+:global([data-theme="light"]) .bottomBeam {
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
     rgba(108, 99, 255, 0.25) 30%,
-    rgba(56, 189, 248, 0.45) 50%,
-    rgba(168, 85, 247, 0.25) 70%,
-    transparent 90%
+    rgba(14, 165, 233, 0.35) 50%,
+    rgba(108, 99, 255, 0.25) 70%,
+    transparent 95%
   );
 }
 
 .topBeam { top: 0; }
 .bottomBeam { bottom: 0; }
 
-/* Very soft, calm backlight */
-.ambientGlow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 600px;
-  height: 250px;
-  border-radius: 50%;
-  background: radial-gradient(
-    ellipse,
-    rgba(56, 189, 248, 0.08) 0%,
-    rgba(139, 92, 246, 0.05) 50%,
-    transparent 70%
-  );
-  filter: blur(70px);
-  pointer-events: none;
-  z-index: 0;
-}
-
 .bannerInner {
   position: relative;
-  z-index: 1;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1600px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
-
-/* Status Pill */
-.statusPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 14px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(56, 189, 248, 0.2);
-  margin-bottom: 16px;
-}
-
-:global([data-theme="light"]) .statusPill {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(99, 102, 241, 0.2);
-}
-
-.statusDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
-}
-
-.statusLabel {
-  font-family: var(--font-mono, monospace);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1.5px;
-  color: #94a3b8;
-  text-transform: uppercase;
-}
-
-:global([data-theme="light"]) .statusLabel {
-  color: #475569;
-}
-
-/* Grand, Stable, Luxury Typography */
-.brandTitle {
-  font-family: var(--font-display, var(--font-primary, sans-serif));
-  font-size: clamp(2.4rem, 7.5vw, 7.5rem);
-  font-weight: 900;
-  letter-spacing: clamp(-1px, -0.03em, -3px);
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  margin: 0;
-  padding: 4px 0;
-  text-transform: uppercase;
+  transform-style: preserve-3d;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .brandText {
+  font-family: var(--font-primary, sans-serif);
+  font-size: clamp(2.8rem, 9.8vw, 10.5rem);
+  font-weight: 900;
+  letter-spacing: clamp(-1px, -0.04em, -4px);
+  line-height: 0.95;
+  text-align: center;
+  white-space: nowrap;
+  margin: 0;
+  padding: 10px 0;
+  text-transform: uppercase;
+}
+
+/* Base Text: Always Visible, Elegant Luxury Metallic Frosted Finish */
+.baseText {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.32) 0%,
+    rgba(226, 232, 240, 0.22) 45%,
+    rgba(148, 163, 184, 0.14) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  text-stroke: 1px rgba(255, 255, 255, 0.18);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+}
+
+:global([data-theme="light"]) .baseText {
+  background: linear-gradient(
+    135deg,
+    rgba(15, 23, 42, 0.35) 0%,
+    rgba(71, 85, 105, 0.25) 50%,
+    rgba(148, 163, 184, 0.18) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1px rgba(99, 102, 241, 0.3);
+  text-stroke: 1px rgba(99, 102, 241, 0.3);
+  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.08));
+}
+
+/* Spotlight Glowing Overlay */
+.spotlightText {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  pointer-events: none;
   background: linear-gradient(
     135deg,
     #ffffff 0%,
-    #f8fafc 30%,
-    #cbd5e1 60%,
-    #94a3b8 100%
+    #38bdf8 30%,
+    #a78bfa 60%,
+    #00e5ff 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  display: inline-block;
-  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, 0.5));
-  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.55));
+  transition: opacity 0.3s ease;
 }
 
-.brandTitle:hover .brandText {
-  filter: drop-shadow(0 6px 30px rgba(56, 189, 248, 0.35));
+/* Active Hover Spotlight: Wide, generous illumination that doesn't cut letters off awkwardly */
+.activeSpotlight {
+  opacity: 1;
+  mask-image: radial-gradient(
+    ellipse 480px 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0) 80%
+  );
+  -webkit-mask-image: radial-gradient(
+    ellipse 480px 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0) 80%
+  );
 }
 
-:global([data-theme="light"]) .brandText {
+/* Idle State: Calm, graceful ambient sweep so the name is never blank or dead */
+.idleSpotlight {
+  opacity: 0.45;
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.8) 50%,
+    transparent 100%
+  );
+  mask-size: 200% 100%;
+  -webkit-mask-size: 200% 100%;
+  animation: ambientSweep 6s ease-in-out infinite alternate;
+}
+
+@keyframes ambientSweep {
+  0% {
+    mask-position: -80% 0;
+    -webkit-mask-position: -80% 0;
+  }
+  100% {
+    mask-position: 180% 0;
+    -webkit-mask-position: 180% 0;
+  }
+}
+
+:global([data-theme="light"]) .spotlightText {
   background: linear-gradient(
     135deg,
     #0f172a 0%,
-    #1e293b 40%,
-    #334155 80%,
-    #475569 100%
+    #4338ca 35%,
+    #0284c7 70%,
+    #6366f1 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.08));
+  filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.35));
 }
 
-/* Calm Typing Box — Types once, stays still */
-.typingBox {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 22px;
-  padding: 8px 20px;
-  background: rgba(15, 23, 42, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  min-height: 40px;
-  max-width: 90vw;
+/* Soft Cursor Halo */
+.cursorHalo {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.15) 0%,
+    rgba(168, 85, 247, 0.08) 40%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  filter: blur(20px);
+  z-index: 1;
 }
 
-:global([data-theme="light"]) .typingBox {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(0, 0, 0, 0.08);
+.haloVisible {
+  opacity: 1;
 }
 
-.promptSymbol {
-  font-family: var(--font-mono, monospace);
-  font-size: 13px;
-  font-weight: 700;
-  color: #38bdf8;
-  flex-shrink: 0;
+:global([data-theme="light"]) .cursorHalo {
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.16) 0%,
+    rgba(14, 165, 233, 0.1) 40%,
+    transparent 70%
+  );
 }
 
-:global([data-theme="light"]) .promptSymbol {
-  color: #4f46e5;
-}
-
-.statementText {
-  font-family: var(--font-mono, monospace);
-  font-size: clamp(0.82rem, 1.1vw, 0.95rem);
-  font-weight: 500;
-  color: #e2e8f0;
-  letter-spacing: 0.1px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-:global([data-theme="light"]) .statementText {
-  color: #1e293b;
-}
-
-.cursor {
-  font-family: var(--font-mono, monospace);
-  font-size: 1rem;
-  font-weight: 700;
-  color: #38bdf8;
-  animation: blink 0.9s step-end infinite;
-}
-
-.cursorIdle {
-  opacity: 0.4;
-  animation: slowBlink 2.5s ease-in-out infinite;
-}
-
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-@keyframes slowBlink {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 0.2; }
-}
-
-/* Badge Row */
-.badgeRow {
+/* Bottom Technical Identity Bar */
+.bottomTechBar {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  margin-top: 20px;
+  gap: 16px;
+  margin-top: 24px;
   flex-wrap: wrap;
 }
 
-.badge {
+.techBadge {
   font-family: var(--font-mono, monospace);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
   font-weight: 600;
-  color: #64748b;
+  color: var(--text-secondary);
   text-transform: uppercase;
-  transition: color 0.2s ease;
+  transition: color 0.25s ease;
 }
 
-.badge:hover {
+.techBadge:hover {
   color: #38bdf8;
 }
 
-:global([data-theme="light"]) .badge {
-  color: #64748b;
+:global([data-theme="light"]) .techBadge {
+  color: #334155;
+  font-weight: 700;
 }
 
-:global([data-theme="light"]) .badge:hover {
-  color: #0284c7;
+:global([data-theme="light"]) .techBadge:hover {
+  color: #4338ca;
 }
 
-.badgeDot {
-  width: 3.5px;
-  height: 3.5px;
+.dotDivider {
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background-color: rgba(56, 189, 248, 0.6);
+  background-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
 }
 
-:global([data-theme="light"]) .badgeDot {
-  background-color: rgba(99, 102, 241, 0.5);
+:global([data-theme="light"]) .dotDivider {
+  background-color: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
 }
 
 @media (max-width: 768px) {
   .bannerSection {
-    padding: 60px 0 45px;
+    padding: 60px 0 40px;
   }
-
-  .brandTitle {
-    font-size: clamp(2rem, 9.5vw, 3.8rem);
+  .brandText {
+    font-size: clamp(2.4rem, 11vw, 4.2rem);
   }
-
-  .typingBox {
-    padding: 6px 14px;
-    margin-top: 16px;
-  }
-
-  .statementText {
-    font-size: 0.74rem;
-  }
-
-  .badgeRow {
-    gap: 8px;
-  }
-
-  .badge {
-    font-size: 0.62rem;
-    letter-spacing: 0.12em;
+  .techBadge {
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
   }
 }

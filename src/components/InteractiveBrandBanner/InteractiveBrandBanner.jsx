@@ -1,83 +1,88 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import styles from './InteractiveBrandBanner.module.css';
-
-const STATEMENT = "Turning ideas into high-performance software & mobile apps.";
 
 export default function InteractiveBrandBanner() {
   const containerRef = useRef(null);
-  const [displayText, setDisplayText] = useState('');
-  const [hasStarted, setHasStarted] = useState(false);
-  const [isFinished, setIsFinished] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
-  // Trigger typing once when user scrolls into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasStarted) {
-          setHasStarted(true);
-        }
-      },
-      { threshold: 0.35 }
-    );
+  const handleMouseMove = useCallback((e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const clientX = e.clientX - rect.left;
+    const clientY = e.clientY - rect.top;
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
+    const xPercent = (clientX / rect.width) * 100;
+    const yPercent = (clientY / rect.height) * 100;
+    setMousePos({ x: xPercent, y: yPercent });
 
-    return () => observer.disconnect();
-  }, [hasStarted]);
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateY = ((clientX - centerX) / centerX) * 8;
+    const rotateX = -((clientY - centerY) / centerY) * 8;
+    setTilt({ rotateX, rotateY });
+  }, []);
 
-  // Smooth, calm typing — types once and stays still
-  useEffect(() => {
-    if (!hasStarted || isFinished) return;
+  const handleMouseEnter = () => setIsHovered(true);
 
-    if (displayText.length < STATEMENT.length) {
-      const timer = setTimeout(() => {
-        setDisplayText(STATEMENT.substring(0, displayText.length + 1));
-      }, 35);
-      return () => clearTimeout(timer);
-    } else {
-      setIsFinished(true);
-    }
-  }, [hasStarted, displayText, isFinished]);
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ rotateX: 0, rotateY: 0 });
+    setMousePos({ x: 50, y: 50 });
+  };
 
   return (
     <section
       ref={containerRef}
       className={styles.bannerSection}
-      aria-label="Abdul Wasay Ali Signature"
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      aria-label="Abdul Wasay Ali Signature Showcase"
     >
       <div className={styles.topBeam} />
-      <div className={styles.ambientGlow} />
 
-      <div className={styles.bannerInner}>
-        {/* Subtle Luxury Status Pill */}
-        <div className={styles.statusPill}>
-          <span className={styles.statusDot} />
-          <span className={styles.statusLabel}>SOFTWARE ENGINEER // ARCHITECT</span>
-        </div>
-
-        {/* Stable, Grand, Luxury Name */}
-        <h2 className={styles.brandTitle}>
-          <span className={styles.brandText}>ABDUL WASAY ALI</span>
+      <div 
+        className={styles.bannerInner}
+        style={{
+          transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
+        }}
+      >
+        {/* Base Always-Visible Luxury Metallic Text */}
+        <h2 className={`${styles.brandText} ${styles.baseText}`}>
+          ABDUL WASAY ALI
         </h2>
 
-        {/* Calm Typewriter Subtitle — types once and stays still */}
-        <div className={styles.typingBox}>
-          <span className={styles.promptSymbol}>$&gt;</span>
-          <span className={styles.statementText}>{displayText}</span>
-          <span className={`${styles.cursor} ${isFinished ? styles.cursorIdle : ''}`}>|</span>
-        </div>
+        {/* Interactive Luminous Spotlight Glow Overlay */}
+        <h2
+          className={`${styles.brandText} ${styles.spotlightText} ${isHovered ? styles.activeSpotlight : styles.idleSpotlight}`}
+          style={{
+            '--mouse-x': `${mousePos.x}%`,
+            '--mouse-y': `${mousePos.y}%`,
+          }}
+          aria-hidden="true"
+        >
+          ABDUL WASAY ALI
+        </h2>
 
-        {/* Minimal Professional Badges */}
-        <div className={styles.badgeRow}>
-          <span className={styles.badge}>FULL-STACK WEB</span>
-          <span className={styles.badgeDot} />
-          <span className={styles.badge}>MOBILE APPS</span>
-          <span className={styles.badgeDot} />
-          <span className={styles.badge}>SCALABLE ARCHITECTURE</span>
-          <span className={styles.badgeDot} />
-          <span className={styles.badge}>KARACHI, PK</span>
+        {/* Soft Reactive Cursor Halo */}
+        <div
+          className={`${styles.cursorHalo} ${isHovered ? styles.haloVisible : ''}`}
+          style={{
+            left: `${mousePos.x}%`,
+            top: `${mousePos.y}%`,
+          }}
+          aria-hidden="true"
+        />
+
+        {/* Bottom Technical Identity Bar */}
+        <div className={styles.bottomTechBar}>
+          <span className={styles.techBadge}>SOFTWARE ENGINEER</span>
+          <span className={styles.dotDivider} />
+          <span className={styles.techBadge}>FULL-STACK &amp; MOBILE</span>
+          <span className={styles.dotDivider} />
+          <span className={styles.techBadge}>BASED IN KARACHI</span>
         </div>
       </div>
 
