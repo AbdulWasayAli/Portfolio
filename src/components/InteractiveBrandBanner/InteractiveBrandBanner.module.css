@@ -67,6 +67,9 @@
 }
 
 /* 2. Fluid Spotlight Text Overlay
+   - Clean, Solid Authentic Color (No cheap rainbow gradient)
+   - Dark Mode: Pure Electric Sky / Ice Cyan (#38bdf8 / #60a5fa)
+   - Light Mode: Deep Royal Indigo / Sapphire (#2563eb / #1d4ed8)
    - Color is STRICTLY clipped to the letters (-webkit-background-clip: text)
    - filter: none (ZERO drop shadow, ZERO blur outside letters)
    - Gentle, smooth circular mask matching the video
@@ -78,14 +81,8 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  background: linear-gradient(
-    135deg,
-    #00e5ff 0%,
-    #38bdf8 30%,
-    #818cf8 60%,
-    #c084fc 85%,
-    #ec4899 100%
-  );
+  background-color: #38bdf8;
+  background-image: linear-gradient(180deg, #67e8f9 0%, #38bdf8 60%, #0284c7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -107,13 +104,8 @@
 }
 
 :global([data-theme="light"]) .spotlightText {
-  background: linear-gradient(
-    135deg,
-    #0284c7 0%,
-    #4f46e5 35%,
-    #7c3aed 70%,
-    #db2777 100%
-  );
+  background-color: #2563eb;
+  background-image: linear-gradient(180deg, #1d4ed8 0%, #2563eb 60%, #3b82f6 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
