@@ -38,9 +38,6 @@ export default function Navbar() {
     }
   };
 
-  // Center navigation items (Contact is the right action button like Jitter)
-  const centerLinks = navLinks.filter(l => l.name !== 'Contact');
-
   return (
     <header className={styles.navHeader}>
       <div className={`${styles.jitterBar} ${scrolled ? styles.scrolled : ''}`}>
@@ -59,7 +56,7 @@ export default function Navbar() {
 
         {/* Center: Clean Jitter-Style Text Links */}
         <nav className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`} aria-label="Main Navigation">
-          {centerLinks.map((link) => {
+          {navLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <button
@@ -74,17 +71,9 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: Theme Toggle & Jitter-Style Solid Action Pill */}
+        {/* Right: Theme Toggle & Mobile Menu */}
         <div className={styles.navActions}>
           <ThemeToggle />
-
-          <button
-            type="button"
-            className={styles.contactCta}
-            onClick={() => handleNavClick('#contact')}
-          >
-            Contact
-          </button>
 
           {/* Mobile Hamburger */}
           <button
