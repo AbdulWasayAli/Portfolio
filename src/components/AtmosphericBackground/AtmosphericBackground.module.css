@@ -1,0 +1,81 @@
+/* ========================================================
+   AtmosphericBackground — Minimal Luxury Dark Tech Theme
+   Inspired by Vercel, Linear, and Apple Dark Mode
+   ======================================================== */
+
+.bgWrapper {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: var(--bg-primary, #030307);
+  transition: background-color 0.4s ease;
+}
+
+/* Luxury ambient atmospheric radial glows */
+.glowTopRight {
+  position: absolute;
+  top: -12%;
+  right: -8%;
+  width: 750px;
+  height: 750px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.09) 0%, rgba(108, 99, 255, 0.05) 45%, transparent 70%);
+  filter: blur(80px);
+}
+
+.glowCenterLeft {
+  position: absolute;
+  top: 35%;
+  left: -10%;
+  width: 650px;
+  height: 650px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.07) 0%, rgba(0, 212, 170, 0.04) 50%, transparent 70%);
+  filter: blur(90px);
+}
+
+.glowBottomRight {
+  position: absolute;
+  bottom: -10%;
+  right: 12%;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.06) 0%, transparent 70%);
+  filter: blur(90px);
+}
+
+/* Faint, elegant 1px blueprint grid for premium dev feel */
+.fineGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 50%, black 40%, transparent 85%);
+}
+
+/* Light mode support */
+:global([data-theme="light"]) .bgWrapper {
+  background-color: #f8fafc;
+}
+
+:global([data-theme="light"]) .glowTopRight {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.07) 0%, rgba(99, 102, 241, 0.05) 50%, transparent 70%);
+}
+
+:global([data-theme="light"]) .glowCenterLeft {
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.05) 0%, transparent 70%);
+}
+
+:global([data-theme="light"]) .fineGrid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+}

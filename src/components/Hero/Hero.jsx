@@ -21,7 +21,7 @@ export default function Hero() {
 
   return (
     <section id="home" className={styles.hero}>
-      {/* Background handled by global EngineNetwork3D */}
+      {/* Clean background handled globally */}
       <div className={styles.heroBg} />
 
       {/* Content */}

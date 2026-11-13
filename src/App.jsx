@@ -18,7 +18,7 @@ import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
 import SplashScreen from './components/SplashScreen/SplashScreen';
-import EngineNetwork3D from './components/EngineNetwork3D/EngineNetwork3D';
+import AtmosphericBackground from './components/AtmosphericBackground/AtmosphericBackground';
 import CyberCursor from './components/CyberCursor/CyberCursor';
 import './styles/globals.css';
 
@@ -71,7 +71,7 @@ function App() {
           <>
 
             <ScrollProgress />
-            <EngineNetwork3D />
+            <AtmosphericBackground />
             <Navbar />
             <main>
               <Hero />
