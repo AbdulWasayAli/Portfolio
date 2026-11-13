@@ -113,12 +113,12 @@ export default function GitHubStats() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
-          <span className="subtitle">Real-Time Metrics</span>
+          <span className="subtitle">Activity</span>
           <h2 className={styles.sectionTitle}>
-            Open Source &amp; <span className={styles.gradientHeading}>Activity</span>
+            Open Source &amp; <span className={styles.gradientHeading}>Contributions</span>
           </h2>
           <p className={styles.sectionSubtitle}>
-            Live telemetry directly fetched from GitHub REST API showcasing continuous coding activity.
+            My public repositories, coding cadence, and open-source contributions on GitHub.
           </p>
         </motion.div>
 
@@ -143,16 +143,20 @@ export default function GitHubStats() {
               </div>
 
               <div className={styles.terminalTitle}>
-                <Terminal size={14} className={styles.termIcon} />
-                <span className={styles.userPath}>wasay@github-pulse:</span>
-                <span className={styles.commandPath}>~/telemetry --stream=live</span>
+                <FolderGit2 size={14} className={styles.termIcon} />
+                <span className={styles.userPath}>github.com/AbdulWasayAli</span>
               </div>
             </div>
 
-            <div className={styles.liveIndicatorPill}>
+            <a
+              href={`https://github.com/${GITHUB_USERNAME}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.liveIndicatorPill}
+            >
               <span className={styles.pulseRadar} />
-              <span className={styles.liveIndicatorText}>API ACTIVE</span>
-            </div>
+              <span className={styles.liveIndicatorText}>Profile Active</span>
+            </a>
           </div>
 
           {/* Console Body */}
@@ -225,11 +229,11 @@ export default function GitHubStats() {
               <div className={styles.boxHeader}>
                 <div className={styles.boxTitle}>
                   <Activity size={16} className={styles.cyanIcon} />
-                  <span>Contribution Velocity Calendar</span>
+                  <span>Contribution Calendar</span>
                 </div>
                 <div className={styles.calendarSyncStatus}>
                   <CheckCircle2 size={13} className={styles.greenCheck} />
-                  <span>Real-Time GitHub Activity</span>
+                  <span>Verified Contributions</span>
                 </div>
               </div>
 
@@ -332,8 +336,8 @@ export default function GitHubStats() {
             {/* Terminal Command Bar Footer */}
             <div className={styles.terminalFooter}>
               <div className={styles.footerPrompt}>
-                <span className={styles.promptArrow}>➜</span>
-                <span className={styles.promptCmd}>gh repo list AbdulWasayAli --sort=pushed</span>
+                <span className={styles.promptArrow}>★</span>
+                <span className={styles.promptCmd}>github.com/{GITHUB_USERNAME}</span>
               </div>
 
               <a
@@ -342,7 +346,7 @@ export default function GitHubStats() {
                 rel="noopener noreferrer"
                 className={styles.viewGhBtn}
               >
-                <span>View Full GitHub Profile</span>
+                <span>View GitHub Profile</span>
                 <ArrowUpRight size={15} />
               </a>
             </div>
