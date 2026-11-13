@@ -3,35 +3,48 @@ import styles from './InteractiveBrandBanner.module.css';
 
 export default function InteractiveBrandBanner() {
   const containerRef = useRef(null);
-  const textRef = useRef(null);
 
-  // Mouse coordinates with smooth lerp interpolation
+  // Mouse & Glow state with organic slow-bloom physics
   const mouse = useRef({
-    currentX: 50,
-    currentY: 50,
-    targetX: 50,
-    targetY: 50,
-    isHovered: false,
-    alpha: 0,
+    currentX: 0,
+    currentY: 0,
+    targetX: 0,
+    targetY: 0,
+    // Slow, luxurious glow bloom
+    currentAlpha: 0,
     targetAlpha: 0,
+    currentRadius: 80,
+    targetRadius: 80,
   });
 
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50, alpha: 0 });
+  const [glowState, setGlowState] = useState({
+    x: 0,
+    y: 0,
+    alpha: 0,
+    radius: 80,
+  });
 
   useEffect(() => {
     let animId;
 
     const update = () => {
       const m = mouse.current;
-      // Butter-smooth lerp (fluid liquid tracking like Sheryians)
-      m.currentX += (m.targetX - m.currentX) * 0.12;
-      m.currentY += (m.targetY - m.currentY) * 0.12;
-      m.alpha += (m.targetAlpha - m.alpha) * 0.1;
 
-      setMousePos({
+      // Smooth position gliding (liquid tracking)
+      m.currentX += (m.targetX - m.currentX) * 0.09;
+      m.currentY += (m.targetY - m.currentY) * 0.09;
+
+      // Gradual, slow-blooming glow fade-in
+      m.currentAlpha += (m.targetAlpha - m.currentAlpha) * 0.042;
+
+      // Organic radius blooming (expands gently like waking light)
+      m.currentRadius += (m.targetRadius - m.currentRadius) * 0.048;
+
+      setGlowState({
         x: m.currentX,
         y: m.currentY,
-        alpha: m.alpha,
+        alpha: m.currentAlpha,
+        radius: m.currentRadius,
       });
 
       animId = requestAnimationFrame(update);
@@ -50,14 +63,31 @@ export default function InteractiveBrandBanner() {
     mouse.current.targetX = x;
     mouse.current.targetY = y;
     mouse.current.targetAlpha = 1;
+    mouse.current.targetRadius = 260;
   };
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    // Initialize position at entrance point
+    mouse.current.currentX = x;
+    mouse.current.currentY = y;
+    mouse.current.targetX = x;
+    mouse.current.targetY = y;
+
+    // Start bloom from soft center
+    mouse.current.currentRadius = 90;
+    mouse.current.targetRadius = 260;
     mouse.current.targetAlpha = 1;
   };
 
   const handleMouseLeave = () => {
+    // Graceful fade down
     mouse.current.targetAlpha = 0;
+    mouse.current.targetRadius = 80;
   };
 
   return (
@@ -70,20 +100,33 @@ export default function InteractiveBrandBanner() {
       aria-label="Abdul Wasay Ali Signature Showcase"
     >
       <div className={styles.bannerInner}>
-        {/* Modern Flat Spotlight Typography (Sheryians Style) */}
-        <div ref={textRef} className={styles.textWrapper}>
-          {/* Base Clean Outlined Text */}
+        <div className={styles.textWrapper}>
+          {/* Base Clean Titanium Text */}
           <h2 className={`${styles.brandText} ${styles.baseOutlineText}`}>
             ABDUL WASAY ALI
           </h2>
 
-          {/* Smooth Cursor-Following Fluid Gradient Spotlight */}
+          {/* Slow Blooming Ambient Backlight */}
+          <div
+            className={styles.ambientBacklight}
+            style={{
+              left: `${glowState.x}px`,
+              top: `${glowState.y}px`,
+              width: `${glowState.radius * 2.2}px`,
+              height: `${glowState.radius * 1.8}px`,
+              opacity: glowState.alpha * 0.45,
+            }}
+            aria-hidden="true"
+          />
+
+          {/* Smooth Slow-Glow Fluid Spotlight */}
           <h2
             className={`${styles.brandText} ${styles.spotlightText}`}
             style={{
-              '--spotlight-x': `${mousePos.x}px`,
-              '--spotlight-y': `${mousePos.y}px`,
-              opacity: mousePos.alpha,
+              '--spotlight-x': `${glowState.x}px`,
+              '--spotlight-y': `${glowState.y}px`,
+              '--spotlight-radius': `${glowState.radius}px`,
+              opacity: glowState.alpha,
             }}
             aria-hidden="true"
           >
