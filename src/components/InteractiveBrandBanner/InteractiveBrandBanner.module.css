@@ -1,6 +1,6 @@
 /* ========================================================
-   InteractiveBrandBanner — Slow-Blooming Fluid Spotlight
-   Sheryians Inspired • Gentle Atmospheric Glow Wakeup
+   InteractiveBrandBanner — Exact Sheryians Spotlight Style
+   Color 100% Strictly Inside Letters • Slow & Fluid Motion
    ======================================================== */
 
 .bannerSection {
@@ -8,7 +8,7 @@
   width: 100%;
   margin-top: 65px;
   margin-bottom: 25px;
-  padding: 70px 0 55px;
+  padding: 60px 0 50px;
   background: transparent;
   overflow: hidden;
   user-select: none;
@@ -27,7 +27,7 @@
   justify-content: center;
 }
 
-/* Text Wrapper — flat, crisp container without 3D distortion */
+/* Text Wrapper — flat container, zero overflow */
 .textWrapper {
   position: relative;
   display: inline-block;
@@ -48,46 +48,29 @@
   text-transform: uppercase;
 }
 
-/* 1. Base Text: Luxury Solid Frosted Titanium */
+/* 1. Base Outline Text
+   - Filled with dark background color to hide internal variable font seams
+   - Crisp, clean 1.2px outline stroke (identical to Sheryians video)
+*/
 .baseOutlineText {
-  color: rgba(255, 255, 255, 0.16);
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
-  transition: color 0.4s ease;
+  color: var(--bg-primary, #030307);
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.22);
+  text-stroke: 1.2px rgba(255, 255, 255, 0.22);
+  filter: none;
+  transition: -webkit-text-stroke 0.3s ease;
 }
 
 :global([data-theme="light"]) .baseOutlineText {
-  color: rgba(15, 23, 42, 0.2);
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+  color: #f8fafc;
+  -webkit-text-stroke: 1.2px rgba(15, 23, 42, 0.28);
+  text-stroke: 1.2px rgba(15, 23, 42, 0.28);
 }
 
-/* Atmospheric Backlight that softly blooms behind letters */
-.ambientBacklight {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse,
-    rgba(56, 189, 248, 0.28) 0%,
-    rgba(168, 85, 247, 0.18) 40%,
-    rgba(99, 102, 241, 0.08) 65%,
-    transparent 80%
-  );
-  filter: blur(40px);
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
-  z-index: 0;
-}
-
-:global([data-theme="light"]) .ambientBacklight {
-  background: radial-gradient(
-    ellipse,
-    rgba(99, 102, 241, 0.22) 0%,
-    rgba(14, 165, 233, 0.15) 45%,
-    transparent 75%
-  );
-}
-
-/* 2. Slow-Blooming Fluid Gradient Spotlight */
+/* 2. Fluid Spotlight Text Overlay
+   - Color is STRICTLY clipped to the letters (-webkit-background-clip: text)
+   - filter: none (ZERO drop shadow, ZERO blur outside letters)
+   - Gentle, smooth circular mask matching the video
+*/
 .spotlightText {
   position: absolute;
   top: 0;
@@ -95,7 +78,6 @@
   right: 0;
   bottom: 0;
   pointer-events: none;
-  z-index: 1;
   background: linear-gradient(
     135deg,
     #00e5ff 0%,
@@ -107,22 +89,21 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.5));
+  filter: none;
   will-change: mask-image, -webkit-mask-image, opacity;
   mask-image: radial-gradient(
-    circle var(--spotlight-radius, 240px) at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    circle 180px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.85) 30%,
-    rgba(0, 0, 0, 0.35) 65%,
-    transparent 100%
+    rgba(0, 0, 0, 0.8) 40%,
+    transparent 80%
   );
   -webkit-mask-image: radial-gradient(
-    circle var(--spotlight-radius, 240px) at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+    circle 180px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.85) 30%,
-    rgba(0, 0, 0, 0.35) 65%,
-    transparent 100%
+    rgba(0, 0, 0, 0.8) 40%,
+    transparent 80%
   );
+  transition: opacity 0.3s ease-out;
 }
 
 :global([data-theme="light"]) .spotlightText {
@@ -136,17 +117,31 @@
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 22px rgba(79, 70, 229, 0.35));
+  filter: none;
 }
 
 @media (max-width: 768px) {
   .bannerSection {
     margin-top: 40px;
     margin-bottom: 15px;
-    padding: 45px 0 35px;
+    padding: 40px 0 30px;
   }
   .brandText {
     font-size: clamp(2.3rem, 10.5vw, 4.2rem);
     letter-spacing: 1px;
+  }
+  .spotlightText {
+    mask-image: radial-gradient(
+      circle 130px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 40%,
+      transparent 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle 130px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.8) 40%,
+      transparent 80%
+    );
   }
 }
