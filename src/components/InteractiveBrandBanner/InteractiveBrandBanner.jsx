@@ -1,35 +1,63 @@
-import { useState, useRef, useCallback, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './InteractiveBrandBanner.module.css';
 
 export default function InteractiveBrandBanner() {
   const containerRef = useRef(null);
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-  const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
-  const [isHovered, setIsHovered] = useState(false);
+  const textRef = useRef(null);
 
-  const handleMouseMove = useCallback((e) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const clientX = e.clientX - rect.left;
-    const clientY = e.clientY - rect.top;
+  // Mouse coordinates with smooth lerp interpolation
+  const mouse = useRef({
+    currentX: 50,
+    currentY: 50,
+    targetX: 50,
+    targetY: 50,
+    isHovered: false,
+    alpha: 0,
+    targetAlpha: 0,
+  });
 
-    const xPercent = (clientX / rect.width) * 100;
-    const yPercent = (clientY / rect.height) * 100;
-    setMousePos({ x: xPercent, y: yPercent });
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50, alpha: 0 });
 
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateY = ((clientX - centerX) / centerX) * 8;
-    const rotateX = -((clientY - centerY) / centerY) * 8;
-    setTilt({ rotateX, rotateY });
+  useEffect(() => {
+    let animId;
+
+    const update = () => {
+      const m = mouse.current;
+      // Butter-smooth lerp (fluid liquid tracking like Sheryians)
+      m.currentX += (m.targetX - m.currentX) * 0.12;
+      m.currentY += (m.targetY - m.currentY) * 0.12;
+      m.alpha += (m.targetAlpha - m.alpha) * 0.1;
+
+      setMousePos({
+        x: m.currentX,
+        y: m.currentY,
+        alpha: m.alpha,
+      });
+
+      animId = requestAnimationFrame(update);
+    };
+
+    animId = requestAnimationFrame(update);
+    return () => cancelAnimationFrame(animId);
   }, []);
 
-  const handleMouseEnter = () => setIsHovered(true);
+  const handleMouseMove = (e) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    mouse.current.targetX = x;
+    mouse.current.targetY = y;
+    mouse.current.targetAlpha = 1;
+  };
+
+  const handleMouseEnter = () => {
+    mouse.current.targetAlpha = 1;
+  };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
-    setTilt({ rotateX: 0, rotateY: 0 });
-    setMousePos({ x: 50, y: 50 });
+    mouse.current.targetAlpha = 0;
   };
 
   return (
@@ -43,40 +71,29 @@ export default function InteractiveBrandBanner() {
     >
       <div className={styles.topBeam} />
 
-      <div 
-        className={styles.bannerInner}
-        style={{
-          transform: `perspective(1000px) rotateX(${tilt.rotateX}deg) rotateY(${tilt.rotateY}deg)`,
-        }}
-      >
-        {/* Base Always-Visible Luxury Metallic Text */}
-        <h2 className={`${styles.brandText} ${styles.baseText}`}>
-          ABDUL WASAY ALI
-        </h2>
+      <div className={styles.bannerInner}>
+        {/* Modern Flat Spotlight Typography (Sheryians Style) */}
+        <div ref={textRef} className={styles.textWrapper}>
+          {/* Base Clean Outlined Text */}
+          <h2 className={`${styles.brandText} ${styles.baseOutlineText}`}>
+            ABDUL WASAY ALI
+          </h2>
 
-        {/* Interactive Luminous Spotlight Glow Overlay */}
-        <h2
-          className={`${styles.brandText} ${styles.spotlightText} ${isHovered ? styles.activeSpotlight : styles.idleSpotlight}`}
-          style={{
-            '--mouse-x': `${mousePos.x}%`,
-            '--mouse-y': `${mousePos.y}%`,
-          }}
-          aria-hidden="true"
-        >
-          ABDUL WASAY ALI
-        </h2>
+          {/* Smooth Cursor-Following Fluid Gradient Spotlight */}
+          <h2
+            className={`${styles.brandText} ${styles.spotlightText}`}
+            style={{
+              '--spotlight-x': `${mousePos.x}px`,
+              '--spotlight-y': `${mousePos.y}px`,
+              opacity: mousePos.alpha,
+            }}
+            aria-hidden="true"
+          >
+            ABDUL WASAY ALI
+          </h2>
+        </div>
 
-        {/* Soft Reactive Cursor Halo */}
-        <div
-          className={`${styles.cursorHalo} ${isHovered ? styles.haloVisible : ''}`}
-          style={{
-            left: `${mousePos.x}%`,
-            top: `${mousePos.y}%`,
-          }}
-          aria-hidden="true"
-        />
-
-        {/* Bottom Technical Identity Bar */}
+        {/* Clean Tech Identity Badges */}
         <div className={styles.bottomTechBar}>
           <span className={styles.techBadge}>SOFTWARE ENGINEER</span>
           <span className={styles.dotDivider} />

@@ -1,15 +1,20 @@
+/* ========================================================
+   InteractiveBrandBanner — Sheryians Style Fluid Spotlight
+   Clean, Modern, Flat & Ultra-Professional
+   ======================================================== */
+
 .bannerSection {
   position: relative;
   width: 100%;
-  padding: 85px 0 65px;
-  background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.7) 0%, rgba(3, 3, 7, 0.95) 100%);
+  padding: 95px 0 75px;
+  background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.75) 0%, rgba(3, 3, 7, 0.98) 100%);
   overflow: hidden;
   user-select: none;
   cursor: default;
 }
 
 :global([data-theme="light"]) .bannerSection {
-  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.85) 0%, rgba(230, 235, 245, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.9) 0%, rgba(230, 235, 245, 0.98) 100%);
 }
 
 .topBeam,
@@ -28,6 +33,9 @@
   );
 }
 
+.topBeam { top: 0; }
+.bottomBeam { bottom: 0; }
+
 :global([data-theme="light"]) .topBeam,
 :global([data-theme="light"]) .bottomBeam {
   background: linear-gradient(
@@ -40,9 +48,6 @@
   );
 }
 
-.topBeam { top: 0; }
-.bottomBeam { bottom: 0; }
-
 .bannerInner {
   position: relative;
   width: 100%;
@@ -53,170 +58,91 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transform-style: preserve-3d;
-  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Text Wrapper — flat, crisp container without 3D distortion */
+.textWrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
 }
 
 .brandText {
-  font-family: var(--font-primary, sans-serif);
-  font-size: clamp(2.8rem, 9.8vw, 10.5rem);
+  font-family: var(--font-display, var(--font-primary, sans-serif));
+  font-size: clamp(3rem, 10vw, 10.5rem);
   font-weight: 900;
-  letter-spacing: clamp(-1px, -0.04em, -4px);
-  line-height: 0.95;
+  letter-spacing: clamp(-0.5px, -0.02em, -2px);
+  line-height: 1;
   text-align: center;
   white-space: nowrap;
   margin: 0;
-  padding: 10px 0;
+  padding: 6px 0;
   text-transform: uppercase;
 }
 
-/* Base Text: Always Visible, Elegant Luxury Metallic Frosted Finish */
-.baseText {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.32) 0%,
-    rgba(226, 232, 240, 0.22) 45%,
-    rgba(148, 163, 184, 0.14) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
-  text-stroke: 1px rgba(255, 255, 255, 0.18);
-  transition: all 0.3s ease;
-  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+/* 1. Base Outline Text — Sheryians Style Clean Stroke */
+.baseOutlineText {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.22);
+  text-stroke: 1.2px rgba(255, 255, 255, 0.22);
+  transition: -webkit-text-stroke 0.3s ease;
 }
 
-:global([data-theme="light"]) .baseText {
-  background: linear-gradient(
-    135deg,
-    rgba(15, 23, 42, 0.35) 0%,
-    rgba(71, 85, 105, 0.25) 50%,
-    rgba(148, 163, 184, 0.18) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(99, 102, 241, 0.3);
-  text-stroke: 1px rgba(99, 102, 241, 0.3);
-  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.08));
+:global([data-theme="light"]) .baseOutlineText {
+  color: transparent;
+  -webkit-text-stroke: 1.2px rgba(15, 23, 42, 0.28);
+  text-stroke: 1.2px rgba(15, 23, 42, 0.28);
 }
 
-/* Spotlight Glowing Overlay */
+/* 2. Fluid Gradient Spotlight Overlay */
 .spotlightText {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    #ffffff 0%,
+    #00e5ff 0%,
     #38bdf8 30%,
-    #a78bfa 60%,
-    #00e5ff 100%
+    #818cf8 60%,
+    #c084fc 85%,
+    #ec4899 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.55));
-  transition: opacity 0.3s ease;
-}
-
-/* Active Hover Spotlight: Wide, generous illumination that doesn't cut letters off awkwardly */
-.activeSpotlight {
-  opacity: 1;
+  filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.45));
+  will-change: mask-image, -webkit-mask-image, opacity;
   mask-image: radial-gradient(
-    ellipse 480px 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    circle 230px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0.7) 45%,
     rgba(0, 0, 0, 0) 80%
   );
   -webkit-mask-image: radial-gradient(
-    ellipse 480px 280px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    circle 230px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
     rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0.7) 45%,
     rgba(0, 0, 0, 0) 80%
   );
-}
-
-/* Idle State: Calm, graceful ambient sweep so the name is never blank or dead */
-.idleSpotlight {
-  opacity: 0.45;
-  mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 50%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(0, 0, 0, 0.8) 50%,
-    transparent 100%
-  );
-  mask-size: 200% 100%;
-  -webkit-mask-size: 200% 100%;
-  animation: ambientSweep 6s ease-in-out infinite alternate;
-}
-
-@keyframes ambientSweep {
-  0% {
-    mask-position: -80% 0;
-    -webkit-mask-position: -80% 0;
-  }
-  100% {
-    mask-position: 180% 0;
-    -webkit-mask-position: 180% 0;
-  }
+  transition: opacity 0.25s ease-out;
 }
 
 :global([data-theme="light"]) .spotlightText {
   background: linear-gradient(
     135deg,
-    #0f172a 0%,
-    #4338ca 35%,
-    #0284c7 70%,
-    #6366f1 100%
+    #0284c7 0%,
+    #4f46e5 35%,
+    #7c3aed 70%,
+    #db2777 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.35));
-}
-
-/* Soft Cursor Halo */
-.cursorHalo {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  background: radial-gradient(
-    circle,
-    rgba(56, 189, 248, 0.15) 0%,
-    rgba(168, 85, 247, 0.08) 40%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  filter: blur(20px);
-  z-index: 1;
-}
-
-.haloVisible {
-  opacity: 1;
-}
-
-:global([data-theme="light"]) .cursorHalo {
-  background: radial-gradient(
-    circle,
-    rgba(99, 102, 241, 0.16) 0%,
-    rgba(14, 165, 233, 0.1) 40%,
-    transparent 70%
-  );
+  filter: drop-shadow(0 0 20px rgba(79, 70, 229, 0.3));
 }
 
 /* Bottom Technical Identity Bar */
@@ -225,7 +151,7 @@
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 24px;
+  margin-top: 28px;
   flex-wrap: wrap;
 }
 
@@ -249,15 +175,15 @@
 }
 
 :global([data-theme="light"]) .techBadge:hover {
-  color: #4338ca;
+  color: #4f46e5;
 }
 
 .dotDivider {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background-color: var(--accent, #00e5ff);
+  box-shadow: 0 0 8px var(--accent, #00e5ff);
 }
 
 :global([data-theme="light"]) .dotDivider {
@@ -267,13 +193,28 @@
 
 @media (max-width: 768px) {
   .bannerSection {
-    padding: 60px 0 40px;
+    padding: 60px 0 45px;
   }
   .brandText {
-    font-size: clamp(2.4rem, 11vw, 4.2rem);
+    font-size: clamp(2.4rem, 11vw, 4.4rem);
+    letter-spacing: -1px;
   }
   .techBadge {
     font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.14em;
+  }
+  .spotlightText {
+    mask-image: radial-gradient(
+      circle 160px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.7) 45%,
+      rgba(0, 0, 0, 0) 80%
+    );
+    -webkit-mask-image: radial-gradient(
+      circle 160px at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+      rgba(0, 0, 0, 1) 0%,
+      rgba(0, 0, 0, 0.7) 45%,
+      rgba(0, 0, 0, 0) 80%
+    );
   }
 }
