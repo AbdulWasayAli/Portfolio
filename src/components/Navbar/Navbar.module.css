@@ -1,106 +1,100 @@
 /* ========================================================
-   Option 1: Sleek Minimalist Full-Width Glass Strip
+   Jitter-Style Floating Pill Navbar (Custom Portfolio Theme)
+   Modern, Clean, Three-Zone Layout: Logo • Links • Action
    ======================================================== */
 
-.navbar {
+.navHeader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: var(--z-sticky);
-  padding: 18px 0;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  background: transparent;
-}
-
-.navbar.scrolled {
-  background: rgba(9, 13, 26, 0.75);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.65);
-}
-
-/* Light Mode Scrolled Navbar: Frosted Opal Glass */
-:global([data-theme="light"]) .navbar.scrolled {
-  background: rgba(255, 255, 255, 0.82);
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
-}
-
-/* Continuously glowing fine laser line on bottom when scrolled */
-.navbar.scrolled::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
+  top: 16px;
   left: 0;
   right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(56, 189, 248, 0.3) 25%,
-    rgba(168, 85, 247, 0.4) 50%,
-    rgba(56, 189, 248, 0.3) 75%,
-    transparent 100%
-  );
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: var(--z-sticky, 1000);
   pointer-events: none;
+  padding: 0 16px;
 }
 
-:global([data-theme="light"]) .navbar.scrolled::after {
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(108, 99, 255, 0.25) 25%,
-    rgba(0, 212, 170, 0.35) 50%,
-    rgba(108, 99, 255, 0.25) 75%,
-    transparent 100%
-  );
-}
-
-.navContainer {
+/* Floating Jitter-Style Pill Bar */
+.jitterBar {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1140px;
+  min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: var(--container-max);
-  margin: 0 auto;
-  padding: 0 var(--container-padding);
-  width: 100%;
+  padding: 6px 10px 6px 16px;
+  border-radius: 999px;
+  background: rgba(10, 14, 28, 0.82);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 16px 40px -10px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Logo */
-.logoLink {
+.jitterBar.scrolled {
+  background: rgba(8, 12, 24, 0.92);
+  border-color: rgba(56, 189, 248, 0.25);
+  box-shadow: 
+    0 20px 45px -8px rgba(0, 0, 0, 0.75),
+    0 0 20px rgba(56, 189, 248, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+/* Light Theme: Frosted White Pearl Pill */
+:global([data-theme="light"]) .jitterBar {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 
+    0 16px 36px -10px rgba(15, 23, 42, 0.08),
+    0 1px 3px rgba(15, 23, 42, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+:global([data-theme="light"]) .jitterBar.scrolled {
+  background: rgba(255, 255, 255, 0.97);
+  border-color: rgba(99, 102, 241, 0.22);
+  box-shadow: 0 20px 42px -8px rgba(99, 102, 241, 0.12);
+}
+
+/* Left: Logo */
+.logoBox {
   text-decoration: none;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
+  flex-shrink: 0;
 }
 
-/* Navigation Links */
+/* Center: Clean Text Navigation Links */
 .navLinks {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: 22px;
 }
 
 .navLink {
   position: relative;
+  font-family: var(--font-primary, sans-serif);
   font-size: 14px;
   font-weight: 500;
-  color: var(--text-secondary);
-  padding: 8px 6px;
-  transition: color 0.25s ease;
-  cursor: pointer;
+  color: #94a3b8;
+  padding: 6px 2px;
   background: none;
   border: none;
+  cursor: pointer;
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-}
-
-.navLinkText {
-  letter-spacing: 0.2px;
+  transition: color 0.2s ease;
+  white-space: nowrap;
 }
 
 .navLink:hover {
@@ -112,9 +106,8 @@
   font-weight: 600;
 }
 
-/* Light Theme Navigation Links: Crisp obsidian with indigo active state */
 :global([data-theme="light"]) .navLink {
-  color: #475569;
+  color: #64748b;
 }
 
 :global([data-theme="light"]) .navLink:hover {
@@ -126,35 +119,73 @@
   font-weight: 700;
 }
 
-/* High-tech sliding laser underline */
-.activeLaserLine {
+.activeDot {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, #38bdf8, #818cf8);
-  border-radius: 999px;
-  box-shadow: 0 0 10px rgba(56, 189, 248, 0.8), 0 0 18px rgba(129, 140, 248, 0.4);
+  bottom: -4px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
 }
 
-:global([data-theme="light"]) .activeLaserLine {
-  background: linear-gradient(90deg, #6c63ff, #00d4aa);
-  box-shadow: 0 0 8px rgba(108, 99, 255, 0.5), 0 0 14px rgba(0, 212, 170, 0.3);
+:global([data-theme="light"]) .activeDot {
+  background-color: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
 }
 
-/* Nav Right */
-.navRight {
+/* Right Actions (Theme Toggle & Solid Action Pill) */
+.navActions {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
+  gap: 12px;
+  flex-shrink: 0;
 }
 
-.menuBtn {
+/* Jitter-Style High Contrast Action Pill */
+.contactCta {
+  background: #ffffff;
+  color: #0a0e1c;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 255, 255, 0.25);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contactCta:hover {
+  background: #38bdf8;
+  color: #030611;
+  transform: translateY(-1.5px);
+  box-shadow: 0 6px 20px rgba(56, 189, 248, 0.45);
+}
+
+:global([data-theme="light"]) .contactCta {
+  background: #0f172a;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
+}
+
+:global([data-theme="light"]) .contactCta:hover {
+  background: #4f46e5;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.35);
+}
+
+/* Mobile Hamburger Button */
+.mobileMenuBtn {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  width: 28px;
+  gap: 4px;
+  width: 26px;
   cursor: pointer;
   background: none;
   border: none;
@@ -170,21 +201,21 @@
   transition: all var(--transition-base);
 }
 
-.menuBtn.open .menuLine:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+.mobileMenuBtn.open .menuLine:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
 }
 
-.menuBtn.open .menuLine:nth-child(2) {
+.mobileMenuBtn.open .menuLine:nth-child(2) {
   opacity: 0;
 }
 
-.menuBtn.open .menuLine:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+.mobileMenuBtn.open .menuLine:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  .menuBtn {
+/* Mobile Layout */
+@media (max-width: 900px) {
+  .mobileMenuBtn {
     display: flex;
   }
 
@@ -193,11 +224,11 @@
     top: 0;
     right: -100%;
     width: 75%;
-    max-width: 320px;
+    max-width: 300px;
     height: 100vh;
     flex-direction: column;
     justify-content: center;
-    gap: var(--space-xl);
+    gap: 16px;
     background: rgba(11, 15, 29, 0.96);
     border-left: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
@@ -206,12 +237,12 @@
     transition: right var(--transition-base);
     z-index: 5;
     padding: 24px;
+    border-radius: 0;
   }
 
   :global([data-theme="light"]) .navLinks {
     background: rgba(255, 255, 255, 0.97);
     border-left: 1px solid rgba(15, 23, 42, 0.08);
-    box-shadow: -10px 0 40px rgba(15, 23, 42, 0.12);
   }
 
   .navLinks.open {
@@ -219,10 +250,12 @@
   }
 
   .navLink {
-    font-size: var(--fs-lg);
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 16px;
   }
 
-  .overlay {
+  .mobileOverlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -233,13 +266,10 @@
     visibility: hidden;
     transition: all var(--transition-base);
     z-index: 4;
+    pointer-events: auto;
   }
 
-  :global([data-theme="light"]) .overlay {
-    background: rgba(15, 23, 42, 0.35);
-  }
-
-  .overlay.show {
+  .mobileOverlay.show {
     opacity: 1;
     visibility: visible;
   }

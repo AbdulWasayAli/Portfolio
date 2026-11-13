@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { navLinks } from '../../data/portfolioData';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
@@ -12,15 +11,14 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
 
-      // Determine active section
       const sections = navLinks.map(link => link.href.replace('#', ''));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 120) {
+          if (rect.top <= 140) {
             setActiveSection(sections[i]);
             break;
           }
@@ -40,12 +38,15 @@ export default function Navbar() {
     }
   };
 
+  // Center navigation items (Contact is the right action button like Jitter)
+  const centerLinks = navLinks.filter(l => l.name !== 'Contact');
+
   return (
-    <header className={`${styles.navbar} ${scrolled ? styles.scrolled : ''}`}>
-      <div className={styles.navContainer}>
-        {/* Logo Left */}
+    <header className={styles.navHeader}>
+      <div className={`${styles.jitterBar} ${scrolled ? styles.scrolled : ''}`}>
+        {/* Left: Logo */}
         <a
-          className={styles.logoLink}
+          className={styles.logoBox}
           href="#home"
           onClick={(e) => {
             e.preventDefault();
@@ -56,9 +57,9 @@ export default function Navbar() {
           <Logo />
         </a>
 
-        {/* Center Minimalist Navigation Links with Laser Underline */}
-        <div className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`}>
-          {navLinks.map((link) => {
+        {/* Center: Clean Jitter-Style Text Links */}
+        <nav className={`${styles.navLinks} ${menuOpen ? styles.open : ''}`} aria-label="Main Navigation">
+          {centerLinks.map((link) => {
             const isActive = activeSection === link.href.replace('#', '');
             return (
               <button
@@ -66,25 +67,28 @@ export default function Navbar() {
                 className={`${styles.navLink} ${isActive ? styles.active : ''}`}
                 onClick={() => handleNavClick(link.href)}
               >
-                <span className={styles.navLinkText}>{link.name}</span>
-                {isActive && (
-                  <motion.span
-                    layoutId="activeNavLine"
-                    className={styles.activeLaserLine}
-                    transition={{ type: 'spring', stiffness: 420, damping: 32 }}
-                  />
-                )}
+                <span>{link.name}</span>
+                {isActive && <span className={styles.activeDot} />}
               </button>
             );
           })}
-        </div>
+        </nav>
 
-        {/* Right Action (Theme Toggle & Mobile Menu) */}
-        <div className={styles.navRight}>
+        {/* Right: Theme Toggle & Jitter-Style Solid Action Pill */}
+        <div className={styles.navActions}>
           <ThemeToggle />
 
           <button
-            className={`${styles.menuBtn} ${menuOpen ? styles.open : ''}`}
+            type="button"
+            className={styles.contactCta}
+            onClick={() => handleNavClick('#contact')}
+          >
+            Contact
+          </button>
+
+          {/* Mobile Hamburger */}
+          <button
+            className={`${styles.mobileMenuBtn} ${menuOpen ? styles.open : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -95,9 +99,9 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Backdrop Overlay */}
+      {/* Mobile Backdrop */}
       <div
-        className={`${styles.overlay} ${menuOpen ? styles.show : ''}`}
+        className={`${styles.mobileOverlay} ${menuOpen ? styles.show : ''}`}
         onClick={() => setMenuOpen(false)}
       />
     </header>
