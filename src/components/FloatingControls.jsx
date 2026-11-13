@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './FloatingControls.module.css';
 
 export default function FloatingControls() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,26 +21,43 @@ export default function FloatingControls() {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className={styles.floatingContainer}>
-      {/* WhatsApp Quick Chat Button */}
-      <a
+      {/* Jitter-Style Morphing WhatsApp Button: circle → pill on hover */}
+      <motion.a
         href={`https://wa.me/923110214934?text=${encodeURIComponent("Hi Abdul Wasay, I saw your portfolio and would like to connect!")}`}
         target="_blank"
         rel="noopener noreferrer"
         className={`${styles.floatingBtn} ${styles.whatsappBtn}`}
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        layout
+        transition={{
+          layout: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+        }}
       >
-        <svg className={styles.whatsappIcon} width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.971.53 1.777.817 2.796.817 3.181 0 5.767-2.587 5.767-5.766.001-3.181-2.585-5.768-5.767-5.768zm0-2.172c4.379 0 7.938 3.559 7.938 7.94 0 4.38-3.559 7.939-7.938 7.939-1.378 0-2.671-.352-3.799-.968l-4.232 1.109 1.129-4.127c-.689-1.183-1.076-2.548-1.076-3.953 0-4.381 3.559-7.94 7.978-7.94zm-3.086 5.864c-.168-.372-.345-.379-.505-.386-.131-.006-.28-.006-.43-.006s-.393.056-.599.281c-.206.225-.786.768-.786 1.872 0 1.104.805 2.172.917 2.321.112.15 1.554 2.483 3.823 3.376 1.886.742 2.27.594 2.682.556.411-.038 1.328-.543 1.515-1.068.187-.525.187-.975.131-1.069-.056-.094-.206-.15-.43-.263-.225-.112-1.328-.656-1.534-.731-.206-.075-.356-.113-.505.112-.15.225-.58 1.069-.711 1.219-.131.15-.262.169-.487.056-.225-.112-.949-.35-1.808-1.115-.668-.596-1.119-1.332-1.25-1.557-.131-.225-.014-.347.098-.459.102-.102.225-.262.337-.394.112-.131.15-.225.225-.375.075-.15.037-.281-.019-.394-.056-.113-.505-1.218-.692-1.668z"/>
-        </svg>
-        <span className={styles.whatsappText}>WhatsApp</span>
-      </a>
+        <motion.div layout="position" className={styles.whatsappIconBox}>
+          <svg className={styles.whatsappIcon} width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+        </motion.div>
+
+        <AnimatePresence>
+          {isHovered && (
+            <motion.span
+              className={styles.whatsappText}
+              initial={{ opacity: 0, width: 0, x: -4 }}
+              animate={{ opacity: 1, width: 'auto', x: 0 }}
+              exit={{ opacity: 0, width: 0, x: -4 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              WhatsApp
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.a>
 
       {/* Let's Connect Button */}
       <button
