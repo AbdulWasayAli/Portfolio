@@ -18,7 +18,7 @@ import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
 import SplashScreen from './components/SplashScreen/SplashScreen';
-import ScrollMatrix3D from './components/ScrollMatrix3D/ScrollMatrix3D';
+import EngineNetwork3D from './components/EngineNetwork3D/EngineNetwork3D';
 import CyberCursor from './components/CyberCursor/CyberCursor';
 import './styles/globals.css';
 
@@ -71,7 +71,7 @@ function App() {
           <>
 
             <ScrollProgress />
-            <ScrollMatrix3D />
+            <EngineNetwork3D />
             <Navbar />
             <main>
               <Hero />

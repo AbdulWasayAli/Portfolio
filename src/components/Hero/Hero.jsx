@@ -1,7 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { heroData, personalInfo } from '../../data/portfolioData';
-import CyberSphere from './CyberSphere';
 import styles from './Hero.module.css';
 
 export default function Hero() {
@@ -16,49 +15,14 @@ export default function Hero() {
     return () => clearInterval(timer);
   }, []);
 
-  const particles = useMemo(() => {
-    return Array.from({ length: 30 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      delay: `${Math.random() * 5}s`,
-      duration: `${2 + Math.random() * 4}s`,
-      size: `${2 + Math.random() * 3}px`,
-    }));
-  }, []);
-
   const handleScrollDown = () => {
     document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <section id="home" className={styles.hero}>
-      {/* Animated Background with 3D Interactive Cyber Sphere */}
-      <div className={styles.heroBg}>
-        <CyberSphere />
-        <div className={`${styles.gradientOrb} ${styles.orb1}`} />
-        <div className={`${styles.gradientOrb} ${styles.orb2}`} />
-        <div className={`${styles.gradientOrb} ${styles.orb3}`} />
-        <div className={styles.gridOverlay} />
-
-        {/* Floating Particles */}
-        <div className={styles.particles}>
-          {particles.map((p) => (
-            <div
-              key={p.id}
-              className={styles.particle}
-              style={{
-                left: p.left,
-                top: p.top,
-                animationDelay: p.delay,
-                animationDuration: p.duration,
-                width: p.size,
-                height: p.size,
-              }}
-            />
-          ))}
-        </div>
-      </div>
+      {/* Background handled by global EngineNetwork3D */}
+      <div className={styles.heroBg} />
 
       {/* Content */}
       <div className={styles.heroContent}>
