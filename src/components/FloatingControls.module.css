@@ -85,27 +85,47 @@
   overflow: hidden;
 }
 
-/* ─── Let's Connect Button ─── */
+/* ─── Let's Connect Button: Circle by default, morphs to pill on hover ─── */
 .connectBtn {
   background: var(--gradient-primary);
   color: #ffffff;
   border: none;
   box-shadow: 0 6px 20px var(--primary-glow);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
+  justify-content: center;
+  gap: 0;
+  overflow: hidden;
 }
 
 .connectBtn:hover {
-  transform: translateY(-3px) scale(1.03);
+  transform: translateY(-2px);
   box-shadow: 0 10px 30px var(--primary-glow);
+  width: auto;
+  padding: 0 18px;
+  border-radius: 999px;
+  gap: 8px;
 }
 
-.connectIcon {
-  font-size: 16px;
-  line-height: 1;
+.connectIconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.connectSvg {
+  display: block;
 }
 
 .connectText {
   white-space: nowrap;
+  font-weight: 600;
+  font-size: 13.5px;
   letter-spacing: 0.3px;
+  overflow: hidden;
 }
 
 /* ─── Scroll To Top ─── */
@@ -183,16 +203,9 @@
     right: 16px;
   }
 
-  .connectText {
-    display: none;
-  }
-
   .connectBtn {
-    padding: 12px;
-    border-radius: 50%;
     width: 44px;
     height: 44px;
-    justify-content: center;
   }
 
   .whatsappBtn {

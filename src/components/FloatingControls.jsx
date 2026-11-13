@@ -4,7 +4,8 @@ import styles from './FloatingControls.module.css';
 
 export default function FloatingControls() {
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const [isHovered, setIsHovered] = useState(false);
+  const [isWhatsappHovered, setIsWhatsappHovered] = useState(false);
+  const [isConnectHovered, setIsConnectHovered] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,8 +32,8 @@ export default function FloatingControls() {
         className={`${styles.floatingBtn} ${styles.whatsappBtn}`}
         title="Chat on WhatsApp"
         aria-label="Chat on WhatsApp"
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
+        onMouseEnter={() => setIsWhatsappHovered(true)}
+        onMouseLeave={() => setIsWhatsappHovered(false)}
         layout
         transition={{
           layout: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
@@ -45,7 +46,7 @@ export default function FloatingControls() {
         </motion.div>
 
         <AnimatePresence>
-          {isHovered && (
+          {isWhatsappHovered && (
             <motion.span
               className={styles.whatsappText}
               initial={{ opacity: 0, width: 0, x: -4 }}
@@ -59,18 +60,38 @@ export default function FloatingControls() {
         </AnimatePresence>
       </motion.a>
 
-      {/* Let's Connect Button */}
-      <button
+      {/* Morphing Let's Connect Button: circle → pill on hover */}
+      <motion.button
         className={`${styles.floatingBtn} ${styles.connectBtn}`}
         onClick={scrollToContact}
         title="Send me a message"
         aria-label="Let's Connect"
+        onMouseEnter={() => setIsConnectHovered(true)}
+        onMouseLeave={() => setIsConnectHovered(false)}
+        layout
+        transition={{
+          layout: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+        }}
       >
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={styles.connectSvg}>
-          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-        </svg>
-        <span className={styles.connectText}>Let's Connect</span>
-      </button>
+        <motion.div layout="position" className={styles.connectIconBox}>
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={styles.connectSvg}>
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        </motion.div>
+        <AnimatePresence>
+          {isConnectHovered && (
+            <motion.span
+              className={styles.connectText}
+              initial={{ opacity: 0, width: 0, x: -4 }}
+              animate={{ opacity: 1, width: 'auto', x: 0 }}
+              exit={{ opacity: 0, width: 0, x: -4 }}
+              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              Let's Connect
+            </motion.span>
+          )}
+        </AnimatePresence>
+      </motion.button>
     </div>
   );
 }
