@@ -1,51 +1,16 @@
 /* ========================================================
-   InteractiveBrandBanner — Luxury Fluid Spotlight Showcase
-   Sheryians Inspired • Engraved Titanium Base + Neon Torch
+   InteractiveBrandBanner — Seamless Fluid Spotlight Showcase
+   Sheryians Inspired • No Hard Border Beams • Clean Typography
    ======================================================== */
 
 .bannerSection {
   position: relative;
   width: 100%;
-  padding: 85px 0 75px;
-  background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.75) 0%, rgba(3, 3, 7, 0.98) 100%);
+  padding: 60px 0 50px;
+  background: transparent;
   overflow: hidden;
   user-select: none;
   cursor: default;
-}
-
-:global([data-theme="light"]) .bannerSection {
-  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.9) 0%, rgba(230, 235, 245, 0.98) 100%);
-}
-
-.topBeam,
-.bottomBeam {
-  position: absolute;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent 5%,
-    rgba(108, 99, 255, 0.35) 25%,
-    rgba(56, 189, 248, 0.6) 50%,
-    rgba(168, 85, 247, 0.35) 75%,
-    transparent 95%
-  );
-}
-
-.topBeam { top: 0; }
-.bottomBeam { bottom: 0; }
-
-:global([data-theme="light"]) .topBeam,
-:global([data-theme="light"]) .bottomBeam {
-  background: linear-gradient(
-    90deg,
-    transparent 5%,
-    rgba(108, 99, 255, 0.25) 30%,
-    rgba(14, 165, 233, 0.35) 50%,
-    rgba(108, 99, 255, 0.25) 70%,
-    transparent 95%
-  );
 }
 
 .bannerInner {
@@ -70,51 +35,30 @@
 
 .brandText {
   font-family: var(--font-display, 'Outfit', 'Plus Jakarta Sans', sans-serif);
-  font-size: clamp(2.8rem, 9.6vw, 10.2rem);
+  font-size: clamp(2.8rem, 9.8vw, 10.5rem);
   font-weight: 800;
   letter-spacing: clamp(1px, 0.03em, 4px);
   line-height: 1.05;
   text-align: center;
   white-space: nowrap;
   margin: 0;
-  padding: 6px 0;
+  padding: 8px 0;
   text-transform: uppercase;
 }
 
-/* 1. Base Text: Luxury Engraved Titanium Finish
-   - NOT empty/hollow wireframe!
-   - Soft metallic dark fill with crisp 1px silver stroke
-   - Looks breathtaking even BEFORE the cursor touches it!
+/* 1. Base Text: Flawless Silky Solid Metallic
+   - NO -webkit-text-stroke (fixes the overlapping seam lines inside A, B, D, W, Y)
+   - Clean, elegant frosted silver/titanium fill
 */
 .baseOutlineText {
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.22) 0%,
-    rgba(203, 213, 225, 0.14) 50%,
-    rgba(148, 163, 184, 0.06) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.2px rgba(255, 255, 255, 0.25);
-  text-stroke: 1.2px rgba(255, 255, 255, 0.25);
-  filter: drop-shadow(0 2px 12px rgba(0, 0, 0, 0.6));
-  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.16);
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
+  transition: color 0.3s ease;
 }
 
 :global([data-theme="light"]) .baseOutlineText {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.28) 0%,
-    rgba(71, 85, 105, 0.18) 50%,
-    rgba(148, 163, 184, 0.1) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1.2px rgba(15, 23, 42, 0.35);
-  text-stroke: 1.2px rgba(15, 23, 42, 0.35);
-  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.06));
+  color: rgba(15, 23, 42, 0.2);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
 }
 
 /* 2. Fluid Gradient Spotlight Overlay (Active on Cursor) */
@@ -169,7 +113,7 @@
 
 @media (max-width: 768px) {
   .bannerSection {
-    padding: 60px 0 45px;
+    padding: 45px 0 35px;
   }
   .brandText {
     font-size: clamp(2.3rem, 10.5vw, 4.2rem);

@@ -69,8 +69,6 @@ export default function InteractiveBrandBanner() {
       onMouseLeave={handleMouseLeave}
       aria-label="Abdul Wasay Ali Signature Showcase"
     >
-      <div className={styles.topBeam} />
-
       <div className={styles.bannerInner}>
         {/* Modern Flat Spotlight Typography (Sheryians Style) */}
         <div ref={textRef} className={styles.textWrapper}>
@@ -93,8 +91,6 @@ export default function InteractiveBrandBanner() {
           </h2>
         </div>
       </div>
-
-      <div className={styles.bottomBeam} />
     </section>
   );
 }
