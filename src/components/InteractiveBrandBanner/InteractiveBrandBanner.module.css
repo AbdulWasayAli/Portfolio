@@ -1,38 +1,88 @@
+/* ========================================================
+   InteractiveBrandBanner — Luxury Software Engineer Signature
+   Typing Terminal & Decoded Shimmer Typography
+   ======================================================== */
+
 .bannerSection {
   position: relative;
   width: 100%;
-  padding: 80px 0 60px;
-  background: radial-gradient(circle at 50% 50%, rgba(13, 15, 28, 0.7) 0%, rgba(3, 3, 7, 0.95) 100%);
+  padding: 100px 0 80px;
+  background: radial-gradient(circle at 50% 50%, rgba(10, 14, 28, 0.75) 0%, rgba(3, 3, 7, 0.96) 100%);
   overflow: hidden;
   user-select: none;
   cursor: default;
 }
 
-[data-theme="light"] .bannerSection {
-  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.8) 0%, rgba(230, 235, 245, 0.95) 100%);
+:global([data-theme="light"]) .bannerSection {
+  background: radial-gradient(circle at 50% 50%, rgba(241, 245, 249, 0.9) 0%, rgba(226, 232, 240, 0.96) 100%);
 }
 
+/* Neon Top & Bottom Horizon Beams */
 .topBeam,
 .bottomBeam {
   position: absolute;
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent 5%, rgba(108, 99, 255, 0.4) 30%, rgba(0, 229, 255, 0.6) 50%, rgba(108, 99, 255, 0.4) 70%, transparent 95%);
-}
-
-[data-theme="light"] .topBeam,
-[data-theme="light"] .bottomBeam {
-  background: linear-gradient(90deg, transparent 5%, rgba(108, 99, 255, 0.25) 30%, rgba(14, 165, 233, 0.35) 50%, rgba(108, 99, 255, 0.25) 70%, transparent 95%);
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(108, 99, 255, 0.35) 25%,
+    rgba(56, 189, 248, 0.65) 50%,
+    rgba(168, 85, 247, 0.35) 75%,
+    transparent 95%
+  );
 }
 
 .topBeam { top: 0; }
 .bottomBeam { bottom: 0; }
 
+:global([data-theme="light"]) .topBeam,
+:global([data-theme="light"]) .bottomBeam {
+  background: linear-gradient(
+    90deg,
+    transparent 5%,
+    rgba(99, 102, 241, 0.25) 25%,
+    rgba(14, 165, 233, 0.4) 50%,
+    rgba(168, 85, 247, 0.25) 75%,
+    transparent 95%
+  );
+}
+
+/* Ambient Radial Glow Behind Name */
+.centerGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 350px;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse,
+    rgba(56, 189, 248, 0.12) 0%,
+    rgba(139, 92, 246, 0.08) 45%,
+    transparent 70%
+  );
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+:global([data-theme="light"]) .centerGlow {
+  background: radial-gradient(
+    ellipse,
+    rgba(56, 189, 248, 0.1) 0%,
+    rgba(99, 102, 241, 0.06) 45%,
+    transparent 70%
+  );
+}
+
 .bannerInner {
   position: relative;
+  z-index: 1;
   width: 100%;
-  max-width: 1600px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
@@ -40,90 +90,243 @@
   align-items: center;
   justify-content: center;
   transform-style: preserve-3d;
-  transition: transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.brandText {
-  font-family: var(--font-primary, sans-serif);
-  font-size: clamp(3rem, 10.5vw, 11rem);
+/* Terminal Header Prompt */
+.terminalPrompt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  margin-bottom: 18px;
+}
+
+:global([data-theme="light"]) .terminalPrompt {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.terminalDotPing {
+  position: relative;
+  width: 8px;
+  height: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pingDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00e5ff;
+  box-shadow: 0 0 8px #00e5ff;
+}
+
+.pingWave {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #00e5ff;
+  opacity: 0.8;
+  animation: pingAnimation 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes pingAnimation {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.terminalPromptText {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+:global([data-theme="light"]) .terminalPromptText {
+  color: #4f46e5;
+}
+
+/* Big Prestigious Name Container */
+.nameContainer {
+  position: relative;
+  cursor: pointer;
+  padding: 8px 0;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nameContainer:hover {
+  transform: scale(1.02);
+}
+
+.brandTitle {
+  font-family: var(--font-display, var(--font-primary, sans-serif));
+  font-size: clamp(2.8rem, 8.8vw, 9.5rem);
   font-weight: 900;
-  letter-spacing: clamp(-1px, -0.04em, -4px);
+  letter-spacing: clamp(-1px, -0.035em, -3.5px);
   line-height: 0.95;
   text-align: center;
   white-space: nowrap;
   margin: 0;
-  padding: 10px 0;
   text-transform: uppercase;
+  position: relative;
 }
 
-.baseOutlineText {
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.12);
-  text-stroke: 1.5px rgba(255, 255, 255, 0.12);
+/* Luminous Cyber-Gradient Shimmer Text */
+.brandGradientText {
+  background: linear-gradient(
+    120deg,
+    #ffffff 0%,
+    #f1f5f9 20%,
+    #38bdf8 40%,
+    #c084fc 60%,
+    #ffffff 80%,
+    #38bdf8 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmer 7s ease-in-out infinite alternate;
+  filter: drop-shadow(0 6px 32px rgba(56, 189, 248, 0.35));
+  display: inline-block;
+  transition: filter 0.3s ease;
+}
+
+.nameContainer:hover .brandGradientText {
+  filter: drop-shadow(0 8px 45px rgba(56, 189, 248, 0.65));
+}
+
+@keyframes textShimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 100% center; }
+}
+
+:global([data-theme="light"]) .brandGradientText {
+  background: linear-gradient(
+    120deg,
+    #0f172a 0%,
+    #1e1b4b 25%,
+    #4338ca 50%,
+    #0284c7 75%,
+    #0f172a 100%
+  );
+  background-size: 250% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 18px rgba(99, 102, 241, 0.22));
+}
+
+/* Name Underglow */
+.nameUnderglow {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.6) 50%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  opacity: 0.7;
+}
+
+/* Modern Interactive Typing Console */
+.typingConsole {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 28px;
+  padding: 10px 22px;
+  background: rgba(10, 15, 30, 0.75);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 999px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 
+    0 10px 30px -6px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(56, 189, 248, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  max-width: 90vw;
   transition: all 0.3s ease;
 }
 
-/* Light Mode: Polished Chrome / Deep Executive Titanium Metallic Gradient with Soft Stroke */
-[data-theme="light"] .baseOutlineText {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.22) 0%, rgba(99, 102, 241, 0.25) 50%, rgba(14, 165, 233, 0.2) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -webkit-text-stroke: 1px rgba(99, 102, 241, 0.25);
-  text-stroke: 1px rgba(99, 102, 241, 0.25);
-  filter: drop-shadow(0 2px 8px rgba(99, 102, 241, 0.08));
+.typingConsole:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  box-shadow: 
+    0 12px 35px -6px rgba(0, 0, 0, 0.6),
+    0 0 25px rgba(56, 189, 248, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-.spotlightText {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  pointer-events: none;
-  background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 25%, #00e5ff 60%, #34d399 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 35px rgba(0, 229, 255, 0.6));
-  mask-image: radial-gradient(
-    circle 240px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 35%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  -webkit-mask-image: radial-gradient(
-    circle 240px at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(0, 0, 0, 1) 0%,
-    rgba(0, 0, 0, 0.7) 35%,
-    rgba(0, 0, 0, 0) 70%
-  );
-  opacity: 0;
-  transition: opacity 0.25s ease;
+:global([data-theme="light"]) .typingConsole {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.12);
 }
 
-.activeSpotlight {
-  opacity: 1;
+.consolePromptSymbol {
+  font-family: var(--font-mono, monospace);
+  font-size: 13px;
+  font-weight: 700;
+  color: #38bdf8;
+  text-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  flex-shrink: 0;
 }
 
-.cursorHalo {
-  position: absolute;
-  width: 320px;
-  height: 320px;
-  background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, rgba(108, 99, 255, 0.08) 35%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  opacity: 0;
-  filter: blur(15px);
-  z-index: 1;
+:global([data-theme="light"]) .consolePromptSymbol {
+  color: #4f46e5;
 }
 
-.haloVisible {
-  opacity: 1;
+.consoleText {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(0.85rem, 1.25vw, 1.05rem);
+  font-weight: 500;
+  color: #f1f5f9;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
+:global([data-theme="light"]) .consoleText {
+  color: #0f172a;
+}
+
+/* Neon Blinking Cursor */
+.cursorBlink {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #38bdf8;
+  animation: cursorBlink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+:global([data-theme="light"]) .cursorBlink {
+  color: #4f46e5;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Bottom Technical Identity Bar */
 .bottomTechBar {
   display: flex;
   align-items: center;
@@ -135,41 +338,65 @@
 
 .techBadge {
   font-family: var(--font-mono, monospace);
-  font-size: 0.75rem;
-  letter-spacing: 0.22em;
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: #94a3b8;
   text-transform: uppercase;
+  transition: color 0.25s ease;
 }
 
-[data-theme="light"] .techBadge {
-  color: #334155;
+.techBadge:hover {
+  color: #38bdf8;
+}
+
+:global([data-theme="light"]) .techBadge {
+  color: #475569;
   font-weight: 700;
+}
+
+:global([data-theme="light"]) .techBadge:hover {
+  color: #4338ca;
 }
 
 .dotDivider {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: var(--accent);
-  box-shadow: 0 0 8px var(--accent);
+  background-color: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
 }
 
-[data-theme="light"] .dotDivider {
+:global([data-theme="light"]) .dotDivider {
   background-color: #6366f1;
   box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
 }
 
-[data-theme="light"] .cursorHalo {
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(14, 165, 233, 0.1) 35%, transparent 70%);
-}
-
 @media (max-width: 768px) {
   .bannerSection {
-    padding: 60px 0 40px;
+    padding: 70px 0 50px;
   }
+
+  .brandTitle {
+    font-size: clamp(2.2rem, 11vw, 4.2rem);
+    letter-spacing: -1px;
+  }
+
+  .typingConsole {
+    padding: 8px 16px;
+    margin-top: 20px;
+  }
+
+  .consoleText {
+    font-size: 0.78rem;
+  }
+
   .techBadge {
     font-size: 0.65rem;
-    letter-spacing: 0.15em;
+    letter-spacing: 0.12em;
+  }
+
+  .bottomTechBar {
+    gap: 10px;
   }
 }
