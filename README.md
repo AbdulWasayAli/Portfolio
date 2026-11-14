@@ -87,8 +87,6 @@ A high-performance developer portfolio and personal engineering platform built w
 | **@emailjs/browser** | `^5.0.3` | Client-side email dispatch engine |
 | **lucide-react** | `^1.61.0` | Crisp vector icons system |
 | **react-github-calendar** | `^5.0.9` | Live interactive GitHub contribution activity calendar |
-| **@splinetool/react-spline** | `^4.1.0` | React wrapper for interactive 3D Spline scenes |
-| **@splinetool/runtime** | `^1.12.98` | 3D Spline web runtime engine |
 
 ### Dev Dependencies
 | Package | Version | Purpose |
@@ -164,9 +162,8 @@ portfolio-react/
 │   │   ├── AtmosphericBackground/ # Luxury ambient glow spots & fine grid backdrop
 │   │   ├── Blog/                  # Horizontal carousel, cards & editorial article modal
 │   │   ├── Contact/               # Contact cards, form with EmailJS & animated vector modal
-│   │   ├── CyberCursor/           # GPU-accelerated fluid magnetic cyber cursor
 │   │   ├── Experience/            # Educational background & timeline (Matric, Inter, Diploma)
-│   │   ├── FloatingControls.jsx   # Quick WhatsApp & Connect morphing pill buttons + scroll-to-top
+│   │   ├── FloatingControls/      # Quick WhatsApp & Connect morphing pill buttons + scroll-to-top
 │   │   ├── FloatingRobot/         # Interactive 3D companion & AI chat assistant
 │   │   ├── Footer/                # Social badges & quick navigation links
 │   │   ├── GitHubStats/           # Real-time GitHub contribution calendar & terminal
@@ -174,7 +171,6 @@ portfolio-react/
 │   │   ├── InteractiveBrandBanner/# Giant spotlight typography banner
 │   │   ├── Navbar/                # Jitter-style floating squircle navbar, drawer & cosmic theme toggle
 │   │   ├── Projects/              # Project grid, filters & 3D tilt cards
-│   │   ├── ScrollMatrix3D/        # 3D Quantum Horizon & Neural Aurora canvas
 │   │   ├── Skills/                # Categorized skills matrix with tailored SVG badges
 │   │   └── SplashScreen/          # Initial branded loading intro screen
 │   ├── context/
@@ -194,6 +190,7 @@ portfolio-react/
 │   └── index.css                  # Base stylesheet
 ├── api/
 │   └── chat.js                    # Vercel Serverless Function (Google Gemini AI)
+├── EventEase_Video_Showcase_Guide.pdf # Project showcase guide reference
 ├── .oxlintrc.json                 # Oxlint configuration
 ├── package.json                   # Dependencies & scripts
 ├── vite.config.js                 # Vite build configurations

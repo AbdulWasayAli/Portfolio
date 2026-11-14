@@ -10,7 +10,7 @@ import GitHubStats from './components/GitHubStats/GitHubStats';
 import Contact from './components/Contact/Contact';
 import InteractiveBrandBanner from './components/InteractiveBrandBanner/InteractiveBrandBanner';
 import Footer from './components/Footer/Footer';
-import FloatingControls from './components/FloatingControls';
+import FloatingControls from './components/FloatingControls/FloatingControls';
 import FloatingRobot from './components/FloatingRobot/FloatingRobot';
 import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route, useLocation } from 'react-router-dom';
