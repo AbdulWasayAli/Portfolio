@@ -13,9 +13,8 @@
 .floatingBtn {
   display: flex;
   align-items: center;
-  gap: 9px;
-  padding: 10px 18px;
-  border-radius: var(--radius-full);
+  justify-content: center;
+  border-radius: 9999px;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -25,42 +24,30 @@
   font-weight: var(--fw-semibold);
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
+  height: 48px;
+  box-sizing: border-box;
 }
 
-/* ─── WhatsApp Button: Circle by default, morphs to pill on hover ─── */
+/* ─── WhatsApp Button: Circle default (48px) ─── */
 .whatsappBtn {
   background: #25D366;
   color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
     0 6px 20px rgba(37, 211, 102, 0.4),
     0 2px 6px rgba(0, 0, 0, 0.2),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
-  /* Circle default state */
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border-radius: 50%;
-  justify-content: center;
-  gap: 0;
-  overflow: hidden;
   text-decoration: none;
+  padding: 0 13px;
 }
 
 .whatsappBtn:hover {
-  transform: translateY(-2px);
   box-shadow:
     0 10px 28px rgba(37, 211, 102, 0.55),
     0 0 16px rgba(37, 211, 102, 0.35);
   color: #ffffff;
-  /* Pill expanded state */
-  width: auto;
-  padding: 0 18px;
-  border-radius: 999px;
-  gap: 8px;
 }
 
 .whatsappIconBox {
@@ -68,6 +55,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 22px;
+  height: 22px;
 }
 
 .whatsappIcon {
@@ -83,30 +72,21 @@
   font-size: 13.5px;
   letter-spacing: 0.2px;
   overflow: hidden;
+  display: inline-block;
+  color: #ffffff;
 }
 
-/* ─── Let's Connect Button: Circle by default, morphs to pill on hover ─── */
+/* ─── Let's Connect Button: Circle default (48px) ─── */
 .connectBtn {
   background: var(--gradient-primary);
   color: #ffffff;
   border: none;
   box-shadow: 0 6px 20px var(--primary-glow);
-  width: 48px;
-  height: 48px;
-  padding: 0;
-  border-radius: 50%;
-  justify-content: center;
-  gap: 0;
-  overflow: hidden;
+  padding: 0 14px;
 }
 
 .connectBtn:hover {
-  transform: translateY(-2px);
   box-shadow: 0 10px 30px var(--primary-glow);
-  width: auto;
-  padding: 0 18px;
-  border-radius: 999px;
-  gap: 8px;
 }
 
 .connectIconBox {
@@ -114,6 +94,8 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .connectSvg {
@@ -126,6 +108,8 @@
   font-size: 13.5px;
   letter-spacing: 0.3px;
   overflow: hidden;
+  display: inline-block;
+  color: #ffffff;
 }
 
 /* ─── Scroll To Top ─── */
@@ -204,12 +188,10 @@
   }
 
   .connectBtn {
-    width: 44px;
     height: 44px;
   }
 
   .whatsappBtn {
-    width: 44px;
     height: 44px;
   }
 

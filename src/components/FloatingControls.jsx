@@ -22,6 +22,13 @@ export default function FloatingControls() {
     }
   };
 
+  const springConfig = {
+    type: "spring",
+    stiffness: 450,
+    damping: 32,
+    mass: 0.8
+  };
+
   return (
     <div className={styles.floatingContainer}>
       {/* Jitter-Style Morphing WhatsApp Button: circle → pill on hover */}
@@ -35,9 +42,9 @@ export default function FloatingControls() {
         onMouseEnter={() => setIsWhatsappHovered(true)}
         onMouseLeave={() => setIsWhatsappHovered(false)}
         layout
-        transition={{
-          layout: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-        }}
+        transition={springConfig}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.96 }}
       >
         <motion.div layout="position" className={styles.whatsappIconBox}>
           <svg className={styles.whatsappIcon} width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -45,14 +52,14 @@ export default function FloatingControls() {
           </svg>
         </motion.div>
 
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isWhatsappHovered && (
             <motion.span
               className={styles.whatsappText}
-              initial={{ opacity: 0, width: 0, x: -4 }}
-              animate={{ opacity: 1, width: 'auto', x: 0 }}
-              exit={{ opacity: 0, width: 0, x: -4 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, width: 0, marginLeft: 0 }}
+              animate={{ opacity: 1, width: 'auto', marginLeft: 8 }}
+              exit={{ opacity: 0, width: 0, marginLeft: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               WhatsApp
             </motion.span>
@@ -69,23 +76,23 @@ export default function FloatingControls() {
         onMouseEnter={() => setIsConnectHovered(true)}
         onMouseLeave={() => setIsConnectHovered(false)}
         layout
-        transition={{
-          layout: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
-        }}
+        transition={springConfig}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.96 }}
       >
         <motion.div layout="position" className={styles.connectIconBox}>
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={styles.connectSvg}>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className={styles.connectSvg}>
             <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           </svg>
         </motion.div>
-        <AnimatePresence>
+        <AnimatePresence mode="wait">
           {isConnectHovered && (
             <motion.span
               className={styles.connectText}
-              initial={{ opacity: 0, width: 0, x: -4 }}
-              animate={{ opacity: 1, width: 'auto', x: 0 }}
-              exit={{ opacity: 0, width: 0, x: -4 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, width: 0, marginLeft: 0 }}
+              animate={{ opacity: 1, width: 'auto', marginLeft: 8 }}
+              exit={{ opacity: 0, width: 0, marginLeft: 0 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
             >
               Let's Connect
             </motion.span>
