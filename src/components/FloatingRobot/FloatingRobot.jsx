@@ -1,7 +1,66 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Check, ArrowUp, X, ExternalLink } from 'lucide-react';
+import { Check, ArrowUp, X, ExternalLink, Zap, FolderGit2, Cpu, Briefcase, PhoneCall } from 'lucide-react';
 import styles from './FloatingRobot.module.css';
+
+// Authentic Wasay brand geometric 'W'
+function BrandLogoSvg({ size = 20, glow = false }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 32 32"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ display: 'block' }}
+    >
+      <defs>
+        <linearGradient id="brandGrad1" x1="4" y1="6" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#8b5cf6" />
+          <stop offset="50%" stopColor="#6366f1" />
+          <stop offset="100%" stopColor="#00e5ff" />
+        </linearGradient>
+        <linearGradient id="brandGrad2" x1="16" y1="10" x2="28" y2="26" gradientUnits="userSpaceOnUse">
+          <stop offset="0%" stopColor="#00e5ff" />
+          <stop offset="100%" stopColor="#34d399" />
+        </linearGradient>
+        {glow && (
+          <filter id="brandNeonGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="0" stdDeviation="2" floodColor="#00e5ff" floodOpacity="0.5" />
+          </filter>
+        )}
+      </defs>
+      <path
+        d="M5 8L11 24L16 13L21 24L27 8"
+        stroke="rgba(255, 255, 255, 0.12)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M5 8L11 24L16 13"
+        stroke="url(#brandGrad1)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M16 13L21 24L27 8"
+        stroke="url(#brandGrad2)"
+        strokeWidth="3.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        filter={glow ? "url(#brandNeonGlow)" : undefined}
+      />
+      <circle
+        cx="16"
+        cy="13"
+        r="2"
+        fill="#00e5ff"
+      />
+    </svg>
+  );
+}
 
 export default function FloatingRobot() {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
@@ -21,13 +80,13 @@ export default function FloatingRobot() {
   const robotRef = useRef(null);
   const chatEndRef = useRef(null);
 
-  // Quick interactive chips with category icons
+  // Clean, professional quick interactive chips with proper Lucide SVG icons
   const quickQuestions = [
-    { label: '⚡ 30s Pitch', query: 'pitch' },
-    { label: '🚀 Top Projects', query: 'projects' },
-    { label: '🛠️ Tech Stack', query: 'skills' },
-    { label: '💼 Hire Wasay', query: 'hire' },
-    { label: '📞 Direct Contact', query: 'contact' },
+    { label: '30s Pitch', icon: Zap, query: 'pitch' },
+    { label: 'Top Projects', icon: FolderGit2, query: 'projects' },
+    { label: 'Tech Stack', icon: Cpu, query: 'skills' },
+    { label: 'Hire Wasay', icon: Briefcase, query: 'hire' },
+    { label: 'Direct Contact', icon: PhoneCall, query: 'contact' },
   ];
 
   const botResponses = {
@@ -71,12 +130,33 @@ export default function FloatingRobot() {
     },
   };
 
+  const handleMouseMove = useCallback((e) => {
+    if (!robotRef.current) return;
+    const rect = robotRef.current.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const dx = e.clientX - cx;
+    const dy = e.clientY - cy;
+
+    const rotY = Math.max(-18, Math.min(18, (dx / 300) * 18));
+    const rotX = Math.max(-14, Math.min(14, (-dy / 300) * 14));
+    setRotation({ x: rotX, y: rotY });
+
+    const eyeX = Math.max(-3, Math.min(3, (dx / 200) * 3));
+    const eyeY = Math.max(-2.5, Math.min(2.5, (dy / 200) * 2.5));
+    setEyePos({ x: eyeX, y: eyeY });
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, [handleMouseMove]);
+
   const handleAsk = async (queryText, directKey) => {
     const userMsg = { id: Date.now(), sender: 'user', text: queryText };
     setMessages((prev) => [...prev, userMsg]);
     setIsTyping(true);
 
-    // Check if direct key maps to rich bot response
     const richPreset = directKey && botResponses[directKey];
 
     if (richPreset) {
@@ -96,47 +176,36 @@ export default function FloatingRobot() {
     }
 
     try {
-      // Try calling serverless backend /api/chat
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: queryText }),
       });
 
-      if (res.ok) {
-        const data = await res.json();
-        if (data.reply) {
-          setMessages((prev) => [
-            ...prev,
-            { id: Date.now() + 1, sender: 'bot', text: data.reply },
-          ]);
-          setIsTyping(false);
-          return;
-        }
-      }
+      if (!res.ok) throw new Error('Network error');
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now() + 1,
+          sender: 'bot',
+          text: data.reply || botResponses.fallback.text,
+        },
+      ]);
     } catch {
-      // Serverless not available locally; use grounded fallback
-    }
-
-    // Grounded Fallback
-    setTimeout(() => {
       const lower = queryText.toLowerCase();
-      let replyData = botResponses.fallback;
-
-      if (lower.match(/^(hi|hello|hey|salam|assalam|aoa)/)) {
-        replyData = {
-          text: "👋 Hello! I'm Wasay's AI Companion. How can I help you explore his portfolio, tech stack, or projects today?",
-        };
-      } else if (lower.includes('pitch') || lower.includes('about') || lower.includes('who is')) {
-        replyData = botResponses.pitch;
-      } else if (lower.includes('skill') || lower.includes('tech') || lower.includes('stack')) {
-        replyData = botResponses.skills;
+      let matched = botResponses.fallback.text;
+      if (lower.includes('project') || lower.includes('work') || lower.includes('build')) {
+        matched = botResponses.projects.text;
+      } else if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech')) {
+        matched = botResponses.skills.text;
       } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
-        replyData = botResponses.hire;
-      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach') || lower.includes('whatsapp')) {
-        replyData = botResponses.contact;
-      } else if (lower.includes('project') || lower.includes('work') || lower.includes('build')) {
-        replyData = botResponses.projects;
+        matched = botResponses.hire.text;
+      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
+        matched = botResponses.contact.text;
+      } else if (lower.includes('who') || lower.includes('about') || lower.includes('wasay') || lower.includes('pitch')) {
+        matched = botResponses.pitch.text;
       }
 
       setMessages((prev) => [
@@ -144,74 +213,51 @@ export default function FloatingRobot() {
         {
           id: Date.now() + 1,
           sender: 'bot',
-          text: replyData.text,
-          projects: replyData.projects || null,
+          text: matched,
+          projects: matched === botResponses.projects.text ? botResponses.projects.projects : null,
         },
       ]);
+    } finally {
       setIsTyping(false);
-    }, 400);
+    }
   };
 
-  const handleSend = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (!inputVal.trim()) return;
-    const text = inputVal.trim();
+    const txt = inputVal.trim();
     setInputVal('');
-    handleAsk(text);
+    handleAsk(txt, null);
   };
 
   useEffect(() => {
-    if (isOpen) {
-      setHasUnread(false);
-      chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [isOpen, messages, isTyping]);
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isTyping]);
 
-  // Render message text with **bold** and newline support
   const renderMessageText = (text) => {
-    return text.split('\n').map((line, idx) => (
-      <span key={idx} className={styles.textLine}>
-        {line.split(/(\*\*.*?\*\*)/).map((part, pidx) =>
-          part.startsWith('**') && part.endsWith('**')
-            ? <strong key={pidx} className={styles.boldText}>{part.slice(2, -2)}</strong>
-            : part
-        )}
-      </span>
-    ));
-  };
-
-  // Smooth mouse tracking
-  const handleMouseMove = useCallback((e) => {
-    if (!robotRef.current) return;
-    const rect = robotRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-
-    const deltaX = e.clientX - centerX;
-    const deltaY = e.clientY - centerY;
-
-    // 3D rotation based on mouse
-    const rotY = Math.max(-18, Math.min(18, (deltaX / window.innerWidth) * 36));
-    const rotX = Math.max(-18, Math.min(18, -(deltaY / window.innerHeight) * 36));
-    setRotation({ x: rotX, y: rotY });
-
-    // Independent pupil tracking
-    const angle = Math.atan2(deltaY, deltaX);
-    const dist = Math.min(3.2, Math.hypot(deltaX, deltaY) / 55);
-    setEyePos({
-      x: Math.cos(angle) * dist,
-      y: Math.sin(angle) * dist,
+    const lines = text.split('\n');
+    return lines.map((line, lIdx) => {
+      const parts = line.split(/(\*\*.*?\*\*)/g);
+      return (
+        <span key={lIdx} className={styles.textLine}>
+          {parts.map((p, pIdx) => {
+            if (p.startsWith('**') && p.endsWith('**')) {
+              return (
+                <strong key={pIdx} className={styles.boldText}>
+                  {p.slice(2, -2)}
+                </strong>
+              );
+            }
+            return p;
+          })}
+        </span>
+      );
     });
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [handleMouseMove]);
+  };
 
   return (
     <aside aria-label="Interactive AI Assistant" className={styles.companionContainer}>
-      {/* Interactive Chat Window with Framer Motion spring physics */}
+      {/* Interactive Chat Window */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -221,23 +267,17 @@ export default function FloatingRobot() {
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
             className={styles.chatWindow}
           >
-            {/* Top ambient accent glow */}
+            {/* Top subtle clean line */}
             <div className={styles.topAccentBar} />
 
             {/* Header */}
             <div className={styles.chatHeader}>
               <div className={styles.headerInfo}>
-                {/* 3D Premium Robot Mascot Avatar */}
+                {/* Premium Brand Logo Avatar */}
                 <div className={styles.botAvatarWrapper}>
-                  <div className={styles.avatarGlowLayer} />
                   <div className={styles.aiAvatarSquircle}>
-                    <img
-                      src="/robot-avatar.webp"
-                      alt="Wasay AI Robot"
-                      className={styles.robotAvatarImg}
-                    />
+                    <BrandLogoSvg size={22} glow />
                   </div>
-                  <span className={styles.onlinePill} />
                 </div>
 
                 <div className={styles.headerTitleBlock}>
@@ -248,8 +288,7 @@ export default function FloatingRobot() {
                     </span>
                   </div>
                   <span className={styles.botStatus}>
-                    <span className={styles.statusLiveDot} />
-                    Active & ready to assist
+                    Interactive Portfolio Assistant
                   </span>
                 </div>
               </div>
@@ -264,7 +303,6 @@ export default function FloatingRobot() {
             </div>
 
             {/* Conversation Feed */}
-            {/* Conversation Feed */}
             <div className={styles.messagesContainer}>
               {messages.map((m) => (
                 <div
@@ -275,11 +313,7 @@ export default function FloatingRobot() {
                 >
                   {m.sender === 'bot' && (
                     <div className={styles.bubbleAvatar}>
-                      <img
-                        src="/robot-avatar.webp"
-                        alt="Bot"
-                        className={styles.bubbleAvatarImg}
-                      />
+                      <BrandLogoSvg size={14} />
                     </div>
                   )}
                   <div className={styles.bubbleContentGroup}>
@@ -317,11 +351,7 @@ export default function FloatingRobot() {
               {isTyping && (
                 <div className={`${styles.messageWrapper} ${styles.botWrapper}`}>
                   <div className={styles.bubbleAvatar}>
-                    <img
-                      src="/robot-avatar.webp"
-                      alt="Bot"
-                      className={styles.bubbleAvatarImg}
-                    />
+                    <BrandLogoSvg size={14} />
                   </div>
                   <div className={`${styles.messageBubble} ${styles.botBubble} ${styles.typingDots}`}>
                     <span /><span /><span />
@@ -331,22 +361,26 @@ export default function FloatingRobot() {
               <div ref={chatEndRef} />
             </div>
 
-            {/* Quick Action Chips */}
+            {/* Quick Action Chips with Clean SVG Icons */}
             <div className={styles.quickChips}>
-              {quickQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  className={styles.chipBtn}
-                  onClick={() => handleAsk(q.label, q.query)}
-                >
-                  {q.label}
-                </button>
-              ))}
+              {quickQuestions.map((q, idx) => {
+                const IconComponent = q.icon;
+                return (
+                  <button
+                    key={idx}
+                    type="button"
+                    className={styles.chipBtn}
+                    onClick={() => handleAsk(q.label, q.query)}
+                  >
+                    <IconComponent size={12} className={styles.chipIcon} />
+                    <span>{q.label}</span>
+                  </button>
+                );
+              })}
             </div>
 
-            {/* Message Input Bar */}
-            <form onSubmit={handleSend} className={styles.chatInputForm}>
+            {/* Input Dock */}
+            <form onSubmit={handleSubmit} className={styles.chatInputForm}>
               <div className={styles.inputWrapper}>
                 <input
                   type="text"
@@ -359,9 +393,9 @@ export default function FloatingRobot() {
                   type="submit"
                   disabled={!inputVal.trim()}
                   className={`${styles.sendBtn} ${inputVal.trim() ? styles.sendBtnActive : ''}`}
-                  aria-label="Send message"
+                  aria-label="Send query"
                 >
-                  <ArrowUp size={16} strokeWidth={2.6} />
+                  <ArrowUp size={16} strokeWidth={2.5} />
                 </button>
               </div>
             </form>
@@ -369,11 +403,14 @@ export default function FloatingRobot() {
         )}
       </AnimatePresence>
 
-      {/* Floating 3D Robot Mascot (Clickable Trigger) */}
+      {/* Floating 3D Robot Mascot (Clickable Trigger - Preserved Exactly) */}
       <div
         ref={robotRef}
         className={`${styles.robotStage} ${isOpen ? styles.robotActive : ''}`}
-        onClick={() => setIsOpen((prev) => !prev)}
+        onClick={() => {
+          setIsOpen((prev) => !prev);
+          setHasUnread(false);
+        }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         role="button"

@@ -39,19 +39,12 @@
   transform-origin: bottom right;
 }
 
-/* Top Accent — flowing multi-tone gradient bar */
+/* Top Accent — subtle clean line */
 .topAccentBar {
-  height: 2.5px;
+  height: 1px;
   width: 100%;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6, #d946ef, #38bdf8, #6366f1);
-  background-size: 250% 100%;
-  animation: shimmerFlow 4s linear infinite;
+  background: rgba(255, 255, 255, 0.08);
   flex-shrink: 0;
-}
-
-@keyframes shimmerFlow {
-  0% { background-position: 250% 0; }
-  100% { background-position: -250% 0; }
 }
 
 /* =====================================================
@@ -76,54 +69,26 @@
 /* Luxury Squircle Avatar with Ambient Aura */
 .botAvatarWrapper {
   position: relative;
-  width: 42px;
-  height: 42px;
+  width: 38px;
+  height: 38px;
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.avatarGlowLayer {
-  position: absolute;
-  inset: -2px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.6), rgba(99, 102, 241, 0.3));
-  filter: blur(7px);
-  opacity: 0.7;
-  animation: glowPulse 3s ease-in-out infinite;
-}
-
-@keyframes glowPulse {
-  0%, 100% { opacity: 0.5; transform: scale(0.96); }
-  50% { opacity: 0.85; transform: scale(1.04); }
-}
-
 .aiAvatarSquircle {
   position: relative;
-  width: 42px;
-  height: 42px;
-  border-radius: 13px;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
   background: #0d1117;
-  border: 1px solid rgba(192, 132, 252, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.3);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(124, 58, 237, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 229, 255, 0.2);
   z-index: 1;
-  overflow: hidden;
-}
-
-.robotAvatarImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-.botAvatarWrapper:hover .robotAvatarImg {
-  transform: scale(1.08);
 }
 
 /* Online status pill indicator */
@@ -131,13 +96,13 @@
   position: absolute;
   bottom: -1px;
   right: -1px;
-  width: 11px;
-  height: 11px;
+  width: 9px;
+  height: 9px;
   background: #10b981;
-  border: 2px solid #0b0d13;
+  border: 1.5px solid #0b0d13;
   border-radius: 50%;
   z-index: 2;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.7);
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.7);
 }
 
 /* Header Text */
@@ -175,12 +140,9 @@
 }
 
 .botStatus {
-  display: flex;
-  align-items: center;
-  gap: 6px;
   font-size: 11.5px;
-  color: #71717a;
-  font-weight: 450;
+  color: #94a3b8;
+  font-weight: 500;
   letter-spacing: 0.01em;
 }
 
@@ -253,24 +215,17 @@
 
 /* Bot message mini avatar */
 .bubbleAvatar {
-  width: 28px;
-  height: 28px;
-  border-radius: 9px;
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
   background: #0d1117;
-  border: 1px solid rgba(167, 139, 250, 0.4);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
   margin-bottom: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-}
-
-.bubbleAvatarImg {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Bubbles */
@@ -457,12 +412,15 @@
 }
 
 .chipBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.08);
   color: #94a3b8;
   font-size: 11.5px;
   font-weight: 500;
-  padding: 7px 13px;
+  padding: 6px 12px;
   border-radius: 999px;
   cursor: pointer;
   transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
@@ -470,12 +428,21 @@
   backdrop-filter: blur(8px);
 }
 
+.chipIcon {
+  color: #00e5ff;
+  flex-shrink: 0;
+}
+
 .chipBtn:hover {
-  background: rgba(139, 92, 246, 0.14);
-  border-color: rgba(167, 139, 250, 0.4);
+  background: rgba(0, 229, 255, 0.12);
+  border-color: rgba(0, 229, 255, 0.4);
   color: #ffffff;
   transform: translateY(-1.5px);
-  box-shadow: 0 4px 14px -2px rgba(139, 92, 246, 0.35);
+  box-shadow: 0 4px 14px -2px rgba(0, 229, 255, 0.25);
+}
+
+.chipBtn:hover .chipIcon {
+  color: #ffffff;
 }
 
 /* =====================================================
