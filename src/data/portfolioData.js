@@ -50,28 +50,28 @@ export const experienceData = [
   {
     type: "education",
     title: "Diploma in Software Engineering",
-    organization: "Aptech Computer Education",
-    period: "2023 — Present",
+    organization: "Aptech Computer Education, Shahrah-e-Faisal (Continuing)",
+    period: "2024 – 2027",
     description:
-      "Pursuing comprehensive software engineering diploma covering full-stack development, databases, mobile app development, and software design patterns.",
+      "Pursuing a 3-year comprehensive software engineering diploma focusing on full-stack web development, databases, cross-platform mobile apps, and enterprise software design patterns.",
     icon: "🎓",
   },
   {
     type: "education",
-    title: "Intermediate (SBTE)",
-    organization: "Aptech Computer Education",
-    period: "2023 — Present",
+    title: "Intermediate",
+    organization: "Aptech Computer Education, Shahrah-e-Faisal · SBTE (Sindh Board of Technical Education) (Continuing)",
+    period: "2026 – 2027",
     description:
-      "Continuing intermediate studies alongside the diploma program, building a strong foundation in computer science fundamentals.",
+      "Continuing intermediate studies in Computer Science under the Sindh Board of Technical Education (SBTE) alongside professional software engineering qualifications.",
     icon: "📚",
   },
   {
     type: "education",
-    title: "Matriculation (Science Group — Biology)",
+    title: "Matriculation — Science Group (Biology)",
     organization: "Dehli Government Boys Secondary School, Karachi",
-    period: "2020 — 2021",
+    period: "2020 – 2021",
     description:
-      "Completed secondary school certificate with a focus on science fundamentals, analytical thinking, and scientific inquiry.",
+      "Completed secondary school certificate with a strong foundation in science, analytical inquiry, and academic discipline.",
     icon: "🏫",
   },
 ];
