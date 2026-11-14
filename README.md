@@ -1,6 +1,6 @@
 # Abdul Wasay Ali — Software Engineer & Mobile App Developer Portfolio
 
-A next-generation, high-performance personal portfolio and engineering platform built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Engineered with Silicon Valley obsidian aesthetics, an interactive 3D **Quantum Horizon & Chromatic Neural Aurora** background engine, fluid micro-interactions, an interactive AI companion widget, comprehensive Light/Dark mode design systems, dedicated **Engineering Case Study Pages (`/project/:id`)**, and hands-on **AI Workflow Case Studies (`/blog/:id`)**.
+A high-performance developer portfolio and personal engineering platform built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Designed with a modern dark aesthetic, luxury glassmorphic surfaces, fluid spring micro-interactions, an interactive AI companion widget, light/dark mode systems, dedicated **Engineering Case Study Pages (`/project/:id`)**, and **AI Workflow Case Studies (`/blog/:id`)**.
 
 ---
 
@@ -16,133 +16,88 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 ---
 
-## Key Features & Architectural Highlights
+## Key Features & Component Engineering
 
-- **Jitter-Style Floating Pill Navigation Bar (`Navbar`):**
-  - Engineered with a floating squircle capsule aesthetic (`border-radius: 20px`, `min-height: 76px`, `max-width: 1280px`).
-  - Active navigation indicator features a glowing gradient bottom border line (`.activeLine`) and responsive micro-interactions.
-  - Seamless desktop-to-mobile navigation transition with a customized responsive drawer.
+### 1. Jitter-Style Floating Squircle Navigation (`Navbar`)
+- Floating capsule navigation bar (`border-radius: 20px`, `min-height: 76px`, `max-width: 1280px`).
+- Active section indicator features a gradient glow bottom line (`.activeLine`) that transitions smoothly across navigation items.
+- Clean vector brand logo with dual-tone gradient strokes (`#8b5cf6` to `#00e5ff`) and interactive hover micro-states.
+- Interactive **Cosmic Day/Night Theme Switcher** with smooth dark/light transitions stored in `localStorage`.
+- Responsive navigation drawer for mobile devices.
 
-- **Dynamic Interactive Jitter-Style Floating Controls (`FloatingControls`):**
-  - **WhatsApp Morphing Button:** Starts as a compact circular button (`48px`) showcasing the authentic WhatsApp icon, and smoothly expands into a full pill revealing "WhatsApp" text on hover with fluid spring physics.
-  - **Let's Connect Morphing Button:** Symmetrically designed circular button featuring a message icon that smoothly expands to a "Let's Connect" pill on hover.
-  - **Scroll-to-Top Action:** Automatically appears when scrolling past 300px with a glowing accent ring and bounce animations.
+### 2. Interactive Morphing Floating Controls (`FloatingControls`)
+- **WhatsApp Morphing Button:** Starts as a compact circular button (`48px`) showing only the official WhatsApp SVG icon. On hover, it expands into a full pill revealing "WhatsApp" text with fluid spring physics (`Framer Motion`).
+- **Let's Connect Morphing Button:** Circular button displaying a chat bubble icon that expands into a pill with "Let's Connect" text on hover.
+- **Scroll-to-Top Action:** Automatically appears when scrolling past 300px with a glowing accent ring and bounce animations.
 
-- **Interactive 3D Cyber Companion & AI Chat Assistant (`FloatingRobot`):**
-  - **Interactive 3D Mascot:** Real-time mouse coordinate tracking, pupil navigation, core reactor glow, antenna, and reactive blinking animations.
-  - **Authentic Brand Integration:** Chat header and message feeds feature Wasay's actual dual-gradient geometric "W" brand logo.
-  - **Lucide SVG Quick Chips:** Integrated clean, professional SVG icons (`Zap`, `FolderGit2`, `Cpu`, `Briefcase`, `PhoneCall`) replacing generic emojis for high-level technical polish.
-  - **Google Gemini AI Backend (`/api/chat`):** Serverless architecture with grounded developer persona, interactive mini project cards, and local fallback engine.
+### 3. Interactive 3D Cyber Companion & AI Chat (`FloatingRobot`)
+- **Interactive 3D Robot Mascot:** Features 3D head tilting, real-time mouse coordinate eye-tracking, antenna, core reactor glow, and reactive blinking animations.
+- **Branded Chat Window:** Ultra-luxurious obsidian glass modal styled with subtle borders and Wasay's geometric "W" brand logo in the header and message bubbles.
+- **Clean Quick Chips:** Quick action buttons equipped with crisp Lucide SVG icons (`Zap`, `FolderGit2`, `Cpu`, `Briefcase`, `PhoneCall`).
+- **Google Gemini AI Backend (`/api/chat`):** Serverless architecture with grounded developer persona, interactive mini project cards, and local fallback engine.
 
-- **Google Search Console & SEO Architecture (`robots.txt` & `sitemap.xml`):**
-  - Officially verified with Google Search Console via HTML verification meta tags.
-  - Auto-generated `public/robots.txt` and `public/sitemap.xml` mapping the homepage and all project case study routes for comprehensive search indexing.
-  - Enterprise Open Graph & Twitter Cards (`1200x630`) ensuring rich previews across WhatsApp, LinkedIn, Twitter/X, and Facebook.
-  - Implemented **Schema.org (JSON-LD)** structured data for `Person` and `WebSite` entities to power Google Search rich snippet indexing.
+### 4. Direct Client Contact Channel (`Contact`)
+- Direct message transmission using `@emailjs/browser` connected to developer email credentials.
+- **Lottie-Style Animated Vector Stroke Dialog:** Zero-lag SVG dasharray draw animation featuring a rotating neon cyan outer circle that draws smoothly followed by an inner spring checkmark upon message dispatch.
+- **Theme-Synchronized Obsidian Glass Modal:** Styled with deep obsidian (`#030307`), electric cyan (`#00e5ff`), and royal violet (`#6c63ff`) tokens.
 
-- **Direct Contact Channel & Official EmailJS Integration:**
-  - Integrated direct client transmission pipeline utilizing `@emailjs/browser` directly linked with Gmail API credentials.
-  - **Lottie-Style Animated Vector Stroke Dialog:** Custom zero-lag CSS/SVG dasharray draw animation featuring a rotating neon cyan outer circle that draws smoothly followed by an inner spring checkmark.
-  - **Theme-Synchronized Obsidian Glass Modal:** Perfectly color-matched with the portfolio's Deep Obsidian (`#030307`), Electric Cyan (`#00e5ff`), and Royal Violet (`#6c63ff`) tokens.
-  - **Custom Executive HTML Email Template:** Delivers client submissions directly to developer inbox with structured metadata (Sender Name, Verified Clickable Email, Subject, and One-Click Reply Button).
+### 5. Dedicated Project Case Studies (`/project/:id`)
+- Deep engineering writeups replacing shallow popups using React Router v7.
+- **Executive Summary:** Clear problem statements and technical objectives.
+- **Product Capabilities:** Interactive feature checklist cards with vibrant cyan indicators.
+- **System Architecture:** Detailed breakdown of database schemas, state management, and backend APIs.
+- **Showcase Stage:** Full-fidelity media viewport with responsive aspect ratios for mobile and desktop screens.
+- **Direct Navigation:** Previous/next project navigation and native web share API integration.
 
-- **Performance & Asset Optimization (WebP Image Pipeline):**
-  - Converted and compressed all heavy project media assets, blog covers, and profile visuals to next-generation **WebP** format.
-  - Achieved over **85% reduction** in total media payload (reduced from ~14 MB to ~1.5 MB), ensuring near-instant Largest Contentful Paint (LCP) and smooth rendering on 4G/5G mobile networks.
+### 6. AI Engineering Blog Series (`/blog/:id`)
+- Practical case studies documenting modern developer workflows and architectural adoption:
+  1. **Google Antigravity IDE:** Autonomous multi-agent coding, terminal orchestration, and compilation verification.
+  2. **Claude 3.7 / Sonnet:** Deep logic reasoning, Flutter BLoC/Provider architecture, and clean MVC refactoring.
+  3. **Google Gemini:** High-speed context window, schema modeling, and multimodal visual UI-to-code pipelines.
+  4. **Open Code & Cursor:** Keyboard-first velocity, repository-wide semantic indexing, and zero-latency flow state.
+  5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
+- Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
 
-- **3D Quantum Horizon & Chromatic Neural Aurora Engine (`ScrollMatrix3D`):**
-  - **Volumetric Chromatic Nebulas:** Multi-emitter organic liquid auroras flowing smoothly in deep space using Electric Cyan (`#00E5FF`), Royal Violet (`#8B5CF6`), and Indigo.
-  - **3D Quantum Wave Terrain:** Infinitely moving 3D Tron horizon grid reacting to scroll velocity with matrix perspective transforms.
-  - **High-Luminescence Synapse Constellation:** 3-layered luminescent star nodes with white hotspot cores, electric laser synapse beams, pulsating core pulsar rings, and fast racing data energy beacons.
-  - **Interactive Cursor Gravity & Mobile Touch:** Magnetic attraction toward cursor on desktop and touch-coordinate deflection on mobile devices.
-  - **Theme-Adaptive Rendering:** Automatically transitions to soft slate and crystal sky-blue hues when switching to Light Mode.
+### 7. Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`)
+- Bold typography (**ABDUL WASAY ALI**) illuminated by an interactive cursor spotlight reveal.
+- Themed with single-hue electric cyan (`#38bdf8`) in dark mode and deep sapphire blue (`#2563eb`) in light mode.
 
-- **Dedicated Case Study Architecture (`/project/:id`):**
-  - Replaced crowded popups with dedicated full-screen case study pages using React Router v7.
-  - **Executive Summary:** Clear problem statements and technical objectives.
-  - **Product Capabilities:** Interactive feature checklist cards with vibrant cyan indicators.
-  - **Under the Hood System Architecture:** Deep dive into database schemas, state management (BLoC/Provider), and backend APIs.
-  - **High-Definition Showcase Stage:** Full-fidelity media viewport with responsive aspect ratios for mobile and desktop screens.
-  - **Direct Shareability & Navigation:** Native web share API integration and previous/next project navigation controls.
+### 8. Luxury Atmospheric Background (`AtmosphericBackground`)
+- Multi-emitter soft ambient glow spots paired with an ultra-subtle fine grid pattern for a calm, distraction-free backdrop.
 
-- **AI Engineering & Tool Mastery Blog Series (`/blog/:id`):**
-  - Comprehensive, real-world engineering case studies documenting daily production workflows and architectural adoption:
-    1. **Google Antigravity IDE:** Autonomous multi-agent coding, terminal orchestration, and compilation verification.
-    2. **Claude 3.7 / Sonnet:** Deep logic reasoning, Flutter BLoC/Provider architecture, and clean MVC refactoring.
-    3. **Google Gemini:** High-speed context window, schema modeling, and multimodal visual UI-to-code pipelines.
-    4. **Open Code & Cursor:** Keyboard-first velocity, repository-wide semantic indexing, and zero-latency flow state.
-    5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
-  - Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
+### 9. Real-Time GitHub Activity Telemetry (`GitHubStats`)
+- Live 1-year contribution graph integrated via `react-github-calendar` in Neon Emerald & Cyan.
+- Real-time GitHub REST API metrics (stars, repositories, and continuous integration activity stream).
 
-- **Comprehensive Light & Dark Mode Design System:**
-  - 100% theme-aware CSS custom properties across all sections.
-  - **Light Mode Elevation:** Frosted opal glass header, deep obsidian contrast navigation links, pearl crystal logo box, pure white porcelain cards with subtle borders (`rgba(15, 23, 42, 0.08)`), high-contrast typography (`#0f172a`), and polished titanium metallic signature banner.
-  - **Cosmic Magnetic Theme Switcher:** 3D jewel specular thumb, day/night cosmic sky with animated starbursts and radiant solar corona.
-  - **Default Preference:** Defaults to obsidian dark mode for maximum visual impact, while remembering user selections in `localStorage`.
-
-- **Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`):**
-  - Massive bold typography (**ABDUL WASAY ALI**) with single-hue authentic electric cyan (`#38bdf8`) in dark mode and deep sapphire blue (`#2563eb`) in light mode, illuminated by an interactive cursor spotlight reveal.
-
-- **Comprehensive Academic & Technical Education Timeline:**
-  - Complete chronologically ordered academic progression:
-    - **Diploma in Software Engineering** — Aptech Computer Education (2023 — Present)
-    - **Intermediate (SBTE)** — Aptech Computer Education (2023 — Present)
-    - **Matriculation (Science Group — Biology)** — Dehli Government Boys Secondary School, Karachi (2020 — 2021)
-
-- **Next-Gen Mobile Ergonomics ("Mobile Vibe"):**
-  - Responsive fluid typography powered by `clamp()` ensuring headings like `"ABDUL WASAY ALI"` fit on screens without awkward line breaking.
-  - Adaptive canvas density preventing battery drain while delivering 120 FPS performance.
-  - Optimized touch margins, floating action button stack (WhatsApp direct connect & scroll-to-top), and iOS-style glass navigation drawer.
-
-- **Interactive Fluid Cyber-Cursor (`CyberCursor`):**
-  - Dual-layer GPU lerp cursor with instant central neon dot and smooth trailing fluid ring.
-  - Magnetic magnification on interactive cards and buttons with automatic graceful bypass on mobile touch devices.
-
-- **Live GitHub Telemetry & Real-Time Contribution Calendar (`GitHubStats`):**
-  - Live 1-year contribution graph integrated via `react-github-calendar` in Neon Emerald & Cyan.
-  - Real-time GitHub REST API metrics (stars, repos, language ratios, and continuous integration activity stream).
-
-- **Interactive Resume & CV Integration:**
-  - In-browser full-screen modal CV preview with responsive iframe toolbar.
-  - Direct 1-click download linked to the developer's latest verified CV (`Abdul_Wasay_Ali_Resume.pdf`).
-
-- **Strict Code Quality & Performance:**
-  - Zero dead code: clean modular MVC folder hierarchy, optimized assets, and lightning-fast Vite build times.
+### 10. Performance & Asset Optimization (WebP Pipeline)
+- Project media assets, blog covers, and profile visuals optimized in next-generation **WebP** format.
+- Substantial reduction in total media payload, ensuring fast Largest Contentful Paint (LCP) and smooth rendering on mobile networks.
 
 ---
 
-## Complete Tech Stack & Tools
+## Complete Tech Stack & Dependencies
 
-### Frontend & Core
-| Technology | Version / Spec | Purpose |
+### Dependencies (`package.json`)
+| Package | Version | Purpose |
 |---|---|---|
-| **React** | `^19.2.7` | UI library for component architecture |
-| **React DOM** | `^19.2.7` | DOM rendering layer |
-| **Vite** | `^8.1.5` | Next-gen frontend tooling and bundler |
-| **React Router DOM** | `^7.18.1` | Client-side routing (`/`, `/project/:id`, `/blog/:id`) |
-| **Framer Motion** | `^12.42.2` | Fluid spring physics, layout animations & transitions |
-| **React GitHub Calendar** | `^5.0.9` | Live interactive GitHub contribution activity calendar |
-| **Lucide React** | `^1.61.0` | Crisp vector icons system |
-| **EmailJS Browser** | `^4.4.1` | Client-side direct email dispatch engine |
-| **CSS Modules & Vanilla CSS** | W3C Standard | Scoped, zero-runtime overhead component styling |
-| **Oxlint** | `^1.71.0` | High-speed JavaScript & JSX code linter |
+| **react** | `^19.2.7` | UI library for component architecture |
+| **react-dom** | `^19.2.7` | React DOM rendering layer |
+| **react-router-dom** | `^7.18.1` | Client-side routing (`/`, `/project/:id`, `/blog/:id`) |
+| **framer-motion** | `^12.42.2` | Fluid spring physics, layout animations & transitions |
+| **@emailjs/browser** | `^5.0.3` | Client-side email dispatch engine |
+| **lucide-react** | `^1.61.0` | Crisp vector icons system |
+| **react-github-calendar** | `^5.0.9` | Live interactive GitHub contribution activity calendar |
+| **@splinetool/react-spline** | `^4.1.0` | React wrapper for interactive 3D Spline scenes |
+| **@splinetool/runtime** | `^1.12.98` | 3D Spline web runtime engine |
 
-### Backend, Cloud & SEO
-| Technology | Usage |
-|---|---|
-| **Google Search Console** | Official search engine verification & sitemap indexing |
-| **Google Gemini AI** | Conversational AI assistant engine for portfolio grounding |
-| **EmailJS Cloud Engine** | Gmail API integration for instant portfolio form submissions |
-| **Vercel Serverless Functions** | `/api/chat` serverless backend route |
-| **Vite Dev Proxy Middleware** | Local development proxy for simulated serverless AI endpoints |
-
-### Developer's Core Engineering Skills (Featured in Portfolio)
-- **Frontend:** HTML5, CSS3, JavaScript (ES6+), React.js, Bootstrap 5.
-- **Backend & APIs:** Python, Flask, Node.js, Express.js, PHP, Laravel, C# / ASP.NET Core, REST APIs.
-- **Data & Databases:** R Programming, MySQL, Microsoft SQL Server, MongoDB, Firebase Firestore / Realtime DB.
-- **Mobile Development:** Flutter, Dart, Firebase, Cross-Platform Android/iOS architectures.
-- **AI Tooling & Agentic Workflows:** Google Antigravity, Claude 3.7 Sonnet, Google Gemini, Open Code, Cursor.
-- **Tools & Workflow:** Git, GitHub, Figma, Postman, Vite, VS Code.
+### Dev Dependencies
+| Package | Version | Purpose |
+|---|---|---|
+| **vite** | `^8.1.1` | Next-generation frontend tooling and bundler |
+| **@vitejs/plugin-react** | `^6.0.3` | Official Babel-based React Fast Refresh plugin |
+| **oxlint** | `^1.71.0` | High-speed Rust-based JavaScript & JSX code linter |
+| **@types/react** | `^19.2.17` | TypeScript definitions for React |
+| **@types/react-dom** | `^19.2.3` | TypeScript definitions for React DOM |
 
 ---
 
@@ -150,39 +105,39 @@ A next-generation, high-performance personal portfolio and engineering platform 
 
 All projects are loaded directly from `src/data/portfolioData.js` and link to dedicated case study pages:
 
-1. **EventEase** *(Mobile App)*
+1. **Watch Store** *(Frontend / Design)*
+   - **Stack:** HTML5, CSS3, Bootstrap
+   - **Highlights:** Luxury timepiece showcase featuring product displays and responsive layouts.
+
+2. **Historical Places Explorer** *(Frontend / Tourism)*
+   - **Stack:** HTML5, CSS3, Bootstrap 5, Responsive Design
+   - **Highlights:** Tourism discovery portal celebrating heritage monuments categorized by regional zones.
+   - **Repo:** [github.com/AbdulWasayAli/Historical-Places](https://github.com/AbdulWasayAli/Historical-Places)
+
+3. **ElectroShop — E-Commerce Platform** *(Frontend Web)*
+   - **Stack:** JavaScript (ES6+), HTML5, CSS3, Bootstrap, AOS, LocalStorage
+   - **Highlights:** Category filtering, dynamic client-side cart logic, form-validated checkout, and printable PDF invoices.
+   - **Repo:** [github.com/AbdulWasayAli/Electronic-Store](https://github.com/AbdulWasayAli/Electronic-Store)
+
+4. **SwiftShip — Courier Management System** *(Full-Stack Web)*
+   - **Stack:** PHP, MySQL, JavaScript, Bootstrap, CRUD Workflows
+   - **Highlights:** Logistics platform with parcel tracking, multi-branch agent workflows, and role-based authentication.
+   - **Repo:** [github.com/AbdulWasayAli/Courier-Management-System](https://github.com/AbdulWasayAli/Courier-Management-System)
+
+5. **E-Greetings — Digital Cards Platform** *(Full-Stack Web)*
+   - **Stack:** ASP.NET Core MVC, C#, EF Core, SQL Server, SMTP
+   - **Highlights:** Digital cards portal with scheduled SMTP email delivery, subscription tiers, and admin reports.
+   - **Repo:** [github.com/AbdulWasayAli/Greetings-Project](https://github.com/AbdulWasayAli/Greetings-Project)
+
+6. **EventEase** *(Mobile App)*
    - **Stack:** Flutter, Dart, Firebase, Role-Based Auth
    - **Highlights:** Full-lifecycle event management system with Attendee, Organizer, and Admin portals.
    - **Repo:** [github.com/AbdulWasayAli/EventEast](https://github.com/AbdulWasayAli/EventEast)
 
-2. **CurrenSee** *(Mobile App)*
+7. **CurrenSee** *(Mobile App)*
    - **Stack:** Flutter, Dart, REST API, State Management
    - **Highlights:** Real-time multi-currency converter, exchange rate trends, alerts, and gold-themed dark UI.
    - **Repo:** [github.com/AbdulWasayAli/Currency-Mobile-Application](https://github.com/AbdulWasayAli/Currency-Mobile-Application)
-
-3. **SwiftShip — Courier Management System** *(Full-Stack Web)*
-   - **Stack:** PHP, MySQL, JavaScript, Bootstrap, CRUD Workflows
-   - **Highlights:** Logistics platform with shipment dispatch, tracking numbers, multi-branch agents, and role authentication.
-   - **Repo:** [github.com/AbdulWasayAli/Courier-Management-System](https://github.com/AbdulWasayAli/Courier-Management-System)
-
-4. **E-Greetings — Digital Cards Platform** *(Full-Stack Web)*
-   - **Stack:** ASP.NET Core MVC, C#, EF Core, SQL Server, SMTP
-   - **Highlights:** Greeting cards portal with automated scheduled SMTP email delivery, Pro subscription tiers, and admin reports.
-   - **Repo:** [github.com/AbdulWasayAli/Greetings-Project](https://github.com/AbdulWasayAli/Greetings-Project)
-
-5. **ElectroShop — E-Commerce Platform** *(Frontend Web)*
-   - **Stack:** JavaScript (ES6), HTML5, CSS3, Bootstrap, AOS, LocalStorage
-   - **Highlights:** Interactive category filtering, client-side cart logic, form-validated checkout, and printable PDF invoices.
-   - **Repo:** [github.com/AbdulWasayAli/Electronic-Store](https://github.com/AbdulWasayAli/Electronic-Store)
-
-6. **Historical Places Explorer** *(Frontend / Design)*
-   - **Stack:** HTML5, CSS3, Bootstrap 5, Responsive Design
-   - **Highlights:** Cultural tourism showcase categorized by geographic regions with rich visual storytelling.
-   - **Repo:** [github.com/AbdulWasayAli/Historical-Places](https://github.com/AbdulWasayAli/Historical-Places)
-
-7. **Watch Store** *(Frontend / Design)*
-   - **Stack:** HTML5, CSS3, Bootstrap
-   - **Highlights:** Elegant modern product showcase for luxury watches featuring smooth transitions and responsive layouts.
 
 ---
 
@@ -194,11 +149,10 @@ portfolio-react/
 │   ├── images/
 │   │   ├── og-preview.jpg         # High-definition 1200x630 social preview card (WhatsApp/LinkedIn)
 │   │   ├── og-preview.webp        # Next-gen WebP social preview card
-│   │   ├── portfolio-preview.webp # Showcase banner (WebP format)
+│   │   ├── portfolio-preview.jpg  # Latest showcase banner screenshot
+│   │   ├── portfolio-preview.webp # Next-gen WebP showcase banner
 │   │   ├── blog-*.webp            # Next-gen 16:9 AI tooling article banners
 │   │   └── ...                    # Optimized WebP project screenshots & assets
-│   ├── robots.txt                 # Web crawler indexing directions & sitemap pointer
-│   ├── sitemap.xml                # Official Google XML sitemap
 │   ├── favicon.svg                # Custom cyber SVG favicon
 │   ├── icons.svg                  # Vector SVG sprite sheet
 │   ├── resume.pdf                 # Curriculum Vitae (PDF)
@@ -207,8 +161,9 @@ portfolio-react/
 │   ├── assets/                    # Static design vectors
 │   ├── components/
 │   │   ├── About/                 # Bio, achievements counter & profile visual
+│   │   ├── AtmosphericBackground/ # Luxury ambient glow spots & fine grid backdrop
 │   │   ├── Blog/                  # Horizontal carousel, cards & editorial article modal
-│   │   ├── Contact/               # Glassmorphic contact cards, copy badges & form with EmailJS & animated vector modal
+│   │   ├── Contact/               # Contact cards, form with EmailJS & animated vector modal
 │   │   ├── CyberCursor/           # GPU-accelerated fluid magnetic cyber cursor
 │   │   ├── Experience/            # Educational background & timeline (Matric, Inter, Diploma)
 │   │   ├── FloatingControls.jsx   # Quick WhatsApp & Connect morphing pill buttons + scroll-to-top
