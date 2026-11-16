@@ -32,15 +32,20 @@
   gap: var(--space-xl);
 }
 
-/* Category card with reveal */
+/* Category card with buttery-smooth hardware-accelerated transitions */
 .categoryCard {
   background: var(--gradient-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   padding: var(--space-xl);
-  transition: all var(--transition-base);
   position: relative;
   overflow: hidden;
+  will-change: transform, box-shadow, border-color;
+  transform: translateZ(0);
+  transition: 
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Top accent line on hover */
@@ -52,8 +57,9 @@
   width: 0;
   height: 3px;
   background: var(--gradient-primary);
-  transition: width var(--transition-slow);
   border-radius: var(--radius-full);
+  pointer-events: none;
+  transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .categoryCard:hover::after {
@@ -61,9 +67,9 @@
 }
 
 .categoryCard:hover {
-  border-color: rgba(108, 99, 255, 0.3);
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(108, 99, 255, 0.15);
+  border-color: rgba(108, 99, 255, 0.35);
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -10px rgba(108, 99, 255, 0.2), 0 0 20px rgba(108, 99, 255, 0.08);
 }
 
 .categoryHeader {
@@ -86,8 +92,13 @@
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25), inset 0 0 10px rgba(108, 99, 255, 0.1);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: 
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
+  will-change: transform;
 }
 
 .categoryCard:hover .categoryIcon {
@@ -95,7 +106,7 @@
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 8px 25px rgba(108, 99, 255, 0.4), 0 0 15px rgba(0, 229, 255, 0.3);
-  transform: scale(1.08) rotate(-4deg);
+  transform: scale(1.06) rotate(-3deg);
 }
 
 .categoryTitleBox {
@@ -110,7 +121,7 @@
   letter-spacing: -0.3px;
   color: var(--text-primary);
   margin: 0;
-  transition: color 0.3s ease;
+  transition: color 0.25s ease;
 }
 
 .categoryCard:hover .categoryTitle {
@@ -128,21 +139,26 @@
 .skillsList {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md);
 }
 
+/* Individual skill row */
 .skillItem {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
   padding: 8px 10px;
   border-radius: var(--radius-md);
-  transition: all 0.3s ease;
+  will-change: transform, background;
+  transform: translateZ(0);
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .skillItem:hover {
-  background: rgba(108, 99, 255, 0.05);
-  transform: translateX(4px);
+  background: rgba(108, 99, 255, 0.08);
+  transform: translateX(3px);
 }
 
 .skillInfo {
@@ -166,11 +182,15 @@
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-color);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  will-change: transform;
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .skillItem:hover .brandIconBox {
-  transform: scale(1.15) rotate(-6deg);
+  transform: scale(1.12);
   box-shadow: 0 4px 12px var(--primary-glow);
   border-color: var(--primary);
 }
@@ -189,9 +209,14 @@
   font-family: var(--font-mono);
   background: rgba(108, 99, 255, 0.1);
   border: 1px solid rgba(108, 99, 255, 0.2);
-  padding: 3px 9px;
+  padding: 2px 8px;
   border-radius: var(--radius-full);
-  transition: all 0.3s ease;
+  will-change: transform;
+  transition: 
+    background 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 .skillItem:hover .skillLevel {
@@ -199,7 +224,6 @@
   color: #ffffff;
   box-shadow: 0 2px 10px var(--primary-glow);
   border-color: transparent;
-  transform: scale(1.05);
 }
 
 /* Progress bar track */
@@ -219,10 +243,11 @@
   background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
   border-radius: var(--radius-full);
   width: 0;
-  transition: width 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 10px var(--primary-glow);
+  will-change: width;
 }
 
 /* Shimmer sweep on progress bar */
@@ -233,13 +258,14 @@
   left: -100%;
   width: 60%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-  animation: shimmerBar 2.2s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmerBar 2.8s ease-in-out infinite;
+  pointer-events: none;
 }
 
 @keyframes shimmerBar {
-  0%   { left: -60%; }
-  100% { left: 160%; }
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
 }
 
 /* Glowing dot at end of bar */
@@ -249,12 +275,12 @@
   top: 50%;
   right: 0;
   transform: translateY(-50%);
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background: #fff;
   border-radius: 50%;
-  box-shadow: 0 0 8px var(--primary), 0 0 16px var(--primary-glow);
-  transition: opacity var(--transition-base);
+  box-shadow: 0 0 8px var(--primary), 0 0 14px var(--primary-glow);
+  pointer-events: none;
 }
 
 /* === Responsive === */
@@ -275,7 +301,7 @@
 
 :global([data-theme="light"]) .categoryCard:hover {
   border-color: rgba(108, 99, 255, 0.35);
-  box-shadow: 0 16px 40px rgba(108, 99, 255, 0.12);
+  box-shadow: 0 16px 36px -10px rgba(108, 99, 255, 0.15);
 }
 
 :global([data-theme="light"]) .categoryIcon {
@@ -303,4 +329,3 @@
   border-color: rgba(108, 99, 255, 0.2);
   color: #6366f1;
 }
-
