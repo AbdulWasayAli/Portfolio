@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { navLinks } from '../../data/portfolioData';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
@@ -6,13 +6,36 @@ import styles from './Navbar.module.css';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
+  const lastScrollY = useRef(0);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
 
+      // Scrolled style when past 20px
+      setScrolled(currentScrollY > 20);
+
+      // Smart Hide/Show Logic
+      if (currentScrollY <= 80) {
+        // Always show near the very top of the page
+        setVisible(true);
+      } else if (currentScrollY > lastScrollY.current + 8) {
+        // Scrolling DOWN -> smoothly hide navbar
+        if (!menuOpen) {
+          setVisible(false);
+        }
+      } else if (currentScrollY < lastScrollY.current - 8) {
+        // Scrolling UP -> reveal navbar smoothly
+        setVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+
+      // Active Section Spy
       const sections = navLinks.map(link => link.href.replace('#', ''));
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
@@ -28,7 +51,7 @@ export default function Navbar() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [menuOpen]);
 
   const handleNavClick = (href) => {
     setMenuOpen(false);
@@ -39,7 +62,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className={styles.navHeader}>
+    <header className={`${styles.navHeader} ${visible ? styles.navVisible : styles.navHidden}`}>
       <div className={`${styles.jitterBar} ${scrolled ? styles.scrolled : ''}`}>
         {/* Left: Logo */}
         <a

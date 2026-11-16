@@ -14,6 +14,22 @@
   z-index: var(--z-sticky, 1000);
   pointer-events: none;
   padding: 0 32px;
+  will-change: transform, opacity;
+  transition: 
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Smart Scroll Reveal States */
+.navVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navHidden {
+  transform: translateY(-130%);
+  opacity: 0;
+  pointer-events: none !important;
 }
 
 /* Floating Bar with Modern Refined Squircle Border Radius */
