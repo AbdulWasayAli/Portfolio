@@ -18,11 +18,12 @@ A high-performance developer portfolio and personal engineering platform built w
 
 ## Key Features & Component Engineering
 
-### 1. Jitter-Style Floating Squircle Navigation (`Navbar`)
+### 1. Smart Auto-Hide Floating Squircle Navigation (`Navbar`)
 - Floating capsule navigation bar (`border-radius: 20px`, `min-height: 76px`, `max-width: 1280px`).
+- **Smart Scroll Behavior:** Automatically and smoothly hides on scroll-down to provide an immersive, distraction-free reading experience, and reveals instantly on scroll-up.
 - Active section indicator features a gradient glow bottom line (`.activeLine`) that transitions smoothly across navigation items.
 - Clean vector brand logo with dual-tone gradient strokes (`#8b5cf6` to `#00e5ff`) and interactive hover micro-states.
-- Interactive **Cosmic Day/Night Theme Switcher** with smooth dark/light transitions stored in `localStorage`.
+- Interactive **Minimalist Glassmorphic Theme Toggle** with crisp Lucide Moon and Sun icons and smooth spring transitions.
 - Responsive navigation drawer for mobile devices.
 
 ### 2. Interactive Morphing Floating Controls (`FloatingControls`)
@@ -72,6 +73,10 @@ A high-performance developer portfolio and personal engineering platform built w
 ### 10. Performance & Asset Optimization (WebP Pipeline)
 - Project media assets, blog covers, and profile visuals optimized in next-generation **WebP** format.
 - Substantial reduction in total media payload, ensuring fast Largest Contentful Paint (LCP) and smooth rendering on mobile networks.
+
+### 11. Hardware-Accelerated Real-Time Scroll Progress Indicator
+- Top reading progress line upgraded to Framer Motion's `useScroll` and `useSpring` with GPU-accelerated `transform: scaleX(...)`.
+- Delivers zero-lag, jitter-free real-time progress tracking perfectly synchronized with user scroll velocity.
 
 ---
 
