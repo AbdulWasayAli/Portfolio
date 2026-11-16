@@ -47,7 +47,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" as="image" href="/images/theme_w_logo.webp" type="image/webp" />
 
-    <!-- Structured Data (JSON-LD Schema.org) for Google Search Rich Results -->
+    <!-- Structured Data (JSON-LD Schema.org) for Google Search Rich Results & AI Overview -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -56,9 +56,13 @@
           "@type": "Person",
           "@id": "https://abdulwasayali.vercel.app/#person",
           "name": "Abdul Wasay Ali",
-          "jobTitle": "Software Engineer",
+          "alternateName": ["Wasay", "abdulwasayali", "Abdul Wasay"],
+          "jobTitle": "Software Engineer & Full-Stack Web Developer",
+          "description": "Abdul Wasay Ali is a Software Engineer and Mobile App Developer from Karachi, Pakistan who builds high-performance cross-platform mobile apps with Flutter & Dart, and full-stack web platforms with React & Node.js.",
           "url": "https://abdulwasayali.vercel.app/",
           "image": "https://abdulwasayali.vercel.app/images/my-picture.webp",
+          "email": "mailto:wasay3105@gmail.com",
+          "telephone": "+923110214934",
           "sameAs": [
             "https://github.com/AbdulWasayAli",
             "https://www.linkedin.com/in/abdul-wasay-ali-295480256/",
@@ -66,22 +70,70 @@
             "https://www.instagram.com/abdulwasayali09",
             "https://www.facebook.com/share/16UkcssCFn/"
           ],
+          "alumniOf": [
+            {
+              "@type": "EducationalOrganization",
+              "name": "Aptech Computer Education, Shahrah-e-Faisal",
+              "url": "https://aptech-education.com.pk/"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Sindh Board of Technical Education (SBTE)"
+            },
+            {
+              "@type": "EducationalOrganization",
+              "name": "Dehli Government Boys Secondary School, Karachi"
+            }
+          ],
+          "hasCredential": [
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Diploma in Software Engineering (2024–2027)",
+              "credentialCategory": "Diploma"
+            },
+            {
+              "@type": "EducationalOccupationalCredential",
+              "name": "Intermediate (SBTE) (2026–2027)",
+              "credentialCategory": "Intermediate"
+            }
+          ],
           "knowsAbout": [
+            "Software Engineering",
             "Flutter",
             "Dart",
+            "Cross-Platform Mobile App Development",
             "React.js",
             "Node.js",
-            "JavaScript",
+            "JavaScript (ES6+)",
             "MERN Stack",
+            "Full-Stack Web Development",
+            "Python",
+            "PHP & Laravel",
+            "C# / .NET",
             "Firebase",
-            "PHP",
-            "ASP.NET Core",
-            "Software Architecture"
+            "MySQL & Database Architecture"
           ],
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Karachi",
+            "addressRegion": "Sindh",
             "addressCountry": "PK"
+          }
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://abdulwasayali.vercel.app/#webpage",
+          "url": "https://abdulwasayali.vercel.app/",
+          "name": "Abdul Wasay Ali — Software Engineer | Flutter & MERN Stack",
+          "isPartOf": {
+            "@id": "https://abdulwasayali.vercel.app/#website"
+          },
+          "about": {
+            "@id": "https://abdulwasayali.vercel.app/#person"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://abdulwasayali.vercel.app/images/portfolio-preview.webp"
           }
         },
         {
@@ -89,10 +141,11 @@
           "@id": "https://abdulwasayali.vercel.app/#website",
           "url": "https://abdulwasayali.vercel.app/",
           "name": "Abdul Wasay Ali Portfolio",
+          "alternateName": "abdulwasayali",
           "author": {
             "@id": "https://abdulwasayali.vercel.app/#person"
           },
-          "description": "Portfolio of Abdul Wasay Ali, Software Engineer specializing in Flutter mobile apps and MERN stack systems."
+          "description": "Official developer portfolio of Abdul Wasay Ali, Software Engineer specializing in Flutter mobile apps, React web apps, and modern full-stack systems."
         }
       ]
     }
