@@ -17,23 +17,25 @@ import { Routes, Route, useLocation } from 'react-router-dom';
 import NotFound from './pages/NotFound';
 import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import SplashScreen from './components/SplashScreen/SplashScreen';
 import AtmosphericBackground from './components/AtmosphericBackground/AtmosphericBackground';
 import './styles/globals.css';
 
 function ScrollProgress() {
-  const [width, setWidth] = useState(0);
-  useEffect(() => {
-    const update = () => {
-      const el = document.documentElement;
-      const scrolled = el.scrollTop;
-      const total = el.scrollHeight - el.clientHeight;
-      setWidth(total > 0 ? (scrolled / total) * 100 : 0);
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    return () => window.removeEventListener('scroll', update);
-  }, []);
-  return <div className="scroll-progress-bar" style={{ width: `${width}%` }} />;
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 800,
+    damping: 35,
+    restDelta: 0.001
+  });
+
+  return (
+    <motion.div
+      className="scroll-progress-bar"
+      style={{ scaleX }}
+    />
+  );
 }
 
 function ScrollRevealInit() {

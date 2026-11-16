@@ -95,11 +95,15 @@ input, textarea { font-family: inherit; font-size: inherit; }
   position: fixed;
   top: 0;
   left: 0;
-  height: 3px;
-  background: var(--gradient-primary);
-  z-index: 9999;
-  transition: width 0.1s linear;
-  box-shadow: 0 0 10px var(--primary-glow);
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, #6c63ff 0%, #00e5ff 60%, #38bdf8 100%);
+  z-index: 99999;
+  transform-origin: 0% 50%;
+  pointer-events: none;
+  box-shadow: 
+    0 0 12px rgba(0, 229, 255, 0.7),
+    0 0 24px rgba(108, 99, 255, 0.5);
 }
 
 /* =============================================
