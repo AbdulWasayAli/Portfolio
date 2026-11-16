@@ -1,243 +1,115 @@
 /* ========================================================
-   Ultra-Luxury Cyber Theme Toggle
-   Precision Frosted Titanium, Cosmic Stars & Specular Sheen
+   Refined Minimalist Theme Toggle (High-End Developer Look)
+   Consistent with Navbar glassmorphism & Apple/Linear aesthetic
    ======================================================== */
 
-.toggleButton {
+.themeBtn {
   position: relative;
-  width: 68px;
-  height: 34px;
-  border-radius: 9999px;
-  padding: 0;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  outline: none;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Dynamic Ambient Optical Aura */
-.ambientAura {
-  position: absolute;
-  inset: -3px;
-  border-radius: 9999px;
-  opacity: 0;
-  transition: opacity 0.4s ease, filter 0.4s ease;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.isDark .ambientAura {
-  background: radial-gradient(circle, rgba(129, 140, 248, 0.45) 0%, rgba(99, 102, 241, 0) 75%);
-}
-
-.isLight .ambientAura {
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.5) 0%, rgba(251, 191, 36, 0) 75%);
-}
-
-.toggleButton:hover .ambientAura {
-  opacity: 1;
-}
-
-/* Base Track Capsule */
-.trackPill {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 9999px;
-  display: flex;
-  align-items: center;
-  padding: 3.5px;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
-}
-
-/* Dark Theme Track: Obsidian Titanium Glass */
-.isDark .trackPill {
-  background: linear-gradient(135deg, rgba(15, 18, 35, 0.95) 0%, rgba(8, 10, 22, 0.98) 100%);
-  border: 1px solid rgba(129, 140, 248, 0.3);
-  box-shadow: 
-    inset 0 2px 6px rgba(0, 0, 0, 0.75),
-    inset 0 -1px 2px rgba(255, 255, 255, 0.08),
-    0 6px 18px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.toggleButton:hover.isDark .trackPill {
-  border-color: rgba(129, 140, 248, 0.65);
-  box-shadow: 
-    inset 0 2px 6px rgba(0, 0, 0, 0.75),
-    0 0 16px rgba(129, 140, 248, 0.35);
-}
-
-/* Light Theme Track: Silky Frosted Pearl Opal */
-.isLight .trackPill {
-  background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
-  border: 1px solid rgba(245, 158, 11, 0.4);
-  box-shadow: 
-    inset 0 2px 5px rgba(15, 23, 42, 0.06),
-    inset 0 -1px 2px #ffffff,
-    0 4px 14px rgba(245, 158, 11, 0.15);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-}
-
-.toggleButton:hover.isLight .trackPill {
-  border-color: rgba(245, 158, 11, 0.75);
-  box-shadow: 
-    inset 0 2px 5px rgba(15, 23, 42, 0.06),
-    0 0 16px rgba(245, 158, 11, 0.35);
-}
-
-/* Background Cosmic Atmosphere */
-.cosmicSky {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-/* Night Stars */
-.star {
-  position: absolute;
-  border-radius: 50%;
-  background: #c7d2fe;
-  box-shadow: 0 0 4px #818cf8;
-}
-
-.star1 {
-  width: 2.5px;
-  height: 2.5px;
-  top: 9px;
-  left: 13px;
-  animation: starPulse 2.8s infinite alternate ease-in-out;
-}
-
-.star2 {
-  width: 3.5px;
-  height: 3.5px;
-  bottom: 8px;
-  left: 21px;
-  animation: starPulse 3.5s infinite alternate ease-in-out 0.8s;
-}
-
-.star3 {
-  width: 2px;
-  height: 2px;
-  top: 14px;
-  left: 28px;
-  animation: starPulse 2.2s infinite alternate ease-in-out 1.4s;
-}
-
-@keyframes starPulse {
-  0% { transform: scale(0.7); opacity: 0.4; }
-  100% { transform: scale(1.3); opacity: 1; }
-}
-
-.nebulaGlow {
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 22px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%);
-  filter: blur(4px);
-}
-
-/* Day Solar Corona */
-.solarCorona {
-  position: absolute;
-  right: -8px;
-  top: -8px;
   width: 42px;
   height: 42px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(251, 191, 36, 0.35) 0%, rgba(245, 158, 11, 0.1) 50%, transparent 75%);
-  filter: blur(2px);
-  animation: solarPulse 3s infinite alternate ease-in-out;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 
+    0 4px 12px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0;
+  outline: none;
+  overflow: hidden;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: 
+    background 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes solarPulse {
-  0% { transform: scale(0.9); opacity: 0.7; }
-  100% { transform: scale(1.15); opacity: 1; }
+.themeBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(56, 189, 248, 0.35);
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.35),
+    0 0 14px rgba(56, 189, 248, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
-/* 3D Magnetic Sliding Orb */
-.magneticOrb {
+.themeBtn:focus-visible {
+  outline: 2px solid var(--primary, #38bdf8);
+  outline-offset: 2px;
+}
+
+/* Light Theme Styling */
+:global([data-theme="light"]) .themeBtn {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+:global([data-theme="light"]) .themeBtn:hover {
+  background: rgba(0, 0, 0, 0.07);
+  border-color: rgba(245, 158, 11, 0.45);
+  box-shadow: 
+    0 4px 14px rgba(245, 158, 11, 0.15),
+    0 0 12px rgba(245, 158, 11, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Icons Container */
+.iconContainer {
   position: relative;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 2;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
 }
 
-/* Dark Orb: High-Tech Cosmic Indigo with Specular Jewel Rim */
-.isDark .magneticOrb {
-  margin-left: auto;
-  background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%);
-  border: 1px solid rgba(165, 180, 252, 0.4);
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.5),
-    0 0 14px rgba(99, 102, 241, 0.65),
-    inset 0 1px 1px rgba(255, 255, 255, 0.4);
-}
-
-/* Light Orb: Warm Radiant Amber Jewel with Golden Core */
-.isLight .magneticOrb {
-  margin-right: auto;
-  background: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 
-    0 2px 8px rgba(245, 158, 11, 0.35),
-    0 0 16px rgba(251, 191, 36, 0.8),
-    inset 0 1px 1px #ffffff;
-}
-
-/* 3D Jewel Specular Highlight */
-.orbSheen {
-  position: absolute;
-  top: 1px;
-  left: 3px;
-  right: 3px;
-  height: 10px;
-  border-radius: 50% 50% 45% 45%;
-  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0));
-  pointer-events: none;
-}
-
-/* Icon Container */
 .iconWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 3;
 }
 
-.moonSvg {
-  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+/* Moon Icon in Dark Mode */
+.moonIcon {
+  color: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.5));
 }
 
-.sunSvg {
-  filter: drop-shadow(0 1px 2px rgba(180, 83, 9, 0.4));
+/* Sun Icon in Light Mode */
+.sunIcon {
+  color: #d97706;
+  filter: drop-shadow(0 0 6px rgba(245, 158, 11, 0.4));
 }
 
-/* Keyboard Focus Ring */
-.toggleButton:focus-visible {
-  outline: 2px solid var(--primary);
-  outline-offset: 3px;
+/* Subtle Hover Glow */
+.glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
+.dark .glow {
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+}
+
+.light .glow {
+  background: radial-gradient(circle, rgba(245, 158, 11, 0.25) 0%, transparent 70%);
+}
+
+.themeBtn:hover .glow {
+  opacity: 1;
+}
