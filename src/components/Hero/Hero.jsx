@@ -33,14 +33,11 @@ export default function Hero() {
               <span className={styles.heroNameHighlight}>{heroData.name}</span>
             </h1>
 
-            {/* Unified Luxury Tech Identity & Specialty Bar */}
+            {/* Unified Professional Developer Identity & Specialty Bar */}
             <div className={styles.unifiedStatusDeck}>
               {/* Permanent Software Engineer Authority Badge */}
               <div className={styles.identityBadge}>
-                <span className={styles.identityRadar}>
-                  <span className={styles.identityRadarPing} />
-                  <span className={styles.identityRadarDot} />
-                </span>
+                <span className={styles.identityDot} />
                 <span className={styles.identityTitle}>Software Engineer</span>
               </div>
 
@@ -51,10 +48,10 @@ export default function Hero() {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={roleIndex}
-                    initial={{ y: 16, opacity: 0, filter: 'blur(4px)' }}
-                    animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-                    exit={{ y: -16, opacity: 0, filter: 'blur(4px)' }}
-                    transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                    initial={{ y: 12, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    exit={{ y: -12, opacity: 0 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
                     className={styles.specialtyStream}
                   >
                     <span className={styles.specialtyText}>

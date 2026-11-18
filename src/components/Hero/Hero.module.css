@@ -179,141 +179,76 @@
   100% { background-position: 100% center; }
 }
 
-/* === Next-Gen Unified Luxury Status Deck (Cyber Luminary Edition) === */
+/* === Clean, High-End Developer Identity Bar (Apple/Linear Aesthetic) === */
 .unifiedStatusDeck {
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: rgba(10, 14, 28, 0.78);
+  background: rgba(13, 17, 30, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 999px;
-  padding: 7px 18px 7px 14px;
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
+  padding: 6px 16px 6px 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   box-shadow:
-    0 12px 36px -8px rgba(0, 0, 0, 0.65),
-    0 0 24px -2px rgba(139, 92, 246, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 8px 24px -6px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
   margin-bottom: var(--space-xl);
   max-width: 100%;
   animation: fadeInUp 0.6s ease 0.2s both;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+  transition: 
+    transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2;
 }
 
-/* Continuously orbiting luminous cyber border beam */
-.unifiedStatusDeck::before {
-  content: '';
-  position: absolute;
-  inset: -1.5px;
-  border-radius: 999px;
-  padding: 1.5px;
-  background: conic-gradient(
-    from var(--deck-angle, 0deg),
-    rgba(56, 189, 248, 0.95),
-    rgba(168, 85, 247, 0.8),
-    rgba(236, 72, 153, 0.3),
-    rgba(56, 189, 248, 0.1),
-    rgba(168, 85, 247, 0.1),
-    rgba(56, 189, 248, 0.95)
-  );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  animation: rotateDeckBorder 4s linear infinite;
-}
-
-@property --deck-angle {
-  syntax: '<angle>';
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes rotateDeckBorder {
-  0% { --deck-angle: 0deg; }
-  100% { --deck-angle: 360deg; }
-}
-
 .unifiedStatusDeck:hover {
-  transform: translateY(-2px) scale(1.015);
+  transform: translateY(-2px);
+  border-color: rgba(56, 189, 248, 0.3);
   box-shadow:
-    0 16px 42px -6px rgba(0, 0, 0, 0.75),
-    0 0 32px 0px rgba(56, 189, 248, 0.35),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    0 12px 32px -6px rgba(0, 0, 0, 0.6),
+    0 0 16px rgba(56, 189, 248, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
 .identityBadge {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   flex-shrink: 0;
-  position: relative;
 }
 
-.identityRadar {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 14px;
-  height: 14px;
-}
-
-.identityRadarDot {
+.identityDot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #38bdf8;
-  box-shadow: 0 0 12px #38bdf8, 0 0 20px rgba(56, 189, 248, 0.8);
-  z-index: 2;
-}
-
-.identityRadarPing {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: 1.5px solid #38bdf8;
-  opacity: 0.85;
-  animation: radarPing 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes radarPing {
-  0% { transform: scale(0.6); opacity: 1; }
-  60% { opacity: 0.4; }
-  100% { transform: scale(2.6); opacity: 0; }
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
 }
 
 .identityTitle {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
+  font-family: var(--font-mono, monospace);
+  font-size: 12.5px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.8px;
   text-transform: uppercase;
-  color: #ffffff;
+  color: #f1f5f9;
   white-space: nowrap;
-  text-shadow: 0 0 16px rgba(255, 255, 255, 0.4);
 }
 
 .deckDivider {
-  width: 1.5px;
-  height: 20px;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgba(56, 189, 248, 0.6) 50%,
-    transparent 100%
-  );
-  margin: 0 16px;
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.12);
+  margin: 0 14px;
   flex-shrink: 0;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);
 }
 
 .specialtyContainer {
   display: flex;
   align-items: center;
-  min-height: 28px;
+  min-height: 26px;
   overflow: hidden;
   position: relative;
 }
@@ -321,38 +256,72 @@
 .specialtyStream {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   white-space: nowrap;
 }
 
 .specialtyText {
   font-size: 13.5px;
-  font-weight: 600;
-  background: linear-gradient(90deg, #f8fafc 0%, #cbd5e1 50%, #94a3b8 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 0.25px;
+  font-weight: 500;
+  color: #cbd5e1;
+  letter-spacing: 0.2px;
 }
 
 .specialtyTag {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono, monospace);
   font-size: 11px;
   font-weight: 600;
   color: #38bdf8;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.38);
-  padding: 3px 10px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  padding: 2.5px 9px;
   border-radius: 999px;
-  letter-spacing: 0.4px;
-  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2), inset 0 0 6px rgba(56, 189, 248, 0.15);
-  transition: all 0.3s ease;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
 }
 
 .specialtyTag:hover {
-  background: rgba(56, 189, 248, 0.2);
-  border-color: rgba(56, 189, 248, 0.6);
-  box-shadow: 0 0 18px rgba(56, 189, 248, 0.4);
+  background: rgba(56, 189, 248, 0.16);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+/* Light Mode Overrides for Status Deck */
+:global([data-theme="light"]) .unifiedStatusDeck {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 
+    0 4px 16px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+:global([data-theme="light"]) .unifiedStatusDeck:hover {
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 
+    0 8px 24px rgba(99, 102, 241, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+:global([data-theme="light"]) .identityTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .identityDot {
+  background: #6366f1;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
+}
+
+:global([data-theme="light"]) .deckDivider {
+  background: rgba(15, 23, 42, 0.1);
+}
+
+:global([data-theme="light"]) .specialtyText {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .specialtyTag {
+  color: #4f46e5;
+  background: rgba(99, 102, 241, 0.08);
+  border-color: rgba(99, 102, 241, 0.2);
 }
 
 .heroDescription {
