@@ -87,23 +87,6 @@ export default function Logo() {
       <span className={styles.logoText}>
         <span className={styles.nameBase}>Wasa</span>
         <span className={styles.nameY}>y</span>
-
-        <span className={styles.orbContainer}>
-          <motion.span
-            className={styles.quantumOrb}
-            animate={{
-              scale: [1, 1.25, 1],
-              opacity: [0.9, 1, 0.9]
-            }}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: 'easeInOut'
-            }}
-          />
-          <span className={styles.radarRing1} />
-          <span className={styles.radarRing2} />
-        </span>
       </span>
     </motion.div>
   );
