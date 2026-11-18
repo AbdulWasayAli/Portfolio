@@ -184,15 +184,16 @@
   position: relative;
   display: inline-flex;
   align-items: center;
-  background: rgba(13, 17, 30, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(10, 14, 28, 0.72);
+  border: 1px solid rgba(108, 99, 255, 0.35);
   border-radius: 999px;
-  padding: 6px 16px 6px 14px;
+  padding: 6px 18px 6px 16px;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow:
     0 8px 24px -6px rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    0 0 16px rgba(108, 99, 255, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
   margin-bottom: var(--space-xl);
   max-width: 100%;
   animation: fadeInUp 0.6s ease 0.2s both;
@@ -205,31 +206,23 @@
 
 .unifiedStatusDeck:hover {
   transform: translateY(-2px);
-  border-color: rgba(56, 189, 248, 0.3);
+  border-color: rgba(0, 229, 255, 0.55);
   box-shadow:
-    0 12px 32px -6px rgba(0, 0, 0, 0.6),
-    0 0 16px rgba(56, 189, 248, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+    0 12px 32px -6px rgba(0, 0, 0, 0.65),
+    0 0 20px rgba(0, 229, 255, 0.2),
+    0 0 28px rgba(108, 99, 255, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .identityBadge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
   flex-shrink: 0;
-}
-
-.identityDot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #38bdf8;
-  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8);
 }
 
 .identityTitle {
   font-family: var(--font-mono, monospace);
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   letter-spacing: 0.8px;
   text-transform: uppercase;
@@ -240,7 +233,7 @@
 .deckDivider {
   width: 1px;
   height: 16px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(108, 99, 255, 0.35);
   margin: 0 14px;
   flex-shrink: 0;
 }
@@ -271,9 +264,9 @@
   font-family: var(--font-mono, monospace);
   font-size: 11px;
   font-weight: 600;
-  color: #38bdf8;
-  background: rgba(56, 189, 248, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.22);
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   padding: 2.5px 9px;
   border-radius: 999px;
   letter-spacing: 0.3px;
@@ -281,23 +274,24 @@
 }
 
 .specialtyTag:hover {
-  background: rgba(56, 189, 248, 0.16);
-  border-color: rgba(56, 189, 248, 0.45);
+  background: rgba(0, 229, 255, 0.16);
+  border-color: rgba(0, 229, 255, 0.5);
 }
 
 /* Light Mode Overrides for Status Deck */
 :global([data-theme="light"]) .unifiedStatusDeck {
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(108, 99, 255, 0.25);
   box-shadow: 
     0 4px 16px rgba(15, 23, 42, 0.06),
+    0 0 12px rgba(108, 99, 255, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 :global([data-theme="light"]) .unifiedStatusDeck:hover {
-  border-color: rgba(99, 102, 241, 0.35);
+  border-color: rgba(108, 99, 255, 0.5);
   box-shadow: 
-    0 8px 24px rgba(99, 102, 241, 0.12),
+    0 8px 24px rgba(108, 99, 255, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
@@ -305,13 +299,8 @@
   color: #0f172a;
 }
 
-:global([data-theme="light"]) .identityDot {
-  background: #6366f1;
-  box-shadow: 0 0 8px rgba(99, 102, 241, 0.6);
-}
-
 :global([data-theme="light"]) .deckDivider {
-  background: rgba(15, 23, 42, 0.1);
+  background: rgba(108, 99, 255, 0.2);
 }
 
 :global([data-theme="light"]) .specialtyText {
@@ -319,9 +308,9 @@
 }
 
 :global([data-theme="light"]) .specialtyTag {
-  color: #4f46e5;
-  background: rgba(99, 102, 241, 0.08);
-  border-color: rgba(99, 102, 241, 0.2);
+  color: #6c63ff;
+  background: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.22);
 }
 
 .heroDescription {

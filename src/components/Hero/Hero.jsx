@@ -37,7 +37,6 @@ export default function Hero() {
             <div className={styles.unifiedStatusDeck}>
               {/* Permanent Software Engineer Authority Badge */}
               <div className={styles.identityBadge}>
-                <span className={styles.identityDot} />
                 <span className={styles.identityTitle}>Software Engineer</span>
               </div>
 
