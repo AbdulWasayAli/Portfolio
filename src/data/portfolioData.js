@@ -35,9 +35,9 @@ export const heroData = {
 
 export const aboutData = {
   paragraphs: [
-    "I'm a passionate Software Engineering student based in Karachi, Pakistan. Currently pursuing a Diploma in Software Engineering from Aptech, I have developed a strong passion for technology and real-world problem-solving.",
-    "I have worked on multiple academic and personal projects that have strengthened my practical understanding of software development. I am always eager to learn, build projects, and collaborate with others.",
-    "My goal is to become a skilled software engineer who contributes meaningfully to innovative and impactful technology solutions.",
+    "I'm Abdul Wasay Ali — an aspiring Software Engineer based in Karachi, Pakistan. I am currently pursuing a Diploma in Software Engineering alongside my Intermediate studies from Aptech (SBTE).",
+    "Through my academic and personal projects, I have developed a solid foundation across front-end to back-end concepts. I love turning real-world problems into clean, scalable digital solutions.",
+    "Always eager to learn and collaborate, I am actively seeking internship and project opportunities to gain hands-on industry experience and contribute meaningfully to impactful technology.",
   ],
   stats: [
     { value: "5+", label: "Projects Completed" },
