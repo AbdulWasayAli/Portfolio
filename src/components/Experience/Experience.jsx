@@ -1,6 +1,14 @@
 import { useEffect, useRef } from 'react';
+import { Briefcase, GraduationCap, BookOpen, School } from 'lucide-react';
 import { timelineData } from '../../data/portfolioData';
 import styles from './Experience.module.css';
+
+const ICON_MAP = {
+  Briefcase: Briefcase,
+  GraduationCap: GraduationCap,
+  BookOpen: BookOpen,
+  School: School,
+};
 
 export default function Experience() {
   const itemRefs = useRef([]);
@@ -42,11 +50,14 @@ export default function Experience() {
                 ref={(el) => (itemRefs.current[index] = el)}
               >
                 {/* Timeline Dot / Logo */}
-                <div className={`${styles.timelineDot} ${isExperience ? styles.experienceDot : ''}`}>
+                <div className={`${styles.timelineDot} ${isExperience ? styles.experienceDot : styles.educationDot}`}>
                   {isExperience && item.logo ? (
                     <img src={item.logo} alt={item.organization} className={styles.dotLogo} />
                   ) : (
-                    <span>{item.icon}</span>
+                    (() => {
+                      const IconComponent = ICON_MAP[item.iconName] || GraduationCap;
+                      return <IconComponent className={styles.dotIcon} size={18} strokeWidth={2.2} />;
+                    })()
                   )}
                 </div>
 

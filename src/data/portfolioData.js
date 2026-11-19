@@ -55,11 +55,11 @@ export const timelineData = [
     organizationUrl: "https://10pearls.com/",
     period: "Nov 2026 — Present",
     badge: "Current Role",
-    logo: "/images/10pearls-logo.svg",
+    logo: "/images/10pearls-logo.png",
     description:
       "Selected for the prestigious 10Pearls Shine Internship Program 2026 (Cohort 10), an intensive engineering track focusing on building production-ready web applications using the MERN stack (Node.js, Express.js, React.js, and MongoDB).",
     skills: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "Git"],
-    icon: "💼",
+    iconName: "Briefcase",
   },
   {
     type: "education",
@@ -68,7 +68,7 @@ export const timelineData = [
     period: "2024 — 2027",
     description:
       "Pursuing a 3-year comprehensive software engineering diploma focusing on full-stack web development, databases, cross-platform mobile apps, and enterprise software design patterns.",
-    icon: "🎓",
+    iconName: "GraduationCap",
   },
   {
     type: "education",
@@ -77,7 +77,7 @@ export const timelineData = [
     period: "2026 — 2027",
     description:
       "Continuing intermediate studies in Computer Science under the Sindh Board of Technical Education (SBTE) alongside professional software engineering qualifications.",
-    icon: "📚",
+    iconName: "BookOpen",
   },
   {
     type: "education",
@@ -86,7 +86,7 @@ export const timelineData = [
     period: "2020 — 2021",
     description:
       "Completed secondary school certificate with a strong foundation in science, analytical inquiry, and academic discipline.",
-    icon: "🏫",
+    iconName: "School",
   },
 ];
 
