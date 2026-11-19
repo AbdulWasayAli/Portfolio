@@ -46,21 +46,30 @@ export const aboutData = {
   ],
 };
 
-export const experienceData = [
+export const workExperienceData = [
   {
-    type: "experience",
+    role: "MERN Stack Intern",
+    program: "Shine Internship Program (Cohort 10)",
+    company: "10Pearls Pakistan",
+    companyUrl: "https://10pearls.com/",
+    logo: "/images/10pearls-logo.svg",
     badge: "Current Role",
-    title: "MERN Stack Intern",
-    subtitle: "Shine Internship Program (Cohort 10)",
-    organization: "10Pearls Pakistan · Remote",
+    location: "Karachi, Sindh, Pakistan · Remote",
     period: "Nov 2026 — Present",
     description:
-      "Selected for the prestigious 10Pearls Shine Internship Program 2026 (Cohort 10), an intensive 8-week engineering track focusing on modern full-stack development with React.js, Node.js, Express.js, and MongoDB.",
-    skills: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    icon: "💼",
+      "Selected for the prestigious 10Pearls Shine Internship Program 2026 (Cohort 10), an intensive 8-week engineering track focusing on building production-ready web applications using the MERN stack (Node.js, Express.js, React.js, and MongoDB).",
+    highlights: [
+      "Engineered robust, secure RESTful APIs with Node.js and Express.js with structured schema validations.",
+      "Developed modular, responsive frontend components with React.js adhering to enterprise component design patterns.",
+      "Integrated MongoDB database models with optimized aggregation pipelines and index queries.",
+      "Participated in sprint standups, clean code reviews, and industry-standard Git collaboration workflows."
+    ],
+    skills: ["React.js", "Node.js", "Express.js", "MongoDB", "REST APIs", "Git"],
   },
+];
+
+export const educationData = [
   {
-    type: "education",
     title: "Diploma in Software Engineering",
     organization: "Aptech Computer Education, Shahrah-e-Faisal (Continuing)",
     period: "2024 — 2027",
@@ -69,7 +78,6 @@ export const experienceData = [
     icon: "🎓",
   },
   {
-    type: "education",
     title: "Intermediate",
     organization: "Aptech Computer Education, Shahrah-e-Faisal · SBTE (Sindh Board of Technical Education) (Continuing)",
     period: "2026 — 2027",
@@ -78,7 +86,6 @@ export const experienceData = [
     icon: "📚",
   },
   {
-    type: "education",
     title: "Matriculation — Science Group (Biology)",
     organization: "Dehli Government Boys Secondary School, Karachi",
     period: "2020 — 2021",
@@ -86,6 +93,12 @@ export const experienceData = [
       "Completed secondary school certificate with a strong foundation in science, analytical inquiry, and academic discipline.",
     icon: "🏫",
   },
+];
+
+// Backward compatibility export
+export const experienceData = [
+  ...workExperienceData.map(w => ({ ...w, type: "experience", title: w.role, organization: w.company, icon: "💼" })),
+  ...educationData.map(e => ({ ...e, type: "education" }))
 ];
 
 export const skillsData = {
@@ -298,6 +311,7 @@ export const projectsData = [
 export const navLinks = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
   { name: "Education", href: "#education" },
   { name: "Skills", href: "#skills" },
   { name: "Projects", href: "#projects" },

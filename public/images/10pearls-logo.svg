@@ -1,0 +1,7 @@
+<svg width="48" height="48" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="100" height="100" rx="20" fill="#0D1117"/>
+  <!-- Number 1 -->
+  <rect x="24" y="24" width="12" height="52" rx="3" fill="#FFFFFF"/>
+  <!-- Number 0 (Outer Ring) -->
+  <circle cx="62" cy="50" r="26" stroke="#FFFFFF" stroke-width="12"/>
+</svg>
