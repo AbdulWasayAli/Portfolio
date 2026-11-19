@@ -10,36 +10,21 @@
   padding-left: 56px;
 }
 
-/* Animated gradient line */
+/* Subdued Minimalist Timeline Connecting Line (Silicon Valley Standard) */
 .timeline::before {
   content: '';
   position: absolute;
-  left: 20px;
-  top: 0;
-  height: 100%;
+  left: 27px;
+  top: 40px;
+  bottom: 40px;
   width: 2px;
-  background: linear-gradient(180deg, var(--accent) 0%, var(--primary) 50%, transparent 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(148, 163, 184, 0.25) 0%,
+    rgba(148, 163, 184, 0.15) 75%,
+    transparent 100%
+  );
   border-radius: var(--radius-full);
-}
-
-/* Pulsing glow on the line */
-.timeline::after {
-  content: '';
-  position: absolute;
-  left: 16px;
-  top: 0;
-  height: 70px;
-  width: 10px;
-  background: var(--accent);
-  filter: blur(8px);
-  opacity: 0.6;
-  border-radius: var(--radius-full);
-  animation: lineGlow 3.5s ease-in-out infinite;
-}
-
-@keyframes lineGlow {
-  0%, 100% { top: 0; opacity: 0.5; }
-  50%       { top: calc(100% - 70px); opacity: 0.8; }
 }
 
 .timelineItem {
@@ -312,12 +297,14 @@
 /* === Responsive === */
 @media (max-width: 576px) {
   .timeline { padding-left: 38px; }
-  .timeline::before { left: 14px; }
-  .timeline::after  { left: 10px; }
+  .timeline::before {
+    left: 17px;
+    top: 36px;
+    bottom: 36px;
+  }
   .timelineDot {
     left: -32px;
-    width: 28px;
-    height: 28px;
-    font-size: 12px;
+    width: 32px;
+    height: 32px;
   }
 }
