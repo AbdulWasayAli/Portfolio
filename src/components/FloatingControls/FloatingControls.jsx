@@ -1,19 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import styles from './FloatingControls.module.css';
 
 export default function FloatingControls() {
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [isWhatsappHovered, setIsWhatsappHovered] = useState(false);
   const [isConnectHovered, setIsConnectHovered] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const scrollToContact = () => {
     const el = document.getElementById('contact');
@@ -22,33 +13,8 @@ export default function FloatingControls() {
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
     <div className={styles.floatingContainer}>
-      {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <motion.button
-          className={`${styles.floatingBtn} ${styles.topBtn}`}
-          onClick={scrollToTop}
-          title="Back to Top"
-          aria-label="Back to Top"
-          initial={{ opacity: 0, scale: 0.6, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.6, y: 15 }}
-          whileHover={{ scale: 1.1, y: -3 }}
-          whileTap={{ scale: 0.94 }}
-          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <span className={styles.ringGlow} />
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className={styles.arrowIcon}>
-            <polyline points="18 15 12 9 6 15"></polyline>
-          </svg>
-        </motion.button>
-      )}
-
       {/* Morphing WhatsApp Button: circle → pill with smooth sliding reveal */}
       <motion.a
         href={`https://wa.me/923110214934?text=${encodeURIComponent("Hi Abdul Wasay, I saw your portfolio and would like to connect!")}`}

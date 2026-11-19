@@ -167,10 +167,6 @@ export default function Contact() {
                   <span className={styles.cyberChannelLabel}>BASED IN</span>
                   <span className={styles.cyberValueText}>{personalInfo.location}</span>
                 </div>
-                <span className={styles.statusOnlinePill}>
-                  <span className={styles.greenBeacon}></span>
-                  <span>PK</span>
-                </span>
               </div>
             </div>
           </div>
