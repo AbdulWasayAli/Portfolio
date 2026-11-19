@@ -1,105 +1,96 @@
 import { useEffect, useRef } from 'react';
-import { workExperienceData } from '../../data/portfolioData';
+import { timelineData } from '../../data/portfolioData';
 import styles from './Experience.module.css';
 
 export default function Experience() {
-  const cardRefs = useRef([]);
+  const itemRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add(styles.cardVisible);
+            entry.target.classList.add(styles.timelineItemVisible);
             observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.1 }
     );
 
-    cardRefs.current.forEach((el) => { if (el) observer.observe(el); });
+    itemRefs.current.forEach((el) => { if (el) observer.observe(el); });
     return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="experience" className={`section ${styles.experienceSection}`}>
+    <section id="experience" className={`section ${styles.experience}`}>
       <div className="container">
         <div className="section-heading reveal">
-          <span className="subtitle">Work Experience</span>
-          <h2>Professional <span className="gradient-heading">Experience</span></h2>
-          <p>Real-world engineering internships, software development, and industry tracks.</p>
+          <span className="subtitle">Career &amp; Learning</span>
+          <h2>Experience &amp; <span className="gradient-heading">Education</span></h2>
+          <p>My professional engineering track, internships, and academic qualifications.</p>
         </div>
 
-        <div className={styles.experienceGrid}>
-          {workExperienceData.map((exp, index) => (
-            <div
-              key={index}
-              className={styles.experienceCard}
-              ref={(el) => (cardRefs.current[index] = el)}
-            >
-              {/* Top ambient luxury glow */}
-              <div className={styles.cardAura} />
+        <div className={styles.timeline}>
+          {timelineData.map((item, index) => {
+            const isExperience = item.type === 'experience';
 
-              <div className={styles.cardHeader}>
-                {/* 10Pearls Company Logo Badge */}
-                <div className={styles.logoBadgeContainer}>
-                  <img
-                    src={exp.logo}
-                    alt={exp.company}
-                    className={styles.companyLogo}
-                    loading="lazy"
-                  />
+            return (
+              <div
+                key={index}
+                className={`${styles.timelineItem} ${isExperience ? styles.experienceItem : ''}`}
+                ref={(el) => (itemRefs.current[index] = el)}
+              >
+                {/* Timeline Dot / Logo */}
+                <div className={`${styles.timelineDot} ${isExperience ? styles.experienceDot : ''}`}>
+                  {isExperience && item.logo ? (
+                    <img src={item.logo} alt={item.organization} className={styles.dotLogo} />
+                  ) : (
+                    <span>{item.icon}</span>
+                  )}
                 </div>
 
-                <div className={styles.headerInfo}>
-                  <div className={styles.metaRow}>
-                    <span className={styles.periodPill}>{exp.period}</span>
-                    <span className={styles.roleBadge}>{exp.badge}</span>
+                {/* Timeline Card */}
+                <div className={`${styles.timelineCard} ${isExperience ? styles.experienceCard : ''}`}>
+                  <div className={styles.cardHeaderRow}>
+                    <span className={`${styles.timelinePeriod} ${isExperience ? styles.experiencePeriod : ''}`}>
+                      {item.period}
+                    </span>
+                    {item.badge && (
+                      <span className={styles.statusBadge}>{item.badge}</span>
+                    )}
                   </div>
-                  <h3 className={styles.roleTitle}>{exp.role}</h3>
-                  <div className={styles.companyRow}>
-                    <a
-                      href={exp.companyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.companyName}
-                    >
-                      {exp.company}
-                    </a>
-                    <span className={styles.dotDivider}>•</span>
-                    <span className={styles.programName}>{exp.program}</span>
-                  </div>
-                  <span className={styles.locationText}>{exp.location}</span>
+
+                  <h4 className={styles.timelineTitle}>{item.title}</h4>
+
+                  {item.program && (
+                    <p className={styles.programTitle}>{item.program}</p>
+                  )}
+
+                  <p className={styles.timelineOrg}>
+                    {item.organizationUrl ? (
+                      <a href={item.organizationUrl} target="_blank" rel="noopener noreferrer" className={styles.orgLink}>
+                        {item.organization}
+                      </a>
+                    ) : (
+                      item.organization
+                    )}
+                  </p>
+
+                  <p className={styles.timelineDesc}>{item.description}</p>
+
+                  {/* Skills tags for experience */}
+                  {item.skills && (
+                    <div className={styles.skillsRow}>
+                      {item.skills.map((s, i) => (
+                        <span key={i} className={styles.skillPill}>{s}</span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
-
-              <p className={styles.summaryText}>{exp.description}</p>
-
-              {/* Key Contributions & Highlights */}
-              <div className={styles.highlightsContainer}>
-                <h4 className={styles.highlightsHeading}>Core Engineering Contributions:</h4>
-                <ul className={styles.highlightsList}>
-                  {exp.highlights.map((item, hIndex) => (
-                    <li key={hIndex} className={styles.highlightItem}>
-                      <span className={styles.checkIcon}>▹</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Skills Footer */}
-              <div className={styles.skillsFooter}>
-                <span className={styles.skillsLabel}>Technologies:</span>
-                <div className={styles.skillsTags}>
-                  {exp.skills.map((skill, sIndex) => (
-                    <span key={sIndex} className={styles.skillPill}>{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
