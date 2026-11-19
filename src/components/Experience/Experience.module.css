@@ -120,6 +120,67 @@
   box-shadow: 0 8px 30px rgba(108,99,255,0.12);
 }
 
+.cardHeaderRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.statusBadge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #00e5ff;
+  background: rgba(0, 229, 255, 0.12);
+  border: 1px solid rgba(0, 229, 255, 0.35);
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+}
+
+.timelineSubtitle {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: #c7d2fe;
+  margin-bottom: 2px;
+}
+
+.skillTagsRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.skillTag {
+  font-family: var(--font-mono, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 3px 9px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.timelineItemExperience .timelineCard {
+  border-color: rgba(0, 229, 255, 0.35);
+  background: linear-gradient(145deg, rgba(14, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.6) 100%);
+  box-shadow: 0 8px 32px rgba(0, 229, 255, 0.08);
+}
+
+.timelineItemExperience .timelineDot {
+  border-color: #00e5ff;
+  box-shadow: 0 0 0 4px rgba(0, 229, 255, 0.15), 0 0 14px rgba(0, 229, 255, 0.4);
+}
+
 .timelinePeriod {
   display: inline-block;
   font-size: var(--fs-xs);
@@ -128,7 +189,6 @@
   background: rgba(108, 99, 255, 0.1);
   padding: 4px 12px;
   border-radius: var(--radius-full);
-  margin-bottom: var(--space-sm);
   letter-spacing: 0.5px;
   font-family: var(--font-mono);
 }

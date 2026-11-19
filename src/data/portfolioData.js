@@ -48,10 +48,22 @@ export const aboutData = {
 
 export const experienceData = [
   {
+    type: "experience",
+    badge: "Current Role",
+    title: "MERN Stack Intern",
+    subtitle: "Shine Internship Program (Cohort 10)",
+    organization: "10Pearls Pakistan · Remote",
+    period: "Nov 2026 — Present",
+    description:
+      "Selected for the prestigious 10Pearls Shine Internship Program 2026 (Cohort 10), an intensive 8-week engineering track focusing on modern full-stack development with React.js, Node.js, Express.js, and MongoDB.",
+    skills: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    icon: "💼",
+  },
+  {
     type: "education",
     title: "Diploma in Software Engineering",
     organization: "Aptech Computer Education, Shahrah-e-Faisal (Continuing)",
-    period: "2024 – 2027",
+    period: "2024 — 2027",
     description:
       "Pursuing a 3-year comprehensive software engineering diploma focusing on full-stack web development, databases, cross-platform mobile apps, and enterprise software design patterns.",
     icon: "🎓",
@@ -60,7 +72,7 @@ export const experienceData = [
     type: "education",
     title: "Intermediate",
     organization: "Aptech Computer Education, Shahrah-e-Faisal · SBTE (Sindh Board of Technical Education) (Continuing)",
-    period: "2026 – 2027",
+    period: "2026 — 2027",
     description:
       "Continuing intermediate studies in Computer Science under the Sindh Board of Technical Education (SBTE) alongside professional software engineering qualifications.",
     icon: "📚",
@@ -69,7 +81,7 @@ export const experienceData = [
     type: "education",
     title: "Matriculation — Science Group (Biology)",
     organization: "Dehli Government Boys Secondary School, Karachi",
-    period: "2020 – 2021",
+    period: "2020 — 2021",
     description:
       "Completed secondary school certificate with a strong foundation in science, analytical inquiry, and academic discipline.",
     icon: "🏫",
