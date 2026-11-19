@@ -83,6 +83,7 @@ export default function FloatingRobot() {
   // Clean, professional quick interactive chips with proper Lucide SVG icons
   const quickQuestions = [
     { label: '30s Pitch', icon: Zap, query: 'pitch' },
+    { label: 'Current Role', icon: Briefcase, query: 'experience' },
     { label: 'Top Projects', icon: FolderGit2, query: 'projects' },
     { label: 'Tech Stack', icon: Cpu, query: 'skills' },
     { label: 'Hire Wasay', icon: Briefcase, query: 'hire' },
@@ -92,6 +93,9 @@ export default function FloatingRobot() {
   const botResponses = {
     pitch: {
       text: "⚡ **Abdul Wasay Ali in 30 Seconds:**\nA versatile **Software Engineer & Mobile App Developer** based in Karachi. He crafts high-performance web applications using **React & Modern Full-Stack** and cross-platform mobile apps with **Flutter & Dart**. Passionate about clean code, scalable architecture, and cutting-edge user experiences.",
+    },
+    experience: {
+      text: "💼 **Current Role & Experience:**\n• **MERN Stack Intern @ 10Pearls Pakistan** (Nov 2026 — Present, Remote)\n  Selected for the competitive **10Pearls Shine Internship Program 2026 (Cohort 10)**, building scalable web platforms with **Node.js, Express.js, React.js, and MongoDB**.\n\n🎓 **Education:**\n• **Diploma in Software Engineering:** Aptech Computer Education (2024 — 2027)\n• **Intermediate in Computer Science:** SBTE (2026 — 2027)\n• **Matriculation (Science):** Dehli Government Boys School (2020 — 2021)",
     },
     skills: {
       text: "Abdul Wasay specializes in **Full-Stack, Mobile & Data Engineering**:\n• **Frontend:** React.js, JavaScript (ES6+), Modern Responsive CSS, Framer Motion\n• **Mobile:** Flutter, Dart, Cross-Platform Mobile Apps, State Management\n• **Backend & APIs:** Python (Flask), Node.js (Express), PHP (Laravel), C# / .NET\n• **Databases & Tools:** MySQL, MongoDB, Firebase, Git & GitHub, Vite",
@@ -196,16 +200,20 @@ export default function FloatingRobot() {
     } catch {
       const lower = queryText.toLowerCase();
       let matched = botResponses.fallback.text;
-      if (lower.includes('project') || lower.includes('work') || lower.includes('build')) {
+      if (lower.includes('intern') || lower.includes('10pearl') || lower.includes('role') || lower.includes('experience') || lower.includes('job') || lower.includes('kaam') || lower.includes('education') || lower.includes('study') || lower.includes('aptech')) {
+        matched = botResponses.experience.text;
+      } else if (lower.includes('project') || lower.includes('work') || lower.includes('build')) {
         matched = botResponses.projects.text;
-      } else if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech')) {
+      } else if (lower.includes('skill') || lower.includes('stack') || lower.includes('tech') || lower.includes('language')) {
         matched = botResponses.skills.text;
-      } else if (lower.includes('hire') || lower.includes('job') || lower.includes('available')) {
+      } else if (lower.includes('hire') || lower.includes('available') || lower.includes('freelance')) {
         matched = botResponses.hire.text;
-      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('reach')) {
+      } else if (lower.includes('contact') || lower.includes('email') || lower.includes('phone') || lower.includes('whatsapp') || lower.includes('reach') || lower.includes('call')) {
         matched = botResponses.contact.text;
       } else if (lower.includes('who') || lower.includes('about') || lower.includes('wasay') || lower.includes('pitch')) {
         matched = botResponses.pitch.text;
+      } else if (lower.match(/^(hi|hello|hey|salam|assalam|aoa|greetings)/)) {
+        matched = "👋 Wa Alaikum Assalam / Hello! I'm Wasay's AI Companion. How can I assist you with Abdul Wasay's software engineering experience, projects, or technical skills today?";
       }
 
       setMessages((prev) => [

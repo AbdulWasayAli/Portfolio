@@ -110,31 +110,66 @@ RULES & BOUNDARIES:
 function generateLocalGroundedReply(input) {
   const q = input.toLowerCase().trim();
 
-  // Greetings
-  if (q.match(/^(hi|hello|hey|salam|assalam|aoa|greetings)/)) {
-    return "👋 Hello! I'm Wasay's AI Companion. How can I help you explore his software engineering portfolio, projects, or skills today?";
+  // 1. Specific Query Checks First (Even if prefixed with Salam/Hi)
+  const isGreetingPrefixed = q.match(/^(hi|hello|hey|salam|assalam|aoa|greetings)\b/);
+  const greetingPrefix = isGreetingPrefixed ? "👋 Wa Alaikum Assalam / Hello!\n\n" : "";
+
+  // Experience / Internship / Current Role / 10Pearls
+  if (
+    q.includes('intern') || 
+    q.includes('10pearl') || 
+    q.includes('role') || 
+    q.includes('experience') || 
+    q.includes('company') || 
+    q.includes('organization') || 
+    q.includes('shine') || 
+    q.includes('kaam') || 
+    q.includes('job')
+  ) {
+    return `${greetingPrefix}💼 **Abdul Wasay's Current Role & Experience:**\n• **MERN Stack Intern @ 10Pearls Pakistan** (Nov 2026 — Present, Remote)\n  Selected for the competitive **10Pearls Shine Internship Program 2026 (Cohort 10)**, building production-ready web platforms using **Node.js, Express.js, React.js, and MongoDB**.\n\nHe has a strong focus on clean code, RESTful API development, and responsive architectures.`;
   }
 
-  // Skills
-  if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('language') || q.includes('framework')) {
-    return "Abdul Wasay specializes in:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, CSS3, Modern UI\n• **Mobile:** Flutter & Dart\n• **Backend:** Node.js, Express.js, PHP, Laravel, C# / .NET\n• **Databases:** MongoDB, MySQL, Firebase\n\nCheck out the Skills section for a detailed proficiency breakdown!";
+  // Education / Qualifications / Degrees
+  if (
+    q.includes('education') || 
+    q.includes('study') || 
+    q.includes('degree') || 
+    q.includes('aptech') || 
+    q.includes('diploma') || 
+    q.includes('school') || 
+    q.includes('matric') || 
+    q.includes('intermediate') || 
+    q.includes('sbte') || 
+    q.includes('parhai')
+  ) {
+    return `${greetingPrefix}🎓 **Abdul Wasay's Education & Qualifications:**\n• **Diploma in Software Engineering:** Aptech Computer Education, Shahrah-e-Faisal (2024 — 2027, Continuing)\n• **Intermediate in Computer Science:** Aptech · SBTE (Sindh Board of Technical Education) (2026 — 2027, Continuing)\n• **Matriculation (Science):** Dehli Government Boys Secondary School, Karachi (2020 — 2021)`;
+  }
+
+  // Skills & Tech Stack
+  if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('language') || q.includes('framework') || q.includes('mern') || q.includes('flutter') || q.includes('react')) {
+    return `${greetingPrefix}Abdul Wasay specializes in **Full-Stack Web & Cross-Platform Mobile Engineering**:\n• **Frontend:** React.js, JavaScript (ES6+), HTML5, Modern CSS, Framer Motion\n• **Mobile Apps:** Flutter & Dart (iOS & Android)\n• **Backend & APIs:** Node.js (Express), Python (Flask), PHP (Laravel), C# / .NET\n• **Databases & Tools:** MongoDB, MySQL, Firebase, Git, GitHub, Vite\n\nExplore the interactive Skills section for full proficiencies!`;
   }
 
   // Hire / Availability
-  if (q.includes('hire') || q.includes('available') || q.includes('job') || q.includes('freelance') || q.includes('work') || q.includes('role')) {
-    return "✅ **Yes, absolutely!** Abdul Wasay is actively available for:\n• Full-time Software Engineering positions\n• Contract & Freelance projects\n• Startup MVP development\n\nReach him via WhatsApp (+92 3110214934) or email at wasay3105@gmail.com!";
+  if (q.includes('hire') || q.includes('available') || q.includes('freelance') || q.includes('opportunity') || q.includes('contract')) {
+    return `${greetingPrefix}✅ **Yes, absolutely!** Abdul Wasay is actively available for:\n• Full-time Software Engineering roles\n• High-impact Contract & Freelance projects\n• Startup MVP & Mobile App development\n\nReach him directly on WhatsApp at **+92 3110214934** or email **wasay3105@gmail.com**!`;
   }
 
   // Projects
-  if (q.includes('project') || q.includes('app') || q.includes('build') || q.includes('portfolio') || q.includes('aquila') || q.includes('eventeast')) {
-    return "Here are Wasay's notable builds:\n• **Aquila Labs:** Modern web platform\n• **EventEast:** Full-scale event management & ticket booking system\n• **Currency Converter:** Real-time cross-platform mobile app in Flutter\n\nScroll to the Projects section to explore them!";
+  if (q.includes('project') || q.includes('app') || q.includes('build') || q.includes('portfolio') || q.includes('aquila') || q.includes('eventeast') || q.includes('currency')) {
+    return `${greetingPrefix}Here are some of Wasay's notable engineering builds:\n• **Aquila Labs:** High-performance modern web ecosystem\n• **EventEast:** Comprehensive event management & ticket booking platform\n• **Currency Converter Mobile App:** Real-time cross-platform finance app built in Flutter & Dart\n\nCheck out the Projects section on this page to explore their full case studies!`;
   }
 
   // Contact
-  if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('reach') || q.includes('call')) {
-    return "You can connect with Abdul Wasay directly:\n• 📧 **Email:** wasay3105@gmail.com\n• 📱 **WhatsApp:** +92 3110214934 (or click the green floating button)\n• 💼 **LinkedIn:** linkedin.com/in/abdul-wasay-ali-295480256/\n• 🐙 **GitHub:** github.com/AbdulWasayAli";
+  if (q.includes('contact') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('reach') || q.includes('call') || q.includes('linkedin') || q.includes('github')) {
+    return `${greetingPrefix}You can connect with Abdul Wasay directly:\n• 📧 **Email:** wasay3105@gmail.com\n• 📱 **WhatsApp:** +92 3110214934 (or click the green floating button)\n• 💼 **LinkedIn:** linkedin.com/in/abdul-wasay-ali-295480256/\n• 🐙 **GitHub:** github.com/AbdulWasayAli`;
+  }
+
+  // Standalone Greetings (Only when NO specific question is asked)
+  if (isGreetingPrefixed || q.match(/^(hi|hello|hey|salam|assalam|aoa|greetings|morning|evening)/)) {
+    return "👋 Wa Alaikum Assalam / Hello! I'm Wasay's AI Companion. I can guide you through his **10Pearls MERN Stack Internship**, **Flutter & Full-Stack Projects**, **Technical Skills**, or connect you directly with him. What would you like to explore?";
   }
 
   // Out of scope / Irrelevant
-  return "I am designed specifically to assist you with Abdul Wasay Ali's portfolio, experience, skills, and projects. Please feel free to ask about his tech stack, featured builds, or how to get in touch!";
+  return "I am designed specifically to assist you with Abdul Wasay Ali's software engineering portfolio, experience, skills, and projects. Please feel free to ask about his **10Pearls Internship**, **Tech Stack**, **Projects**, or how to hire him!";
 }
