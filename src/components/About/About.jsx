@@ -28,7 +28,7 @@ export default function About() {
           {/* Content — slide in from right */}
           <div className={`${styles.contentWrapper} reveal-right`}>
             <h2 className={styles.aboutTitle}>
-              Passionate <span>Software Engineer</span> based in Karachi
+              Aspiring <span>Software Engineer</span> based in Karachi
             </h2>
 
             {aboutData.paragraphs.map((text, index) => (
