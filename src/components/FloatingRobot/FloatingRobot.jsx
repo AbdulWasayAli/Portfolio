@@ -238,8 +238,15 @@ export default function FloatingRobot() {
     handleAsk(txt, null);
   };
 
+  const messagesContainerRef = useRef(null);
+
   useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messagesContainerRef.current) {
+      messagesContainerRef.current.scrollTo({
+        top: messagesContainerRef.current.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   }, [messages, isTyping]);
 
   const renderMessageText = (text) => {
@@ -311,7 +318,7 @@ export default function FloatingRobot() {
             </div>
 
             {/* Conversation Feed */}
-            <div className={styles.messagesContainer}>
+            <div className={styles.messagesContainer} ref={messagesContainerRef}>
               {messages.map((m) => (
                 <div
                   key={m.id}
