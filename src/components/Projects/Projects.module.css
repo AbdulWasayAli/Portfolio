@@ -159,7 +159,7 @@
   z-index: 2;
 }
 
-/* Corner Floating Live Preview Pill (Exact Case Study Gradient) */
+/* Corner Floating Live Preview Pill (Subtle Glassmorphism) */
 .cornerLivePill {
   position: absolute;
   top: 12px;
@@ -168,18 +168,28 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 9999px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.3px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
   color: #ffffff;
   text-decoration: none;
-  background: linear-gradient(135deg, #6C63FF 0%, #00E5FF 100%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 18px rgba(108, 99, 255, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
+}
+
+.cornerLivePill:hover {
+  transform: translateY(-2px);
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(0, 255, 170, 0.45);
+  box-shadow: 0 6px 20px rgba(0, 255, 170, 0.25), 0 2px 8px rgba(0, 0, 0, 0.5);
+  color: #ffffff;
 }
 
 .titleActions {
