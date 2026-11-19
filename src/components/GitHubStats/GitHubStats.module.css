@@ -1,6 +1,6 @@
 /* ========================================================
    Clean Bento-Grid GitHub Activity Section
-   Engineered for Abdul Wasay Ali: Minimalist, Fast, Modern
+   Silicon Valley / Vercel Standards — Pure Modern Engineering
    ======================================================== */
 
 .githubSection {
@@ -45,7 +45,7 @@
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 /* Top Profile Header Bar */
@@ -53,10 +53,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  background: rgba(15, 20, 36, 0.6);
+  padding: 14px 22px;
+  background: linear-gradient(145deg, rgba(16, 20, 34, 0.75) 0%, rgba(10, 13, 24, 0.85) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .headerProfile {
@@ -73,7 +75,8 @@
   font-family: var(--font-mono, monospace);
   font-size: 13px;
   font-weight: 600;
-  color: #cbd5e1;
+  color: #e2e8f0;
+  letter-spacing: 0.2px;
 }
 
 .viewProfileBtn {
@@ -82,19 +85,20 @@
   gap: 6px;
   padding: 6px 14px;
   border-radius: var(--radius-full);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
   font-size: 12.5px;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .viewProfileBtn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.25);
   color: #ffffff;
+  transform: translateY(-1px);
 }
 
 /* 4-Card Metrics Grid */
@@ -105,19 +109,22 @@
 }
 
 .metricCard {
-  background: rgba(15, 20, 36, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: var(--radius-lg);
-  padding: 18px 20px;
+  background: linear-gradient(145deg, rgba(16, 20, 34, 0.7) 0%, rgba(10, 13, 24, 0.8) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-xl);
+  padding: 20px 22px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  transition: border-color 0.25s ease, background 0.25s ease;
+  gap: 14px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .metricCard:hover {
   border-color: rgba(255, 255, 255, 0.18);
-  background: rgba(20, 26, 48, 0.85);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
 }
 
 .metricHeader {
@@ -127,15 +134,20 @@
 }
 
 .metricLabel {
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 600;
   color: #94a3b8;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
 .metricIcon {
   color: #64748b;
+  transition: color 0.2s ease;
+}
+
+.metricCard:hover .metricIcon {
+  color: #cbd5e1;
 }
 
 .metricMain {
@@ -146,26 +158,30 @@
 
 .metricNumber {
   font-family: var(--font-display, sans-serif);
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 26px;
+  font-weight: 800;
   color: #ffffff;
   letter-spacing: -0.5px;
+  line-height: 1;
 }
 
 .metricSub {
   font-size: 12px;
   color: #64748b;
+  font-weight: 500;
 }
 
-/* Generic Bento Card */
+/* Generic Bento Card (Heatmap Wrapper) */
 .bentoCard {
-  background: rgba(15, 20, 36, 0.7);
+  background: linear-gradient(145deg, rgba(16, 20, 34, 0.75) 0%, rgba(10, 13, 24, 0.85) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xl);
-  padding: 24px;
+  padding: 26px 28px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   transition: border-color 0.25s ease;
 }
 
@@ -178,7 +194,7 @@
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  padding-bottom: 14px;
+  padding-bottom: 16px;
 }
 
 .cardTitle {
@@ -188,6 +204,7 @@
   font-size: 14px;
   font-weight: 600;
   color: #f1f5f9;
+  letter-spacing: 0.2px;
 }
 
 .cardTitleIcon {
@@ -197,10 +214,11 @@
 .cardBadge {
   font-family: var(--font-mono, monospace);
   font-size: 11px;
+  font-weight: 600;
   color: #94a3b8;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 3px 9px;
+  padding: 3px 10px;
   border-radius: var(--radius-sm);
 }
 
@@ -210,7 +228,7 @@
   overflow-x: auto;
   display: flex;
   justify-content: center;
-  padding: 12px 0 6px;
+  padding: 14px 0 8px;
 }
 
 .calendarWrapper::-webkit-scrollbar {
@@ -226,22 +244,24 @@
    High-End Glassmorphic Floating Tooltip (GitHub Style)
    ======================================================== */
 :global(.react-activity-calendar__tooltip) {
-  background: #0f172a !important;
+  background: #090d16 !important;
   color: #f8fafc !important;
-  font-family: var(--font-body, sans-serif) !important;
+  font-family: var(--font-primary, sans-serif) !important;
   font-size: 12px !important;
   font-weight: 500 !important;
-  padding: 6px 12px !important;
+  padding: 6px 14px !important;
   border-radius: 8px !important;
-  border: 1px solid rgba(255, 255, 255, 0.15) !important;
-  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.6), 0 4px 6px -2px rgba(0, 0, 0, 0.4) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  box-shadow: 0 14px 30px -4px rgba(0, 0, 0, 0.75), 0 4px 10px -2px rgba(0, 0, 0, 0.5) !important;
   pointer-events: none !important;
-  z-index: 9999 !important;
+  z-index: 99999 !important;
   letter-spacing: 0.2px !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
 :global(.react-activity-calendar__tooltip-arrow) {
-  fill: #0f172a !important;
+  fill: #090d16 !important;
 }
 
 [data-theme="light"] :global(.react-activity-calendar__tooltip) {
@@ -288,5 +308,8 @@
 @media (max-width: 576px) {
   .metricsGrid {
     grid-template-columns: 1fr;
+  }
+  .bentoCard {
+    padding: 20px 16px;
   }
 }
