@@ -191,12 +191,24 @@ input, textarea { font-family: inherit; font-size: inherit; }
   font-weight: 800;
   letter-spacing: -0.02em;
   margin-bottom: var(--space-md);
-  color: var(--text-primary);
+  color: #ffffff;
 }
 
 .section-heading h2 .gradient-heading,
 .section-heading h2 span.gradient-highlight {
-  background: linear-gradient(135deg, #00e5ff 0%, #6c63ff 50%, #a855f7 100%);
+  background: linear-gradient(180deg, #ffffff 15%, #94a3b8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+[data-theme="light"] .section-heading h2 {
+  color: #0f172a;
+}
+
+[data-theme="light"] .section-heading h2 .gradient-heading,
+[data-theme="light"] .section-heading h2 span.gradient-highlight {
+  background: linear-gradient(180deg, #0f172a 15%, #475569 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
