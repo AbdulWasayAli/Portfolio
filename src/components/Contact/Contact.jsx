@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { User, Mail, FileText, MessageSquare, Send, CheckCircle2, Sparkles, X, AlertCircle } from 'lucide-react';
+import { User, Mail, FileText, MessageSquare, Send, CheckCircle2, Sparkles, X, AlertCircle, Copy, Check } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { personalInfo } from '../../data/portfolioData';
 import styles from './Contact.module.css';
@@ -14,6 +14,15 @@ export default function Contact() {
   const [errors, setErrors] = useState({});
   const [sending, setSending] = useState(false);
   const [modalState, setModalState] = useState({ show: false, success: true, message: '' });
+  const [copiedType, setCopiedType] = useState(null);
+
+  const handleCopy = (text, type) => {
+    navigator.clipboard.writeText(text);
+    setCopiedType(type);
+    setTimeout(() => {
+      setCopiedType(null);
+    }, 2000);
+  };
 
   const validate = () => {
     const newErrors = {};
@@ -110,17 +119,15 @@ export default function Contact() {
                 </div>
                 <button
                   type="button"
-                  className={styles.copyBtn}
-                  title="Copy Email"
-                  onClick={() => {
-                    navigator.clipboard.writeText(personalInfo.email);
-                    alert("Email copied to clipboard!");
-                  }}
+                  className={`${styles.copyBtn} ${copiedType === 'email' ? styles.copiedBtn : ''}`}
+                  title={copiedType === 'email' ? "Copied!" : "Copy Email"}
+                  onClick={() => handleCopy(personalInfo.email, 'email')}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  {copiedType === 'email' ? (
+                    <Check size={16} className={styles.checkIcon} />
+                  ) : (
+                    <Copy size={15} />
+                  )}
                 </button>
               </div>
 
@@ -140,17 +147,15 @@ export default function Contact() {
                 </div>
                 <button
                   type="button"
-                  className={styles.copyBtn}
-                  title="Copy Phone Number"
-                  onClick={() => {
-                    navigator.clipboard.writeText(personalInfo.phone);
-                    alert("Phone number copied to clipboard!");
-                  }}
+                  className={`${styles.copyBtn} ${copiedType === 'phone' ? styles.copiedBtn : ''}`}
+                  title={copiedType === 'phone' ? "Copied!" : "Copy Phone Number"}
+                  onClick={() => handleCopy(personalInfo.phone, 'phone')}
                 >
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-                  </svg>
+                  {copiedType === 'phone' ? (
+                    <Check size={16} className={styles.checkIcon} />
+                  ) : (
+                    <Copy size={15} />
+                  )}
                 </button>
               </div>
 

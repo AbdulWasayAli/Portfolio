@@ -164,13 +164,25 @@
   cursor: pointer;
   transition: all 0.25s ease;
   flex-shrink: 0;
+  position: relative;
 }
 
 .copyBtn:hover {
   background: rgba(0, 229, 255, 0.2);
   color: #00E5FF;
   border-color: rgba(0, 229, 255, 0.5);
-  transform: scale(1.1);
+  transform: scale(1.08);
+}
+
+.copiedBtn {
+  background: rgba(16, 185, 129, 0.2) !important;
+  color: #10B981 !important;
+  border-color: rgba(16, 185, 129, 0.6) !important;
+  transform: scale(1.08);
+}
+
+.checkIcon {
+  color: #10B981;
 }
 
 /* Online Status Beacon */
