@@ -947,6 +947,53 @@
   border-bottom-color: rgba(15, 23, 42, 0.08);
 }
 
+:global([data-theme="light"]) .head {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .visor {
+  background: #0f172a;
+  border-color: rgba(15, 23, 42, 0.2);
+}
+
+:global([data-theme="light"]) .chest {
+  background: linear-gradient(145deg, #ffffff, #f1f5f9);
+  border-color: rgba(15, 23, 42, 0.15);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+:global([data-theme="light"]) .ear {
+  background: #e2e8f0;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+:global([data-theme="light"]) .neck {
+  background: #cbd5e1;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+:global([data-theme="light"]) .armSegment {
+  background: #e2e8f0;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+:global([data-theme="light"]) .thrusterNozzle {
+  background: #e2e8f0;
+  border-color: rgba(15, 23, 42, 0.15);
+}
+
+:global([data-theme="light"]) .statusPill {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+:global([data-theme="light"]) .statusText {
+  color: #475569;
+}
+
 :global([data-theme="light"]) .botTitle {
   color: #0f172a;
 }
