@@ -9,6 +9,22 @@
   padding: var(--space-4xl) 0;
 }
 
+/* Subtle Ambient Section Aura */
+.githubSection::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 650px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.08) 0%, rgba(56, 189, 248, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(85px);
+  pointer-events: none;
+  z-index: 0;
+}
+
 .sectionTitle {
   font-family: var(--font-display, 'Outfit', sans-serif);
   font-size: clamp(2.2rem, 4.5vw, 3.2rem);
@@ -109,8 +125,8 @@
 }
 
 .metricCard {
-  background: linear-gradient(145deg, rgba(16, 20, 34, 0.7) 0%, rgba(10, 13, 24, 0.8) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(145deg, rgba(16, 20, 34, 0.75) 0%, rgba(10, 13, 24, 0.88) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: var(--radius-xl);
   padding: 20px 22px;
   display: flex;
@@ -119,12 +135,70 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
 }
 
 .metricCard:hover {
-  border-color: rgba(255, 255, 255, 0.18);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5);
+  transform: translateY(-3px);
+}
+
+.metricRepos:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(56, 189, 248, 0.2);
+}
+
+.metricStars:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(251, 191, 36, 0.2);
+}
+
+.metricFollowers:hover {
+  border-color: rgba(16, 185, 129, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(16, 185, 129, 0.2);
+}
+
+.metricStreak:hover {
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 12px 30px -10px rgba(139, 92, 246, 0.2);
+}
+
+.iconWrap {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s ease;
+}
+
+.metricCard:hover .iconWrap {
+  transform: scale(1.1);
+}
+
+.iconWrapBlue {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.iconWrapGold {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.iconWrapGreen {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.iconWrapPurple {
+  background: rgba(139, 92, 246, 0.1);
+  color: #a78bfa;
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
 .metricHeader {

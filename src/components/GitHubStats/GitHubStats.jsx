@@ -113,10 +113,12 @@ export default function GitHubStats() {
           {/* Metric Cards Row */}
           <div className={styles.metricsGrid}>
             {/* Repositories */}
-            <div className={styles.metricCard}>
+            <div className={`${styles.metricCard} ${styles.metricRepos}`}>
               <div className={styles.metricHeader}>
                 <span className={styles.metricLabel}>Repositories</span>
-                <FolderGit2 size={16} className={styles.metricIcon} />
+                <div className={`${styles.iconWrap} ${styles.iconWrapBlue}`}>
+                  <FolderGit2 size={16} />
+                </div>
               </div>
               <div className={styles.metricMain}>
                 <span className={styles.metricNumber}>
@@ -127,10 +129,12 @@ export default function GitHubStats() {
             </div>
 
             {/* Total Stars */}
-            <div className={styles.metricCard}>
+            <div className={`${styles.metricCard} ${styles.metricStars}`}>
               <div className={styles.metricHeader}>
                 <span className={styles.metricLabel}>Total Stars</span>
-                <Star size={16} className={styles.metricIcon} />
+                <div className={`${styles.iconWrap} ${styles.iconWrapGold}`}>
+                  <Star size={16} />
+                </div>
               </div>
               <div className={styles.metricMain}>
                 <span className={styles.metricNumber}>{stats.totalStars}+</span>
@@ -139,10 +143,12 @@ export default function GitHubStats() {
             </div>
 
             {/* Followers */}
-            <div className={styles.metricCard}>
+            <div className={`${styles.metricCard} ${styles.metricFollowers}`}>
               <div className={styles.metricHeader}>
                 <span className={styles.metricLabel}>Followers</span>
-                <Users size={16} className={styles.metricIcon} />
+                <div className={`${styles.iconWrap} ${styles.iconWrapGreen}`}>
+                  <Users size={16} />
+                </div>
               </div>
               <div className={styles.metricMain}>
                 <span className={styles.metricNumber}>
@@ -153,10 +159,12 @@ export default function GitHubStats() {
             </div>
 
             {/* Active Cadence */}
-            <div className={styles.metricCard}>
+            <div className={`${styles.metricCard} ${styles.metricStreak}`}>
               <div className={styles.metricHeader}>
                 <span className={styles.metricLabel}>Coding Streak</span>
-                <Flame size={16} className={styles.metricIcon} />
+                <div className={`${styles.iconWrap} ${styles.iconWrapPurple}`}>
+                  <Flame size={16} />
+                </div>
               </div>
               <div className={styles.metricMain}>
                 <span className={styles.metricNumber}>{stats.streak} Days</span>
