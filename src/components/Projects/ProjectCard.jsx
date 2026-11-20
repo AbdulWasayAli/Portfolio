@@ -1,71 +1,12 @@
-import { useRef, useState, useCallback } from 'react';
 import styles from './Projects.module.css';
 
 export default function ProjectCard({ project, onSelect }) {
-  const cardRef = useRef(null);
-  const [coords, setCoords] = useState({ x: 0, y: 0, rx: 0, ry: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Percentage coords (0 to 1)
-    const px = x / rect.width;
-    const py = y / rect.height;
-
-    // Calculate rotation (-10deg to +10deg)
-    const rx = (py - 0.5) * -16;
-    const ry = (px - 0.5) * 16;
-
-    setCoords({ x, y, rx, ry });
-  }, []);
-
-  const handleMouseEnter = useCallback(() => {
-    setIsHovered(true);
-  }, []);
-
-  const handleMouseLeave = useCallback(() => {
-    setIsHovered(false);
-    setCoords({ x: 0, y: 0, rx: 0, ry: 0 });
-  }, []);
-
   return (
     <div
-      ref={cardRef}
-      className={`${styles.projectCard} ${isHovered ? styles.projectCardActive : ''}`}
+      className={styles.projectCard}
       data-category={project.category}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onClick={() => onSelect && onSelect(project)}
-      style={{
-        cursor: 'pointer',
-        transform: isHovered
-          ? `perspective(1000px) rotateX(${coords.rx}deg) rotateY(${coords.ry}deg) translateY(-8px) scale3d(1.02, 1.02, 1.02)`
-          : 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0) scale3d(1, 1, 1)',
-      }}
     >
-      {/* Interactive Torch Spotlight Reflection */}
-      <div
-        className={styles.spotlightGlow}
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(400px circle at ${coords.x}px ${coords.y}px, rgba(108, 99, 255, 0.22), transparent 70%)`,
-        }}
-      />
-
-      {/* Border Spotlight Glow */}
-      <div
-        className={styles.spotlightBorder}
-        style={{
-          opacity: isHovered ? 1 : 0,
-          background: `radial-gradient(280px circle at ${coords.x}px ${coords.y}px, rgba(0, 212, 170, 0.45), transparent 60%)`,
-        }}
-      />
-
       <div className={styles.imageWrapper}>
         {project.image ? (
           <img
