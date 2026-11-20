@@ -178,9 +178,6 @@ export default function Contact() {
 
           {/* Form Side */}
           <div className={`${styles.formWrapperOuter} reveal-right`}>
-            {/* Ambient Multi-Layer Glow Halo */}
-            <div className={styles.formAmbientGlow} />
-
             <form
               className={styles.contactForm}
               onSubmit={handleSubmit}
