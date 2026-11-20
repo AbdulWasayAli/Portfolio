@@ -297,6 +297,26 @@
   outline: none;
 }
 
+/* Fix browser autofill / autocomplete white background bug */
+.formInput:-webkit-autofill,
+.formInput:-webkit-autofill:hover, 
+.formInput:-webkit-autofill:focus, 
+.formInput:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #0b0e1a inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  transition: background-color 5000s ease-in-out 0s;
+  caret-color: #ffffff;
+}
+
+:global([data-theme="light"]) .formInput:-webkit-autofill,
+:global([data-theme="light"]) .formInput:-webkit-autofill:hover, 
+:global([data-theme="light"]) .formInput:-webkit-autofill:focus, 
+:global([data-theme="light"]) .formInput:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #f8fafc inset !important;
+  -webkit-text-fill-color: #0f172a !important;
+  caret-color: #0f172a;
+}
+
 .formInput:focus,
 .formTextarea:focus {
   background: rgba(14, 18, 30, 0.9);
