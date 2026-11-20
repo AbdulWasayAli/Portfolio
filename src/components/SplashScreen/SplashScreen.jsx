@@ -7,13 +7,13 @@ export default function SplashScreen({ onFinish }) {
   const { theme } = useTheme();
 
   useEffect(() => {
-    // 4.2s smooth full showcase time
+    // 5.5s full cinematic viewing time: smooth continuous line loading then graceful fade out
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         onFinish();
-      }, 700);
-    }, 4200);
+      }, 800);
+    }, 5500);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -46,11 +46,15 @@ export default function SplashScreen({ onFinish }) {
         ))}
       </div>
       
-      {/* Pure Name and Clean Line Showcase */}
+      {/* Main Center Stage */}
       <div className={styles.content}>
         <div className={styles.nameWrapper}>
           <h1 className={styles.name}>ABDUL WASAY ALI</h1>
-          <div className={styles.underline} />
+          
+          {/* Continuous Full-Width Loading Track */}
+          <div className={styles.loadingTrack}>
+            <div className={styles.loadingProgress} />
+          </div>
         </div>
       </div>
 
