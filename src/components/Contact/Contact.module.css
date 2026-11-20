@@ -743,3 +743,110 @@
   0% { transform: scale(0.88); opacity: 0.6; }
   100% { transform: scale(1.18); opacity: 0.95; }
 }
+
+/* =====================================================
+   LIGHT MODE OVERRIDES FOR CONTACT
+   ===================================================== */
+:global([data-theme="light"]) .cyberContactCard {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .cyberContactCard:hover {
+  background: #ffffff;
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 10px 30px rgba(108, 99, 255, 0.12);
+}
+
+:global([data-theme="light"]) .cyberIconBadge {
+  background: rgba(108, 99, 255, 0.08);
+  border-color: rgba(108, 99, 255, 0.2);
+  color: var(--primary);
+  box-shadow: none;
+}
+
+:global([data-theme="light"]) .cyberContactCard:hover .cyberIconBadge {
+  background: linear-gradient(135deg, #6c63ff 0%, #3b82f6 100%);
+  color: #ffffff;
+}
+
+:global([data-theme="light"]) .cyberValueLink,
+:global([data-theme="light"]) .cyberValueText {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .copyBtn {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.08);
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .copyBtn:hover {
+  background: rgba(108, 99, 255, 0.1);
+  border-color: rgba(108, 99, 255, 0.3);
+  color: var(--primary);
+}
+
+:global([data-theme="light"]) .formAmbientGlow {
+  background: radial-gradient(circle, rgba(108, 99, 255, 0.15) 0%, rgba(59, 130, 246, 0.08) 60%, transparent 80%);
+  opacity: 0.5;
+  filter: blur(35px);
+}
+
+:global([data-theme="light"]) .contactForm {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow: 
+    0 20px 45px -10px rgba(15, 23, 42, 0.08),
+    0 0 1px 1px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .formLabel {
+  color: #334155;
+}
+
+:global([data-theme="light"]) .formGroup:focus-within .formLabel {
+  color: var(--primary);
+}
+
+:global([data-theme="light"]) .labelIcon {
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .formGroup:focus-within .labelIcon {
+  color: var(--primary);
+}
+
+:global([data-theme="light"]) .formInput,
+:global([data-theme="light"]) .formTextarea {
+  background: #f8fafc;
+  border-color: rgba(15, 23, 42, 0.12);
+  color: #0f172a;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03) inset;
+}
+
+:global([data-theme="light"]) .formInput:focus,
+:global([data-theme="light"]) .formTextarea:focus {
+  background: #ffffff;
+  border-color: var(--primary);
+  box-shadow: 
+    0 0 0 3px rgba(108, 99, 255, 0.15),
+    0 1px 2px rgba(15, 23, 42, 0.03) inset;
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .formInput::placeholder,
+:global([data-theme="light"]) .formTextarea::placeholder {
+  color: #94a3b8;
+}
+
+:global([data-theme="light"]) .submitButton {
+  background: linear-gradient(135deg, #6c63ff 0%, #3b82f6 100%);
+  box-shadow: 0 10px 25px -4px rgba(108, 99, 255, 0.35);
+  color: #ffffff;
+}
+
+:global([data-theme="light"]) .submitButton:hover:not(:disabled) {
+  box-shadow: 0 14px 30px -4px rgba(108, 99, 255, 0.5);
+}

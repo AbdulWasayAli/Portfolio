@@ -433,3 +433,15 @@
 :global([data-theme="light"]) .statLabel {
   color: #64748b;
 }
+
+:global([data-theme="light"]) .aboutTitle {
+  color: #0f172a;
+}
+
+:global([data-theme="light"]) .aboutText {
+  color: #475569;
+}
+
+:global([data-theme="light"]) .statValue {
+  color: var(--primary);
+}
