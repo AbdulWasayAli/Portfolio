@@ -150,33 +150,20 @@
 }
 
 .heroNameHighlight {
-  background: linear-gradient(
-    120deg,
-    #ffffff 0%,
-    #e0e7ff 20%,
-    #a78bfa 40%,
-    #38bdf8 60%,
-    #ffffff 80%,
-    #a78bfa 100%
-  );
-  background-size: 250% auto;
+  background: linear-gradient(180deg, #ffffff 15%, #94a3b8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: textShimmer 6s ease-in-out infinite alternate;
-  filter: drop-shadow(0 4px 24px rgba(139, 92, 246, 0.35));
   display: inline-block;
   cursor: default;
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.4));
 }
 
-.heroNameHighlight:hover {
-  filter: drop-shadow(0 6px 36px rgba(56, 189, 248, 0.6));
-}
-
-@keyframes textShimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 100% center; }
+:global([data-theme="light"]) .heroNameHighlight {
+  background: linear-gradient(180deg, #0f172a 15%, #475569 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: none;
 }
 
 /* === Clean, High-End Developer Identity Bar (Apple/Linear Aesthetic) === */
@@ -331,13 +318,14 @@
 }
 
 .highlightGradient {
-  background: linear-gradient(120deg, #38bdf8 0%, #a78bfa 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #e2e8f0;
   font-weight: 600;
-  letter-spacing: 0;
+  letter-spacing: -0.01em;
   display: inline;
+}
+
+:global([data-theme="light"]) .highlightGradient {
+  color: #0f172a;
 }
 
 .heroButtons {
