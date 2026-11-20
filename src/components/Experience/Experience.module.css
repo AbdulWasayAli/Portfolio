@@ -262,6 +262,49 @@
 }
 
 /* === Light Theme Overrides === */
+:global([data-theme="light"]) .timeline::before {
+  background: linear-gradient(
+    180deg,
+    rgba(15, 23, 42, 0.15) 0%,
+    rgba(15, 23, 42, 0.08) 75%,
+    transparent 100%
+  );
+}
+
+:global([data-theme="light"]) .timelineDot {
+  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.04);
+}
+
+:global([data-theme="light"]) .educationDot {
+  background: #ffffff;
+  border-color: rgba(99, 102, 241, 0.35);
+  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08), 0 0 0 4px rgba(99, 102, 241, 0.08);
+}
+
+:global([data-theme="light"]) .dotIcon {
+  color: #4f46e5;
+}
+
+:global([data-theme="light"]) .timelineItem:hover .educationDot {
+  border-color: #4f46e5;
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.2), 0 0 0 6px rgba(79, 70, 229, 0.12);
+}
+
+:global([data-theme="light"]) .timelineItem:hover .educationDot .dotIcon {
+  color: #3730a3;
+}
+
+:global([data-theme="light"]) .experienceDot {
+  background: #ffffff;
+  border-color: rgba(14, 165, 233, 0.45);
+  box-shadow: 0 2px 12px rgba(14, 165, 233, 0.12), 0 0 0 4px rgba(14, 165, 233, 0.1);
+}
+
+:global([data-theme="light"]) .timelineItem:hover .experienceDot {
+  border-color: #0284c7;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.25), 0 0 0 6px rgba(14, 165, 233, 0.15);
+}
+
 :global([data-theme="light"]) .timelineCard {
   background: #ffffff;
   border-color: rgba(15, 23, 42, 0.08);
@@ -270,8 +313,8 @@
 
 :global([data-theme="light"]) .experienceCard {
   background: #ffffff;
-  border-color: rgba(0, 180, 216, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 180, 216, 0.1);
+  border-color: rgba(14, 165, 233, 0.3);
+  box-shadow: 0 8px 24px rgba(14, 165, 233, 0.08);
 }
 
 :global([data-theme="light"]) .timelineTitle {
@@ -279,11 +322,29 @@
 }
 
 :global([data-theme="light"]) .programTitle {
-  color: #475569;
+  color: #334155;
 }
 
 :global([data-theme="light"]) .timelineOrg {
   color: #0284c7;
+}
+
+:global([data-theme="light"]) .timelinePeriod {
+  color: #4f46e5;
+  background: rgba(79, 70, 229, 0.08);
+  border: 1px solid rgba(79, 70, 229, 0.18);
+}
+
+:global([data-theme="light"]) .experiencePeriod {
+  color: #0284c7;
+  background: rgba(2, 132, 199, 0.08);
+  border: 1px solid rgba(2, 132, 199, 0.22);
+}
+
+:global([data-theme="light"]) .skillPill {
+  color: #0369a1;
+  background: rgba(2, 132, 199, 0.07);
+  border: 1px solid rgba(2, 132, 199, 0.2);
 }
 
 :global([data-theme="light"]) .timelineDesc {
