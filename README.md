@@ -1,6 +1,6 @@
 # Abdul Wasay Ali — Software Engineer & Mobile App Developer Portfolio
 
-A high-performance developer portfolio and personal engineering platform built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Designed with a modern dark aesthetic, luxury glassmorphic surfaces, fluid spring micro-interactions, an interactive AI companion widget, light/dark mode systems, dedicated **Engineering Case Study Pages (`/project/:id`)**, and **AI Workflow Case Studies (`/blog/:id`)**.
+A high-performance developer portfolio and personal engineering platform built with **React 19**, **Vite 8**, **React Router v7**, **Framer Motion**, and **CSS Modules**. Designed with an authoritative executive aesthetic (Silicon Valley standard), luxury glassmorphic surfaces, fluid micro-interactions, an interactive AI companion widget, light/dark mode systems, dedicated **Engineering Case Study Pages (`/project/:id`)**, and production-ready architecture.
 
 ---
 
@@ -21,7 +21,7 @@ A high-performance developer portfolio and personal engineering platform built w
 ### 1. Smart Auto-Hide Floating Squircle Navigation (`Navbar`)
 - Floating capsule navigation bar (`border-radius: 20px`, `min-height: 76px`, `max-width: 1280px`).
 - **Smart Scroll Behavior:** Automatically and smoothly hides on scroll-down to provide an immersive, distraction-free reading experience, and reveals instantly on scroll-up.
-- Active section indicator features a gradient glow bottom line (`.activeLine`) that transitions smoothly across navigation items.
+- Active section indicator features a subtle gradient line that transitions smoothly across navigation items.
 - Clean vector brand logo with dual-tone gradient strokes (`#8b5cf6` to `#00e5ff`) and interactive hover micro-states.
 - Interactive **Minimalist Glassmorphic Theme Toggle** with crisp Lucide Moon and Sun icons and smooth spring transitions.
 - Responsive navigation drawer for mobile devices.
@@ -33,14 +33,15 @@ A high-performance developer portfolio and personal engineering platform built w
 
 ### 3. Interactive 3D Cyber Companion & AI Chat (`FloatingRobot`)
 - **Interactive 3D Robot Mascot:** Features 3D head tilting, real-time mouse coordinate eye-tracking, antenna, core reactor glow, and reactive blinking animations.
+- **Bilingual & Context-Aware AI Engine (`/api/chat`):** Powered by Google Gemini (`gemini-3.5-flash-lite`). Responds accurately in pure English or Roman Urdu matching the user's input language, with grounded knowledge of Abdul Wasay's skills, Aptech academics, 10Pearls MERN stack internship, and projects.
 - **Branded Chat Window:** Ultra-luxurious obsidian glass modal styled with subtle borders and Wasay's geometric "W" brand logo in the header and message bubbles.
 - **Clean Quick Chips:** Quick action buttons equipped with crisp Lucide SVG icons (`Zap`, `FolderGit2`, `Cpu`, `Briefcase`, `PhoneCall`).
-- **Google Gemini AI Backend (`/api/chat`):** Serverless architecture with grounded developer persona, interactive mini project cards, and local fallback engine.
 
-### 4. Direct Client Contact Channel (`Contact`)
+### 4. Direct Client Contact Channel & Validation UX (`Contact`)
 - Direct message transmission using `@emailjs/browser` connected to developer email credentials.
-- **Lottie-Style Animated Vector Stroke Dialog:** Zero-lag SVG dasharray draw animation featuring a rotating neon cyan outer circle that draws smoothly followed by an inner spring checkmark upon message dispatch.
-- **Theme-Synchronized Obsidian Glass Modal:** Styled with deep obsidian (`#030307`), electric cyan (`#00e5ff`), and royal violet (`#6c63ff`) tokens.
+- **Executive Validation UX:** Form inputs highlight with clean crimson red borders and subtle rings upon validation errors, giving instant visual feedback.
+- **Harmonized Contact Cards:** Clean Obsidian and Pure White luxury cards with luminous sky-blue and royal indigo icons for email, WhatsApp, and location.
+- **Human-Centric Delivery Dialog:** Elegant modal confirming message dispatch with clean typography and zero AI-template clichés.
 
 ### 5. Dedicated Project Case Studies (`/project/:id`)
 - Deep engineering writeups replacing shallow popups using React Router v7.
@@ -50,29 +51,26 @@ A high-performance developer portfolio and personal engineering platform built w
 - **Showcase Stage:** Full-fidelity media viewport with responsive aspect ratios for mobile and desktop screens.
 - **Direct Navigation:** Previous/next project navigation and native web share API integration.
 
-### 6. AI Engineering Blog Series (`/blog/:id`)
-- Practical case studies documenting modern developer workflows and architectural adoption:
-  1. **Google Antigravity IDE:** Autonomous multi-agent coding, terminal orchestration, and compilation verification.
-  2. **Claude 3.7 / Sonnet:** Deep logic reasoning, Flutter BLoC/Provider architecture, and clean MVC refactoring.
-  3. **Google Gemini:** High-speed context window, schema modeling, and multimodal visual UI-to-code pipelines.
-  4. **Open Code & Cursor:** Keyboard-first velocity, repository-wide semantic indexing, and zero-latency flow state.
-  5. **My Engineering Journey:** Lessons from academic fundamentals at Aptech to shipping scalable production apps.
-- Equipped with custom **16:9 4K Cinema-Grade Cover Banners** for each tool and a fully responsive editorial modal viewer.
+### 6. Career & Educational Track (`Experience`)
+- **10Pearls Shine Internship Program (Cohort 10):** Production MERN stack engineering track.
+- **Diploma in Software Engineering:** 3-year comprehensive track at Aptech Computer Education (2024 — 2027).
+- **Theme-Adaptive Nodes:** Crisp pure white ceramic timeline nodes with deep indigo icons in Light Mode and obsidian nodes in Dark Mode.
 
 ### 7. Giant Interactive Spotlight Brand Banner (`InteractiveBrandBanner`)
 - Bold typography (**ABDUL WASAY ALI**) illuminated by an interactive cursor spotlight reveal.
 - Themed with single-hue electric cyan (`#38bdf8`) in dark mode and deep sapphire blue (`#2563eb`) in light mode.
 
-### 8. Luxury Atmospheric Background (`AtmosphericBackground`)
-- Multi-emitter soft ambient glow spots paired with an ultra-subtle fine grid pattern for a calm, distraction-free backdrop.
+### 8. Luxury Atmospheric Background & Cinematic Splash Screen
+- **Atmospheric Background:** Multi-emitter soft ambient glow spots paired with an ultra-subtle fine grid pattern for a calm, distraction-free backdrop.
+- **Cinematic Splash Screen:** 5.5s full-fidelity brand introduction with a glowing cyber beam expanding outward from the center, adapting seamlessly across Light and Dark themes.
 
 ### 9. Real-Time GitHub Activity Telemetry (`GitHubStats`)
-- Live 1-year contribution graph integrated via `react-github-calendar` in Neon Emerald & Cyan.
+- Live 1-year contribution graph integrated via `react-github-calendar` dynamically rendered in official GitHub light green palette in Light Mode and Neon Emerald & Cyan in Dark Mode.
 - Real-time GitHub REST API metrics (stars, repositories, and continuous integration activity stream).
 
 ### 10. Performance & Asset Optimization (WebP Pipeline)
-- Project media assets, blog covers, and profile visuals optimized in next-generation **WebP** format.
-- Substantial reduction in total media payload, ensuring fast Largest Contentful Paint (LCP) and smooth rendering on mobile networks.
+- Project media assets, showcase banners, and profile visuals optimized in next-generation **WebP** format.
+- Substantial reduction in total media payload, ensuring fast Largest Contentful Paint (LCP) and smooth 60fps rendering across desktop and mobile devices.
 
 ### 11. Hardware-Accelerated Real-Time Scroll Progress Indicator
 - Top reading progress line upgraded to Framer Motion's `useScroll` and `useSpring` with GPU-accelerated `transform: scaleX(...)`.
@@ -87,7 +85,7 @@ A high-performance developer portfolio and personal engineering platform built w
 |---|---|---|
 | **react** | `^19.2.7` | UI library for component architecture |
 | **react-dom** | `^19.2.7` | React DOM rendering layer |
-| **react-router-dom** | `^7.18.1` | Client-side routing (`/`, `/project/:id`, `/blog/:id`) |
+| **react-router-dom** | `^7.18.1` | Client-side routing (`/`, `/project/:id`) |
 | **framer-motion** | `^12.42.2` | Fluid spring physics, layout animations & transitions |
 | **@emailjs/browser** | `^5.0.3` | Client-side email dispatch engine |
 | **lucide-react** | `^1.61.0` | Crisp vector icons system |
@@ -98,6 +96,9 @@ A high-performance developer portfolio and personal engineering platform built w
 |---|---|---|
 | **vite** | `^8.1.1` | Next-generation frontend tooling and bundler |
 | **@vitejs/plugin-react** | `^6.0.3` | Official Babel-based React Fast Refresh plugin |
+| **oxlint** | `^1.71.0` | High-speed Rust-based JavaScript & JSX code linter |
+| **@types/react** | `^19.2.17` | TypeScript definitions for React |
+| **@types/react-dom** | `^19.2.3` | TypeScript definitions for React DOM |
 | **oxlint** | `^1.71.0` | High-speed Rust-based JavaScript & JSX code linter |
 | **@types/react** | `^19.2.17` | TypeScript definitions for React |
 | **@types/react-dom** | `^19.2.3` | TypeScript definitions for React DOM |

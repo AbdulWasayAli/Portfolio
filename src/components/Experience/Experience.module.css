@@ -18,12 +18,10 @@
   top: 40px;
   bottom: 40px;
   width: 2px;
-  background: linear-gradient(
-    180deg,
-    rgba(148, 163, 184, 0.25) 0%,
-    rgba(148, 163, 184, 0.15) 75%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(148, 163, 184, 0.25) 0%,
+      rgba(148, 163, 184, 0.15) 75%,
+      transparent 100%);
   border-radius: var(--radius-full);
 }
 
@@ -33,7 +31,7 @@
   opacity: 0;
   transform: translateX(-30px);
   transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .timelineItemVisible {
@@ -42,10 +40,21 @@
 }
 
 /* Stagger items */
-.timelineItem:nth-child(1) { transition-delay: 0.1s; }
-.timelineItem:nth-child(2) { transition-delay: 0.25s; }
-.timelineItem:nth-child(3) { transition-delay: 0.4s; }
-.timelineItem:nth-child(4) { transition-delay: 0.55s; }
+.timelineItem:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.timelineItem:nth-child(2) {
+  transition-delay: 0.25s;
+}
+
+.timelineItem:nth-child(3) {
+  transition-delay: 0.4s;
+}
+
+.timelineItem:nth-child(4) {
+  transition-delay: 0.55s;
+}
 
 /* ─── Timeline Dot / Logo Node ─── */
 .timelineDot {
@@ -146,14 +155,14 @@
 .experienceCard {
   background: linear-gradient(145deg, rgba(16, 22, 42, 0.85) 0%, rgba(9, 13, 26, 0.95) 100%);
   border: 1px solid rgba(0, 229, 255, 0.3);
-  box-shadow: 
+  box-shadow:
     0 12px 36px -8px rgba(0, 0, 0, 0.6),
     0 0 24px rgba(0, 229, 255, 0.08);
 }
 
 .timelineItem:hover .experienceCard {
   border-color: rgba(0, 229, 255, 0.6);
-  box-shadow: 
+  box-shadow:
     0 16px 42px -10px rgba(0, 0, 0, 0.75),
     0 0 28px rgba(0, 229, 255, 0.25);
 }
@@ -263,12 +272,10 @@
 
 /* === Light Theme Overrides === */
 :global([data-theme="light"]) .timeline::before {
-  background: linear-gradient(
-    180deg,
-    rgba(15, 23, 42, 0.15) 0%,
-    rgba(15, 23, 42, 0.08) 75%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      rgba(15, 23, 42, 0.15) 0%,
+      rgba(15, 23, 42, 0.08) 75%,
+      transparent 100%);
 }
 
 :global([data-theme="light"]) .timelineDot {
@@ -357,12 +364,16 @@
 
 /* === Responsive === */
 @media (max-width: 576px) {
-  .timeline { padding-left: 38px; }
+  .timeline {
+    padding-left: 38px;
+  }
+
   .timeline::before {
     left: 17px;
     top: 36px;
     bottom: 36px;
   }
+
   .timelineDot {
     left: -32px;
     width: 32px;
