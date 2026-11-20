@@ -311,10 +311,18 @@
   font-weight: 400;
 }
 
+:global([data-theme="light"]) .heroDescription {
+  color: #475569;
+}
+
 .highlightWhite {
   color: #f1f5f9;
   font-weight: 600;
   letter-spacing: 0;
+}
+
+:global([data-theme="light"]) .highlightWhite {
+  color: #0f172a;
 }
 
 .highlightGradient {
@@ -685,19 +693,11 @@
    LIGHT MODE OVERRIDES FOR HERO
    ===================================================== */
 :global([data-theme="light"]) .heroNameHighlight {
-  background: linear-gradient(
-    120deg,
-    #1e1b4b 0%,
-    #4338ca 25%,
-    #6366f1 50%,
-    #0284c7 75%,
-    #1e1b4b 100%
-  );
-  background-size: 250% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 4px 18px rgba(99, 102, 241, 0.2));
+  color: #0f172a;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: #0f172a;
+  filter: none;
 }
 
 :global([data-theme="light"]) .unifiedStatusDeck {

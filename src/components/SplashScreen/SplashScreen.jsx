@@ -5,13 +5,13 @@ export default function SplashScreen({ onFinish }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // Total animation time is around 4.5 seconds
+    // Elegant transition: 2.5s display, then quick clean fade
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         onFinish();
-      }, 800); // Wait for the fade-out CSS transition
-    }, 4500);
+      }, 600);
+    }, 2400);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -20,7 +20,7 @@ export default function SplashScreen({ onFinish }) {
     setIsFadingOut(true);
     setTimeout(() => {
       onFinish();
-    }, 800);
+    }, 400);
   };
 
   return (
