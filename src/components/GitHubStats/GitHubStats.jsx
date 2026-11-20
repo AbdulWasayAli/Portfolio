@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { GitHubCalendar } from 'react-github-calendar';
+import { useTheme } from '../../context/ThemeContext';
 import { 
   Star, 
   Users, 
@@ -24,6 +25,7 @@ function formatTooltipDate(dateStr) {
 }
 
 export default function GitHubStats() {
+  const { theme } = useTheme();
   const [profile, setProfile] = useState(null);
   const [stats, setStats] = useState({
     totalStars: 97,
@@ -186,7 +188,7 @@ export default function GitHubStats() {
             <div className={styles.calendarWrapper}>
               <GitHubCalendar
                 username={GITHUB_USERNAME}
-                colorScheme="dark"
+                colorScheme={theme === 'light' ? 'light' : 'dark'}
                 blockSize={13}
                 blockMargin={4}
                 fontSize={12}
@@ -205,6 +207,13 @@ export default function GitHubStats() {
                   },
                 }}
                 theme={{
+                  light: [
+                    '#ebedf0',
+                    '#9be9a8',
+                    '#40c463',
+                    '#30a14e',
+                    '#216e39',
+                  ],
                   dark: [
                     'rgba(255, 255, 255, 0.04)',
                     '#0e4429',
