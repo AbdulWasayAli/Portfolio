@@ -5,7 +5,6 @@ import About from './components/About/About';
 import Experience from './components/Experience/Experience';
 import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
-import Blog from './components/Blog/Blog';
 import GitHubStats from './components/GitHubStats/GitHubStats';
 import Contact from './components/Contact/Contact';
 import InteractiveBrandBanner from './components/InteractiveBrandBanner/InteractiveBrandBanner';
@@ -15,7 +14,6 @@ import FloatingRobot from './components/FloatingRobot/FloatingRobot';
 import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import NotFound from './pages/NotFound';
-import BlogDetail from './pages/BlogDetail';
 import ProjectDetail from './pages/ProjectDetail';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import SplashScreen from './components/SplashScreen/SplashScreen';
@@ -79,7 +77,6 @@ function App() {
               <Experience />
               <Skills />
               <Projects />
-              <Blog />
               <GitHubStats />
               <Contact />
               <InteractiveBrandBanner />
@@ -90,7 +87,6 @@ function App() {
             <FloatingRobot />
           </>
         } />
-        <Route path="/blog/:id" element={<BlogDetail />} />
         <Route path="/project/:id" element={<ProjectDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
