@@ -378,24 +378,26 @@
 
 :global([data-theme="light"]) .statCard {
   background: #ffffff;
-  border-color: rgba(15, 23, 42, 0.08);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+  border-color: rgba(99, 102, 241, 0.16);
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04), 0 0 16px rgba(99, 102, 241, 0.06);
+}
+
+:global([data-theme="light"]) .statCard:hover {
+  border-color: #6366f1;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.18), 0 0 20px rgba(99, 102, 241, 0.15);
 }
 
 :global([data-theme="light"]) .statLabel {
-  color: #64748b;
-}
-
-:global([data-theme="light"]) .aboutTitle {
-  color: #0f172a;
-}
-
-:global([data-theme="light"]) .aboutText {
   color: #475569;
+  font-weight: 600;
 }
 
 :global([data-theme="light"]) .statValue {
-  color: var(--primary);
+  background: linear-gradient(135deg, #4f46e5 0%, #0284c7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 :global([data-theme="light"]) .imageContainer {
