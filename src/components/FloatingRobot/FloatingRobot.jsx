@@ -212,8 +212,10 @@ export default function FloatingRobot() {
         matched = botResponses.contact.text;
       } else if (lower.includes('who') || lower.includes('about') || lower.includes('wasay') || lower.includes('pitch')) {
         matched = botResponses.pitch.text;
-      } else if (lower.match(/^(hi|hello|hey|salam|assalam|aoa|greetings)/)) {
-        matched = "👋 Wa Alaikum Assalam / Hello! I'm Wasay's AI Companion. How can I assist you with Abdul Wasay's software engineering experience, projects, or technical skills today?";
+      } else if (lower.match(/\b(salam|assalam|aoa)\b/)) {
+        matched = "👋 Wa Alaikum Assalam! Main Wasay ka AI Assistant hoon. Main aapko Abdul Wasay ke **10Pearls MERN Stack Internship**, **Flutter & Full-Stack Projects**, ya unke **Technical Skills** ke baray mein guide kar sakta hoon. Aap kya explore karna chahte hain?";
+      } else if (lower.match(/^(hi|hello|hey|greetings|morning|evening)/)) {
+        matched = "👋 Hello! I'm Wasay's AI Assistant. I can help you explore Abdul Wasay's **10Pearls MERN Stack Internship**, **Flutter & Full-Stack Projects**, **Technical Skills**, or connect you directly with him. What would you like to explore?";
       }
 
       setMessages((prev) => [
