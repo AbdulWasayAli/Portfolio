@@ -132,7 +132,7 @@
   filter: none;
 }
 
-/* Continuous, Perfectly Engineered Loading Track under Name */
+/* Center-Expanding Continuous Loading Line under Name */
 .loadingTrack {
   margin-top: 24px;
   width: 100%;
@@ -143,6 +143,9 @@
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .splashContainer[data-theme="light"] .loadingTrack {
@@ -151,37 +154,37 @@
 }
 
 .loadingProgress {
-  position: absolute;
-  left: 0;
-  top: 0;
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 70%, #00e5ff 100%);
+  background: linear-gradient(90deg, #6366f1 0%, #38bdf8 50%, #6366f1 100%);
   border-radius: 999px;
   box-shadow: 0 0 16px rgba(56, 189, 248, 0.8), 0 0 28px rgba(99, 102, 241, 0.5);
-  animation: continuousLoad 4.8s cubic-bezier(0.25, 0.1, 0.25, 1) 0.2s forwards;
+  animation: centerExpandLoad 4.8s cubic-bezier(0.2, 0.1, 0.25, 1) 0.2s forwards;
 }
 
 .splashContainer[data-theme="light"] .loadingProgress {
-  background: linear-gradient(90deg, #4f46e5 0%, #0284c7 70%, #00b4d8 100%);
+  background: linear-gradient(90deg, #4f46e5 0%, #0284c7 50%, #4f46e5 100%);
   box-shadow: 0 0 12px rgba(79, 70, 229, 0.4);
 }
 
-@keyframes continuousLoad {
+@keyframes centerExpandLoad {
   0% {
     width: 0%;
+    opacity: 0.2;
   }
-  20% {
-    width: 25%;
+  15% {
+    width: 18%;
+    opacity: 1;
   }
-  50% {
-    width: 58%;
+  45% {
+    width: 48%;
   }
   75% {
-    width: 82%;
+    width: 78%;
   }
   100% {
     width: 100%;
+    opacity: 1;
   }
 }
 
