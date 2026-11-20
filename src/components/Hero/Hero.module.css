@@ -399,76 +399,33 @@
 }
 
 .heroImageGlow {
-  position: absolute;
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--primary) 0%, var(--accent) 45%, transparent 72%);
-  filter: blur(50px);
-  opacity: 0.6;
-  animation: pulseGlow 4s ease-in-out infinite alternate;
-}
-
-@keyframes pulseGlow {
-  0% { transform: scale(0.92); opacity: 0.45; }
-  100% { transform: scale(1.15); opacity: 0.75; }
+  display: none;
 }
 
 .heroImageContainer {
   position: relative;
-  width: 360px;
-  height: 360px;
+  width: 350px;
+  height: 350px;
   border-radius: 50%;
-  padding: 4px;
-  background: linear-gradient(135deg, var(--primary) 0%, #00d2ff 40%, var(--accent) 70%, #ff6b6b 100%);
-  background-size: 300% 300%;
-  animation: heroBorderRotate 7s ease infinite;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px var(--primary-glow);
+  padding: 3px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 
+    0 24px 48px -12px rgba(0, 0, 0, 0.65),
+    0 4px 16px rgba(0, 0, 0, 0.4);
   z-index: 1;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  transform-style: preserve-3d;
-  perspective: 1000px;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.3s ease;
 }
 
 .heroImageContainer:hover {
-  transform: translateY(-8px) scale(1.04) rotateX(3deg) rotateY(-3deg);
-  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.6), 
-              0 0 55px var(--primary-glow),
-              0 0 80px rgba(0, 210, 255, 0.3);
-}
-
-@keyframes heroBorderRotate {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Glass Reflection Light Streak Sweep on Hero Image */
-.heroImageContainer::after {
-  content: '';
-  position: absolute;
-  top: -120%;
-  left: -80%;
-  width: 60%;
-  height: 300%;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0) 30%,
-    rgba(255, 255, 255, 0.4) 50%,
-    rgba(255, 255, 255, 0) 70%,
-    transparent 100%
-  );
-  transform: rotate(25deg);
-  pointer-events: none;
-  z-index: 3;
-  transition: none;
-}
-
-.heroImageContainer:hover::after {
-  left: 180%;
-  transition: left 1s cubic-bezier(0.19, 1, 0.22, 1);
+  transform: translateY(-5px);
+  border-color: rgba(108, 99, 255, 0.5);
+  box-shadow: 
+    0 30px 60px -12px rgba(0, 0, 0, 0.75),
+    0 0 25px rgba(108, 99, 255, 0.2);
 }
 
 .heroProfileImg {
@@ -793,8 +750,15 @@
   box-shadow: 0 20px 45px rgba(15, 23, 42, 0.12), 0 0 35px rgba(108, 99, 255, 0.15);
 }
 
-:global([data-theme="light"]) .heroImageGlow {
-  opacity: 0.35;
+:global([data-theme="light"]) .heroImageContainer {
+  background: #ffffff;
+  border-color: rgba(15, 23, 42, 0.12);
+  box-shadow: 0 20px 40px -10px rgba(15, 23, 42, 0.12);
+}
+
+:global([data-theme="light"]) .heroImageContainer:hover {
+  border-color: rgba(108, 99, 255, 0.4);
+  box-shadow: 0 24px 50px -10px rgba(108, 99, 255, 0.2);
 }
 
 :global([data-theme="light"]) .scrollCapsule {
