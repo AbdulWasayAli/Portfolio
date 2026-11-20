@@ -1,17 +1,19 @@
 import { useState, useEffect } from 'react';
+import { useTheme } from '../../context/ThemeContext';
 import styles from './SplashScreen.module.css';
 
 export default function SplashScreen({ onFinish }) {
   const [isFadingOut, setIsFadingOut] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
-    // Elegant transition: 2.5s display, then quick clean fade
+    // 3.6s total rich cinematic experience, then clean fade-out
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         onFinish();
-      }, 600);
-    }, 2400);
+      }, 700);
+    }, 3600);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -24,26 +26,35 @@ export default function SplashScreen({ onFinish }) {
   };
 
   return (
-    <div className={`${styles.splashContainer} ${isFadingOut ? styles.fadeOut : ''}`}>
-      {/* Animated Background Elements */}
+    <div 
+      className={`${styles.splashContainer} ${isFadingOut ? styles.fadeOut : ''}`}
+      data-theme={theme}
+    >
+      {/* Ambient Depth Orbs */}
       <div className={styles.glowingOrb} />
       <div className={styles.glowingOrb2} />
+      
+      {/* Floating Starlight Particles */}
       <div className={styles.particlesContainer}>
-        {Array.from({ length: 20 }).map((_, i) => (
+        {Array.from({ length: 24 }).map((_, i) => (
           <div key={i} className={styles.particle} style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 2}s`,
-            animationDuration: `${2 + Math.random() * 2}s`
+            animationDelay: `${Math.random() * 2.5}s`,
+            animationDuration: `${3 + Math.random() * 2}s`
           }} />
         ))}
       </div>
       
-      {/* Main Text Content */}
+      {/* Main Cinematic Content */}
       <div className={styles.content}>
+        <div className={styles.tagline}>SOFTWARE ENGINEER &amp; SYSTEMS BUILDER</div>
         <div className={styles.nameWrapper}>
           <h1 className={styles.name}>ABDUL WASAY ALI</h1>
           <div className={styles.underline} />
+        </div>
+        <div className={styles.loaderBar}>
+          <div className={styles.loaderProgress} />
         </div>
       </div>
 
