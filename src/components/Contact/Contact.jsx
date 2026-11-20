@@ -70,7 +70,7 @@ export default function Contact() {
       setModalState({
         show: true,
         success: true,
-        message: "Thank you for reaching out! Your message has been delivered directly to my personal inbox. I will get back to you shortly.",
+        message: "Thanks for reaching out! I have received your message and will reply to your email as soon as possible.",
       });
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
@@ -313,11 +313,7 @@ export default function Contact() {
             </div>
 
             <div className={styles.modalTextBody}>
-              <div className={styles.modalStatusBadge}>
-                <span className={styles.statusDot} />
-                <span>{modalState.success ? 'Message Delivered' : 'Delivery Notice'}</span>
-              </div>
-              <h3 className={styles.modalHeading}>{modalState.success ? 'Thank You for Connecting!' : 'Unable to Send'}</h3>
+              <h3 className={styles.modalHeading}>{modalState.success ? 'Message Sent Successfully!' : 'Unable to Send'}</h3>
               <p className={styles.modalDescription}>{modalState.message}</p>
             </div>
 
@@ -326,7 +322,7 @@ export default function Contact() {
                 className={styles.modalConfirmBtn}
                 onClick={() => setModalState({ ...modalState, show: false })}
               >
-                <span>{modalState.success ? 'Sounds Great!' : 'Close & Try Again'}</span>
+                <span>Done</span>
               </button>
             </div>
           </div>
