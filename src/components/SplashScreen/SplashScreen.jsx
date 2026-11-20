@@ -7,13 +7,13 @@ export default function SplashScreen({ onFinish }) {
   const { theme } = useTheme();
 
   useEffect(() => {
-    // 3.6s total rich cinematic experience, then clean fade-out
+    // 4.2s smooth full showcase time
     const timer = setTimeout(() => {
       setIsFadingOut(true);
       setTimeout(() => {
         onFinish();
       }, 700);
-    }, 3600);
+    }, 4200);
 
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -46,15 +46,11 @@ export default function SplashScreen({ onFinish }) {
         ))}
       </div>
       
-      {/* Main Cinematic Content */}
+      {/* Pure Name and Clean Line Showcase */}
       <div className={styles.content}>
-        <div className={styles.tagline}>SOFTWARE ENGINEER &amp; SYSTEMS BUILDER</div>
         <div className={styles.nameWrapper}>
           <h1 className={styles.name}>ABDUL WASAY ALI</h1>
           <div className={styles.underline} />
-        </div>
-        <div className={styles.loaderBar}>
-          <div className={styles.loaderProgress} />
         </div>
       </div>
 
