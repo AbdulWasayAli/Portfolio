@@ -2,9 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { navLinks } from '../../data/portfolioData';
 import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
+import { Search } from 'lucide-react';
 import styles from './Navbar.module.css';
 
-export default function Navbar() {
+export default function Navbar({ onOpenCommandMenu }) {
   const [scrolled, setScrolled] = useState(false);
   const [visible, setVisible] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -94,8 +95,19 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: Theme Toggle & Mobile Menu */}
+        {/* Right: Theme Toggle, Quick Search & Mobile Menu */}
         <div className={styles.navActions}>
+          <button
+            className={styles.searchCommandBtn}
+            onClick={onOpenCommandMenu}
+            title="Search commands (Ctrl + K)"
+            aria-label="Search and command palette"
+          >
+            <Search size={15} className={styles.searchBtnIcon} />
+            <span className={styles.searchBtnText}>Search</span>
+            <kbd className={styles.searchBtnKbd}>⌘K</kbd>
+          </button>
+
           <ThemeToggle />
 
           {/* Mobile Hamburger */}

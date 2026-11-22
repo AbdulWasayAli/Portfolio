@@ -176,8 +176,84 @@
 .navActions {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   flex-shrink: 0;
+}
+
+/* Command Menu Search Trigger Button */
+.searchCommandBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  color: #94a3b8;
+  cursor: pointer;
+  font-family: var(--font-primary, sans-serif);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.searchCommandBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+:global([data-theme="light"]) .searchCommandBtn {
+  background: rgba(15, 23, 42, 0.05);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #64748b;
+}
+
+:global([data-theme="light"]) .searchCommandBtn:hover {
+  background: rgba(15, 23, 42, 0.08);
+  border-color: rgba(79, 70, 229, 0.3);
+  color: #0f172a;
+}
+
+.searchBtnIcon {
+  color: #818cf8;
+}
+
+:global([data-theme="light"]) .searchBtnIcon {
+  color: #4f46e5;
+}
+
+.searchBtnText {
+  letter-spacing: 0.1px;
+}
+
+.searchBtnKbd {
+  font-family: var(--font-mono, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 1.5px 5px;
+  color: #94a3b8;
+}
+
+:global([data-theme="light"]) .searchBtnKbd {
+  background: rgba(15, 23, 42, 0.06);
+  border-color: rgba(15, 23, 42, 0.1);
+  color: #64748b;
+}
+
+@media (max-width: 640px) {
+  .searchBtnText,
+  .searchBtnKbd {
+    display: none;
+  }
+  .searchCommandBtn {
+    padding: 7px;
+    border-radius: 50%;
+  }
 }
 
 /* Mobile Hamburger Button */

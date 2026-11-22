@@ -18,8 +18,9 @@ A high-performance developer portfolio and personal engineering platform built w
 
 ## Key Features & Component Engineering
 
-### 1. Smart Auto-Hide Floating Squircle Navigation (`Navbar`)
+### 1. Smart Auto-Hide Floating Squircle Navigation (`Navbar`) & Spotlight Command Palette
 - Floating capsule navigation bar (`border-radius: 20px`, `min-height: 76px`, `max-width: 1280px`).
+- **Spotlight Search & Command Palette (`Ctrl + K` / `Cmd + K`):** Linear & Raycast-inspired command menu providing instant keyboard-driven search for portfolio sections, projects, resume download, contact copies, and theme toggling.
 - **Smart Scroll Behavior:** Automatically and smoothly hides on scroll-down to provide an immersive, distraction-free reading experience, and reveals instantly on scroll-up.
 - Active section indicator features a subtle gradient line that transitions smoothly across navigation items.
 - Clean vector brand logo with dual-tone gradient strokes (`#8b5cf6` to `#00e5ff`) and interactive hover micro-states.
