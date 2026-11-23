@@ -929,7 +929,26 @@
 
 @media (max-width: 768px) {
   .companionContainer {
+    bottom: 84px;
+    right: 16px;
+    transform: scale(0.78);
+    transform-origin: bottom right;
+  }
+
+  .statusPill {
     display: none;
+  }
+
+  .chatWindow {
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 85vh;
+    max-height: 85vh;
+    border-radius: 20px 20px 0 0;
+    border-bottom: none;
   }
 }
 

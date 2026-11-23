@@ -1,0 +1,24 @@
+{
+  "name": "Abdul Wasay Ali — Portfolio",
+  "short_name": "Wasay",
+  "description": "Software Engineer & Mobile App Developer Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#030307",
+  "theme_color": "#030307",
+  "icons": [
+    {
+      "src": "/images/theme_w_logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/theme_w_logo.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
