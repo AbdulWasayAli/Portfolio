@@ -11,7 +11,6 @@ import InteractiveBrandBanner from './components/InteractiveBrandBanner/Interact
 import Footer from './components/Footer/Footer';
 import FloatingControls from './components/FloatingControls/FloatingControls';
 import FloatingRobot from './components/FloatingRobot/FloatingRobot';
-import CommandMenu from './components/CommandMenu/CommandMenu';
 import { ThemeProvider } from './context/ThemeContext';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import NotFound from './pages/NotFound';
@@ -61,37 +60,17 @@ function App() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const [showSplash, setShowSplash] = useState(isHomePage);
-  const [isCommandMenuOpen, setIsCommandMenuOpen] = useState(false);
-
-  // Global Keyboard Shortcut: Ctrl + K or Cmd + K
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        setIsCommandMenuOpen((prev) => !prev);
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
 
   return (
     <ThemeProvider>
       {isHomePage && showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
-      
-      {/* Global Command Palette Spotlight */}
-      <CommandMenu 
-        isOpen={isCommandMenuOpen} 
-        onClose={() => setIsCommandMenuOpen(false)} 
-      />
-
       <Routes>
         <Route path="/" element={
           <>
+
             <ScrollProgress />
             <AtmosphericBackground />
-            <Navbar onOpenCommandMenu={() => setIsCommandMenuOpen(true)} />
+            <Navbar />
             <main>
               <Hero />
               <About />
