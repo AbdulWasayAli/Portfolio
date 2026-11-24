@@ -192,13 +192,11 @@
   0% {
     opacity: 0;
     transform: translateY(16px) scale(0.98);
-    letter-spacing: 16px;
     filter: blur(6px);
   }
   100% {
     opacity: 1;
     transform: translateY(0) scale(1);
-    letter-spacing: 12px;
     filter: blur(0);
   }
 }
@@ -251,15 +249,24 @@
 
 /* === Mobile Responsiveness === */
 @media (max-width: 600px) {
+  .nameWrapper {
+    width: 100%;
+    max-width: 100vw;
+    padding: 10px 16px;
+    box-sizing: border-box;
+  }
+
   .name {
-    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
-    letter-spacing: 5px;
+    font-size: clamp(1.1rem, 4.6vw, 1.45rem);
+    letter-spacing: 2px !important;
     white-space: nowrap;
+    text-align: center;
+    width: 100%;
   }
 
   .loadingTrack {
-    max-width: 270px;
-    margin-top: 18px;
+    max-width: 230px;
+    margin-top: 16px;
   }
 
   .skipButton {
