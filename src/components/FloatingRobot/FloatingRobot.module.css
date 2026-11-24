@@ -929,17 +929,6 @@
 
 @media (max-width: 768px) {
   .companionContainer {
-    bottom: 84px;
-    right: 18px;
-    transform: scale(0.78);
-    transform-origin: bottom right;
-  }
-
-  .statusPill {
-    display: none;
-  }
-
-  .chatAlertBadge {
     display: none;
   }
 
