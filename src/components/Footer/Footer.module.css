@@ -149,14 +149,34 @@
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  .footer {
+    padding: var(--space-2xl) 0 var(--space-3xl);
+  }
+
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: var(--space-2xl);
+    gap: var(--space-xl);
+  }
+
+  .footerBrand {
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .footerSection h4 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .footerDivider {
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-md);
   }
 
   .footerBottom {
     flex-direction: column;
     text-align: center;
+    gap: var(--space-sm);
+    padding-bottom: 20px;
   }
 }
 

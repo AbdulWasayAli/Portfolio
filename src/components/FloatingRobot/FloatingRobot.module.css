@@ -929,9 +929,9 @@
 
 @media (max-width: 768px) {
   .companionContainer {
-    bottom: 24px;
-    right: 80px; /* Positioned neatly next to WhatsApp floating button without overlapping */
-    transform: scale(0.68);
+    bottom: 84px;
+    right: 18px;
+    transform: scale(0.78);
     transform-origin: bottom right;
   }
 
@@ -940,7 +940,7 @@
   }
 
   .chatAlertBadge {
-    display: none; /* Hide chat pill on mobile to prevent clutter */
+    display: none;
   }
 
   .chatWindow {
