@@ -23,7 +23,7 @@ export default function Experience() {
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.02, rootMargin: '50px 0px' }
     );
 
     itemRefs.current.forEach((el) => { if (el) observer.observe(el); });

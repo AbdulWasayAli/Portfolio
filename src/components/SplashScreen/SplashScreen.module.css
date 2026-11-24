@@ -248,3 +248,24 @@
   0% { opacity: 0; }
   100% { opacity: 1; }
 }
+
+/* === Mobile Responsiveness === */
+@media (max-width: 600px) {
+  .name {
+    font-size: clamp(1.4rem, 6.2vw, 2.1rem);
+    letter-spacing: 5px;
+    white-space: nowrap;
+  }
+
+  .loadingTrack {
+    max-width: 270px;
+    margin-top: 18px;
+  }
+
+  .skipButton {
+    bottom: 24px;
+    right: 20px;
+    padding: 6px 14px;
+    font-size: 0.65rem;
+  }
+}

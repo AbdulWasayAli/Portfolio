@@ -540,6 +540,24 @@ textarea {
    RESPONSIVE
    ============================================= */
 @media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+    position: relative;
+    width: 100%;
+  }
+
+  /* Prevent side-shift overflow on mobile screens */
+  .reveal-left,
+  .reveal-right {
+    transform: translateY(24px) !important;
+  }
+
+  .reveal-left.visible,
+  .reveal-right.visible {
+    transform: translateY(0) !important;
+  }
+
   .section {
     padding: var(--space-3xl) 0;
   }
