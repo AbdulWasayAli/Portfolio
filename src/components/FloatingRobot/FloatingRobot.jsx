@@ -273,8 +273,8 @@ export default function FloatingRobot() {
   };
 
   return (
-    <aside aria-label="Interactive AI Assistant" className={styles.companionContainer}>
-      {/* Interactive Chat Window */}
+    <>
+      {/* Interactive Chat Window rendered directly at root fixed level */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -421,111 +421,113 @@ export default function FloatingRobot() {
       </AnimatePresence>
 
       {/* Floating 3D Robot Mascot (Clickable Trigger - Preserved Exactly) */}
-      <div
-        ref={robotRef}
-        className={`${styles.robotStage} ${isOpen ? styles.robotActive : ''}`}
-        onClick={() => {
-          setIsOpen((prev) => !prev);
-          setHasUnread(false);
-        }}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        role="button"
-        tabIndex={0}
-        aria-label="Toggle Wasay AI Assistant"
-      >
-        {/* Unread Alert Ping */}
-        {hasUnread && !isOpen && (
-          <div className={styles.chatAlertBadge}>
-            <span>Chat</span>
-          </div>
-        )}
-
-        {/* Ambient Glow */}
-        <div className={styles.glow} />
-
-        {/* Orbit Ring */}
-        <div className={styles.orbitRing} />
-
-        {/* 3D Mesh Body */}
+      <aside aria-label="Interactive AI Assistant" className={styles.companionContainer}>
         <div
-          className={styles.robotMesh}
-          style={{
-            transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+          ref={robotRef}
+          className={`${styles.robotStage} ${isOpen ? styles.robotActive : ''}`}
+          onClick={() => {
+            setIsOpen((prev) => !prev);
+            setHasUnread(false);
           }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          role="button"
+          tabIndex={0}
+          aria-label="Toggle Wasay AI Assistant"
         >
-          {/* Antenna */}
-          <div className={styles.antenna}>
-            <div className={styles.antennaBall} />
-            <div className={styles.antennaStem} />
-          </div>
+          {/* Unread Alert Ping */}
+          {hasUnread && !isOpen && (
+            <div className={styles.chatAlertBadge}>
+              <span>Chat</span>
+            </div>
+          )}
 
-          {/* Head */}
-          <div className={styles.head}>
-            <div className={styles.visor}>
-              <div className={styles.scanLine} />
+          {/* Ambient Glow */}
+          <div className={styles.glow} />
 
-              {/* Eyes tracking cursor */}
-              <div className={styles.eyeRow}>
-                <div className={styles.eyeSocket}>
-                  <div
-                    className={`${styles.eye} ${isHovered ? styles.blink : ''}`}
-                    style={{ transform: `translate(${eyePos.x}px, ${eyePos.y}px)` }}
-                  />
+          {/* Orbit Ring */}
+          <div className={styles.orbitRing} />
+
+          {/* 3D Mesh Body */}
+          <div
+            className={styles.robotMesh}
+            style={{
+              transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+            }}
+          >
+            {/* Antenna */}
+            <div className={styles.antenna}>
+              <div className={styles.antennaBall} />
+              <div className={styles.antennaStem} />
+            </div>
+
+            {/* Head */}
+            <div className={styles.head}>
+              <div className={styles.visor}>
+                <div className={styles.scanLine} />
+
+                {/* Eyes tracking cursor */}
+                <div className={styles.eyeRow}>
+                  <div className={styles.eyeSocket}>
+                    <div
+                      className={`${styles.eye} ${isHovered ? styles.blink : ''}`}
+                      style={{ transform: `translate(${eyePos.x}px, ${eyePos.y}px)` }}
+                    />
+                  </div>
+                  <div className={styles.eyeSocket}>
+                    <div
+                      className={`${styles.eye} ${isHovered ? styles.blink : ''}`}
+                      style={{ transform: `translate(${eyePos.x}px, ${eyePos.y}px)` }}
+                    />
+                  </div>
                 </div>
-                <div className={styles.eyeSocket}>
-                  <div
-                    className={`${styles.eye} ${isHovered ? styles.blink : ''}`}
-                    style={{ transform: `translate(${eyePos.x}px, ${eyePos.y}px)` }}
-                  />
+
+                {/* Visor Grill */}
+                <div className={styles.mouth}>
+                  <span /><span /><span />
                 </div>
               </div>
 
-              {/* Visor Grill */}
-              <div className={styles.mouth}>
+              {/* Ears */}
+              <div className={`${styles.ear} ${styles.earLeft}`}>
+                <div className={styles.earDot} />
+              </div>
+              <div className={`${styles.ear} ${styles.earRight}`}>
+                <div className={styles.earDot} />
+              </div>
+            </div>
+
+            {/* Neck */}
+            <div className={styles.neck} />
+
+            {/* Chest */}
+            <div className={styles.chest}>
+              <div className={styles.coreReactor} />
+              <div className={styles.chestLines}>
                 <span /><span /><span />
               </div>
             </div>
 
-            {/* Ears */}
-            <div className={`${styles.ear} ${styles.earLeft}`}>
-              <div className={styles.earDot} />
+            {/* Arms */}
+            <div className={`${styles.arm} ${styles.armLeft}`}>
+              <div className={styles.shoulder} />
+              <div className={styles.forearm} />
             </div>
-            <div className={`${styles.ear} ${styles.earRight}`}>
-              <div className={styles.earDot} />
-            </div>
-          </div>
-
-          {/* Neck */}
-          <div className={styles.neck} />
-
-          {/* Chest */}
-          <div className={styles.chest}>
-            <div className={styles.coreReactor} />
-            <div className={styles.chestLines}>
-              <span /><span /><span />
+            <div className={`${styles.arm} ${styles.armRight}`}>
+              <div className={styles.shoulder} />
+              <div className={styles.forearm} />
             </div>
           </div>
 
-          {/* Arms */}
-          <div className={`${styles.arm} ${styles.armLeft}`}>
-            <div className={styles.shoulder} />
-            <div className={styles.forearm} />
-          </div>
-          <div className={`${styles.arm} ${styles.armRight}`}>
-            <div className={styles.shoulder} />
-            <div className={styles.forearm} />
+          {/* Mascot Status Label */}
+          <div className={styles.statusPill}>
+            <span className={styles.statusDot} />
+            <span className={styles.statusText}>
+              {isOpen ? 'Close Chat' : 'Ask Bot'}
+            </span>
           </div>
         </div>
-
-        {/* Mascot Status Label */}
-        <div className={styles.statusPill}>
-          <span className={styles.statusDot} />
-          <span className={styles.statusText}>
-            {isOpen ? 'Close Chat' : 'Ask Bot'}
-          </span>
-        </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 }

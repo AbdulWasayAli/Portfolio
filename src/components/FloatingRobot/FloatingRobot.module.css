@@ -929,6 +929,18 @@
 
 @media (max-width: 768px) {
   .companionContainer {
+    display: block;
+    bottom: 145px; /* Neatly above WhatsApp floating button */
+    right: 22px;
+    transform: scale(0.82);
+    transform-origin: bottom right;
+  }
+
+  .statusPill {
+    display: none;
+  }
+
+  .chatAlertBadge {
     display: none;
   }
 
@@ -942,6 +954,40 @@
     max-height: 85vh;
     border-radius: 20px 20px 0 0;
     border-bottom: none;
+    z-index: 10001; /* Above all floating bars and navbar */
+  }
+
+  .messagesContainer {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+
+  .messageBubble {
+    font-size: 13px;
+    padding: 10px 14px;
+    max-width: 88%;
+  }
+
+  .quickChips {
+    padding: 8px 14px;
+    gap: 6px;
+  }
+
+  .chipBtn {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .chatInputForm {
+    padding: 8px 14px 14px;
+  }
+
+  .inputWrapper {
+    padding: 4px 5px 4px 12px;
+  }
+
+  .chatInput {
+    font-size: 13px;
   }
 }
 
