@@ -929,14 +929,18 @@
 
 @media (max-width: 768px) {
   .companionContainer {
-    bottom: 84px;
-    right: 16px;
-    transform: scale(0.78);
+    bottom: 24px;
+    right: 80px; /* Positioned neatly next to WhatsApp floating button without overlapping */
+    transform: scale(0.68);
     transform-origin: bottom right;
   }
 
   .statusPill {
     display: none;
+  }
+
+  .chatAlertBadge {
+    display: none; /* Hide chat pill on mobile to prevent clutter */
   }
 
   .chatWindow {
